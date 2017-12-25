@@ -86,3 +86,4 @@ plugins/android.json
 plugins/ios.json
 www/
 typings/
+.DS_Store
