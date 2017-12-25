@@ -1,0 +1,58 @@
+business-item-edit {
+    ion-col{
+        margin: 0px !important;
+        padding: 0px !important;
+        img{
+            width: 50%;
+            min-height: 40px;
+        }
+        p{
+            font-size: 1.3rem;
+            padding-top: 10px;
+            padding-bottom: 25px;
+            margin: 0px;
+        }
+
+    }
+    .header{
+        // position: relative;
+        width: 100%;
+        overflow: auto;
+        padding-top: 10px;
+        button{
+            height: 20px;
+            background:color($colors,primary);
+            padding: 0px 2px 0px 2px;
+            margin-left: 6px;
+        }
+        h5{
+            font-size: 1.5rem;
+            margin-top: 4px;
+            margin-left: 5px
+        }
+        p{
+            font-size: 1.3rem;
+            margin-top: 4px;
+            margin-right: 10px;
+            margin-left: 10px;
+            color: darkgray;
+        }
+    }
+    .item{
+        .mimg{
+            width: 30%;
+        }
+       
+    }
+    .checkbox-icon{
+        border-width:1.5px !important;
+        border-color:rgb(223, 222, 222) !important;
+    }
+    .checkbox-checked{
+        .checkbox-inner{
+            left: 6px !important;
+            top:1px !important;
+        }
+        border-width:0px !important;
+    }
+}

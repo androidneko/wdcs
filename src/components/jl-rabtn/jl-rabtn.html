@@ -1,0 +1,6 @@
+<!-- Generated template for the JlRabtnComponent component -->
+<div class="rabtn horizontal horizontal_center">
+  <ion-icon class="add" name="ios-remove-outline" (click)="reduce()"></ion-icon>
+  <input (blur)="blur()" type="tel" class="input-num" (keyup)="onKey($event)" [(ngModel)]="count"/>
+  <ion-icon class="min" name="ios-add-outline" (click)="add()"></ion-icon>
+</div>

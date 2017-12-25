@@ -1,0 +1,14 @@
+page-who-hasnt-paid {
+    ion-item{
+        h5{
+            padding-left: 10px;
+
+        }
+        p{
+            padding-left: 10px;
+        }
+    }
+    .amt{
+        color: color($colors,primary);
+    }
+}

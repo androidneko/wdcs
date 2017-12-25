@@ -1,0 +1,51 @@
+<!--
+  Generated template for the OperationsStatementPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>经营报表</ion-title>
+  </ion-navbar>
+  <div style="width:100%;overflow:auto" class="msearchbar" >
+      <ion-searchbar
+      cancelButtonText="取消"
+      placeholder="请输入进货单号或供应商名称" 
+      col-10
+      float-left
+      (keydown)="keydown($event)"
+      >
+    </ion-searchbar>
+    <button no-padding no-margin ion-button clear col-2 float-right (click)="rightBtnClicked()">筛选</button>
+  </div>
+</ion-header>
+
+
+<ion-content no-padding>
+<ion-list no-margin no-padding >
+  <ion-item no-lines no-margin no-padding *ngFor="let item  of dataArray" (click)="itemClicked(item)" >
+    <div class="item-content" text-center>
+      <div margin-left text-left  float-left>
+          <h3>客户名称</h3>
+          <p>湖北某某有限公司</p>
+      </div>
+      <div float-right margin-right>
+         <h1 style="padding-top:8px">-23,030.00</h1>
+      </div>
+      <div float-left style="width:100%;height:1px"></div>
+      <div margin-bottom float-left style="width:49.8%">
+        <h2 style="color:orange">16,870.00</h2>
+        <h4 >本月收入</h4>
+      </div>
+      <div float-left class="vline"></div>
+      <div margin-bottom float-right style="width:49.85%">
+          <h2 style="color:orange">16,870.00</h2>
+          <h4 >本月支出</h4>
+      </div>
+    </div>
+    <div class="ty-line15"></div>
+  </ion-item>
+</ion-list>
+</ion-content>

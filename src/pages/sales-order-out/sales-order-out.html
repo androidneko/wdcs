@@ -1,0 +1,45 @@
+<!--
+  Generated template for the SalesOrderOutPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>销售分批出库</ion-title>
+    <ion-buttons end>
+      <button ion-button class="text" (click)="saveClicked()">保存</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+  <ion-item>
+    <p>客户：{{item.merchantName}}</p>
+    <p>销售单号：{{item.orderId}}</p>
+    <p>销售时间：{{item.createDate | tydate: 'yyyy-MM-dd'}}</p>
+  </ion-item>
+  <ion-item (click)="warehouseClicked()">
+    <p class="text">仓库</p>
+    <p class="detall" item-end>{{item.whseName}}</p>
+    <ion-icon class="ty-arrow-gray" name="ios-arrow-forward" item-end></ion-icon>
+  </ion-item>
+  <div class="ty-line1"></div>
+  <ion-list *ngIf="item.orderProdlist!=null&&item.orderProdlist.length>0" >
+    <ion-item *ngFor="let mitem of item.orderProdlist" no-lines>
+      <p class="text">商品名称：{{mitem.productName}}</p>
+      <p (click)="stockClicked(mitem)">库位：{{mitem.storagebinName}}
+        <ion-icon class="ty-arrow-gray" name="ios-arrow-forward" style="float:right"></ion-icon>
+      </p>
+      <p>订单数量：{{mitem.productNum}}（单位：KG）</p>
+      <p>本次出库数量&nbsp;&nbsp;&nbsp;&nbsp;
+          <jl-counter-input [(ngModel)]="mitem.storageQuantity"  class="jlrabtn"  maxCount={{mitem.unShipmentNum}}></jl-counter-input>
+        <!-- <jl-rabtn (valuechange)="valuechange(mitem)" count={{mitem.productNum}} class="jlrabtn" maxCount={{mitem.productNum}}></jl-rabtn> -->
+      </p>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

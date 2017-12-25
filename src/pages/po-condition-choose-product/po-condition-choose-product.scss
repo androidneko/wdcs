@@ -1,0 +1,27 @@
+page-po-condition-choose-product {
+    .msearchbar {
+        .searchbar-ios{
+            background:rgba(0, 0, 0, 0);
+        }
+        background: rgba(0, 0, 0, .1);
+    }
+    ion-footer{
+        background: white;
+        .div_back{
+            button {
+                color: white;
+            };
+            background: color($colors,primary);
+        }
+        
+    }
+   
+
+    .leftclasscss{
+        font-size: 18px;
+    }
+    .rightClasscss
+    {
+        font-size: 14px;
+    }
+}

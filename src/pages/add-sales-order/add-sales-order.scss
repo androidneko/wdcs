@@ -1,0 +1,36 @@
+page-add-sales-order {
+    ion-content{
+        .fixed-content{
+            background: rgba($color: #000000, $alpha: 0) !important;
+        }
+        .scroll-content{
+            background: rgba($color: #000000, $alpha: 0) !important;
+        }
+        background: color($colors,ty-partingline) !important;
+    }
+    
+    .remark{
+        margin-top: 15px;
+        ion-textarea{
+            height: 100px;
+            textarea{
+                height: 90px;
+            }
+        }
+    }
+    .remarkcount{
+        background: white;
+        p{
+            color: lightgray;
+        }
+    }
+    .detall{
+        margin-top: 4px !important;
+    }
+    .cancel{
+        background: white;
+    }
+    .comfirm{
+        background: color($colors,primary);
+    }
+}

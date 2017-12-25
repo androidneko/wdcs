@@ -1,0 +1,10 @@
+<!-- Generated template for the JlRabtnComponent component -->
+<div class="rabtn vertical vertical_center">
+  <!-- <button ion-button   clear (click)="reduce()">-</button> -->
+  <ion-icon class="add" name="ios-remove-outline" (click)="reduce()"></ion-icon>
+  <!-- <p>{{count}}</p> -->
+  <input type="tel"  class="input-num" #ipt (keyup)="onKey(ipt)" [(ngModel)]="count"/>
+ 
+  <!-- <button ion-button  clear (click)="add()">+</button> -->
+  <ion-icon class="min" name="ios-add-outline" (click)="add()"></ion-icon>
+</div>

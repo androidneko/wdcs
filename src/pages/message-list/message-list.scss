@@ -1,0 +1,21 @@
+page-message-list {
+
+  .list-avatar-page {
+    ion-note {
+      font-size: 12px;
+      align-self: flex-start;
+      margin-top: 14px;
+    }
+  }
+
+.border-top-none{
+      
+        border-top:0.55px none #c8c7cc;
+      
+  }
+
+  .item-ios ion-thumbnail {
+    min-width: 0px;
+    min-height: 0px;
+  }
+}

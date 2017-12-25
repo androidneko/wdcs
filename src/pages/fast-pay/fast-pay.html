@@ -1,0 +1,37 @@
+<!--
+  Generated template for the FastPayPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="ty-nav-bar">
+    <ion-title>快速付款</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content  no-padding no-margin>
+  <ion-item>
+    <ion-label>供应商:</ion-label>
+    <ion-input (click)="labelClicked()" readonly [(ngModel)]="merchantname"></ion-input>
+    <ion-select  (ngModelChange)="changeVersion($event)"okText="确定" cancelText="取消" [(ngModel)]="gender" selectedText=" " end>
+      <ion-option  *ngFor="let item of merchantArray;let idx=index"   value="{{idx}}">{{item.loginName}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label >付款金额(元):</ion-label>
+    <ion-input [(ngModel)]="amount"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label >备注:</ion-label>
+    <ion-input placeholder="请输入预留信息" [(ngModel)]="premessage"></ion-input>
+  </ion-item>
+  <div style="position:absolute;bottom:10px;width:100%;padding-left:10px;padding-right:10px" text-center >
+    <button style="border-radius:23px;width:100%" ion-button block color="primary" (click)="comfirm()">
+      确认支付
+    </button>
+  </div>
+</ion-content>

@@ -1,0 +1,33 @@
+<!--
+  Generated template for the SettingPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>设置</ion-title>
+ 
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content fullscreen no-padding no-margin>
+  <div style="background:rgb(237, 237, 237);height:100%">
+<ion-list no-margin>
+  <ion-item (click)="enterModifyPwd()">
+    <h2>修改密码</h2>
+    <ion-icon name="ios-arrow-forward" style="color:#F2F2F2" item-end></ion-icon>
+  </ion-item>
+
+  <ion-item (click)="cleanCacheButtonClick()">
+    <h2 item-start>清除缓存</h2>
+    <h2 item-end style="margin:8px">{{cacheSize}}M</h2>
+  </ion-item>
+</ion-list>
+<button ion-button full style="background:white;color:black;margin:0.5px 0" (click)="logoutButtonPress()">退出登录</button>
+</div>
+</ion-content>
+

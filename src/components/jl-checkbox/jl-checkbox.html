@@ -1,0 +1,10 @@
+<!-- Generated template for the JlCheckboxComponent component -->
+
+<div class="col" float-left text-center *ngFor="let item of dataSrc">
+  <div style="overflow:auto;margin:0 auto;display: inline-block;">
+    <div style="overflow:auto" (click)="itemClick(item)">
+      <ion-checkbox class="checkbox_css" mode="md" float-left [(ngModel)]="item.checked" disabled></ion-checkbox>
+      <p float-left class={{spaceClass}}>{{item.text}}</p>
+    </div>
+  </div>
+</div>

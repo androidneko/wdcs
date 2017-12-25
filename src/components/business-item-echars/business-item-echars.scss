@@ -1,0 +1,39 @@
+business-item-echars {
+    .header{
+        // position: relative;
+        width: 100%;
+        overflow: auto;
+        padding-top: 10px;
+        button{
+            height: 20px;
+            background:color($colors,primary);
+            padding: 0px 2px 0px 2px;
+            margin-left: 6px;
+        }
+        .title{
+            font-size: 1.6rem;
+            color: black;
+            margin-top: 4px;
+            margin-left: 5px
+        }
+        .detail{
+            margin-top: 4px;
+            margin-right: 10px;
+            margin-left: 10px;
+            color: darkgray;
+        }
+    } 
+    .char_title{
+
+    }
+    .char_detail{
+        
+        color: color($colors,primary);
+    }
+    .swiper-pagination-bullet-active {
+        background: color($colors,primary) !important;
+    }
+    .swiper-pagination-bullets{
+        bottom: 3px !important;
+    }
+}

@@ -1,0 +1,29 @@
+page-personal-info {
+
+    ion-item h2 {
+        float: left;
+    }
+    ion-item  .title {
+        margin: 0px;
+        padding: 0px 10px 0px 0px;
+    }
+
+    .text-input-ios {
+        margin: 11px 0px;
+    }
+
+    .label-ios {
+        margin: 11px  0px;
+      }
+
+    .label-ios + ion-input .text-input,
+    .label-ios + ion-textarea .text-input,
+    .label-ios + .input + .cloned-input {
+      margin-left: 0px;
+      
+    }
+}
+
+personal-info-header{
+    height: 80px;
+}

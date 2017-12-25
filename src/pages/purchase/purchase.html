@@ -1,0 +1,36 @@
+<!--
+  Generated template for the PurchasePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="ty-nav-bar">
+    <ion-title>采购</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding no-margin scroll="false">
+  <div class="head" style="width:100%">
+    <ion-row>
+      <ion-col col-6 >
+          <button class="btn-left" ion-button icon-left (click)="fastPayClicked()">
+            <ion-icon name="home"></ion-icon>
+              快速付款
+          </button>
+      </ion-col>
+      <ion-col col-6>
+          <button class="btn-right" ion-button icon-left (click)="paytHistoyClicked()">
+              <ion-icon name="home"></ion-icon>
+              付款记录
+          </button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div class="ty-line15"></div>
+  <ion-tyfunction-grid [functionItems]="dataArray">
+  </ion-tyfunction-grid>
+</ion-content>

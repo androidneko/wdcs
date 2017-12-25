@@ -1,0 +1,61 @@
+page-login {
+     //设置背景颜色
+     ion-content{
+        .fixed-content{
+            background: rgba($color: #000000, $alpha: 0) !important;
+        }
+        .scroll-content{
+            background: rgba($color: #000000, $alpha: 0) !important;
+        }
+        background: color($colors,ty-partingline) !important;
+    }
+    .iputcenter{
+        width: auto;
+        margin-top: 20px;
+        border-radius: 3px !important;
+        border:1px solid color($colors,ty-partingline);
+    }
+    .passwordopreation{
+        margin-left: 10px;
+        ion-checkbox{
+            padding-top:1px;
+        }
+        p{
+            font-size: 10px;
+            padding-left: 2px;
+            color: color($colors,primary);
+        }
+        .p1{
+            color: color($colors,ty-blue) !important;
+        }
+    }
+    .bottom{
+        position: absolute;
+        bottom: 20px;
+        color: color($colors,primary);
+    }
+    .forget{
+        margin: 15px;
+        text-align: center;
+        color: color($colors,ty-blue);
+    }
+    .itemtop
+    {
+        .item-icon
+        {
+            
+            background: url(../assets/imgs/regist_username.png) no-repeat center !important;
+            background-size:70% 70% !important;
+        }
+    }
+
+    .itembottom
+    {
+        .item-icon
+        {
+            
+            background: url(../assets/imgs/regist_password.png) no-repeat center !important;
+            background-size:70% 70% !important;
+        }
+    }
+}

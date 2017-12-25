@@ -1,0 +1,54 @@
+page-discovery {
+    .segment-button{
+        color: black !important;
+    }
+    .segment-button.segment-activated{
+        color: color($colors,primary) !important;
+        font-weight: bold;
+        .bolder-sm{
+            border: 5px solid color($colors, primary);
+            width: 60px;
+            margin: 0 auto;
+        }
+    }
+    .item-button{
+        padding-left: 0.2rem !important;
+        padding-right: 0.2rem !important;
+    }
+
+    .header{
+        // position: relative;
+        width: 100%;
+        overflow: auto;
+        button{
+            height: 20px;
+            background:color($colors,primary);
+            padding: 0px 4px 0px 4px;
+            margin-left: 0px;
+        }
+        h5{
+            text-align: left;
+            margin-top: 5px;
+            margin-left: 5px;
+            margin-right:5px;
+            white-space: normal;
+        }
+        
+    } 
+    .title{
+        text-align: left;
+        margin-top: 5px;
+        margin-left: 5px;
+        margin-right:5px;
+        white-space: normal;
+    }
+    .date{
+        text-align: bottom;
+        margin-top: 15px !important;
+        margin-left: 5px;
+    }
+    .empty{
+        text-align: center;
+        color: rgb(222, 222, 222)
+    }
+}

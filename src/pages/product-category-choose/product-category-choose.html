@@ -1,0 +1,60 @@
+<!--
+  Generated template for the ProductCategoryChoosePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>筛选商品</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+    <ion-item (click)="bigClicked()">
+        <h2 class="text">商品大类</h2>
+        <p class="detall"item-end>{{bigCate.customCategoryName}}</p>
+        <ion-icon class="ty-arrow-gray" name="ios-arrow-forward" item-end></ion-icon>
+    </ion-item>
+    <ion-item (click)="smallClicked()">
+        <h2 class="text">商品小类</h2>
+        <p class="detall"item-end>{{smallCate.customCategoryName}}</p>
+        <ion-icon class="ty-arrow-gray" name="ios-arrow-forward" item-end></ion-icon>
+    </ion-item>
+   
+    <div padding-left class="checkMark" style="width:100%;" >
+      <h2 class="col" style="font-size:1.7rem;font-weight:normal;"  class="text" float-left>是否上架</h2>
+      <div class="col" float-left text-center>
+        <div style="overflow:auto;margin:0 auto;display: inline-block;" >
+            <ion-checkbox class="checkbox-md checkbox_normal" color="primary" checked="{{status==''}}" #stookstaus02 (click)="stookClick(stookstaus02,'')" float-left></ion-checkbox>
+            <p float-left>不限</p>
+        </div>
+      </div>
+      <div class="col" float-left text-center>
+          <div style="overflow:auto;margin:0 auto;display: inline-block;*display:inline; *zoom:1;" >
+              <ion-checkbox class="checkbox-md checkbox_normal" color="primary" checked="{{status=='1'}}" #stookstaus01 (click)="stookClick(stookstaus01,'1')"  float-left></ion-checkbox>
+              <p float-left>是</p>
+          </div>
+        </div>    
+        <div class="col" float-left text-center>
+            <div style="overflow:auto;margin:0 auto;display: inline-block;*display:inline; *zoom:1;" >
+                <ion-checkbox class="checkbox-md checkbox_normal" color="primary" checked="{{status=='0'}}" #stookstaus00 (click)="stookClick(stookstaus00,'0')"  float-left></ion-checkbox>
+                <p float-left>否</p>
+            </div>
+          </div>   
+    </div>
+</ion-content>
+<ion-footer>
+        <div  text-center style="width:100%;overflow:auto;position:fixed;bottom:0px;">
+      <div class="cancel" float-left col-6 (click)="resetClick()">
+        <p>重置</p>
+      </div>
+      <div class="comfirm" float-left col-6 (click)="comfirm()" >
+          <p style="color:white;">确定</p>
+      </div>
+      
+    </div>
+ </ion-footer>

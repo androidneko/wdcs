@@ -1,0 +1,46 @@
+ion-product-choose-item {
+    h3{
+        font-size: 1.4rem;
+        padding: 0px;
+        margin: 0px;
+    }
+    p{
+        font-size: 1.3rem;
+        color: darkgray;
+        padding: 0px;
+        margin: 1px;
+    }
+    ion-checkbox{
+        padding-top: 2.5rem !important; 
+        margin: 0px !important;
+    }
+    .numberdiv{
+        overflow: auto;
+        .money{
+            color: red;
+            float: left;
+        }
+        jl-rabtn{
+            float: right;
+        }
+       
+    }
+    .bottom{
+        p{
+            padding-top: 5px;
+        }
+        button{
+            min-width: 60px;
+        }
+    }
+
+
+    .leftClasscss
+    {
+        font-size: 1.6rem;
+    }
+    .rightClasscss
+    {
+        font-size: 1.2rem;
+    }
+}

@@ -1,0 +1,8 @@
+<ion-tabs  #test1>
+  <ion-tab *ngIf="userType=='2'"  [root]="tab6Root" tabsHideOnSubPages="true" tabTitle="报表" tabIcon="tab1"></ion-tab>
+  <ion-tab *ngIf="userType=='1'"  [root]="tab1Root" tabsHideOnSubPages="true" tabTitle="进销存" tabIcon="tab1"></ion-tab>
+  <!-- <ion-tab *ngIf="userType!=null" [root]="tab2Root" tabsHideOnSubPages="true" tabTitle="微贷" tabIcon="tab2"></ion-tab> -->
+  <ion-tab *ngIf="userType!=null" [root]="tab3Root" tabsHideOnSubPages="true" tabTitle="发现" tabIcon="tab3"></ion-tab>
+  <ion-tab *ngIf="userType=='1'"  [root]="tab4Root" tabsHideOnSubPages="true" tabTitle="我的" tabIcon="tab4"></ion-tab>
+  <ion-tab *ngIf="userType=='2'"  [root]="tab5Root" tabsHideOnSubPages="true" tabTitle="我的" tabIcon="tab4"></ion-tab>
+</ion-tabs>

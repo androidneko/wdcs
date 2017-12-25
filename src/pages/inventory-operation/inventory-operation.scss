@@ -1,0 +1,47 @@
+page-inventory-operation {
+     //设置背景颜色
+ ion-content{
+    .fixed-content{
+        background: rgba($color: #000000, $alpha: 0) !important;
+    }
+    .scroll-content{
+        background: rgba($color: #000000, $alpha: 0) !important;
+    }
+    background: color($colors,ty-partingline) !important;
+}
+    .detall{
+        padding-top: 10px;
+        padding-bottom: 15px;
+    }
+    .text{
+        margin-top: 4px !important;
+      
+    }
+
+    .remark{
+        margin-top: 0px;
+        ion-textarea{
+            height: 60px;
+            textarea{
+                height: 45px;
+            }
+        }
+    }
+    .remarkcount{
+        margin: 0px !important;
+        background: white;
+        p{
+            color: lightgray;
+        }
+    }
+
+    .detall{
+        margin-top: 4px !important;
+    }
+    .cancel{
+        background: white;
+    }
+    .comfirm{
+        background: color($colors,primary);
+    }
+}

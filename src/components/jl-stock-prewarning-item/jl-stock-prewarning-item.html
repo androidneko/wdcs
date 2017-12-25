@@ -1,0 +1,12 @@
+<!-- Generated template for the JlStockPrewarningItemComponent component -->
+<ion-item  >
+  <img item-start  width="70" height="70" src="{{item.proIcon}}" alt="" float-left>
+  <div float-left>
+     <h5>{{item.proName}}</h5>
+     <p>最大库存:{{item.maxStorageWarning}}</p>
+     <p>最小库存:{{item.minStorageWarning}}</p>
+     <p>可用库存: <span [ngClass]="{'lack':item.quantity < item.minStorageWarning,'nor':item.quantity >= item.minStorageWarning && item.available <= item.maxStorageWarning,'toomuch':item.quantity > item.maxStorageWarning}">{{item.quantity}}</span></p>     
+     <p>库存状态: <span [ngClass]="{'lack':item.quantity < item.minStorageWarning,'nor':item.quantity >= item.minStorageWarning && item.quantity <= item.maxStorageWarning,'toomuch':item.quantity > item.maxStorageWarning}" >{{[item.maxStorageWarning,item.minStorageWarning,item.quantity] | stockPrewarningStatus}}</span></p>
+  </div>
+</ion-item>
+<div class="ty-line1" ></div>

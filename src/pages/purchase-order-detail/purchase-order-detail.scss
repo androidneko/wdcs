@@ -1,0 +1,40 @@
+page-purchase-order-detail {
+    ion-item{
+        h5{
+            padding-left: 10px;
+            margin-right: 10px;
+            white-space:normal;
+        }
+        p{
+            padding-left: 10px;
+            margin-right: 10px;
+            white-space: normal;
+        }
+    }
+    .cancel{
+        background: white; 
+    }
+    .comfirm{
+         background: color($colors,primary);
+    }
+    .remark{
+        margin-top: 15px;
+        ion-textarea{
+            height: 100px;
+            textarea{
+                height: 90px;
+            }
+        }
+    }
+    .remarkcount{
+        background: white;
+        p{
+            color: lightgray;
+        }
+        margin-bottom: 60px;
+    }
+    .text
+    {
+        color: color($colors,primary);
+    }
+}

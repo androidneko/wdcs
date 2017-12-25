@@ -1,0 +1,47 @@
+page-product-detail {
+.numberdiv{
+        overflow: auto;
+        p{
+            float: left;
+            padding-top: 6px
+        }
+        button{
+            float: left;
+            text-align: center;
+            font-size: 1.3rem !important;
+            height: 2.0rem !important;
+            width: 2.0rem !important;
+            border-radius:1.0rem !important;
+        }
+    }
+    ion-slides {
+        height: auto !important;
+    }
+    ion-item{
+       h3{
+           white-space: normal;
+       } 
+    }
+
+    .bottom{
+        p{
+            padding-top: 5px;
+        }
+        button{
+            min-width: 60px;
+        }
+    }
+
+    .cancel{
+        background: white; 
+    }
+     .comfirm{
+         background: color($colors,primary);
+    }
+    ion-content{
+        span{
+            color: orange;
+        }
+    }
+    
+}

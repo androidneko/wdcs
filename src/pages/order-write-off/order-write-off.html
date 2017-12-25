@@ -1,0 +1,68 @@
+<!--
+  Generated template for the OrderWriteOffPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>核销</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+
+  <ion-item no-lines>
+    <p>剩余核销金额：
+      <font color="red">{{[amount-totalAmt,2]|parseAmount}}</font>
+    </p>
+  </ion-item>
+  <div class="ty-line15"></div>
+  <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher> -->
+    <div *ngFor="let item of dataArray" class="listCss">  
+        <div>
+          <h3>{{item.businessNo}}</h3>
+          <P>普通销售：
+            <font color="red">{{item.billType}}</font>
+          </P>
+          <P>已经核销：
+            <font color="green">{{[item.writeOffBalance,2]|parseAmount}}</font>
+          </P>
+          <P>尚未核销：
+            <font color="green">{{[(item.balance-item.writeOffBalance),2]|parseAmount}}</font>
+          </P>
+          <p>
+              本次核销：
+              <input type="text" #writeBalance [(ngModel)]="item.writeBalance"  (keyup)="keyUp(writeBalance,item)" class="itemInput" [readonly]=!item.isChecked [ngClass]="{itemInputCheck:item.isChecked}">
+          </p>
+          
+          <!-- <p>
+            本次核销：
+            <font color="green">{{[item.writeOffBalance,2]|parseAmount}}</font>
+          </P> -->
+        </div>
+      <ion-checkbox class="checkboxCss" [(ngModel)]="item.isChecked" item-start style="margin-right:20px" (click)="clickItem(item)"></ion-checkbox>
+    </div>
+    <ion-allitem-showed-bottom *ngIf="dataArray.length>=total&&dataArray.length>0"></ion-allitem-showed-bottom>
+    <ion-custom-empty *ngIf="total==0"></ion-custom-empty>
+
+  <ion-infinite-scroll *ngIf="dataArray.length<total" (ionInfinite)="doInfinite($event)" threshold="10%">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="加载更多...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+<ion-footer>
+  <div text-center style="width:100%;overflow:auto;position:absolute;bottom:0px">
+    <div class="cancel" float-left col-6>
+      <p>取消核销</p>
+    </div>
+    <div class="comfirm" float-left col-6 (click)="comfirm()">
+      <p style="color:white;">全部核销</p>
+    </div>
+  </div>
+</ion-footer>

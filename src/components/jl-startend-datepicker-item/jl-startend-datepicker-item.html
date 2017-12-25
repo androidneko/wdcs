@@ -1,0 +1,19 @@
+<!-- Generated template for the JlStartendDatepickerItemComponent component -->
+<ion-item >
+  <div class="datechoose"  item-content>
+      <h2 style="width:100%">时间</h2>
+      <ion-row >
+          <ion-col class="datepicker" text-center >
+              <ion-icon name="ios-arrow-forward"></ion-icon>
+              <ion-datetime [displayFormat]="format" cancelText="取消" doneText="确定" [(ngModel)]="createStartDate" float-left></ion-datetime>
+          </ion-col>
+          <ion-col  text-center col-1 >
+            <p text-center>~</p>
+          </ion-col>
+          <ion-col class="datepicker" text-center >
+              <ion-icon name="ios-arrow-forward"></ion-icon>
+              <ion-datetime [displayFormat]="format" cancelText="取消" doneText="确定" [(ngModel)]="createEndDate"  float-left></ion-datetime>
+          </ion-col>
+        </ion-row>
+  </div>
+</ion-item>

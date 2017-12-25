@@ -1,0 +1,35 @@
+<!--
+  Generated template for the MyQrcodePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>我的收款码</ion-title>
+
+    <ion-buttons end>
+      <button ion-button color="Primary" (click)="saveButtonClick()">保存</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding no-margin>
+
+  <div class="bgDiv">
+    <div>
+      <h6>商户收款码</h6>
+      <!-- <div style="padding:0px auto">
+          
+      </div> -->
+      
+      <img #testImg src="assets/imgs/logo.png" style="margin:10px  auto;width:80%;text-align:center;display:table-cell">
+      <div style="text-align:center;margin:15px 0px">付款方扫一扫我的收款二维码，可快速付款</div>
+
+    </div>
+  </div>
+
+</ion-content>

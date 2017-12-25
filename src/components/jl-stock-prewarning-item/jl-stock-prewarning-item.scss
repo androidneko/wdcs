@@ -1,0 +1,20 @@
+jl-stock-prewarning-item {
+    ion-item{
+        h5{
+            padding-left: 0px;
+
+        }
+        p{
+            padding-left: 0px;
+        }
+        .nor{
+            color: color($colors,secondary);
+        }
+        .lack{
+            color: color($colors,danger);
+        }
+        .toomuch{
+            color: rgb(245, 134, 43);
+        }
+    }
+}

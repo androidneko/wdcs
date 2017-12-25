@@ -1,0 +1,53 @@
+page-qrb-code-result-product-detail {
+    .numberdiv{
+        overflow: auto;
+        p{
+            float: left;
+            padding-top: 2px
+        }
+        // button{
+        //     float: left;
+        //     text-align: center;
+        //     font-size: 1.3rem !important;
+        //     height: 2.0rem !important;
+        //     width: 2.0rem !important;
+        //     border-radius:1.0rem !important;
+        // }
+
+    }
+    .top{
+        ion-label{
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;
+        }
+    }
+    ion-slides {
+        height: auto !important;
+    }
+    .bottom{
+        p{
+            padding-top: 5px;
+        }
+        button{
+            min-width: 60px;
+        }
+    }
+    .cancel{
+        background: white; 
+    }
+     .comfirm{
+         background: color($colors,primary);
+    }
+    h3{
+        white-space: normal;
+    }
+    .text
+    {
+        color: color($colors,primary);
+    }
+    .mtext{
+        color: #61B5FC;
+        padding-left: 10px;
+        text-decoration: underline;
+    }
+}

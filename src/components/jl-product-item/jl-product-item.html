@@ -1,0 +1,12 @@
+<!-- Generated template for the JlProductItemComponent component -->
+<ion-item  (click)="itemClick()">
+    <img item-start  width="70" height="70" src="{{item.proIcon}}" alt="" float-left>
+    <div float-left>
+       <h5>{{item.proName}}</h5>
+       <p>编号:{{item.proCode}}</p>
+       <p>商品类别:{{(item.littleCategoryName==null||item.littleCategoryName.length==0?(item.bigCategoryName==null?"暂无":item.bigCategoryName):(item.bigCategoryName+"-"+item.littleCategoryName))}}</p>
+       <p>销售价格:{{[item.advicePrice,2]|parseAmount}}</p>
+       <p>进货价格:{{[item.wholesalePrice,2]|parseAmount}}</p>
+       </div>
+</ion-item>
+<div class="ty-line1" ></div>

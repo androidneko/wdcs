@@ -1,0 +1,27 @@
+<!-- Generated template for the IonProductChooseItemComponent component -->
+<div (click)="backClick(check)" style="background:white" no-padding no-margin  >
+ 
+ <div style="padding-top:20px;width:100%;overflow:auto" >
+     <div style="width:100%;overflow:auto" float-left>
+            <ion-checkbox #check (ionChange)="itemClicked()"  [(ngModel)]="item.isSelected"  col-1 float-left></ion-checkbox>
+            <img  col-3 src="{{item.proIcon}}" alt="" float-left>
+            <div col-8 float-left>
+               <h3>{{item.productName}}</h3>
+               <p>商品类别：{{(item.littleCategoryName==null||item.littleCategoryName.length==0?(item.bigCategoryName==null?"暂无":item.bigCategoryName):(item.bigCategoryName+"-"+item.littleCategoryName))}}</p>
+               <p>商品编号：{{item.proCode}}</p>
+               
+               <div class="numberdiv">
+                    <p class="money">￥：<jl-blance-spliter leftClass="leftClasscss" rightClass="rightClasscss" [totalAmt]="item.productPrice"></jl-blance-spliter>/{{item.productUnit}}</p>
+                  <jl-rabtn (click)="jlclick();$event.stopPropagation();" minCount=1 count=1 (valuechange)="valuechange($event)"></jl-rabtn>
+               </div>
+            </div>
+     </div>
+        <div float-left col-1 style="padding-top:0px;padding-bottom:0px;height:1px"></div>
+        <div float-left  style="padding-top:0px;padding-bottom:0px" class="ty-line1" col-11></div>
+        <div float-left col-1></div>
+        <div class="bottom" col-11 >
+            <h3 style="margin-bottom:10px;margin-top:10px" float-left>小计：{{[item.productNum*(item.productPrice),2]|parseAmount}}</h3>
+        </div>
+ </div>
+</div>
+<div class="ty-line15"></div>

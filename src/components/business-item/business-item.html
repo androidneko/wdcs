@@ -1,0 +1,23 @@
+<div *ngIf="childList.length>0" >
+  <div class="header">
+     <button ion-button float-left></button>
+      <p class="title" float-left>{{itemValue.menuName}}</p>
+      <p class="detail" float-right>{{itemValue.menuNote}}</p>
+  </div>
+  <div margin-bottom class="ty-line1">
+    
+  </div>
+  <ion-slides class="items" style="width:100%" pager="{{childList.length>1}}" >
+      <ion-slide style="margin-bottom:5px" *ngFor="let list of childList"  >
+          <ion-row wrap>
+              <ion-col class="item" *ngFor="let item of list"  tappable col-3 text-center (click)="goDetails(item)">
+                <img class="mimg" src="{{'assets/imgs/'+ item.iconCls +'.png'}}">
+                <p>{{item.menuName}}</p>
+              </ion-col>
+            </ion-row>
+      </ion-slide>
+      
+  </ion-slides>
+ 
+  <div class="ty-line15"></div>
+</div>

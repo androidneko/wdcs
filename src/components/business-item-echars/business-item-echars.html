@@ -1,0 +1,20 @@
+<!-- Generated template for the BusinessItemEcharsComponent component -->
+<div  >
+    <div class="header">
+       <button ion-button float-left></button>
+        <p class="title" float-left>生意一览</p>
+        <p class="detail" float-right>经营状况信息在握</p>
+    </div>
+    <div margin-bottom class="ty-line1">
+      
+    </div>
+    <ion-slides #slides class="items" style="width:100%" pager="{{charsArray.length>1}}" (ionSlideDidChange)="slideChanged()">
+        <ion-slide style="margin-bottom:5px" *ngFor="let mitem of charsArray"  >
+            <business-item-echar [item]="mitem">
+            </business-item-echar>
+        </ion-slide>
+        
+    </ion-slides>
+    
+    
+ </div>

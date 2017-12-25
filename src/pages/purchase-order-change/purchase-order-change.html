@@ -1,0 +1,61 @@
+<!--
+  Generated template for the PurchaseOrderChangePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>修改进货订单</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content  no-padding>
+  <ion-item>
+      <h2 class="text">供应商</h2>
+      <p class="detall" item-end >{{condition.merchant.merName}}</p>
+    </ion-item>
+  <ion-item (click)="storageClicked()">
+        <h2 class="text">仓库</h2>
+        <p class="detall" item-end>{{condition.whse.whseName}}</p>
+        <ion-icon class="ty-arrow-gray" name="ios-arrow-forward" item-end></ion-icon>
+  </ion-item>
+  <ion-item >
+      <div style="width:100%;overflow:auto;" item-content>
+          <h2 padding-top class="text" float-left >时间</h2>
+          <ion-datetime no-margin style="padding-top:8px" float-right displayFormat="YYYY-MM-DD" cancelText="取消" doneText="确定" [(ngModel)]="condition.createDate"  item-end></ion-datetime>
+      </div>
+          
+          <ion-icon class="ty-arrow-gray" name="ios-arrow-forward" item-end></ion-icon>
+  </ion-item>
+  <ion-item *ngIf="condition.orderProdList.length==0"   (click)="chooseProduct()">
+      <h2 class="text">选择商品</h2>
+      <ion-icon class="ty-arrow-gray" name="ios-arrow-forward" item-end></ion-icon>
+  </ion-item>
+  <jl-product-condition-items *ngIf="condition.orderProdList.length>0" (emptyProduct)="emptyProduct()" [totalAtm]=condition.totalAtm [orderProdlist]=condition.orderProdList>
+  </jl-product-condition-items>
+  <ion-item class="remark" no-lines>
+    <ion-label >
+      备注
+    </ion-label>
+    <ion-textarea maxlength="200" type="text" placeholder="可输入备注信息" [(ngModel)]="condition.remark"  ></ion-textarea>
+  </ion-item>
+  <div class="remarkcount" style="width:100%;overflow:auto;margin-bottom:58px;">
+      <p padding-right float-right>{{condition.remark==null?0:condition.remark.length}}/200</p>
+    </div>
+  
+</ion-content>
+<ion-footer>
+  <div text-center style="width:100%;overflow:auto;">
+      <div class="cancel" float-left col-6 (click)="resetClicked()">
+        <p>重置</p>
+      </div>
+      <div class="comfirm" float-left col-6 (click)="comfirmClicked()">
+          <p style="color:white;">确定</p>
+      </div>
+      
+    </div>
+</ion-footer>

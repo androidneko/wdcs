@@ -1,0 +1,32 @@
+page-stockio-condition-choose {
+//设置背景颜色
+ion-content{
+    .fixed-content{
+        background: rgba($color: #000000, $alpha: 0) !important;
+    }
+
+    .scroll-content{
+        background: rgba($color: #000000, $alpha: 0) !important;
+    }
+    background: color($colors,ty-partingline) !important;
+}
+.detall{
+    margin-top: 4px !important;
+}
+.text{
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+
+.zhi{
+    padding-top: 13px;
+}
+
+.cancel{
+    background: white;
+}
+.comfirm{
+    background: color($colors,primary);
+}
+}

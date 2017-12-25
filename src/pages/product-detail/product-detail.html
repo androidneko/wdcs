@@ -1,0 +1,56 @@
+<!--
+  Generated template for the ProductDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>商品详情</ion-title>
+    <ion-buttons end>
+      <button ion-button >
+        <ion-icon name="ios-share-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content no-padding>
+<div style="padding-bottom:58px;">
+    <ion-slides pager="{{imgArray.length>=1}}" >
+        <ion-slide *ngFor="let mimg of imgArray"  >
+            <img src="{{mimg}}" >
+        </ion-slide>
+      
+    </ion-slides>
+    <ion-item >
+    
+        <h3>{{item.proName}}</h3>
+        <p>销售价格：<span>{{[item.advicePrice,2]|parseAmount}}</span>/{{item.proUnit}}</p>
+        <p>进货价格：<span>{{[item.wholesalePrice,2]|parseAmount}}</span>/{{item.proUnit}}</p>
+    </ion-item>
+    <div class="ty-line1"></div>
+    <ion-item >
+      <h3>商品类别：{{(item.littleCategoryName==null||item.littleCategoryName.length==0?(item.bigCategoryName==null?"暂无":item.bigCategoryName):(item.bigCategoryName+"-"+item.littleCategoryName))}}</h3>
+      <h3>商品编码：{{item.proCode}}</h3>
+      <h3>商品条码：{{item.barCode}}</h3>
+      <h3>商品状态：<span>{{item.status|productStatus}}</span></h3>
+      <h3>商品描述：{{item.remark!=null&&item.remark.length>0?item.remark:"暂无"}}</h3>
+    </ion-item>
+</div>
+
+
+</ion-content>
+<ion-footer>
+    <div text-center style="width:100%;overflow:auto;position:absolute;bottom:0px">
+        <div class="cancel" float-left col-6 (click)="deleteClick()">
+          <p>删除</p>
+        </div>
+        <div class="comfirm" float-left col-6 (click)="changeClick()">
+            <p style="color:white;">修改</p>
+        </div>
+        
+      </div>
+</ion-footer>

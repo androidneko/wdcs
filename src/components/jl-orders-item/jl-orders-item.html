@@ -1,0 +1,14 @@
+<!-- Generated template for the JlOrdersItemComponent component -->
+<ion-item *ngIf="orderProdlist!=null" >
+    <ion-icon (click)="deleteClick()" style="position:absolute;right:10px;top:10px" name="trash" color="primary"></ion-icon>
+  <h5>已择商品</h5>
+  <div style="width:100%;" *ngFor="let item of orderProdlist">
+    <p style="margin-top:10px">商品名称:{{item.productName}}</p>
+    <p>单价：{{item.productPrice}}&nbsp;/{{item.productUnit}}</p>
+    <p>数量：{{item.productNum}}</p>
+  </div>
+  <p style="margin-top:15px">合计：
+    <span style="color:red">{{[totalAtm,2]|parseAmount}}</span>
+  </p>
+
+</ion-item>

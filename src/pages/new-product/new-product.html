@@ -1,0 +1,85 @@
+<!--
+  Generated template for the NewProductPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>添加商品</ion-title>
+    <ion-buttons end>
+      <button ion-button clear color="primary" (click)="send()"> 发布</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+
+<ion-list >
+  <ion-item class="additem" >
+   <h2 margin-bottom>添加单品</h2>
+   <ion-scroll style="width:100%" scrollX="true" scrollY="false">
+     <div class="mdiv" *ngFor="let item of imgArray;let idx=index"  (click)="imgClick(idx)">
+        <ion-icon *ngIf="item.length==0"  name="md-add"></ion-icon>
+        <img class="mimg" src="{{item}}" alt="">
+     </div>
+     
+    </ion-scroll>
+  </ion-item>
+  <ion-item>
+    <ion-label>商品编号</ion-label>
+    <ion-input type="text" placeholder="请输入商品编号" [(ngModel)]="productNum" ></ion-input>
+    <p  class="pend" item-end>*</p>
+  </ion-item>
+  <ion-item>
+    <ion-label>商品条码</ion-label>
+    <ion-input type="text" placeholder="请输入商品条形码" [(ngModel)]="barCode" ></ion-input>
+    <p  class="pend" item-end>*</p>
+  </ion-item>
+  <ion-item>
+      <ion-label>商品名称</ion-label>
+      <ion-input type="text" placeholder="请输入商品名称"[(ngModel)]="productName" ></ion-input>
+      <p class="pend"  item-end>*</p>
+    </ion-item>
+    <ion-item>
+        <ion-label>进货价格</ion-label>
+        <ion-input type="number" placeholder="请输入商品价格" [(ngModel)]="wholesalePrice" ></ion-input>
+        <p class="pend"  item-end>*</p>
+    </ion-item>
+    <ion-item>
+      <ion-label>销售价格</ion-label>
+      <ion-input type="number" placeholder="请输入商品价格" [(ngModel)]="advicePrice" ></ion-input>
+      <p class="pend"  item-end>*</p>
+    </ion-item>
+    <ion-item>
+          <ion-label>单位&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-label>
+          <ion-input type="text" placeholder="请输入单位" [(ngModel)]="proUnit" ></ion-input>
+          <p class="pend"   item-end>*</p>
+    </ion-item>
+    <ion-item (click)="chooseCodition()">
+        <h2 item-start>商品类别</h2>
+        <div style="overflow:auto">
+            <p class="cate" float-left>{{catedes}}</p>
+            <p class="pend" float-left>*</p>
+        </div>
+        <ion-icon class="ty-arrow-gray" name="ios-arrow-forward" item-end></ion-icon>
+  </ion-item>
+  <div class="ty-line15"></div>
+  <ion-item no-lines>
+      <h2 item-start>商品描述</h2>
+      <p class="cate" >请使用电脑操作</p>
+  </ion-item>
+  <div margin-left class="ty-line1"></div>
+  <div padding-left class="checkMark" style="width:100%;" item-content >
+      <h2 style="font-size:1.7rem;font-weight:normal;"  class="text" float-left>商品状态</h2>
+      <ion-checkbox class="checkbox-md checkbox_normal" padding-left color="primary"  float-left #yess (click)="yesCheckClicked(yess)" [(ngModel)]="yes"></ion-checkbox>
+      <p float-left>上架</p>
+      <ion-checkbox class="checkbox-md checkbox_normal" color="primary"  float-left #noo [(ngModel)]="no" (click)="noCheckClicked(noo)"></ion-checkbox>
+      <p float-left>下架</p>
+    </div>
+</ion-list>
+
+</ion-content>

@@ -1,0 +1,58 @@
+page-product-category-choose {
+    //设置背景颜色
+    ion-content{
+        .fixed-content{
+            background: rgba($color: #000000, $alpha: 0) !important;
+        }
+        .scroll-content{
+            background: rgba($color: #000000, $alpha: 0) !important;
+        }
+        background: color($colors,ty-partingline) !important;
+    }
+    .detall{
+        margin-top: 4px !important;
+    }
+    .text{
+        padding-top: 10px;
+        padding-bottom: 15px;
+    }
+    .checkMark{
+        overflow: auto;
+        background: white;
+        .col{
+            width: 25%;
+        }
+        h2{
+            margin: 0px;
+            padding-left: 0px;
+            padding-right: 0px;
+            padding-top: 15px;
+        }
+        div{
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+        .ty-line1{
+            margin-left: 10px;
+        }
+        ion-checkbox{
+           margin: 0px !important;
+           padding-top: 12px;
+           padding-right: 2px;
+           padding-left: 2px;
+        }
+        p{
+            margin-top: 10px;
+            padding-right: 5px;
+        }
+        ty-line1{
+            margin-left: 10px;
+        }
+    }
+    .cancel{
+        background: white;
+    }
+    .comfirm{
+        background: color($colors,primary);
+    }
+}

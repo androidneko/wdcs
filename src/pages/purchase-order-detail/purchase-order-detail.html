@@ -1,0 +1,62 @@
+<!--
+  Generated template for the PurchaseOrderDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>进货订单详情</ion-title>
+    <ion-buttons end>
+        <button ion-button color="primary" (click)="oprationClicked()">操作</button>
+      </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="ion-content-background-partingline" no-padding>
+    <ion-item  >
+        <p>供应商名称：{{item.merchantName}}   
+                <span  class="text" (click)="contactClick()" style="float:right; margin-right:10px;">联系供应商</span>
+        </p>
+        <p>进货单号：{{item.orderNo}}</p>
+        <p>进货时间：{{item.createDate | tydate: 'yyyy-MM-dd'}}</p>
+        <p>仓库：{{item.whseName|stockName}}</p>
+        <p>订单状态：
+            <span class="text">{{item.payStatus | payStatus}} {{item.stockStatus | stockStatus}}</span>
+         </p>
+    </ion-item>
+    <ion-item  >
+        <h5 >已择商品</h5>
+        <div  style="width:100%;" *ngFor="let mitem of item.orderProdlist" >
+                <p style="margin-top:10px">商品名称:{{mitem.productName}}</p>
+                <p>单价：{{[mitem.productPrice,2]|parseAmount}}&nbsp;/{{mitem.productUnit}}</p>
+                <p>数量：{{mitem.productNum}}</p>
+        </div>
+        
+        <p style="margin-top:15px">合计：<font color="red">{{[item.payAmt,2]|parseAmount}}</font></p>
+    </ion-item>
+    <div></div>
+    <ion-item class="remark" no-lines>
+        <ion-label >
+          备注
+        </ion-label>
+        <ion-textarea maxlength="200" disabled type="text" placeholder="暂无备注信息" value="{{item.remark}}" > </ion-textarea>
+      </ion-item>
+  
+    <div class="remarkcount" style="width:100%;overflow:auto;">
+        <p padding-right float-right>{{item.remark==null?0:item.remark.length}}/200</p>
+    </div>   
+</ion-content>
+<ion-footer>
+     <div text-center style="width:100%;overflow:auto;position:absolute;bottom:0px">
+         <div class="cancel" float-left col-6 (click)="payClick()">
+            <p>付款</p>
+        </div>
+        <div class="comfirm" float-left col-6 (click)="storageClick()">
+            <p style="color:white;">入库</p>
+         </div>
+    </div>
+</ion-footer>

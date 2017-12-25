@@ -1,0 +1,25 @@
+page-business {
+    .fixed-content{
+        margin-top: 0px !important;
+    }
+    .scroll-content{
+        padding-top: 0px !important;
+    }
+    ion-buttons{
+        button{
+            color: white !important ;
+        }
+    }
+    ion-slides {
+        height: auto !important;
+    }
+    .swiper-pagination-bullet-active {
+        background: lightgray ;
+    }
+ 
+    .toolbar-background {
+        background: color($colors,primary);
+        opacity: 0;
+    }
+ 
+}

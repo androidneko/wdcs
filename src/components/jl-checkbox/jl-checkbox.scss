@@ -1,0 +1,25 @@
+jl-checkbox {
+
+    .checkbox_css
+    {
+        opacity: 1 !important;
+        .checkbox-icon
+        {
+            border-width:1px;//边框宽度
+            .checkbox-inner
+            {
+                border-color: gray; //未选中颜色
+            }
+        }
+        .checkbox-checked
+        {
+        
+            background-color: transparent !important;
+            border-color:color($colors,primary); //选中之后边框颜色
+            .checkbox-inner
+            {
+                border-color: color($colors,primary) !important;
+            }
+        }
+    }
+}

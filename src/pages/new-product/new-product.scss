@@ -1,0 +1,58 @@
+page-new-product {
+    .additem{
+        ion-scroll{
+            width: 100%;
+            height: 100px;
+            .mdiv{
+                background: lightgray;
+                position: relative;
+                display: inline-block;
+                width: 80px;
+                height: 80px;
+                margin-right: 10px;
+                ion-icon{
+                    position: absolute;
+                    top: 32px;
+                    left: 32px;
+                    color: darkgray;
+                }
+                .mimg{
+                    position: absolute;
+                    width:100% ;
+                    height: 100%;
+                    
+                }
+            }
+        }
+    }
+    .pend{
+        color: color($colors,primary);
+       
+    }
+    .cate{
+        padding-left: 8px;
+        font-size: 1.6rem;
+    }
+    .checkMark{
+        background: white;
+        overflow: auto;
+        h2{
+            margin: 0px;
+            padding-top: 10px;
+        }
+        .ty-line1{
+            margin-left: 10px;
+        }
+        ion-checkbox{
+           margin: 0px !important;
+           padding-top: 12px;
+           padding-right: 2px;
+           padding-left: 2px;
+        }
+        p{
+            margin-top: 10px;
+            padding-right: 5px;
+        }
+  
+    }
+}

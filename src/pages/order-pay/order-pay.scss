@@ -1,0 +1,28 @@
+page-order-pay {
+    .orderDetail{
+        height: 65px;
+        p{
+            text-align: right;
+        }
+        .p1{
+            margin: 0px;
+            padding-top: 10px;
+            padding-bottom: 0px;
+            padding-right: 5px;
+        }
+        .p2{
+            margin: 0px;
+            padding-top: 5px;
+            padding-bottom: 10px;
+            padding-right: 5px;
+        }
+    }
+    .buttomBtn{
+        height: 65px;
+        background: color($colors,primary);
+        p{
+            color: white;
+          padding-top: 10px;  
+        }
+    }
+}

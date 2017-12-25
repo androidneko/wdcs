@@ -1,0 +1,19 @@
+page-who-has-paid {
+    ion-item{
+        h5{
+            padding-left: 10px;
+
+        }
+        p{
+            padding-left: 10px;
+        }
+        .totalBg{
+            background: color($colors,primary);
+            color:white;
+            padding:10px;margin:0px;
+        }
+        .amt{
+            color: color($colors,primary);
+        }
+    }
+}

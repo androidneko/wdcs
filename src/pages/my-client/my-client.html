@@ -1,0 +1,91 @@
+<!--
+  Generated template for the MyClientPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar transparent no-border-bottom>
+      <ion-buttons start>
+          <button ion-button color="ty-white" clear (click)="settingBtnCliked()">
+            <img src="assets/imgs/my_setting.png" width="26px" height="25px" style="margin-top:1px">
+          </button>
+        </ion-buttons>
+    <!-- <ion-title> 哈哈</ion-title> -->
+    <ion-buttons end>
+        <button ion-button color="ty-white" clear (click)="messageBtnCliked()">
+          <img src="assets/imgs/my_message.png" width="26px" height="26px" style="margin-top:1px">
+            <div class="messagebadge"></div>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content fullscreen no-padding no-margin>
+    <ion-list>
+        <ion-list-header no-padding no-margin no-lines>
+          <div class="mcustomheader" (click)="headerCellClicked()">
+            <div class="mimageBack">
+              <img src="assets/imgs/my_background.png">
+            </div>
+            <ion-avatar>
+              <img [src]="headerImageUrl">
+            </ion-avatar>
+            <h2 style="text-transform:none">{{name}}</h2>
+            <p>{{company}}</p>
+            <div style="width:100%;height:1px">
+              
+            </div>
+          </div>
+          <div class="mheaderbuttom" style="width:100%" text-center>
+            <div class="changeinfo" float-left (click)="enterTabbarClicked()">
+               <!-- <ion-icon name="ios-open-outline"></ion-icon> -->
+               <img src="assets/imgs/my_in_out.png" width="30px" height="25px">
+               <p class="subTitle">进销存</p>
+            </div>
+            <div float-left class="vline"></div>
+            <div class="readytodo" float-left>
+                <img src="assets/imgs/my_debt.png" width="30px" height="25px">
+                <!-- <ion-icon name="ios-time-outline"> -->
+                    <ion-badge class="mbadge" [ngClass]="{'mbadgehidden': badgecount<=0}">30</ion-badge>
+                <!-- </ion-icon> -->
+                <p class="subTitle">我的贷款</p>
+             </div>
+          </div>
+          <div class="ty-line15"></div>
+        </ion-list-header>
+        <ion-item  no-margin no-lines (click)="myQRcodeClick()" >
+          <img class="iconImage" src="assets/imgs/my_qr_code.png" float-left> 
+            <h2 float-left>我的收款码</h2>
+            <ion-icon name="ios-arrow-forward" style="color:#F2F2F2" item-end></ion-icon>
+        </ion-item>
+        <div class="ty-line15"></div>
+         <ion-item no-margin no-lines (click)="myRecommendClick()" >
+            <div style="overflow:auto">
+                <img class="iconImage" src="assets/imgs/my_recommend.png" float-left> 
+            <h2  float-left>我的推荐</h2>
+            <!-- <p float-left style="padding:10px">推荐享优惠</p> -->
+            </div> 
+          <ion-icon name="ios-arrow-forward" style="color:#F2F2F2" item-end></ion-icon>   
+          </ion-item>
+          <div class="ty-line15"></div>
+          <ion-item (click)="aboutUsClick()" >
+              <img class="iconImage" src="assets/imgs/my_about_us.png" float-left> 
+              <h2 float-left>关于我们</h2>
+              <ion-icon name="ios-arrow-forward" style="color:#F2F2F2" item-end></ion-icon>
+          </ion-item>
+        <ion-item  (click)="feedbackClicked()">
+           
+            <img class="iconImage" src="assets/imgs/my_feedback.png" float-left> 
+                    <h2 float-left>意见反馈</h2>
+                    <ion-icon name="ios-arrow-forward" style="color:#F2F2F2" item-end></ion-icon>
+         
+            
+                    
+        </ion-item>
+</ion-list>
+
+</ion-content>

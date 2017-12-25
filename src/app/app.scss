@@ -1,0 +1,253 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+//分割线
+.ty-line15{
+    width: 100%;
+    height: 15px;
+    background: color($colors,ty-partingline);
+}
+.ty-line1{
+    width: 100%;
+    height: 1px;
+    background: color($colors,ty-partingline);
+}
+.item-inner{
+    border-bottom-color:color($colors,ty-partingline) !important;
+}
+//箭头颜色
+.ty-arrow-gray{
+    color: color($colors,ty-partingline);
+    font-size: 24px;
+}
+//导航栏颜色
+.back-button-icon-ios {
+    color: color($colors,primary) ;
+}
+.item-ios{
+    border-bottom-color:color($colors,ty-partingline) !important;
+}
+//内容背景颜色
+.ion-content-background-partingline{
+    .fixed-content{
+        background: rgba($color: #000000, $alpha: 0) !important;
+    }
+    .scroll-content{
+        background: rgba($color: #000000, $alpha: 0) !important;
+    }
+    background: color($colors,ty-partingline) !important;
+}
+
+ion-navbar {
+    .toolbar-background-ios{
+        background:white;
+    }
+}
+
+
+.msearchbar {
+     padding: 8px;
+    .searchbar-ios{
+        background:rgba(0, 0, 0, 0);
+        border: 0px;
+        .searchbar-search-icon{
+            background-position: center !important;
+            height: 100% !important;
+            width: 30px;
+            top: 0px !important;
+            left: 0px !important;
+            background-size: 16px !important;
+        }
+        .searchbar-input
+        {
+            background: #ededed;
+            height: 32px;
+     
+        }
+    }
+    background:#f9f9f9 !important;  
+}
+
+.horizontal
+{
+    display: -webkit-box;
+    -webkit-box-orient:horizontal;
+    
+    display: -moz-box;
+    -moz-box-orient: horizontal;
+
+    display: -o-box;
+    -ms-box-orient: horizontal;
+
+    display: -ms-box;
+    -ms-box-orient: horizontal;
+
+}
+
+
+.vertical
+{
+    display: -webkit-box;
+    -webkit-box-orient:vertical;
+    
+    display: -moz-box;
+    -moz-box-orient: vertical;
+
+    display: -o-box;
+    -ms-box-orient: vertical;
+
+    display: -ms-box;
+    -ms-box-orient: vertical;
+    
+
+}
+
+.horizontal_left
+{
+    -webkit-box-pack: center;
+
+    -moz-box-pack: start;
+
+    -o-box-pack: center;
+
+    -ms-box-pack: center;
+
+}
+
+.horizontal_right
+{
+    -webkit-box-pack: end;
+    
+    -moz-box-pack: end;
+    
+    -o-box-pack: end;
+    
+    -ms-box-pack: end;
+}
+
+.horizontal_center
+{
+    -webkit-box-pack: center;
+    
+    -moz-box-pack: center;
+    
+    -o-box-pack: center;
+    
+    -ms-box-pack: center;
+}
+
+.horizontal_justify
+{
+    //两端对齐
+    -webkit-box-pack:justify;
+    
+    -moz-box-pack: justify;
+    
+    -o-box-pack: justify;
+    
+    -ms-box-pack: justify;
+}
+
+
+
+.vertical_top
+{
+    -webkit-box-align: start;
+    -moz-box-align: start;
+    -o-box-align: start;
+    -ms-box-align: start;
+}
+
+.vertical_bottom
+{
+    -webkit-box-align: end;
+    -moz-box-align: end;
+    -o-box-align: end;
+    -ms-box-align: end;
+}
+
+
+.vertical_center
+{
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -o-box-align: center;
+    -ms-box-align: center;
+}
+
+.vertical_stretch
+{
+    //拉伸与父容器等高
+    -webkit-box-align: stretch;
+    -moz-box-align: stretch;
+    -o-box-align: stretch;
+    -ms-box-align: stretch;
+}
+
+.weight
+{
+    //权重，只限宽度，父容器需实现horizontal 样式，参考样式，权重1.0
+    -moz-box-flex:1.0; /* Firefox */
+    -webkit-box-flex:1.0; /* Safari and Chrome */
+
+}
+
+.actionSheetClass_balck
+{
+    .button-inner{
+        color: black !important;
+        font-weight: normal !important;  //是否加粗
+    }
+}
+
+.alertDialogClass_balck
+{
+    .button-inner{
+        color: black !important;
+        font-weight: normal !important;  //是否加粗
+    }
+}
+.alertDialogClass_normal
+{
+    .button-inner{
+        font-weight: normal !important;  //是否加粗
+    }
+}
+.checkbox_normal
+{
+    .checkbox-icon
+    {
+        border-width:1px;//边框宽度
+        .checkbox-inner
+        {
+            border-color: gray; //未选中颜色
+        }
+    }
+    .checkbox-checked
+    {
+    
+        background-color: transparent !important;
+        border-color:color($colors,primary); //选中之后边框颜色
+        .checkbox-inner
+        {
+            border-color: color($colors,primary) !important;
+        }
+    }
+
+    
+}
+

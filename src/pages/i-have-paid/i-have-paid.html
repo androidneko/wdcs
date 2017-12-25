@@ -1,0 +1,40 @@
+<!--
+  Generated template for the IHavePaidPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+      付款记录
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button color="primary" (click)="choosebtnClicked()">筛选</button>
+    </ion-buttons>
+  </ion-navbar>
+  <p style="background:rgb(167, 55, 120);color:white;padding:10px;margin:0px;">
+      合计付款：<span style="font-size:3.6rem" >{{totalAmt | floatSpliter:"0"}}</span>.<span  style="font-size:1.8rem">{{totalAmt | floatSpliter:"1"}}</span>
+  </p>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingText="下拉刷新"></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <ion-item *ngFor="let item of dataArray" no-padding no-margin>
+      <h5>{{item.productName}}</h5>
+      <p>供应商名称：{{item.merchantName}}</p>
+      <p>进货单号：{{item.orderNo}}</p>
+      <p>交易时间：{{item.createDate | tydate:"yyyy-MM-dd"}}</p>
+      <p>付款额：<span class="amt">{{[item.totalAmt,2] | parseAmount}}</span></p>
+    </ion-item>
+    <ion-allitem-showed-bottom *ngIf="dataArray.length>=total&&dataArray.length>0"></ion-allitem-showed-bottom>
+    <ion-custom-empty *ngIf="total==0"></ion-custom-empty>
+  </ion-list>
+  <ion-infinite-scroll *ngIf="dataArray.length<total" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingText="正在加载..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

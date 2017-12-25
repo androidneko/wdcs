@@ -1,0 +1,20 @@
+<!-- Generated template for the BusinessItemEditComponent component -->
+<div *ngIf="item.childList.length>0">
+  <div class="header">
+     <button ion-button float-left></button>
+      <h5 float-left>{{item.menuName}}</h5>
+      <p float-right>{{item.menuNote}}</p>
+  </div>
+  <div margin-bottom class="ty-line1">
+    
+  </div>
+  <ion-row wrap margin-right="10px">
+    <ion-col *ngFor="let item of item.childList"  tappable col-3 text-center>
+      <img class="mimg" src="{{'assets/imgs/'+ item.iconCls +'.png'}}">
+      <ion-checkbox float-right class="checkbox-md" [(ngModel)]="item.isSelected">
+      </ion-checkbox>
+      <p>{{item.menuName}}</p>
+    </ion-col>
+  </ion-row>
+  <div class="ty-line15"></div>
+</div>

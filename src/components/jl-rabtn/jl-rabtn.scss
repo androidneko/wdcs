@@ -1,0 +1,39 @@
+jl-rabtn {
+  
+    .rabtn{
+        overflow: auto;
+        border-radius: 3px;
+        border:1px solid lightgray;
+        display: inline-flex;
+        display: -webkit-inline-flex;
+        height: 24px;
+        flex-direction: row;
+        align-items: center;
+        input
+        {
+            
+            min-width: 20px;
+            max-width: 50px;
+            height: 100%;
+            text-align: center;
+           
+            color: rgb(88, 86, 86);
+            cursor: pointer;
+            border-radius: 0px;
+            border: 1px solid #e6e6e6;
+            border-bottom: 0px;
+            border-top: 0px;
+        }
+        ion-icon{
+            display: inline-flex;
+            display: -webkit-inline-flex;
+            flex-direction: row;
+            align-items: center;
+
+            color: darkgray;
+            height: 100%;
+            margin: 0px;
+            padding: 0px 8px;
+        }
+    }
+}

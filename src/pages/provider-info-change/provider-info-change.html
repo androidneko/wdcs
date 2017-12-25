@@ -1,0 +1,40 @@
+<!--
+  Generated template for the ProviderInfoChangePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>信息修改</ion-title>
+    <ion-buttons end>
+      <button ion-button color="primary" (click)="compeletCliked()">完成</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+
+  <ion-list >
+    <ion-item>
+      <ion-label >编号</ion-label>
+      <ion-input type="text" placeholder="若不输入系统将自动生成编码"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label >名称</ion-label>
+        <ion-input type="text" placeholder="请输入名称"></ion-input>
+    </ion-item>
+    <div class="ty-line15"></div>
+    <ion-item class="remark" no-lines>
+      <ion-label >
+        备注
+      </ion-label>
+      <ion-textarea type="text" placeholder="可输入备注信息"></ion-textarea>
+    </ion-item>
+    <div class="ty-line15"></div>
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,9 @@
+<div class="gridlist">
+  <ion-row wrap>
+    <ion-col *ngFor="let item of functionItems" tappable col-3 text-center (click)="goDetails(item)">
+      <img src="assets/imgs/1.jpg">
+      <p>{{item.menuName}}</p>
+     <div class="line"></div>
+    </ion-col>
+  </ion-row>
+</div>

@@ -1,0 +1,16 @@
+<!-- Generated template for the JlDatePickerComponent component -->
+<ion-item style="background:rgb(248, 248, 248)" no-padding no-margin>
+  <div style="width:300px;" item-content>
+    <ion-row >
+      <ion-col text-center col-5>
+          <ion-datetime style="width:100%" [displayFormat]="format" min="2000" max={{datepicker.end}} cancelText="取消" doneText="确定" [(ngModel)]="startDate" ></ion-datetime>
+      </ion-col>
+      <ion-col text-center col-1>
+        <p class="zhi">至</p>
+      </ion-col>
+      <ion-col text-center col-5>
+          <ion-datetime style="width:100%" [displayFormat]="format" min={{datepicker.start}} max="2050" cancelText="取消" doneText="确定" [(ngModel)]="endDate" ></ion-datetime>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-item>

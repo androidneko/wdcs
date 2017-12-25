@@ -1,0 +1,34 @@
+jl-startend-datepicker-item {
+    .datechoose{
+        h2{
+            margin-top: 15px;
+        }
+        p{
+            padding-top: 2px;
+        }
+        ion-row{
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+    
+        .datepicker{
+            -webkit-box-flex: 0;
+            -webkit-flex: 0 0 45.83333%;
+            -ms-flex: 0 0 45.83333%;
+            flex: 0 0 45.83333%;
+            width: 45.83333%;
+            max-width: 45.83333%;
+            background: #FDFDFD;
+            border-radius: 3px;
+            border:1px solid color($colors,ty-partingline);
+            ion-datetime{
+                padding:0px 38px 0px 0px ;
+            }
+            ion-icon{
+                position:  absolute;
+                color: #D1D1D1;
+                right: 5px;
+            }
+        }
+    }
+}

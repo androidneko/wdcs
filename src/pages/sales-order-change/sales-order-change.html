@@ -1,0 +1,69 @@
+<!--
+  Generated template for the SalesOrderChangePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>修改销售订单</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content  class="ion-content-background-partingline" no-padding>
+  <ion-item >
+    <p class="text">客户</p>
+    <p class="detall" item-end>{{item.merchantName}}</p>
+  </ion-item>
+  <ion-item (click)="warehouseClicked()">
+    <p class="text">仓库</p>
+    <p class="detall" item-end>{{item.whseName}}</p>
+    <ion-icon class="ty-arrow-gray" name="ios-arrow-forward" item-end></ion-icon>
+  </ion-item>
+  <ion-item>
+    <!-- <p class="text">时间</p>
+    <p class="detall" item-end>{{item.createDate | tydate: 'yyyy-MM-dd HH:mm:ss'}}</p> -->
+    <div style="width:100%;overflow:auto;" item-content>
+          <p padding-top class="text" float-left >时间</p>
+          <ion-datetime no-margin style="padding-top:8px" float-right displayFormat="YYYY-MM-DD" cancelText="取消" doneText="确定" [(ngModel)]="createDate" item-end></ion-datetime>
+      </div>
+     <ion-icon class="ty-arrow-gray" name="ios-arrow-forward" item-end></ion-icon>
+  </ion-item>
+  <!-- <p style="margin-left:15px">已选择商品</p>
+  <ion-list no-lines>
+    <ion-item *ngFor="let mitem of item.orderProdlist">
+      <p>商品名称：xxx商品</p>
+      <p>单价：100.00</p>
+      <p>数量：100</p>
+      <p>总价：10000.00</p>
+    </ion-item>
+  </ion-list> -->
+  <jl-orders-item (emptyProduct)="emptyProduct()" [totalAtm]="item.payAmt" [orderProdlist]="item.orderProdlist" *ngIf="item.payAmt!=0"></jl-orders-item>
+  <ion-item no-lines (click)="choiceClicked()" *ngIf="item.payAmt==0">
+    <p class="text">选择商品</p>
+    <ion-icon class="ty-arrow-gray" name="ios-arrow-forward" item-end></ion-icon>
+  </ion-item>
+  <div class="ty-line15"></div>
+  <ion-item class="remarkclass" no-lines>
+    <ion-label>
+      备注
+    </ion-label>
+    <ion-textarea type="text" placeholder="暂无备注信息" #remark [(ngModel)]="item.remark"></ion-textarea>
+  </ion-item>
+  <div class="remarkcount" style="width:100%;overflow:auto;">
+    <p padding-right float-right>{{remark.value.length}}/200</p>
+  </div>
+</ion-content>
+<ion-footer>
+  <div text-center style="width:100%;overflow:auto;position:fixed;bottom:0px">
+    <div class="cancel" float-left col-6 (click)="reset()">
+      <p>重置</p>
+    </div>
+    <div class="comfirm" float-left col-6 (click)="comfirm()">
+      <p style="color:white;">确定</p>
+    </div>
+  </div>
+</ion-footer>
