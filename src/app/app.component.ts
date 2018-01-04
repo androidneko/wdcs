@@ -1,25 +1,159 @@
+import { SettingPageModule } from './../pages/setting/setting.module';
+import { LoginPageModule } from './../pages/login/login.module';
+import { PersonalInfoPageModule } from './../pages/personal-info/personal-info.module';
 import { Events } from 'ionic-angular/util/events';
 import { LoginPage } from './../pages/login/login';
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, MenuController, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { RegistPage } from '../pages/regist/regist';
+import { HomePage } from '../pages/home/home';
+import { SettingPage } from '../pages/setting/setting';
+import { WebDbServiceProvider } from '../providers/web-db-service/web-db-service';
 
-// import { TabsPage } from '../pages/tabs/tabs';
+export interface PageInterface {
+  title: string;
+  name: string;
+  component: any;//对应跳转的独立页面
+  icon: string;
+  logsOut?: boolean;
+  index?: number; //tab index,如非tab页面，可空
+  tabName?: string;
+  tabComponent?: any;//对应跳转的tab页面
+  leafPage?: any;//是否可为子页面
+}
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  // rootPage:any = TabsPage;
-  rootPage:any = "";
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,public events:Events) {
-    platform.ready().then(() => {
+  // the root nav is a child of the root app component
+  // @ViewChild(Nav) gets a reference to the app's root nav
+  @ViewChild(Nav) nav: Nav;
+  
+  HAS_LOGGED_IN = 'hasLoggedIn';
+  HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
+
+  loggedInPages: PageInterface[] = [
+    { title: 'Account', name: 'PersonalInfoPage', component: PersonalInfoPageModule, icon: 'person',leafPage:true },
+    { title: 'Settings', name: 'SettingPage', component: SettingPage, icon: 'settings' },
+    { title: 'Logout', name: 'LoginPage', component: LoginPageModule, icon: 'log-out', logsOut: true }
+  ];
+  loggedOutPages: PageInterface[] = [
+    { title: 'Login', name: 'LoginPage', component: LoginPage, icon: 'log-in' },
+    { title: 'Signup', name: 'RegistPage', component: RegistPage, icon: 'person-add' }
+  ];
+  rootPage: any;
+
+  constructor(
+    public db:WebDbServiceProvider,
+    public menu: MenuController,
+    public platform: Platform,
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen,
+    public events:Events) {
+    //注册登录事件监听，改变侧滑菜单
+    this.listenToLoginEvents();
+    //判断登录状态，并跳转
+    this.db.getString(this.HAS_SEEN_TUTORIAL,(hasSeenTutorial)=>{
+      this.db.getString(this.HAS_LOGGED_IN,(hasLoggedIn)=>{
+        this.enableMenu(hasLoggedIn);
+        this.platformReady(hasLoggedIn);
+      });
+    },(failure)=>{
+
+    });
+
+  }
+
+  enableMenu(loggedIn: boolean) {
+    if (loggedIn){
+      this.menu.enable(loggedIn, 'loggedInMenu');
+    }else {
+      this.menu.enable(!loggedIn, 'loggedOutMenu');
+    }
+  }
+
+  platformReady(hasLoggedIn) {
+      this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-      this.rootPage = LoginPage;
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+      if (hasLoggedIn){
+        this.rootPage = HomePage;
+      }else {
+        this.rootPage = LoginPage;
+      }    
     });
+  }
+
+  listenToLoginEvents() {
+    this.events.subscribe('user:login', () => {
+      this.enableMenu(true);
+    });
+
+    this.events.subscribe('user:signup', () => {
+      this.enableMenu(true);
+    });
+
+    this.events.subscribe('user:logout', () => {
+      this.enableMenu(false);
+    });
+  }
+
+  isActive(page: PageInterface) {
+    let childNav = this.nav.getActiveChildNavs()[0];
+
+    // Tabs are a special case because they have their own navigation
+    if (childNav) {
+      if (childNav.getSelected() && childNav.getSelected().root === page.tabComponent) {
+        return 'primary';
+      }
+      return;
+    }
+
+    if (this.nav.getActive() && this.nav.getActive().name === page.name) {
+      return 'primary';
+    }
+    return;
+  }
+
+  openPage(page: PageInterface) {
+    let params = {};
+    // the nav component was found using @ViewChild(Nav)
+    // setRoot on the nav to remove previous pages and only have this page
+    // we wouldn't want the back button to show in this scenario
+    // 从我们定义的PageInterface的结构来判断当前页面是tab框架子页面还是普通page
+    if (page.index) {
+      params = { tabIndex: page.index };
+    }
+
+    // If we are already on tabs just change the selected tab
+    // don't setRoot again, this maintains the history stack of the
+    // tabs even if changing them from the menu
+    //这一段是如果当前app采用了tab的框架，那么tab页面之间的切换就不用重复setRoot，而是用tab index定位
+    if (this.nav.getActiveChildNavs().length && page.index != undefined) {
+      this.nav.getActiveChildNavs()[0].select(page.index);
+    } else {
+      // Set the root of the nav with params if it's a tab index
+      //这里处理非tab框架的页面跳转，处于便利性考虑，目前我们将所有页面声明位MyApp的module，使用push的方式跳转
+      if (page.leafPage){
+        this.nav.push(page.name);
+      }else {
+        this.nav.setRoot(page.name, params).catch((err: any) => {
+          console.log(`Didn't set nav root: ${err}`);
+        });
+      }
+      
+      //this.nav.push(page.name);
+    }
+
+    if (page.logsOut === true) {
+      // Give the menu time to close before changing to logged out
+      this.events.publish('user:logout');
+      this.db.saveString(this.HAS_LOGGED_IN,false);
+    }
   }
 }

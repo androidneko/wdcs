@@ -18,53 +18,43 @@
 </ion-header>
 
 
-<ion-content fullscreen no-padding no-margin >
-    <div style="background:rgb(230, 230, 230) ;height:100%"> 
+<ion-content no-padding no-margin >
 <ion-list>
-  <ion-item no-lines (click)="openCamera()">
-
-    <h2>头像：</h2>
-
-    <ion-avatar item-right style="width:60px;height:60px" >
-        <img [src]="headerImageUrl" style="width:60px;height:60px">
-      </ion-avatar>
-  </ion-item>
-<div style="background:rgb(230, 230, 230);height:20px"></div>
-  <ion-item   >
-      
-    <h2 style="display:inline">姓名:</h2>
-    <h2 style="display:inline; color:darkgray" *ngIf="!isEditMode"  >{{nickname}}</h2>
-    <ion-input type="text" maxlength="20" minlength="6" placeholder="请输入姓名" [(ngModel)]="nickname" *ngIf="isEditMode" ></ion-input>
+  <ion-item no-lines>
+    <ion-avatar item-start (click)="openCamera()">
+        <img [src]="avatarUrl">
+    </ion-avatar>
+    <div float-left>
+      <h3>{{nickname}}</h3>
+      <p>{{telephone}}</p>
+      </div>
   </ion-item>
 
-  <ion-item   >
-      
-    <h2 style="display:inline">手机号:</h2>
-    <h2 style="display:inline; color:darkgray"  *ngIf="!isEditMode">{{telephone}}</h2>
-    <ion-input type="tel" maxlength="11" minlength="6" placeholder="请输入手机号" [(ngModel)]="telephone" *ngIf="isEditMode" ></ion-input>
+  <ion-item  style="margin-top:20px;" >
+    <ion-icon item-start style="display:inline" name="unlock" color="primary" ios="ios-unlock-outline" md="ios-unlock-outline"></ion-icon>
+    <h2 item-start style="display:inline" float-right>昵称</h2>
+    <h2 item-end style="display:inline; color:darkgray" *ngIf="!isEditMode" >{{nickname}}</h2>
+    <ion-input item-end type="text" maxlength="20" minlength="6" placeholder="请输入昵称" [(ngModel)]="nickname" *ngIf="isEditMode" clearInput="true"></ion-input>
   </ion-item>
 
-  <ion-item   >
-      
-    <h2 style="display:inline">邮箱:</h2>
-    <h2 style="display:inline; color:darkgray" *ngIf="!isEditMode">{{email}}</h2>
-    <ion-input type="email" maxlength="40" minlength="6" placeholder="请输入邮箱" [(ngModel)]="email" *ngIf="isEditMode" ></ion-input>
+  <ion-item   > 
+    <h2 item-start style="display:inline">邮箱</h2>
+    <h2 item-end style="display:inline; color:darkgray" *ngIf="!isEditMode">{{email}}</h2>
+    <ion-input item-end type="email" maxlength="40" minlength="6" placeholder="请输入邮箱" [(ngModel)]="email" *ngIf="isEditMode" ></ion-input>
   </ion-item>
 
   <ion-item   >
       
-    <h2 style="display:inline">部门:</h2>
-    <h2 style="display:inline; color:darkgray" *ngIf="!isEditMode">{{department}}</h2>
-    <ion-input type="text" maxlength="20" minlength="6" placeholder="请输入部门" [(ngModel)]="department" *ngIf="isEditMode" ></ion-input>
+    <h2 style="display:inline">性别</h2>
+    <h2 item-end style="display:inline; color:darkgray" *ngIf="!isEditMode">{{department}}</h2>
+    <ion-multi-picker id="gender" [(ngModel)]="gender" item-content [multiPickerColumns]="genders" doneText="确定" cancelText="取消"></ion-multi-picker>
+
   </ion-item>
 
-  <ion-item   >
-      
-    <h2 style="display:inline">职位:</h2>
+  <ion-item>      
+    <h2 style="display:inline">职位</h2>
     <h2 style="display:inline; color:darkgray" *ngIf="!isEditMode">{{position}}</h2>
     <ion-input type="text" maxlength="20" minlength="6" placeholder="请输入职位" [(ngModel)]="position" *ngIf="isEditMode" ></ion-input>
   </ion-item>
 </ion-list>
-
-</div>
 </ion-content>

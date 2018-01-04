@@ -8,10 +8,13 @@ page-modify-pwd {
         .scroll-content{
             background: rgba($color: #000000, $alpha: 0) !important;
         }
-        background: color($colors,ty-partingline) !important;
+        background: #f5f4f4 !important;
     }
     .item-block{
-        min-height: 5.5rem !important;
+        min-height: 5rem !important;
+    }
+    .input{
+        font-size: 1.3rem !important;
     }
     .tip{
         margin-top: 15px;

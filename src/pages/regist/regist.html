@@ -5,57 +5,44 @@
   Ionic pages and navigation.
 -->
 <ion-header no-border>
-    <ion-navbar hideBackButton="true" transparent>
-            <ion-title>注册</ion-title>
-            <ion-buttons end>
-              <button ion-button  (click)="login()">登录</button>
-            </ion-buttons>
-          </ion-navbar>
+
+    <ion-navbar color="ty-nav-bar">
+  
+        <ion-title>注册</ion-title>
+        
+      </ion-navbar>
+
 </ion-header>
+<ion-content no-padding>
 
-
-<ion-content no-padding scroll="false" style="position:absolute;bottom:0px;"> 
+    <div class="logo">
+        <img src="./../../assets/imgs/appicon.svg">
+    </div>
+<div class="iputcenter" >
+    <ion-item  class="itemtop">
+        <ion-icon name="contact" color="primary" item-left ios="ios-contact-outline" md="ios-contact-outline"></ion-icon>
+        <ion-input  type="tel" maxlength="11" placeholder="请输手机号" [(ngModel)]="phoneNum" ></ion-input>
+        <button ion-button   (click)="geSmsCodeClicked($event)" class="valcodebtn" item-end>{{valcodebtntext}}</button>
+      </ion-item>
     
-
-
-</ion-content>
-<ion-footer class="background" >
-    <div class="logoHeader" text-center>
-        <img src="assets/imgs/logo.png" alt="">
-       
-      </div>
-      <div class="iputcenter" >
-        <ion-item  no-lines class="itemtop">
-          <ion-icon item-start></ion-icon>
-          <ion-input  type="tel" maxlength="11" placeholder="请输手机号" #username [(ngModel)]="username1" ></ion-input>
-          <div class="line"></div>
-          <button ion-button   (click)="getCodeClicked($event)" class="valcodebtn" item-end>{{valcodebtntext}}</button>
-        </ion-item>
-        <div class="ty-line1"></div>
-        <ion-item no-lines class="itemcenter">
-          <!-- <ion-icon item-left name="key" color="primary"></ion-icon> -->
-          <ion-icon item-left></ion-icon>
-          <ion-input type="text" placeholder="请输入验证码" #valcode [(ngModel)]="valcode1" maxlength="6"></ion-input>
-        </ion-item>
-        <div class="ty-line1"></div>
-        <ion-item no-lines class="itembottom">
-          <!-- <ion-icon item-left name="key" color="primary"></ion-icon> -->
-          <ion-icon item-left></ion-icon>
-          <ion-input type="password" placeholder="请设置密码" #password [(ngModel)]="password1" maxlength="20"></ion-input>
-        </ion-item>
-      </div>
-       
-      <div style="overflow:auto" class="passwordopreation"   margin-top="10">
-          <ion-checkbox class="checkbox_normal" mode="md" checked="true" float-left [(ngModel)]="isChecked" ></ion-checkbox>
-          <p  float-left no-padding no-margin>同意</p>
-          <p class="p1" float-left (click)="legalCliked()" no-padding no-margin>湖北银行51生意企业会员服务协议</p>
-      </div>
-      <div style="margin-top:30px" margin-left="10" margin-right="10" >
-        <!-- <button class="btn" [ngStyle]="{'opacity':username1==''?'0.6':'1.0'}"  (click)="comfirm(username, valcode)">
-          确定
-        </button> -->
-        <button ion-button block color="primary" round="true" (click)="comfirm(username, valcode,password)">
+      <ion-item>
+        <ion-icon name="contact" color="primary" item-left ios="ios-phone-portrait-outline" md="ios-phone-portrait-outline"></ion-icon>
+        <ion-input type="number" placeholder="请输入验证码" maxlength="6" [(ngModel)]="smsCode"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-icon name="unlock" color="primary" item-left ios="ios-unlock-outline" md="ios-unlock-outline"></ion-icon>
+        <ion-input type="password" placeholder="请输入新密码" minlength="6" maxlength="20" [(ngModel)]="password"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-icon name="lock" color="primary" item-left ios="ios-lock-outline" md="ios-lock-outline"></ion-icon>
+        <ion-input type="password" placeholder="请确认新密码" maxlength="20" [(ngModel)]="confirmPassword"></ion-input>
+      </ion-item>
+      <div style="margin:20px" >
+        <button ion-button block color="primary" (click)="register(phoneNum,smsCode,password,confirmPassword)">
           确定
         </button>
       </div>
-</ion-footer>
+      <p item-end class="login" (click)="loginBtnCliked()">已有账号，去登陆</p>
+</div>
+    
+</ion-content>

@@ -20,7 +20,7 @@ import { Md5 } from 'ts-md5/dist/md5';
 })
 export class ForgetPasswordPage extends BasePage {
   phoneNum: string = "";
-  verifyCode: string = "";
+  smsCode: string = "";
   password: string = "";
   confirmPassword: string = "";
   valcodebtntext: string = "发送验证码";
@@ -38,7 +38,7 @@ export class ForgetPasswordPage extends BasePage {
     super(navCtrl, navParams, toastCtrl);
   }
 
-  getVerifyCodeClicked(phoneNum:string):void{
+  geSmsCodeClicked(phoneNum:string):void{
     if (this.isCountingDown){
       return;
     }
@@ -87,7 +87,7 @@ export class ForgetPasswordPage extends BasePage {
         let info = obj.ACTION_INFO;
         let smsCode:string = info.smsCode;
         this.countingDown();
-        this.toast("收到验证码:"+smsCode+",仅供51生意测试使用");
+        this.toast("收到验证码:"+smsCode+",仅供测试使用");
       }else{
         this.toast(obj.ACTION_RETURN_MESSAGE);
         this.stopCounting();

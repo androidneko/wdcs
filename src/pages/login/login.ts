@@ -1,8 +1,9 @@
+import { WebDbServiceProvider } from './../../providers/web-db-service/web-db-service';
 import { DbServiceProvider } from './../../providers/db-service/db-service';
 import { AppGlobal, AppServiceProvider } from './../../providers/app-service/app-service';
 import { TyNetworkServiceProvider } from './../../providers/ty-network-service/ty-network-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams ,ToastController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,ToastController, Events} from 'ionic-angular';
 import { Md5 } from 'ts-md5/dist/md5';
 /**
  * Generated class for the LoginPage page.
@@ -19,7 +20,13 @@ import { Md5 } from 'ts-md5/dist/md5';
 export class LoginPage {
   username1:String;
   password1:String;
-  constructor(public toastCtrl: ToastController,public navCtrl: NavController, public navParams: NavParams,private net:TyNetworkServiceProvider,private db:DbServiceProvider) {
+  constructor(
+    public events: Events,
+    public toastCtrl: ToastController,
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private net:TyNetworkServiceProvider,
+    private db:WebDbServiceProvider) {
   }
 
   ionViewDidLoad() {
@@ -35,17 +42,10 @@ export class LoginPage {
   }
   login(username, password){
     if(this.isInfoLegal(username,password) == true){
-      // this.net.userLogin(AppGlobal.domain,{"ACTION_NAME":"USER_LOGIN","username":username.value,"password":password.value},msg => {
-      //   AppServiceProvider.getInstance().userinfo = JSON.parse(msg);
-      //   this.db.saveString(username.value,"username");
-      //   this.db.saveString(password.value,"password");
-      //   this.app.rootPage = TabsPage;
-      // },error => {
-      //   this.toast(error);
-      // },true);
-      
+
       this.net.httpPost(AppGlobal.API.test,{"ACTION_NAME":"merUserApi|merUserLogin","username":username.value,"password":Md5.hashStr(password.value).toString().toLowerCase()},msg => {
         let obj = JSON.parse(msg);
+        this.events.publish('user:login');
         if (obj.ACTION_RETURN_CODE==AppGlobal.RETURNCODE.succeed) {
           AppServiceProvider.getInstance().userinfo = obj.ACTION_INFO;
           AppServiceProvider.getInstance().merMenuList=[];
@@ -75,7 +75,7 @@ export class LoginPage {
           }
           this.db.saveString(username.value,"username");
           this.db.saveString(password.value,"password");
-          this.navCtrl.setRoot("TabsPage");
+          this.navCtrl.setRoot("HomePage");
         }else{
           this.toast(obj.ACTION_RETURN_MESSAGE);
         }
@@ -119,6 +119,7 @@ export class LoginPage {
     console.log("忘记密码")
     this.navCtrl.push("ForgetPasswordPage");
   }
+
   registBtnCliked(){
     console.log("注册按钮点击");
     this.navCtrl.push("RegistPage");

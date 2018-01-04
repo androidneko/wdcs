@@ -12,8 +12,6 @@ page-login {
     .iputcenter{
         width: auto;
         margin-top: 20px;
-        border-radius: 3px !important;
-        border:1px solid color($colors,ty-partingline);
     }
     .passwordopreation{
         margin-left: 10px;
@@ -35,10 +33,27 @@ page-login {
         color: color($colors,primary);
     }
     .forget{
-        margin: 15px;
+        color: rgb(26, 26, 26);
+        font-size: 1.3rem;
         text-align: center;
-        color: color($colors,ty-blue);
     }
+    .logo {
+        padding: 20px 0;
+        min-height: 130px;
+        text-align: center;
+    
+        img {
+          max-width: 100px;
+          color: color($colors,primary);
+        }
+      }
+    .regist{
+        color: color($colors,primary);
+        text-align: center;
+        margin-top: 15px;
+        font-size: 1.3rem;
+    }
+
     .itemtop
     {
         .item-icon

@@ -24,26 +24,41 @@ export class PersonalInfoPage extends BasePage{
 
   // imgArray:Array<any> = [""];
   isEditMode:Boolean = false;
-  nickname:string = '周某某';
+  nickname:string = 'Cat';
   telephone:string = '13500000000';
   email:string = 'xx@whty.com.cn';
   department:string = '销售部';
   position:string = '销售总监';
   items:[string] = ['姓名','手机号','邮箱','部门','职位'];
   buttonTitle:string = '编辑';
-  headerImageUrl:string = "assets/imgs/1.jpg";
+  avatarUrl:string = "assets/imgs/appicon.png";
   loading:Loading;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams,private net:TyNetworkServiceProvider
-    ,private camera:Camera,private actionSheet:ActionSheetController,private device:DeviceIntefaceServiceProvider
-    ,public loadingCtrl:LoadingController) {
-
+  genders = [
+    {
+      name:'col1',
+      options:[
+        {text:"男",value:1},
+        {text:"女",value:0},
+        {text:"秘密",value:2}
+      ]
+    }
+  ];
+  gender:string = "秘密";
+  
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private net:TyNetworkServiceProvider ,
+    private camera:Camera,
+    private actionSheet:ActionSheetController,
+    private device:DeviceIntefaceServiceProvider ,
+    public loadingCtrl:LoadingController) {
     super(navCtrl,navParams);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PersonalInfoPage');
-    this.sendRequest();
+    //this.sendRequest();
   }
 
   sendRequest(){
@@ -60,7 +75,7 @@ export class PersonalInfoPage extends BasePage{
         this.nickname = obj.ACTION_INFO.data.realName;
         this.telephone = obj.ACTION_INFO.data.cellPhone;
         this.email = obj.ACTION_INFO.data.eMail;
-        this.headerImageUrl = obj.ACTION_INFO.data.picUrl;
+        this.avatarUrl = obj.ACTION_INFO.data.picUrl;
         
       }
       console.log(obj);
@@ -73,7 +88,7 @@ export class PersonalInfoPage extends BasePage{
     let params = {
       "userId": AppServiceProvider.getInstance().userinfo.USERID,
       "MERCHANT_ID":AppServiceProvider.getInstance().userinfo.MERCHANT_ID,
-      "picUrl":this.headerImageUrl,
+      "picUrl":this.avatarUrl,
       "picName":"我的头像",
       "merName":"商户名称--my",
       "deptId":this.department,
@@ -117,7 +132,7 @@ export class PersonalInfoPage extends BasePage{
     this.camera.getPicture(options).then((imageData)=>{
       console.log('success');
       let base64Image = 'data:image/jpeg;base64,'+imageData;
-      this.headerImageUrl = base64Image;
+      this.avatarUrl = base64Image;
     },(err)=>{
       console.log('error');
       this.toast(err);
@@ -169,15 +184,15 @@ export class PersonalInfoPage extends BasePage{
   //上传头像
   uploadHeaderImage(){
     
-    if(this.headerImageUrl != null && this.headerImageUrl.indexOf("data:image/jpeg;base64,")>=0){
+    if(this.avatarUrl != null && this.avatarUrl.indexOf("data:image/jpeg;base64,")>=0){
       this.startLoading();
       console.log('header in');
-      console.log(this.headerImageUrl);
-      let str = this.headerImageUrl.replace("data:image/jpeg;base64,","");
+      console.log(this.avatarUrl);
+      let str = this.avatarUrl.replace("data:image/jpeg;base64,","");
       this.device.uploadfileWithBase64String(str,"jpeg",(msg)=>{
         console.log('success in');
         console.log(msg);
-        this.headerImageUrl = msg;
+        this.avatarUrl = msg;
         this.endLoading();
         this.saveRequest();
       },(err)=>{
@@ -187,7 +202,7 @@ export class PersonalInfoPage extends BasePage{
       });
     }else{
       console.log('headerImageUrl == null');
-      console.log(this.headerImageUrl);
+      console.log(this.avatarUrl);
       this.saveRequest();
     }
   }

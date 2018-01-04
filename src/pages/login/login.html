@@ -9,35 +9,35 @@
     <ion-navbar color="ty-nav-bar">
   
       <ion-title>登录</ion-title>
-      <ion-buttons end>
-        <button ion-button color="primary" (click)="registBtnCliked()">注册</button>
-      </ion-buttons>
+      
     </ion-navbar>
 
   </ion-header>
   
 <ion-content no-padding >
-<div class="iputcenter" margin-left="10" margin-right="10">
+
+    <div class="logo">
+        <img src="./../../assets/imgs/appicon.svg">
+    </div>
+
+<div class="iputcenter" >
   <ion-item no-lines class="itemtop">
     <!--<ion-label fixed>账号</ion-label>-->
-    <ion-icon item-left></ion-icon>
+    <ion-icon name="contact" color="primary" item-left ios="ios-contact-outline" md="ios-contact-outline"></ion-icon>
     <ion-input type="text" (keydown)="keydown($event)" placeholder="请输入账号" #username [(ngModel)]="username1"></ion-input>
   </ion-item>
   <div  class="ty-line1"></div>
   <ion-item no-lines class="itembottom">
-    <ion-icon item-left></ion-icon>
+    <ion-icon name="lock" color="primary" item-left ios="ios-lock-outline" md="ios-lock-outline"></ion-icon>
     <ion-input type="password" (keydown)="keydown($event)" placeholder="请输入密码" #password [(ngModel)]="password1"></ion-input>
+    <div item-end class="forget" (click)="forgetpassword()">忘记密码?</div>
   </ion-item>
 </div>
-<!-- <div style="overflow:auto" class="passwordopreation"   margin-top="10">
-    <ion-checkbox mode="md" color="primary" checked="true" float-left></ion-checkbox>
-    <p  float-left no-padding no-margin>同意</p>
-    <p class="p1" float-left (click)="legalCliked()" no-padding no-margin>湖北银行51生意企业会员服务协议</p>
-</div> -->
+
 <div style="margin:20px" >
-  <button ion-button block color="primary" round="true" (click)="login(username, password)">
+  <button ion-button block color="primary" (click)="login(username, password)">
     登录
   </button>
 </div>
-<p class="forget" (click)="forgetpassword()">忘记密码 ?</p>
+<p item-end class="regist" (click)="registBtnCliked()">快速注册</p>
 </ion-content>
