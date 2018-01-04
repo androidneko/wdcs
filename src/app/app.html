@@ -13,7 +13,7 @@
 
         <ion-list>
             <ion-list-header>
-              Account
+              
             </ion-list-header>
             <button ion-item menuClose *ngFor="let page of loggedOutPages" (click)="openPage(page)">
               <ion-icon item-start [name]="page.icon" [color]="isActive(page)"></ion-icon>
@@ -37,7 +37,9 @@
 
         <ion-list>
             <ion-list-header>
-              Account
+                <ion-avatar>
+                    <img [src]="avatarUrl">
+                </ion-avatar>
             </ion-list-header>
             <button ion-item menuClose *ngFor="let page of loggedInPages" (click)="openPage(page)">
               <ion-icon item-start [name]="page.icon" [color]="isActive(page)"></ion-icon>

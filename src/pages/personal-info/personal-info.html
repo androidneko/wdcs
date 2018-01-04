@@ -30,31 +30,53 @@
       </div>
   </ion-item>
 
-  <ion-item  style="margin-top:20px;" >
-    <ion-icon item-start style="display:inline" name="unlock" color="primary" ios="ios-unlock-outline" md="ios-unlock-outline"></ion-icon>
-    <h2 item-start style="display:inline" float-right>昵称</h2>
-    <h2 item-end style="display:inline; color:darkgray" *ngIf="!isEditMode" >{{nickname}}</h2>
-    <ion-input item-end type="text" maxlength="20" minlength="6" placeholder="请输入昵称" [(ngModel)]="nickname" *ngIf="isEditMode" clearInput="true"></ion-input>
+  <ion-item style="margin-top:20px;">
+    <ion-icon name="paper-plane" ios="ios-paper-plane-outline" md="ios-paper-plane-outline" item-start color="primary"></ion-icon>
+    <ion-label>昵称</ion-label>
+    <ion-note item-end *ngIf="!isEditMode">{{nickname}}</ion-note>
+    <ion-input item-end *ngIf="isEditMode" type="text" maxlength="20" minlength="6" placeholder="请输入昵称" [(ngModel)]="nickname" clearInput="true"></ion-input>
   </ion-item>
 
-  <ion-item   > 
-    <h2 item-start style="display:inline">邮箱</h2>
-    <h2 item-end style="display:inline; color:darkgray" *ngIf="!isEditMode">{{email}}</h2>
-    <ion-input item-end type="email" maxlength="40" minlength="6" placeholder="请输入邮箱" [(ngModel)]="email" *ngIf="isEditMode" ></ion-input>
+  <ion-item>
+    <ion-icon name="mail" ios="ios-mail-outline" md="ios-mail-outline" item-start color="primary"></ion-icon>
+    <ion-label>邮箱</ion-label>
+    <ion-note item-end *ngIf="!isEditMode">{{email}}</ion-note>
+    <ion-input item-end *ngIf="isEditMode" type="email" maxlength="40" minlength="6" placeholder="请输入邮箱" [(ngModel)]="email" clearInput="true"></ion-input>
+  </ion-item>
+  <!-- <button ion-item>
+    <ion-icon name="mail" item-start color="primary"></ion-icon>
+    <ion-label>邮箱</ion-label>
+    <ion-note item-end *ngIf="!isEditMode">{{email}}</ion-note>
+    <ion-input item-end *ngIf="isEditMode" type="email" maxlength="40" minlength="6" placeholder="请输入邮箱" [(ngModel)]="email" ></ion-input>
+  </button> -->
+
+  <ion-item>  
+    <ion-icon name="female" item-start color="primary"></ion-icon>
+    <ion-label>性别</ion-label>
+    <ion-note item-end *ngIf="!isEditMode">{{gender}}</ion-note>
+    <ion-multi-picker  item-end *ngIf="isEditMode" style="color:darkgray" id="gender" [(ngModel)]="gender" [multiPickerColumns]="genders" doneText="确定" cancelText="取消"></ion-multi-picker>
   </ion-item>
 
-  <ion-item   >
-      
-    <h2 style="display:inline">性别</h2>
-    <h2 item-end style="display:inline; color:darkgray" *ngIf="!isEditMode">{{department}}</h2>
-    <ion-multi-picker id="gender" [(ngModel)]="gender" item-content [multiPickerColumns]="genders" doneText="确定" cancelText="取消"></ion-multi-picker>
-
+  <ion-item>  
+    <ion-icon name="body" ios="ios-body-outline" md="ios-body-outline" item-start color="primary"></ion-icon>
+    <ion-label>身高</ion-label>
+    <ion-note item-end *ngIf="!isEditMode">{{height}}</ion-note>
+    <ion-multi-picker  item-end *ngIf="isEditMode" style="color:darkgray" id="height" [(ngModel)]="height" [multiPickerColumns]="heights" doneText="确定" cancelText="取消"></ion-multi-picker>
   </ion-item>
 
-  <ion-item>      
-    <h2 style="display:inline">职位</h2>
-    <h2 style="display:inline; color:darkgray" *ngIf="!isEditMode">{{position}}</h2>
-    <ion-input type="text" maxlength="20" minlength="6" placeholder="请输入职位" [(ngModel)]="position" *ngIf="isEditMode" ></ion-input>
+  <ion-item>  
+    <ion-icon name="speedometer" ios="ios-speedometer-outline" md="ios-speedometer-outline" item-start color="primary"></ion-icon>
+    <ion-label>体重</ion-label>
+    <ion-note item-end *ngIf="!isEditMode">{{weight}}</ion-note>
+    <ion-multi-picker  item-end *ngIf="isEditMode" style="color:darkgray" id="weight" [(ngModel)]="weight" [multiPickerColumns]="weights" doneText="确定" cancelText="取消"></ion-multi-picker>
   </ion-item>
+
+  <ion-item>  
+    <ion-icon name="calendar" ios="ios-calendar-outline" md="ios-calendar-outline" item-start color="primary"></ion-icon>
+    <ion-label>生日</ion-label>
+    <ion-note item-end *ngIf="!isEditMode">{{birthday}}</ion-note>
+    <ion-datetime item-end *ngIf="isEditMode" style="color:darkgray" displayFormat="YYYY-MM-DD" [(ngModel)]="birthday"  doneText="确定" cancelText="取消"></ion-datetime>
+  </ion-item>
+
 </ion-list>
 </ion-content>

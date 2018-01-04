@@ -36,15 +36,16 @@ export class MyApp {
   HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
 
   loggedInPages: PageInterface[] = [
-    { title: 'Account', name: 'PersonalInfoPage', component: PersonalInfoPageModule, icon: 'person',leafPage:true },
-    { title: 'Settings', name: 'SettingPage', component: SettingPage, icon: 'settings' },
-    { title: 'Logout', name: 'LoginPage', component: LoginPageModule, icon: 'log-out', logsOut: true }
+    { title: '个人', name: 'PersonalInfoPage', component: PersonalInfoPageModule, icon: 'contact',leafPage:true },
+    { title: '设置', name: 'SettingPage', component: SettingPage, icon: 'settings' ,leafPage:true },
+    { title: '登出', name: 'LoginPage', component: LoginPageModule, icon: 'exit', logsOut: true }
   ];
   loggedOutPages: PageInterface[] = [
-    { title: 'Login', name: 'LoginPage', component: LoginPage, icon: 'log-in' },
-    { title: 'Signup', name: 'RegistPage', component: RegistPage, icon: 'person-add' }
+    { title: '登录', name: 'LoginPage', component: LoginPage, icon: 'log-in' },
+    { title: '注册', name: 'RegistPage', component: RegistPage, icon: 'person-add' }
   ];
   rootPage: any;
+  avatarUrl: string = "assets/imgs/appicon.png";
 
   constructor(
     public db:WebDbServiceProvider,

@@ -7,6 +7,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { ActionSheetController } from 'ionic-angular/components/action-sheet/action-sheet-controller';
 import { DeviceIntefaceServiceProvider } from '../../providers/device-inteface-service/device-inteface-service';
 import { Loading } from 'ionic-angular/components/loading/loading';
+import { convertEnumToColumn } from 'ion-multi-picker';
 
 /**
  * Generated class for the PersonalInfoPage page.
@@ -20,40 +21,61 @@ import { Loading } from 'ionic-angular/components/loading/loading';
   selector: 'page-personal-info',
   templateUrl: 'personal-info.html',
 })
-export class PersonalInfoPage extends BasePage{
+export class PersonalInfoPage extends BasePage {
 
   // imgArray:Array<any> = [""];
-  isEditMode:Boolean = false;
-  nickname:string = 'Cat';
-  telephone:string = '13500000000';
-  email:string = 'xx@whty.com.cn';
-  department:string = '销售部';
-  position:string = '销售总监';
-  items:[string] = ['姓名','手机号','邮箱','部门','职位'];
-  buttonTitle:string = '编辑';
-  avatarUrl:string = "assets/imgs/appicon.png";
-  loading:Loading;
-  genders = [
+  isEditMode: Boolean = false;
+  nickname: string = 'Cat';
+  telephone: string = '13500000000';
+  email: string = 'androidcat@126.com';
+  birthday:string = "1989-05-25";
+  buttonTitle: string = '编辑';
+  avatarUrl: string = "assets/imgs/appicon.png";
+  loading: Loading;
+
+  gender = '女';
+  genders:any = [
     {
-      name:'col1',
-      options:[
-        {text:"男",value:1},
-        {text:"女",value:0},
-        {text:"秘密",value:2}
+      name: '性别',
+      options: [
+        { text: '女', value: '女' },
+        { text: '男', value: '男' },
+        { text: '秘密', value: '秘密' }
       ]
     }
   ];
-  gender:string = "秘密";
+
+  height:string = "170CM";
+  heights:any = [
+    {
+      name: '身高',
+      options:[]
+    }
+  ];
   
+  weight:string = "60KG";
+  weights:any = [
+    {
+      name: '体重',
+      options:[]
+    }
+  ];
+
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
-    private net:TyNetworkServiceProvider ,
-    private camera:Camera,
-    private actionSheet:ActionSheetController,
-    private device:DeviceIntefaceServiceProvider ,
-    public loadingCtrl:LoadingController) {
-    super(navCtrl,navParams);
+    private net: TyNetworkServiceProvider,
+    private camera: Camera,
+    private actionSheet: ActionSheetController,
+    private device: DeviceIntefaceServiceProvider,
+    public loadingCtrl: LoadingController) {
+    super(navCtrl, navParams);
+    // Using enum
+    // this.gender = Gender.秘密;
+    // this.Gender = Gender;
+    // this.genders = convertEnumToColumn(this.Gender);
+    this.initHeightAndWeight();
+    
   }
 
   ionViewDidLoad() {
@@ -61,161 +83,179 @@ export class PersonalInfoPage extends BasePage{
     //this.sendRequest();
   }
 
-  sendRequest(){
+  initHeightAndWeight(){
+    let options:any = [];
+    for (let i = 0;i < 200; i++){
+      let item:any = {text: '', value: '' };
+      item.text = 50 + i + 'CM';
+      item.value = 50 + i + 'CM';
+      options[i] = item;
+    }
+    this.heights[0].options = options;
+
+    let options2:any = [];
+    for (let j = 0;j < 200; j++){
+      let item:any = {text: '', value: '' };
+      item.text = 20 + j + 'KG';
+      item.value = 20 + j + 'KG';
+      options2[j] = item;
+    }
+    this.weights[0].options = options2;
+  }
+
+  sendRequest() {
     let params = {
       "userId": AppServiceProvider.getInstance().userinfo.USERID,
-      "MERCHANT_ID":AppServiceProvider.getInstance().userinfo.MERCHANT_ID,
-      "ACTION_NAME":"merUserApi|viewMerUser"
+      "MERCHANT_ID": AppServiceProvider.getInstance().userinfo.MERCHANT_ID,
+      "ACTION_NAME": "merUserApi|viewMerUser"
     };
-    this.net.httpPost(AppGlobal.API.test,params,msg=>{
+    this.net.httpPost(AppGlobal.API.test, params, msg => {
       console.log(msg);
       let obj = JSON.parse(msg);
-      if(obj.ACTION_RETURN_CODE == AppGlobal.RETURNCODE.succeed || obj.ACTION_RETURN_CODE==null){
+      if (obj.ACTION_RETURN_CODE == AppGlobal.RETURNCODE.succeed || obj.ACTION_RETURN_CODE == null) {
 
         this.nickname = obj.ACTION_INFO.data.realName;
         this.telephone = obj.ACTION_INFO.data.cellPhone;
         this.email = obj.ACTION_INFO.data.eMail;
         this.avatarUrl = obj.ACTION_INFO.data.picUrl;
-        
+
       }
       console.log(obj);
-    },error => {
+    }, error => {
 
     }, true);
   }
 
-  saveRequest(){
+  saveRequest() {
     let params = {
       "userId": AppServiceProvider.getInstance().userinfo.USERID,
-      "MERCHANT_ID":AppServiceProvider.getInstance().userinfo.MERCHANT_ID,
-      "picUrl":this.avatarUrl,
-      "picName":"我的头像",
-      "merName":"商户名称--my",
-      "deptId":this.department,
-      "position":this.position,
-      "eMail":this.email,
-      "ACTION_NAME":"merUserApi|updateMerUser"
+      "MERCHANT_ID": AppServiceProvider.getInstance().userinfo.MERCHANT_ID,
+      "picUrl": this.avatarUrl,
+      "picName": "我的头像",
+      "merName": "商户名称--my",
+      "eMail": this.email,
+      "ACTION_NAME": "merUserApi|updateMerUser"
     };
 
-    this.net.httpPost(AppGlobal.API.test,params,msg=>{
+    this.net.httpPost(AppGlobal.API.test, params, msg => {
       console.log(msg);
       let obj = JSON.parse(msg);
-      if(obj.ACTION_RETURN_CODE == AppGlobal.RETURNCODE.succeed || obj.ACTION_RETURN_CODE==null){
+      if (obj.ACTION_RETURN_CODE == AppGlobal.RETURNCODE.succeed || obj.ACTION_RETURN_CODE == null) {
 
         this.toast('');
-        
+
       }
       // console.log(obj);
-    },error => {
+    }, error => {
       this.toast(error);
     }, true);
   }
 
 
-  itemSelected(item){
+  itemSelected(item) {
     console.log('');
   }
 
-  editButtonPressed(){
+  editButtonPressed() {
     this.isEditMode = !this.isEditMode;
-    if(this.isEditMode){
+    if (this.isEditMode) {
       this.buttonTitle = '保存';
-    }else{
+    } else {
       this.buttonTitle = '编辑';
       // this.saveRequest();
       this.uploadHeaderImage();
     }
   }
 
-  getImgWithIndex(options){
+  getImgWithIndex(options) {
     console.log('in');
-    this.camera.getPicture(options).then((imageData)=>{
+    this.camera.getPicture(options).then((imageData) => {
       console.log('success');
-      let base64Image = 'data:image/jpeg;base64,'+imageData;
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
       this.avatarUrl = base64Image;
-    },(err)=>{
+    }, (err) => {
       console.log('error');
       this.toast(err);
     });
   }
 
-  openCamera(){
-    if(!this.isEditMode){
+  openCamera() {
+    if (!this.isEditMode) {
       console.log('不是编辑模式');
       return;
     }
     console.log('open click 1');
     let options: CameraOptions = {
-      quality:100,
-      destinationType:this.camera.DestinationType.DATA_URL,
-      encodingType:this.camera.EncodingType.JPEG,
-      mediaType:this.camera.MediaType.PICTURE,
-      sourceType:this.camera.PictureSourceType.PHOTOLIBRARY,
-      allowEdit:true
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      allowEdit: true
     };
     var buttons = [{
-      text:"拍照",
-      handler:()=>{
+      text: "拍照",
+      handler: () => {
         options.sourceType = this.camera.PictureSourceType.CAMERA;
         this.getImgWithIndex(options);
       }
-    },{
-      text:"从相册中选择",
-      handler:()=>{
+    }, {
+      text: "从相册中选择",
+      handler: () => {
         console.log('photolibary');
         options.sourceType = this.camera.PictureSourceType.PHOTOLIBRARY;
         this.getImgWithIndex(options);
       }
-    },{
-      text:"取消",
-      role:'cancel',
-      handler:()=>{
+    }, {
+      text: "取消",
+      role: 'cancel',
+      handler: () => {
         // options.sourceType = this.camera.PictureSourceType.SAVEDPHOTOALBUM;
         // this.getImgWithIndex(options);
       }
     }];
 
     let actionSheet = this.actionSheet.create({
-      buttons:buttons
+      buttons: buttons
     });
     actionSheet.present();
   }
 
   //上传头像
-  uploadHeaderImage(){
-    
-    if(this.avatarUrl != null && this.avatarUrl.indexOf("data:image/jpeg;base64,")>=0){
+  uploadHeaderImage() {
+
+    if (this.avatarUrl != null && this.avatarUrl.indexOf("data:image/jpeg;base64,") >= 0) {
       this.startLoading();
       console.log('header in');
       console.log(this.avatarUrl);
-      let str = this.avatarUrl.replace("data:image/jpeg;base64,","");
-      this.device.uploadfileWithBase64String(str,"jpeg",(msg)=>{
+      let str = this.avatarUrl.replace("data:image/jpeg;base64,", "");
+      this.device.uploadfileWithBase64String(str, "jpeg", (msg) => {
         console.log('success in');
         console.log(msg);
         this.avatarUrl = msg;
         this.endLoading();
         this.saveRequest();
-      },(err)=>{
+      }, (err) => {
         this.endLoading();
         this.toast(err);
         console.log('23 error');
       });
-    }else{
+    } else {
       console.log('headerImageUrl == null');
       console.log(this.avatarUrl);
       this.saveRequest();
     }
   }
 
-  startLoading(){
-    if(this.loading == null){
+  startLoading() {
+    if (this.loading == null) {
       this.loading = this.loadingCtrl.create();
       this.loading.present();
     }
   }
 
-  endLoading(){
-    if(this.loading != null){
+  endLoading() {
+    if (this.loading != null) {
       this.loading.dismiss();
       this.loading = null;
     }
