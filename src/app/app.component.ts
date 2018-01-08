@@ -1,4 +1,3 @@
-import { SettingPageModule } from './../pages/setting/setting.module';
 import { LoginPageModule } from './../pages/login/login.module';
 import { PersonalInfoPageModule } from './../pages/personal-info/personal-info.module';
 import { Events } from 'ionic-angular/util/events';
@@ -56,15 +55,22 @@ export class MyApp {
     public events:Events) {
     //注册登录事件监听，改变侧滑菜单
     this.listenToLoginEvents();
-    //判断登录状态，并跳转
-    this.db.getString(this.HAS_SEEN_TUTORIAL,(hasSeenTutorial)=>{
-      this.db.getString(this.HAS_LOGGED_IN,(hasLoggedIn)=>{
-        this.enableMenu(hasLoggedIn);
-        this.platformReady(hasLoggedIn);
+    this.platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+       //判断登录状态，并跳转
+       this.db.getString(this.HAS_SEEN_TUTORIAL,(hasSeenTutorial)=>{
+        this.db.getString(this.HAS_LOGGED_IN,(hasLoggedIn)=>{
+          this.enableMenu(hasLoggedIn);
+          this.platformReady(hasLoggedIn);
+        });
+      },(failure)=>{
+  
       });
-    },(failure)=>{
-
     });
+
 
   }
 
@@ -77,17 +83,11 @@ export class MyApp {
   }
 
   platformReady(hasLoggedIn) {
-      this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-      if (hasLoggedIn){
-        this.rootPage = HomePage;
-      }else {
-        this.rootPage = LoginPage;
-      }    
-    });
+    if (hasLoggedIn){
+      this.rootPage = HomePage;
+    }else {
+      this.rootPage = LoginPage;
+    }    
   }
 
   listenToLoginEvents() {

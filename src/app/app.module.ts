@@ -1,8 +1,5 @@
 import { HomePageModule } from './../pages/home/home.module';
 import { ForgetPasswordPageModule } from './../pages/forget-password/forget-password.module';
-import { MyProductListPageModule } from './../pages/my-product-list/my-product-list.module';
-import { ActionSheetPageModule } from './../pages/action-sheet/action-sheet.module';
-import { SettingPageModule } from './../pages/setting/setting.module';
 import { TabsPageModule } from './../pages/tabs/tabs.module';
 import { RegistPageModule } from './../pages/regist/regist.module';
 import { BuildingPageModule } from './../pages/building/building.module';
@@ -27,13 +24,12 @@ import { DeviceIntefaceServiceProvider } from '../providers/device-inteface-serv
 import { BusinessPageModule } from '../pages/business/business.module';
 import { ModifyPwdPageModule } from '../pages/modify-pwd/modify-pwd.module';
 import { PersonalInfoPageModule } from '../pages/personal-info/personal-info.module';
-import { NewProductPageModule } from '../pages/new-product/new-product.module';
 import { Camera } from '@ionic-native/camera';
-import { PhotoLibrary } from '@ionic-native/photo-library';
-import { MyIframePageModule } from '../pages/my-iframe/my-iframe.module';
+import { NewInfoPageModule } from '../pages/new-info/new-info.module';
+import { File } from '@ionic-native/file';
 
 export function netFactory(platform:Platform,loadingCtrl:LoadingController,http:Http,zone:NgZone) {
-  if (platform.is("mobileweb")) {
+  if (platform.is("mobileweb")||platform.is("mobile")) {
     return new WebTyNetworkServiceProvider(http,loadingCtrl);
   }else if(platform.is("mobile")){
     return new TyNetworkServiceProvider(loadingCtrl,zone,http);
@@ -74,7 +70,7 @@ export function dbFactory(platform:Platform) {
     ModifyPwdPageModule,
     ForgetPasswordPageModule,
     PersonalInfoPageModule,
-    SettingPageModule,
+    NewInfoPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -84,6 +80,7 @@ export function dbFactory(platform:Platform) {
     StatusBar,
     SplashScreen,
     Camera,
+    File,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AppServiceProvider,
     {provide:TyNetworkServiceProvider,useFactory:netFactory,
@@ -95,8 +92,7 @@ export function dbFactory(platform:Platform) {
     {provide: WebDbServiceProvider,useFactory:dbFactory,
       deps:[Platform]
     },
-    DeviceIntefaceServiceProvider,
-    PhotoLibrary
+    DeviceIntefaceServiceProvider
   ]
 })
 export class AppModule {}

@@ -1,0 +1,66 @@
+<!--
+  Generated template for the NewInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>新增野生植物</ion-title>
+    <ion-buttons end>
+        <button ion-button clear color="primary" (click)="add()">
+            添加
+          </button>
+        <button ion-button clear color="primary" (click)="save()">
+          保存
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+
+    <ion-item>
+      <ion-input type="text" placeholder="请输入植物名称" [(ngModel)]="name" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>武汉青山区001号</ion-label>
+      <ion-icon class="ty-arrow-gray" name="ios-arrow-forward" item-end></ion-icon>
+    </ion-item>
+    <ion-item>
+        <ion-label>采集员:hack 采集时间:2018.15.11 13:00</ion-label>
+      </ion-item>
+      <p padding-left>当前经纬度</p>
+      <ion-item>
+          <ion-label>经度:114.1111111 纬度:30.222222222222</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>采样点编号:</ion-label>
+        <ion-input  placeholder="请输入采样点编号" [(ngModel)]="number" ></ion-input>
+      </ion-item>
+      <ion-item>
+            <ion-label>拍摄照片</ion-label>
+            <ion-input type="text" placeholder="请输入单位" [(ngModel)]="proUnit" ></ion-input>
+            <p item-end>1</p>
+            <ion-icon class="ty-arrow-gray" name="ios-arrow-forward" item-end></ion-icon>
+      </ion-item>
+      <ion-item>
+          <ion-label>采样深度(cm):</ion-label>
+          <ion-input  placeholder="请输入采样深度" [(ngModel)]="delay" ></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>海拔(m):</ion-label>
+            <ion-input  placeholder="请输入海拔高度" [(ngModel)]="altitude" ></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label>样品重量(kg):</ion-label>
+              <ion-input  placeholder="请输入样品重量" [(ngModel)]="weight" ></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label>土地利用:</ion-label>
+              <ion-icon class="ty-arrow-gray" name="ios-arrow-forward" item-end></ion-icon>
+          </ion-item>
+</ion-content>

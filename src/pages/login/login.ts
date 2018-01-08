@@ -1,4 +1,3 @@
-import { WebDbServiceProvider } from './../../providers/web-db-service/web-db-service';
 import { DbServiceProvider } from './../../providers/db-service/db-service';
 import { AppGlobal, AppServiceProvider } from './../../providers/app-service/app-service';
 import { TyNetworkServiceProvider } from './../../providers/ty-network-service/ty-network-service';
@@ -26,7 +25,7 @@ export class LoginPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     private net:TyNetworkServiceProvider,
-    private db:WebDbServiceProvider) {
+    private db:DbServiceProvider) {
   }
 
   ionViewDidLoad() {

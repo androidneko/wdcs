@@ -7,8 +7,6 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { ActionSheetController } from 'ionic-angular/components/action-sheet/action-sheet-controller';
 import { DeviceIntefaceServiceProvider } from '../../providers/device-inteface-service/device-inteface-service';
 import { Loading } from 'ionic-angular/components/loading/loading';
-import { convertEnumToColumn } from 'ion-multi-picker';
-
 /**
  * Generated class for the PersonalInfoPage page.
  *

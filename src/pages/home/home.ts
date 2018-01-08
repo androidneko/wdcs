@@ -21,5 +21,8 @@ export class HomePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
   }
-
+  newinfo(){
+    console.log("新增");
+    this.navCtrl.push("NewInfoPage");
+  }
 }
