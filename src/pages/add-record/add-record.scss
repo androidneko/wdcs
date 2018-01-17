@@ -1,0 +1,14 @@
+page-add-record {
+    ion-content{
+        .fixed-content{
+            background: rgba($color: #000000, $alpha: 0) !important;
+        }
+        .scroll-content{
+            background: rgba($color: #000000, $alpha: 0) !important;
+        }
+        background: #f5f4f4 !important;
+    }
+    .item-block{
+        min-height: 4rem !important;
+    } 
+}

@@ -1,3 +1,5 @@
+import { NewPlantPageModule } from './../pages/new-plant/new-plant.module';
+import { AddRecordPageModule } from './../pages/add-record/add-record.module';
 import { HomePageModule } from './../pages/home/home.module';
 import { ForgetPasswordPageModule } from './../pages/forget-password/forget-password.module';
 import { TabsPageModule } from './../pages/tabs/tabs.module';
@@ -27,6 +29,7 @@ import { PersonalInfoPageModule } from '../pages/personal-info/personal-info.mod
 import { Camera } from '@ionic-native/camera';
 import { NewInfoPageModule } from '../pages/new-info/new-info.module';
 import { File } from '@ionic-native/file';
+import { PlantDetailPageModule } from '../pages/plant-detail/plant-detail.module';
 
 export function netFactory(platform:Platform,loadingCtrl:LoadingController,http:Http,zone:NgZone) {
   if (platform.is("mobileweb")||platform.is("mobile")) {
@@ -70,7 +73,10 @@ export function dbFactory(platform:Platform) {
     ModifyPwdPageModule,
     ForgetPasswordPageModule,
     PersonalInfoPageModule,
-    NewInfoPageModule
+    NewInfoPageModule,
+    AddRecordPageModule,
+    PlantDetailPageModule,
+    NewPlantPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
