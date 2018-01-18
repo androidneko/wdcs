@@ -8,6 +8,9 @@
 
   <ion-navbar>
     <ion-title>上传管理</ion-title>
+    <ion-buttons end>
+        <button ion-button color="primary" (click)="uploadBtnCliked()">批量上传</button>
+      </ion-buttons>
   </ion-navbar>
   <ion-segment mode="md" [(ngModel)]="type">
       <ion-segment-button value="waitLoad">

@@ -24,5 +24,9 @@ export class UploadPlantManagerPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad UploadPlantManagerPage');
   }
+  uploadBtnCliked(){
+    console.log('批量上传');
 
+
+  }
 }
