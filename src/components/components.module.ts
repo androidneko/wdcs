@@ -22,6 +22,7 @@ import { BusinessItemEditComponent } from './business-item-edit/business-item-ed
 import { BusinessItemEcharsComponent } from './business-item-echars/business-item-echars';
 import { BusinessItemEcharComponent } from './business-item-echar/business-item-echar';
 import { JlBlanceSpliterComponent } from './jl-blance-spliter/jl-blance-spliter';
+import { PlantItemComponent } from './plant-item/plant-item';
 @NgModule({
 	declarations: [IonTyfunctionGridComponent,
     BusinessItemComponent,
@@ -45,7 +46,8 @@ import { JlBlanceSpliterComponent } from './jl-blance-spliter/jl-blance-spliter'
     JlStartendDatepickerItemComponent,
     BusinessItemEcharsComponent,
     BusinessItemEcharComponent,
-    JlBlanceSpliterComponent],
+    JlBlanceSpliterComponent,
+    PlantItemComponent],
 
 	imports: [IonicModule,PipesModule],
 	exports: [IonTyfunctionGridComponent,
@@ -70,7 +72,8 @@ import { JlBlanceSpliterComponent } from './jl-blance-spliter/jl-blance-spliter'
     JlStartendDatepickerItemComponent,
     BusinessItemEcharsComponent,
     BusinessItemEcharComponent,
-    JlBlanceSpliterComponent]
+    JlBlanceSpliterComponent,
+    PlantItemComponent]
 
 })
 export class ComponentsModule {}

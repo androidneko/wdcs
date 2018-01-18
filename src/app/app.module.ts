@@ -1,3 +1,4 @@
+import { UploadPlantManagerPageModule } from './../pages/upload-plant-manager/upload-plant-manager.module';
 import { NewPlantPageModule } from './../pages/new-plant/new-plant.module';
 import { AddRecordPageModule } from './../pages/add-record/add-record.module';
 import { HomePageModule } from './../pages/home/home.module';
@@ -76,7 +77,8 @@ export function dbFactory(platform:Platform) {
     NewInfoPageModule,
     AddRecordPageModule,
     PlantDetailPageModule,
-    NewPlantPageModule
+    NewPlantPageModule,
+    UploadPlantManagerPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -23,6 +23,10 @@ export class HomePage {
   }
   newinfo(){
     console.log("新增");
-    this.navCtrl.push("NewInfoPage");
+    this.navCtrl.push("AddRecordPage");
+  }
+  uploadmanager(){
+    console.log("上传管理");
+    this.navCtrl.push("UploadPlantManagerPage");
   }
 }

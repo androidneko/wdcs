@@ -1,0 +1,44 @@
+<!--
+  Generated template for the UploadPlantManagerPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>上传管理</ion-title>
+  </ion-navbar>
+  <ion-segment mode="md" [(ngModel)]="type">
+      <ion-segment-button value="waitLoad">
+        待上传
+      </ion-segment-button>
+      <ion-segment-button value="hadUpload">
+        已上传
+      </ion-segment-button>
+      <ion-segment-button value="review">
+          审核中
+      </ion-segment-button>
+    </ion-segment>
+</ion-header>
+
+
+<ion-content no-padding>
+
+<div [ngSwitch]="type">
+    <ion-list *ngSwitchCase="'waitLoad'" >
+        <plant-item *ngFor="let item of waitLoadArray"  >
+        </plant-item>
+      </ion-list>
+  
+    <ion-list *ngSwitchCase="'hadUpload'">
+      <plant-item *ngFor="let item of hadUploadArray"  >
+      </plant-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'review'">
+        <plant-item *ngFor="let item of reviewArray"  >
+        </plant-item>
+      </ion-list>
+  </div>
+
+</ion-content>

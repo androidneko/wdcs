@@ -1,0 +1,30 @@
+plant-item {
+    .mimg{
+        width: 100%;
+        min-height: 150px;
+    }
+ .bottom{
+     position: absolute;
+     bottom: 0px;
+     width: 100%;
+     color: white;
+     background: rgba(0, 0, 0, 0.5);
+     .bleft{
+        float: left;
+        padding-left: 10px !important;
+     }
+     ion-icon{
+         color: white;
+         float: right;;
+         font-size: 20px;
+         margin-right: 5px;
+         margin-top: 12px;
+        
+     }
+     .bright{
+        float: right;
+        padding-right: 10px;
+     }
+ }
+
+}
