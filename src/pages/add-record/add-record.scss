@@ -8,7 +8,19 @@ page-add-record {
         }
         background: #f5f4f4 !important;
     }
+
+    .text{
+        padding-top: 10px;
+        padding-bottom: 15px;
+    }
+
     .item-block{
         min-height: 4rem !important;
-    } 
+    }
+    
+    .mylabel{
+        min-height: 3rem;
+    }
+
+    $item-ios-body-text-font-size:1.9rem;
 }

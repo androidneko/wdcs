@@ -26,6 +26,13 @@
     height: 1px;
     background: color($colors,ty-partingline);
 }
+
+.ac-line-tiny{
+    width: 100%;
+    height: 0.5px;
+    background: color($colors,ty-partingline);
+}
+
 .item-inner{
     border-bottom-color:color($colors,ty-partingline) !important;
 }
