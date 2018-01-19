@@ -115,21 +115,21 @@ export class MyApp {
     });
   }
 
-  isActive(page: PageInterface) {
+  isActive(page: PageInterface):boolean {
     let childNav = this.nav.getActiveChildNavs()[0];
 
     // Tabs are a special case because they have their own navigation
     if (childNav) {
       if (childNav.getSelected() && childNav.getSelected().root === page.tabComponent) {
-        return 'secondary';
+        return true;
       }
-      return 'primary';
+      return false;
     }
 
     if (this.nav.getActive() && this.nav.getActive().name === page.name) {
-      return 'secondary';
+      return true;
     }
-    return 'primary';
+    return false;
   }
 
   openPage(page: PageInterface) {

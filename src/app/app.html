@@ -20,7 +20,7 @@
 
         <ion-list>
             <button ion-item menuClose *ngFor="let page of loggedOutPages" (click)="openPage(page)">
-                <ion-icon item-start [name]="page.icon" [color]="isActive(page)"></ion-icon>
+                <ion-icon item-start [name]="page.icon" [color]="isActive(page)?'secondary':'primary'"></ion-icon>
                 <h2>{{page.title}}</h2>
               </button>
           </ion-list> 
@@ -41,8 +41,8 @@
                 <h2 style="color:gray">{{userName}}</h2>
             </ion-list-header>
             
-            <ion-item no-lines menuClose *ngFor="let page of loggedInPages" (click)="openPage(page)" [ngStyle]="{'background-color': page.name == 'HomePage'?'gray':'white'} ">
-              <ion-icon item-start [name]="page.icon" [color]="isActive(page)"></ion-icon>
+            <ion-item no-lines menuClose *ngFor="let page of loggedInPages" (click)="openPage(page)" [ngStyle]="{'background-color': isActive(page)?'#efefef':'white'} ">
+              <ion-icon item-start [name]="page.icon" [color]="isActive(page)?'secondary':'primary'"></ion-icon>
               {{page.title}}
             </ion-item>
           </ion-list> 

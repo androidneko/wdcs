@@ -5,13 +5,14 @@ plant-item {
     }
  .bottom{
      position: absolute;
-     bottom: 0px;
+     bottom: 10px;
      width: 100%;
      color: white;
+     margin-right: 8px !important;
      background: rgba(0, 0, 0, 0.5);
      .bleft{
         float: left;
-        padding-left: 10px !important;
+        padding-left: 8px !important;
      }
      ion-icon{
          color: white;

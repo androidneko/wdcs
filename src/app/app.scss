@@ -33,6 +33,9 @@
     background: color($colors,ty-partingline);
 }
  .outer-content{
+     .scroll-content{
+        background-color: white !important;
+     }
     .item-inner{
         background-image: none !important;
     }
