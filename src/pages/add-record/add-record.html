@@ -167,7 +167,7 @@
       <ion-input type="text" placeholder="请输入草本层伴生种" maxlength="6" [(ngModel)]="speciesName"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item (click)="addKnowPeople()">
       <h2>知情者</h2>
       <ion-icon name="ios-arrow-forward" style="color:#F2F2F2" item-end></ion-icon>
     </ion-item>
@@ -176,7 +176,7 @@
       <ion-icon item-start name="flower" ios="ios-flower-outline" md="ios-flower-outline" color="primary"></ion-icon>
       <ion-label item-start>物种详情</ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item (click)="photoClik()">
       <h2>照片详情</h2>
       <ion-icon name="ios-arrow-forward" style="color:#F2F2F2" item-end></ion-icon>
     </ion-item>

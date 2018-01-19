@@ -64,7 +64,11 @@ ion-navbar {
         background:white;
     }
 }
-
+.outer-content{
+    .item-inner{
+        background-image: none !important;
+    }
+}
 .item-ios ion-avatar img{
     margin:20px 0px 20px 0px;
     width: 50px;

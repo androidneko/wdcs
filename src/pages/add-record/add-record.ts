@@ -130,5 +130,10 @@ export class AddRecordPage {
   gotoPlantDetail(){
     this.navCtrl.push("PlantDetailPage");
   }
-
+  addKnowPeople(){
+    this.navCtrl.push("KnowPeoplePage");
+  }
+  photoClik(){
+    this.navCtrl.push("PhotoSelectsPage");
+  }
 }
