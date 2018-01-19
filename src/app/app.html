@@ -3,22 +3,26 @@
     <!-- logged out menu -->
     <ion-menu id="loggedOutMenu" [content]="content">
   
-      <ion-header>
+      <!-- <ion-header>
         <ion-toolbar>
-          <ion-title>Menu</ion-title>
+          <ion-title></ion-title>
         </ion-toolbar>
-      </ion-header>
+      </ion-header> -->
   
       <ion-content class="outer-content">
 
+          <ion-list-header style="background-color:#c8ddd4">
+              <ion-avatar>
+                  <img style="width:100px;height:100px;" [src]="logoUrl">
+              </ion-avatar>
+              <h2 style="color:gray">游客，你好</h2>
+          </ion-list-header>
+
         <ion-list>
-            <ion-list-header>
-              
-            </ion-list-header>
             <button ion-item menuClose *ngFor="let page of loggedOutPages" (click)="openPage(page)">
-              <ion-icon item-start [name]="page.icon" [color]="isActive(page)"></ion-icon>
-              {{page.title}}
-            </button>
+                <ion-icon item-start [name]="page.icon" [color]="isActive(page)"></ion-icon>
+                <h2>{{page.title}}</h2>
+              </button>
           </ion-list> 
       </ion-content>
   
@@ -27,24 +31,20 @@
     <!-- logged in menu -->
     <ion-menu id="loggedInMenu" [content]="content">
   
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Menu</ion-title>
-        </ion-toolbar>
-      </ion-header>
-  
       <ion-content class="outer-content">
 
         <ion-list>
-            <ion-list-header>
+            <ion-list-header style="background-color:#c8ddd4">
                 <ion-avatar>
-                    <img [src]="avatarUrl">
+                    <img style="width:100px;height:100px;" [src]="avatarUrl">
                 </ion-avatar>
+                <h2 style="color:gray">{{userName}}</h2>
             </ion-list-header>
-            <button ion-item menuClose *ngFor="let page of loggedInPages" (click)="openPage(page)">
+            
+            <ion-item no-lines menuClose *ngFor="let page of loggedInPages" (click)="openPage(page)" [ngStyle]="{'background-color': page.name == 'HomePage'?'gray':'white'} ">
               <ion-icon item-start [name]="page.icon" [color]="isActive(page)"></ion-icon>
               {{page.title}}
-            </button>
+            </ion-item>
           </ion-list> 
       </ion-content>
   

@@ -23,6 +23,7 @@ import { BusinessItemEcharsComponent } from './business-item-echars/business-ite
 import { BusinessItemEcharComponent } from './business-item-echar/business-item-echar';
 import { JlBlanceSpliterComponent } from './jl-blance-spliter/jl-blance-spliter';
 import { PlantItemComponent } from './plant-item/plant-item';
+import { MenuItemComponent } from './menu-item/menu-item';
 @NgModule({
 	declarations: [IonTyfunctionGridComponent,
     BusinessItemComponent,
@@ -47,7 +48,8 @@ import { PlantItemComponent } from './plant-item/plant-item';
     BusinessItemEcharsComponent,
     BusinessItemEcharComponent,
     JlBlanceSpliterComponent,
-    PlantItemComponent],
+    PlantItemComponent,
+    MenuItemComponent],
 
 	imports: [IonicModule,PipesModule],
 	exports: [IonTyfunctionGridComponent,
@@ -73,7 +75,8 @@ import { PlantItemComponent } from './plant-item/plant-item';
     BusinessItemEcharsComponent,
     BusinessItemEcharComponent,
     JlBlanceSpliterComponent,
-    PlantItemComponent]
+    PlantItemComponent,
+    MenuItemComponent]
 
 })
 export class ComponentsModule {}

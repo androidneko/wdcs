@@ -121,7 +121,6 @@ export class LoginPage {
 
   registBtnCliked(){
     console.log("注册按钮点击");
-    //this.navCtrl.push("RegistPage");
-    this.navCtrl.push("AddRecordPage");
+    this.navCtrl.push("RegistPage");
   }
 }

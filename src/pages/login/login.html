@@ -29,8 +29,8 @@
   <div  class="ty-line1"></div>
   <ion-item no-lines class="itembottom">
     <ion-icon name="lock" color="primary" item-left ios="ios-lock-outline" md="ios-lock-outline"></ion-icon>
-    <ion-input type="password" (keydown)="keydown($event)" placeholder="请输入密码" #password [(ngModel)]="password1"></ion-input>
-    <div item-end class="forget" (click)="forgetpassword()">忘记密码?</div>
+    <ion-input style="width:70%" type="password" (keydown)="keydown($event)" placeholder="请输入密码" #password [(ngModel)]="password1"></ion-input>
+    <button item-end style="background-color:transparent;width:30%" (click)="forgetpassword()">忘记密码?</button>
   </ion-item>
 </div>
 

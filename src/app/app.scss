@@ -32,15 +32,15 @@
     height: 0.5px;
     background: color($colors,ty-partingline);
 }
-
+ .outer-content{
+    .item-inner{
+        background-image: none !important;
+    }
+ }
 .item-inner{
     border-bottom-color:color($colors,ty-partingline) !important;
 }
-//箭头颜色
-.ty-arrow-gray{
-    color: color($colors,ty-partingline);
-    font-size: 24px;
-}
+
 //导航栏颜色
 .back-button-icon-ios {
     color: color($colors,primary) ;
@@ -48,6 +48,14 @@
 .item-ios{
     border-bottom-color:color($colors,ty-partingline) !important;
 }
+
+.item_nor{
+    background:white !important;
+}
+.item_slected{
+    background:#e4e4e4 !important;
+}
+
 //内容背景颜色
 .ion-content-background-partingline{
     .fixed-content{

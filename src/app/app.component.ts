@@ -1,3 +1,6 @@
+import { RegistPageModule } from './../pages/regist/regist.module';
+import { UploadPlantManagerPageModule } from './../pages/upload-plant-manager/upload-plant-manager.module';
+import { AddRecordPageModule } from './../pages/add-record/add-record.module';
 import { LoginPageModule } from './../pages/login/login.module';
 import { PersonalInfoPageModule } from './../pages/personal-info/personal-info.module';
 import { Events } from 'ionic-angular/util/events';
@@ -10,12 +13,15 @@ import { RegistPage } from '../pages/regist/regist';
 import { HomePage } from '../pages/home/home';
 import { SettingPage } from '../pages/setting/setting';
 import { WebDbServiceProvider } from '../providers/web-db-service/web-db-service';
+import { HomePageModule } from '../pages/home/home.module';
 
 export interface PageInterface {
   title: string;
   name: string;
   component: any;//对应跳转的独立页面
   icon: string;
+  ios?:string;
+  md?:string;
   logsOut?: boolean;
   index?: number; //tab index,如非tab页面，可空
   tabName?: string;
@@ -35,16 +41,21 @@ export class MyApp {
   HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
 
   loggedInPages: PageInterface[] = [
-    { title: '个人', name: 'PersonalInfoPage', component: PersonalInfoPageModule, icon: 'contact',leafPage:true },
-    { title: '设置', name: 'SettingPage', component: SettingPage, icon: 'settings' ,leafPage:true },
-    { title: '登出', name: 'LoginPage', component: LoginPageModule, icon: 'exit', logsOut: true }
+    { title: '首页', name: 'HomePage', component: HomePageModule, icon: 'home',ios:"ios-home-outline",md:"ios-home-outline"},
+    { title: '物种采集', name: 'AddRecordPage', component: AddRecordPageModule, icon: 'camera',ios:"ios-camera-outline",md:"ios-camera-outline",leafPage:true },
+    { title: '上传管理', name: 'UploadPlantManagerPage', component: UploadPlantManagerPageModule, icon: 'cloud-upload',ios:"ios-cloud-upload-outline",md:"ios-cloud-upload-outline",leafPage:true },
+    { title: '个人信息', name: 'PersonalInfoPage', component: PersonalInfoPageModule, icon: 'contact',ios:"ios-contact-outline",md:"ios-contact-outline",leafPage:true },
+    { title: '设置', name: 'SettingPage', component: SettingPage, icon: 'settings' ,ios:"ios-settings-outline",md:"ios-settings-outline",leafPage:true },
+    { title: '登出', name: 'LoginPage', component: LoginPageModule, icon: 'exit',ios:"ios-exit-outline",md:"ios-exit-outline", logsOut: true }
   ];
   loggedOutPages: PageInterface[] = [
-    { title: '登录', name: 'LoginPage', component: LoginPage, icon: 'log-in' },
-    { title: '注册', name: 'RegistPage', component: RegistPage, icon: 'person-add' }
+    { title: '登录', name: 'LoginPage', component: LoginPageModule, icon: 'log-in' },
+    { title: '注册', name: 'RegistPage', component: RegistPageModule, icon: 'person-add' }
   ];
   rootPage: any;
-  avatarUrl: string = "assets/imgs/appicon.png";
+  avatarUrl: string = "assets/imgs/author_logo2.png";
+  logoUrl: string = "assets/imgs/test.png";
+  userName:string = "androidcat";
 
   constructor(
     public db:WebDbServiceProvider,
@@ -110,15 +121,15 @@ export class MyApp {
     // Tabs are a special case because they have their own navigation
     if (childNav) {
       if (childNav.getSelected() && childNav.getSelected().root === page.tabComponent) {
-        return 'primary';
+        return 'secondary';
       }
-      return;
+      return 'primary';
     }
 
     if (this.nav.getActive() && this.nav.getActive().name === page.name) {
-      return 'primary';
+      return 'secondary';
     }
-    return;
+    return 'primary';
   }
 
   openPage(page: PageInterface) {
