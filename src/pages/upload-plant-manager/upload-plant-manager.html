@@ -12,22 +12,22 @@
         <button ion-button color="primary" (click)="uploadBtnCliked()">批量上传</button>
       </ion-buttons>
   </ion-navbar>
-  <ion-segment mode="md" [(ngModel)]="type">
-      <ion-segment-button value="waitLoad">
-        待上传
-      </ion-segment-button>
-      <ion-segment-button value="hadUpload">
-        已上传
-      </ion-segment-button>
-      <ion-segment-button value="review">
-          审核中
-      </ion-segment-button>
-    </ion-segment>
+
 </ion-header>
 
 
-<ion-content no-padding>
-
+<ion-content class="ion-content-background-partingline" no-padding>
+  <ion-segment mode="md" [(ngModel)]="type">
+    <ion-segment-button value="waitLoad">
+      待上传
+    </ion-segment-button>
+    <ion-segment-button value="hadUpload">
+      已上传
+    </ion-segment-button>
+    <ion-segment-button value="review">
+        审核中
+    </ion-segment-button>
+  </ion-segment>
 <div [ngSwitch]="type">
     <ion-list *ngSwitchCase="'waitLoad'" >
         <plant-item *ngFor="let item of waitLoadArray"  >

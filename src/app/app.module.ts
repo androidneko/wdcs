@@ -1,3 +1,5 @@
+import { PhotoSelectsPageModule } from './../pages/photo-selects/photo-selects.module';
+import { KnowPeoplePageModule } from './../pages/know-people/know-people.module';
 import { UploadPlantManagerPageModule } from './../pages/upload-plant-manager/upload-plant-manager.module';
 import { NewPlantPageModule } from './../pages/new-plant/new-plant.module';
 import { AddRecordPageModule } from './../pages/add-record/add-record.module';
@@ -79,7 +81,9 @@ export function dbFactory(platform:Platform) {
     AddRecordPageModule,
     PlantDetailPageModule,
     NewPlantPageModule,
-    UploadPlantManagerPageModule
+    UploadPlantManagerPageModule,
+    KnowPeoplePageModule,
+    PhotoSelectsPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

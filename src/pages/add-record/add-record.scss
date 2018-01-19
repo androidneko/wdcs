@@ -21,6 +21,21 @@ page-add-record {
     .mylabel{
         min-height: 3rem;
     }
-
+    .titleItem{
+        background:rgba(252, 252, 252, 0);
+        min-height:0px !important;
+        ion-icon{
+            font-size: 25px;
+            min-height: 0px !important;
+            margin-top: 5px !important;
+            margin-bottom: 5px !important;
+            margin-right: 8px !important;
+        }
+        ion-label{
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;  
+            font-size: 17px;
+        }
+    }
     $item-ios-body-text-font-size:1.9rem;
 }
