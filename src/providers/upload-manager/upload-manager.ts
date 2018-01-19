@@ -21,17 +21,23 @@ export class UploadManagerProvider {
      * 获取应用单例
      * 
      * @static
-     * @returns {AppServiceProvider}
+     * @returns {UploadManagerProvider}
      */
     public static getInstance(): UploadManagerProvider {
       return UploadManagerProvider.instance;
   }
   
   uploadWithData(dataArray:Array<any>){
-    if (dataArray!=null) {
+    if (dataArray==null) {
+      return;
     }
 
   }
 
+  uploadItemImg(img){
 
+  }
+  uploadItemData(data){
+
+  }
 }
