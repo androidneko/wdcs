@@ -14,12 +14,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'photo-selects.html',
 })
 export class PhotoSelectsPage {
-
+  dataArray:Array<any>=[{src:"assets/imgs/addphoto.png",info:"哈哈"}];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PhotoSelectsPage');
   }
-
+  ionViewWillUnload(){
+    console.log("ionViewWillUnload PhotoSelectsPage");
+  }
+  itemClick(item){
+    console.log("选择相片按钮点击");
+    
+  }
 }

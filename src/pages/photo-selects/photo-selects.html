@@ -14,5 +14,9 @@
 
 
 <ion-content no-padding>
-
+ <ion-row>
+    <ion-col col-3 *ngFor="let item of dataArray" >
+      <photo-item [item]="item" (click)="itemClick(item)"></photo-item>
+    </ion-col>
+ </ion-row>
 </ion-content>
