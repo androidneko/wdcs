@@ -26,9 +26,9 @@
         cancelText="取消"></ion-datetime>
     </ion-item>
     <div class="ac-line-tiny"></div>
-    <ion-item style="background:rgba(252, 252, 252, 0)">
+    <ion-item class="titleItem">
       <ion-icon item-start name="pin" ios="ios-pin-outline" md="ios-pin-outline" color="primary"></ion-icon>
-      <p>地址</p>
+      <ion-label item-start>位置</ion-label>
     </ion-item>
     <ion-item>
       <h3>神农架木鱼镇南阳村三里沟</h3>
@@ -40,7 +40,7 @@
       <ion-input type="number" placeholder="请输入小地名" maxlength="6" [(ngModel)]="speciesName"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item  class="titleItem">
       <ion-icon item-start name="book" ios="ios-book-outline" md="ios-book-outline" color="primary"></ion-icon>
       <ion-label item-start>概况</ion-label>
     </ion-item>
@@ -91,7 +91,7 @@
       <ion-input type="text" placeholder="请输入群落面积" maxlength="6" [(ngModel)]="speciesName"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="titleItem">
       <ion-icon item-start name="compass" ios="ios-compass-outline" md="ios-compass-outline" color="primary"></ion-icon>
       <ion-label item-start>方位</ion-label>
     </ion-item>
@@ -112,7 +112,7 @@
         cancelText="取消"></ion-multi-picker>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="titleItem">
       <ion-icon item-start name="leaf" ios="ios-leaf-outline" md="ios-leaf-outline" color="primary"></ion-icon>
       <ion-label item-start>环境详情</ion-label>
     </ion-item>
@@ -172,7 +172,7 @@
       <ion-icon name="ios-arrow-forward" style="color:#F2F2F2" item-end></ion-icon>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="titleItem">
       <ion-icon item-start name="flower" ios="ios-flower-outline" md="ios-flower-outline" color="primary"></ion-icon>
       <ion-label item-start>物种详情</ion-label>
     </ion-item>
