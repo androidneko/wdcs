@@ -27,7 +27,7 @@ export class KnowPeoplePage extends BasePage {
   add(){
     console.log('保存');
     if (this.contactName.length == 0) {
-      this.toast("请输入用户名");
+      this.toast("请输入知情者名称");
       return;
     }
     if (this.telNo.length == 0) {

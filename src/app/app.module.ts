@@ -1,3 +1,4 @@
+import { KnowPeopleDetailPageModule } from './../pages/know-people-detail/know-people-detail.module';
 import { PhotoSelectsPageModule } from './../pages/photo-selects/photo-selects.module';
 import { KnowPeoplePageModule } from './../pages/know-people/know-people.module';
 import { UploadPlantManagerPageModule } from './../pages/upload-plant-manager/upload-plant-manager.module';
@@ -83,7 +84,8 @@ export function dbFactory(platform:Platform) {
     NewPlantPageModule,
     UploadPlantManagerPageModule,
     KnowPeoplePageModule,
-    PhotoSelectsPageModule
+    PhotoSelectsPageModule,
+    KnowPeopleDetailPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

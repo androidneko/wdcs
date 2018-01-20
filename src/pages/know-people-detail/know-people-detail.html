@@ -1,0 +1,45 @@
+<!--
+  Generated template for the KnowPeopleDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>知情者详情</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+  <ion-list >
+      <ion-item-sliding *ngFor="let item of knowPeopleArray;let idx=index">
+          <ion-item class="contact"  no-padding no-margin >
+                  <div padding-left style="width:100%" item-content>
+                      <div class="row">
+                          <h3>知情者</h3>
+                          <p>{{item.contactName}}</p>
+                      </div>
+                      <div class="ty-line1"></div>
+                      <div class="row">
+                          <h3>联系方式</h3>
+                          <p>{{item.telNo}}</p>
+                        </div> 
+                  </div>     
+          </ion-item>
+      <ion-item-options side="right"  >
+        <button ion-button (click)="deleteItem(item,idx)">删除</button>
+      </ion-item-options>
+      </ion-item-sliding>
+      <div *ngIf="state==1"  style="width:100%;background:white;margin-top:1px;">
+          <button style="width:100%;height:44px" ion-button clear color="primary" (click)="addPeople()" icon-start>
+            <ion-icon name="add" ios="ios-add-outline" md="ios-add-outline"></ion-icon>
+            添加知情者
+          </button>
+        </div>
+  </ion-list>
+
+
+</ion-content>

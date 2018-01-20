@@ -124,7 +124,7 @@ export class AddRecordPage {
       ]
     }
   ];
-
+  knowPeopleArray = [];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     if(this.navParams.data.state!=null){
        this.state = this.navParams.data.state;
@@ -139,14 +139,20 @@ export class AddRecordPage {
     console.log('ionViewDidLoad AddRecordPage');
 
   }
-
+  ionViewWillEnter(){
+   
+  }
   gotoPlantDetail(){
     this.navCtrl.push("PlantDetailPage");
   }
   addKnowPeople(){
-    this.navCtrl.push("KnowPeoplePage");
+    if (this.state == "0") {
+      return;
+    }
+    this.navCtrl.push("KnowPeopleDetailPage",{state:this.state,knowPeopleArray:this.knowPeopleArray});
   }
   photoClik(){
+    
     this.navCtrl.push("PhotoSelectsPage");
   }
 
