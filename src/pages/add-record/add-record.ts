@@ -14,6 +14,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'add-record.html',
 })
 export class AddRecordPage {
+
+  state = "1";//1可编辑状态 0不可编辑状态
+  isShowApplying=false;//是否显示正在申请中
+
+
   gatherDate:string = "2018-01-10";
   speciesName:string = "";
 
@@ -121,10 +126,18 @@ export class AddRecordPage {
   ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    if(this.navParams.data.state!=null){
+       this.state = this.navParams.data.state;
+    }
+    if (this.navParams.data.isShowApplying!=null) {
+      this.state = '0';
+      this.isShowApplying = this.navParams.data.isShowApplying;
+    }
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddRecordPage');
+
   }
 
   gotoPlantDetail(){
@@ -139,6 +152,6 @@ export class AddRecordPage {
 
   //提交记录
   commitClick(){
-
+    console.log("提交按钮点击");
   }
 }

@@ -37,5 +37,15 @@ page-add-record {
             font-size: 17px;
         }
     }
-    $item-ios-body-text-font-size:1.9rem;
+     .item-multi-picker-disabled ion-label{
+        opacity: 1 !important;
+    }
+    .datetime-disabled, .item-datetime-disabled ion-label{
+        opacity: 1 !important;
+    }
+    .bottom-apply{
+        background: rgba(0, 0, 0, 0.5);
+        text-align: center;
+        color: white;
+    }
 }
