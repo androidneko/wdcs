@@ -7,7 +7,10 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>addRecord</ion-title>
+    <ion-title>添加记录</ion-title>
+    <ion-buttons end>
+      <button ion-button color="primary" (click)="commitClick()">提交</button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -50,7 +53,9 @@
       <ion-multi-picker item-end style="color:darkgray" id="gender" [(ngModel)]="proof" [multiPickerColumns]="proofArr" doneText="确定"
         cancelText="取消"></ion-multi-picker>
     </ion-item>
-
+    <ion-item *ngIf="proof=='其他'" >
+      <ion-input type="" placeholder="请输入就地保护状况" [(ngModel)]="proofOther" ></ion-input>
+    </ion-item>
     <ion-item>
       <ion-label item-start>名称</ion-label>
       <ion-input type="text" placeholder="请输入名称" maxlength="6" [(ngModel)]="speciesName"></ion-input>
@@ -136,6 +141,9 @@
       <ion-label>人为干扰方式</ion-label>
       <ion-multi-picker item-end style="color:darkgray" id="interference" [(ngModel)]="interference" [multiPickerColumns]="interferences"
         doneText="确定" cancelText="取消"></ion-multi-picker>
+    </ion-item>
+    <ion-item *ngIf="interference == '其他'" >
+      <ion-input type="text" placeholder="请输入认为干扰方式" [(ngModel)]="interferenceOther" ></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>人为干扰强度</ion-label>

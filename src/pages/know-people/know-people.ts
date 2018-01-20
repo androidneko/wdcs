@@ -24,7 +24,7 @@ export class KnowPeoplePage extends BasePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewContactPage');
   }
-  saveBtnCliked(){
+  add(){
     console.log('保存');
     if (this.contactName.length == 0) {
       this.toast("请输入用户名");

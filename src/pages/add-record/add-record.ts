@@ -30,7 +30,7 @@ export class AddRecordPage {
       ]
     }
   ];
-
+  proofOther = "";//保护状况其他;
   method = '实测法';
   methods:any = [
     {
@@ -106,7 +106,7 @@ export class AddRecordPage {
       ]
     }
   ];
-
+  interferenceOther ="";
   intensity = '强';
   intensities:any = [
     {
@@ -135,5 +135,10 @@ export class AddRecordPage {
   }
   photoClik(){
     this.navCtrl.push("PhotoSelectsPage");
+  }
+
+  //提交记录
+  commitClick(){
+
   }
 }
