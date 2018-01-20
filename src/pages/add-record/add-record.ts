@@ -125,6 +125,8 @@ export class AddRecordPage {
     }
   ];
   knowPeopleArray = [];
+  imgArray = [];
+  plants = [];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     if(this.navParams.data.state!=null){
        this.state = this.navParams.data.state;
@@ -143,7 +145,11 @@ export class AddRecordPage {
    
   }
   gotoPlantDetail(){
-    this.navCtrl.push("PlantDetailPage");
+    this.navCtrl.push("PlantDetailPage",{
+      state: this.state,
+      plants: this.plants
+    }
+    );
   }
   addKnowPeople(){
     if (this.state == "0") {
@@ -153,7 +159,10 @@ export class AddRecordPage {
   }
   photoClik(){
     
-    this.navCtrl.push("PhotoSelectsPage");
+    this.navCtrl.push("PhotoSelectsPage",{
+      state: this.state,
+      imgArray:this.imgArray
+    });
   }
 
   //提交记录

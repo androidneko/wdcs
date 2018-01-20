@@ -68,5 +68,7 @@ ion-content{
     .item-ios{
         font-size: 1.4rem !important;
     }
-
+    .checkbox-md.checkbox-disabled, .item-md.item-checkbox-disabled ion-label{
+        opacity: 1 !important;
+    }
 }

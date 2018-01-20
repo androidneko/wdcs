@@ -18,6 +18,7 @@ export class PhotoItemComponent {
   text: string;
   itemValue:any;
   inputSetValue:string = "";
+  @Input() state="1";
 
   @Output() itemChange = new EventEmitter();
   @Input()

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { CameraOptions ,Camera} from '@ionic-native/camera';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 /**
  * Generated class for the PhotoSelectsPage page.
@@ -15,8 +16,18 @@ import { CameraOptions ,Camera} from '@ionic-native/camera';
   templateUrl: 'photo-selects.html',
 })
 export class PhotoSelectsPage {
-  dataArray:Array<any>=[{src:"assets/imgs/addphoto.png",info:""}];
-  constructor(public navCtrl: NavController, public navParams: NavParams,private camera:Camera,private actionSheet:ActionSheetController) {
+  dataArray:Array<any>=[];
+  state="1";//可编辑 2不可编辑
+  constructor(public navCtrl: NavController, public navParams: NavParams,private camera:Camera,private actionSheet:ActionSheetController,private photoViewer: PhotoViewer) {
+    if (this.navParams.data.state !=null) {
+        this.state = this.navParams.data.state;
+        this.dataArray = this.navParams.data.imgArray;
+        if (this.state == '1') {
+            if (this.dataArray!=null&&this.dataArray.length == 0) {
+              this.dataArray.push({src:"assets/imgs/addphoto.png",info:""});
+            }
+        }
+    }
   }
 
   ionViewDidLoad() {
@@ -31,6 +42,11 @@ export class PhotoSelectsPage {
   }
   imgClick(idx){
     //背景点击
+    if (this.state == '0') {
+      let item = this.dataArray[idx];
+      this.photoViewer.show(item.src, '照片预览', {share: false});
+      return;
+    }
    let options: CameraOptions = {
       quality: 200,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -75,6 +91,7 @@ export class PhotoSelectsPage {
         text:"删除",
         handler: () => {
           this.dataArray.splice(idx,1);
+          
         }
       }
       ,{

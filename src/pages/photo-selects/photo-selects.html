@@ -16,7 +16,7 @@
 <ion-content no-padding>
  <ion-row>
     <ion-col col-3 *ngFor="let item of dataArray;let idx=index" >
-      <photo-item [item]="item" (click)="itemClick(idx)"></photo-item>
+      <photo-item [item]="item" (click)="itemClick(idx)" state="{{state}}"></photo-item>
     </ion-col>
  </ion-row>
 </ion-content>

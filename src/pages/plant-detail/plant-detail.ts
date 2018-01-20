@@ -17,10 +17,15 @@ export class PlantDetailPage {
   sampleNum:string = "";
   seedling:string = "";
   sapling:string = "";
-
   plants:any = [];
-
+  state = "1";
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    if (this.navParams.data.state!=null) {
+      this.state = this.navParams.data.state;
+    }
+    if (this.navParams.data.plants!=null) {
+      this.plants = this.navParams.data.plants;
+    }
   }
 
   ionViewDidLoad() {
