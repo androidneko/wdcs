@@ -155,9 +155,6 @@ export class AddRecordPage {
     );
   }
   addKnowPeople(){
-    if (this.state == "0") {
-      return;
-    }
     this.navCtrl.push("KnowPeopleDetailPage",{state:this.state,knowPeopleArray:this.knowPeopleArray});
   }
   photoClik(){
