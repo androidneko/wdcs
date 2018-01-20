@@ -135,6 +135,9 @@ export class AddRecordPage {
       this.state = '0';
       this.isShowApplying = this.navParams.data.isShowApplying;
     }
+    if (this.navParams.data.data != null) {
+      this.speciesName = this.navParams.data.data;
+    }
   }
 
   ionViewDidLoad() {

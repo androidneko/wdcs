@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { CameraOptions ,Camera} from '@ionic-native/camera';
-import { PhotoViewer } from '@ionic-native/photo-viewer';
+// import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 /**
  * Generated class for the PhotoSelectsPage page.
@@ -18,7 +18,7 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
 export class PhotoSelectsPage {
   dataArray:Array<any>=[];
   state="1";//可编辑 2不可编辑
-  constructor(public navCtrl: NavController, public navParams: NavParams,private camera:Camera,private actionSheet:ActionSheetController,private photoViewer: PhotoViewer) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private camera:Camera,private actionSheet:ActionSheetController/*,private photoViewer: PhotoViewer*/) {
     if (this.navParams.data.state !=null) {
         this.state = this.navParams.data.state;
         this.dataArray = this.navParams.data.imgArray;
@@ -43,8 +43,8 @@ export class PhotoSelectsPage {
   imgClick(idx){
     //背景点击
     if (this.state == '0') {
-      let item = this.dataArray[idx];
-      this.photoViewer.show(item.src, '照片预览', {share: false});
+      // let item = this.dataArray[idx];
+      // this.photoViewer.show(item.src, '照片预览', {share: false});
       return;
     }
    let options: CameraOptions = {

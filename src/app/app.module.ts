@@ -1,4 +1,4 @@
-import { PhotoViewer } from '@ionic-native/photo-viewer';
+// import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { KnowPeopleDetailPageModule } from './../pages/know-people-detail/know-people-detail.module';
 import { PhotoSelectsPageModule } from './../pages/photo-selects/photo-selects.module';
 import { KnowPeoplePageModule } from './../pages/know-people/know-people.module';
@@ -96,7 +96,7 @@ export function dbFactory(platform:Platform) {
     StatusBar,
     SplashScreen,
     Camera,
-    PhotoViewer,
+    // PhotoViewer,
     File,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AppServiceProvider,

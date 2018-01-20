@@ -15,8 +15,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class UploadPlantManagerPage {
   waitLoadArray: Array<any> = ["1"];
-  hadUploadArray:Array<any> = ["1","1"];
-  reviewArray:Array<any> = ["1","1","3"];
+  hadUploadArray:Array<any> = ["2","21"];
+  reviewArray:Array<any> = ["31","32","33"];
   type:String = "waitLoad";//待上传waitLoad 已上传hadUpload 审核中review
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -28,5 +28,17 @@ export class UploadPlantManagerPage {
     console.log('批量上传');
 
 
+  }
+  waitLoadClicked(item){
+    //待上传
+    this.navCtrl.push("AddRecordPage",{state:"1",data:item});
+  }
+  hadUploadClicked(item){
+    //已上传
+    this.navCtrl.push("AddRecordPage",{state:"0",data:item});
+  }
+  reviewClicked(item){
+    //待审核
+    this.navCtrl.push("AddRecordPage",{isShowApplying:true,data:item});
   }
 }
