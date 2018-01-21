@@ -21,5 +21,7 @@ export class MessagePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MessagePage');
   }
-
+  itemClicked(item){
+    this.navCtrl.push("BuildingPage");
+  }
 }
