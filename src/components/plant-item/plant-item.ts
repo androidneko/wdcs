@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 /**
  * Generated class for the PlantItemComponent component.
@@ -12,11 +12,10 @@ import { Component } from '@angular/core';
 })
 export class PlantItemComponent {
 
-  text: string;
+  @Input() item:any;
 
   constructor() {
     console.log('Hello PlantItemComponent Component');
-    this.text = 'Hello World';
   }
 
 }

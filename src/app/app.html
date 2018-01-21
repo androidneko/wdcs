@@ -15,11 +15,11 @@
               <ion-avatar>
                   <img style="width:100px;height:100px;" [src]="logoUrl">
               </ion-avatar>
-              <h2 style="color:gray">游客，你好</h2>
+              <h2 style="color:gray">游客，你好。</h2>
           </ion-list-header>
 
         <ion-list>
-            <button ion-item menuClose *ngFor="let page of loggedOutPages" (click)="openPage(page)">
+            <button ion-item menuClose *ngFor="let page of loggedOutPages" (click)="openPage(page)"  [ngStyle]="{'background-color': isActive(page)?'#efefef':'white'} ">
                 <ion-icon item-start [name]="page.icon" [color]="isActive(page)?'secondary':'primary'"></ion-icon>
                 <h2>{{page.title}}</h2>
               </button>
