@@ -24,6 +24,7 @@ import { BusinessItemEcharComponent } from './business-item-echar/business-item-
 import { JlBlanceSpliterComponent } from './jl-blance-spliter/jl-blance-spliter';
 import { PlantItemComponent } from './plant-item/plant-item';
 import { PhotoItemComponent } from './photo-item/photo-item';
+import { MessageItemComponent } from './message-item/message-item';
 @NgModule({
 	declarations: [IonTyfunctionGridComponent,
     BusinessItemComponent,
@@ -49,7 +50,8 @@ import { PhotoItemComponent } from './photo-item/photo-item';
     BusinessItemEcharComponent,
     JlBlanceSpliterComponent,
     PlantItemComponent,
-    PhotoItemComponent],
+    PhotoItemComponent,
+    MessageItemComponent],
 
 	imports: [IonicModule,PipesModule],
 	exports: [IonTyfunctionGridComponent,
@@ -76,7 +78,8 @@ import { PhotoItemComponent } from './photo-item/photo-item';
     BusinessItemEcharComponent,
     JlBlanceSpliterComponent,
     PlantItemComponent,
-    PhotoItemComponent]
+    PhotoItemComponent,
+    MessageItemComponent]
 
 })
 export class ComponentsModule {}

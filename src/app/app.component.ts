@@ -1,3 +1,4 @@
+import { MessagePageModule } from './../pages/message/message.module';
 import { RegistPageModule } from './../pages/regist/regist.module';
 import { UploadPlantManagerPageModule } from './../pages/upload-plant-manager/upload-plant-manager.module';
 import { AddRecordPageModule } from './../pages/add-record/add-record.module';
@@ -46,7 +47,7 @@ export class MyApp {
     { title: '物种采集', name: 'AddRecordPage', component: AddRecordPageModule, icon: 'camera',ios:"ios-camera-outline",md:"ios-camera-outline",leafPage:true },
     { title: '上传管理', name: 'UploadPlantManagerPage', component: UploadPlantManagerPageModule, icon: 'cloud-upload',ios:"ios-cloud-upload-outline",md:"ios-cloud-upload-outline",leafPage:true },
     { title: '个人信息', name: 'PersonalInfoPage', component: PersonalInfoPageModule, icon: 'contact',ios:"ios-contact-outline",md:"ios-contact-outline",leafPage:true },
-    { title: '推送消息', name: 'BuildingPage', component: BuildingPageModule, icon: 'chatboxes',ios:"ios-chatboxes-outline",md:"ios-chatboxes-outline",leafPage:true },
+    { title: '推送消息', name: 'MessagePage', component: MessagePageModule, icon: 'chatboxes',ios:"ios-chatboxes-outline",md:"ios-chatboxes-outline",leafPage:true },
     { title: '设置', name: 'SettingPage', component: SettingPage, icon: 'settings' ,ios:"ios-settings-outline",md:"ios-settings-outline",leafPage:true },
     { title: '登出', name: 'LoginPage', component: LoginPageModule, icon: 'exit',ios:"ios-exit-outline",md:"ios-exit-outline", logsOut: true }
   ];
