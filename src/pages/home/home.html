@@ -23,7 +23,7 @@
       <ion-slide>
         <img style="width:100%;height:170px;" src="assets/imgs/5.jpg">
       </ion-slide>
-    </ion-slides>
+  </ion-slides>
 </ion-header>
 
 
@@ -33,8 +33,7 @@
       <ion-refresher-content pullingText="下拉刷新"></ion-refresher-content>
     </ion-refresher>
   <ion-list no-lines>
-    <plant-item *ngFor="let item of plants"></plant-item>
-
+    <plant-item *ngFor="let item of plants" (click)="recordClicked(item)" [item]=item></plant-item>
     <ion-allitem-showed-bottom *ngIf="plants.length>=total&&plants.length>0"></ion-allitem-showed-bottom>
     <ion-custom-empty *ngIf="total==0"></ion-custom-empty>
   </ion-list>

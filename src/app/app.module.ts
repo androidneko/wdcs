@@ -37,6 +37,7 @@ import { File } from '@ionic-native/file';
 import { PlantDetailPageModule } from '../pages/plant-detail/plant-detail.module';
 import { UploadManagerProvider } from '../providers/upload-manager/upload-manager';
 import { MessagePageModule } from '../pages/message/message.module';
+import { RecordDetailPageModule } from '../pages/record-detail/record-detail.module';
 
 export function netFactory(platform:Platform,loadingCtrl:LoadingController,http:Http,zone:NgZone) {
   if (platform.is("mobileweb")||platform.is("mobile")) {
@@ -88,7 +89,8 @@ export function dbFactory(platform:Platform) {
     KnowPeoplePageModule,
     PhotoSelectsPageModule,
     KnowPeopleDetailPageModule,
-    MessagePageModule
+    MessagePageModule,
+    RecordDetailPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

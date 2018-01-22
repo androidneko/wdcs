@@ -19,10 +19,10 @@
           </ion-list-header>
 
         <ion-list>
-            <button ion-item menuClose *ngFor="let page of loggedOutPages" (click)="openPage(page)"  [ngStyle]="{'background-color': isActive(page)?'#efefef':'white'} ">
-                <ion-icon item-start [name]="page.icon" [color]="isActive(page)?'secondary':'primary'"></ion-icon>
+            <ion-item no-lines menuClose *ngFor="let page of loggedOutPages" (click)="openPage(page)"  [ngStyle]="{'background-color': isActive(page)?'#efefef':'white'} ">
+                <ion-icon item-start [name]="page.icon" [color]="isActive(page)?'secondary':'primary'" ios="page.ios" md="page.md"></ion-icon>
                 <h2>{{page.title}}</h2>
-              </button>
+            </ion-item>
           </ion-list> 
       </ion-content>
   

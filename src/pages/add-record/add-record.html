@@ -18,15 +18,15 @@
 
 <ion-content>
   <ion-list>
-    <ion-item >
-      <h2 class="text">目的物种</h2>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="number" placeholder="请输入物种名称" maxlength="6" [(ngModel)]="speciesName"></ion-input>
-    </ion-item>
+      <ion-item >
+          <ion-label>雨霏霏</ion-label>
+          <ion-datetime disabled="{{state=='1'?'false':'true'}}" item-end style="color:darkgray;padding:0px;" displayFormat="YYYY-MM-DD" [(ngModel)]="gatherDate" doneText="确定"
+            cancelText="取消"></ion-datetime>
+        </ion-item>
     <div class="ac-line-tiny"></div>
     <ion-item >
-      <ion-label>雨霏霏</ion-label>
-      <ion-datetime disabled="{{state=='1'?'false':'true'}}" item-end style="color:darkgray;padding:0px;" displayFormat="YYYY-MM-DD" [(ngModel)]="gatherDate" doneText="确定"
-        cancelText="取消"></ion-datetime>
+        <ion-label>目的物种</ion-label>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="number" placeholder="请输入物种名称" maxlength="6" [(ngModel)]="speciesName"></ion-input>
     </ion-item>
     <div class="ac-line-tiny"></div>
     <ion-item class="titleItem">
@@ -53,17 +53,13 @@
       <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="gender" [(ngModel)]="proof" [multiPickerColumns]="proofArr" doneText="确定"
         cancelText="取消"></ion-multi-picker>
     </ion-item>
-    <ion-item *ngIf="proof=='其他'" >
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入就地保护状况" [(ngModel)]="proofOther" ></ion-input>
-    </ion-item>
-    <ion-item>
+    <ion-item *ngIf="proof=='其他'">
       <ion-label item-start>名称</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入名称" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入保护状况名称" maxlength="6" [(ngModel)]="proofName"></ion-input>
     </ion-item>
-
-    <ion-item>
+    <ion-item *ngIf="proof=='其他'">
       <ion-label item-start>级别</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入级别" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入保护状况级别" maxlength="6" [(ngModel)]="proofLevel"></ion-input>
     </ion-item>
 
     <ion-item>

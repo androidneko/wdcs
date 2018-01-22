@@ -52,8 +52,8 @@ export class MyApp {
     { title: '登出', name: 'LoginPage', component: LoginPageModule, icon: 'exit',ios:"ios-exit-outline",md:"ios-exit-outline", logsOut: true }
   ];
   loggedOutPages: PageInterface[] = [
-    { title: '登录', name: 'LoginPage', component: LoginPageModule, icon: 'log-in' },
-    { title: '注册', name: 'RegistPage', component: RegistPageModule, icon: 'person-add' }
+    { title: '登录', name: 'LoginPage', component: LoginPageModule, icon: 'log-in',ios:"md-log-in",md:"md-log-in", },
+    { title: '注册', name: 'RegistPage', component: RegistPageModule, icon: 'person-add',ios:"md-person-add",md:"md-person-add", }
   ];
   rootPage: any;
   avatarUrl: string = "assets/imgs/author_logo2.png";

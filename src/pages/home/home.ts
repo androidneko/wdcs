@@ -85,4 +85,8 @@ export class HomePage extends BasePage {
       }
     }, refresher == null);
   }
+
+  recordClicked(plant){
+    this.navCtrl.push("RecordDetailPage",{state:"0",data:plant});
+  }
 }

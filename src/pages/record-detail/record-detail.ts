@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the AddRecordPage page.
+ * Generated class for the RecordDetailPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,15 +10,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-add-record',
-  templateUrl: 'add-record.html',
+  selector: 'page-record-detail',
+  templateUrl: 'record-detail.html',
 })
-export class AddRecordPage {
-
+export class RecordDetailPage {
   state = "1";//1可编辑状态 0不可编辑状态
-  isShowApplying=false;//是否显示正在申请中
+  picUrls:any = [{"picUrl":"assets/imgs/5.jpg"},{"picUrl":"assets/imgs/6.jpg"},{"picUrl":"assets/imgs/7.jpg"}];
+  plant:any = {
 
-
+  };
   gatherDate:string = "2018-01-10";
   proofName:string = "";
   proofLevel:string = "";
@@ -129,26 +129,22 @@ export class AddRecordPage {
   knowPeopleArray = [];
   imgArray = [];
   plants = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams) {
     if(this.navParams.data.state!=null){
        this.state = this.navParams.data.state;
     }
-    if (this.navParams.data.isShowApplying!=null) {
-      this.state = '0';
-      this.isShowApplying = this.navParams.data.isShowApplying;
-    }
-    if (this.navParams.data.data != null) {
-      this.speciesName = this.navParams.data.data;
+    if (this.navParams.data.plant != null) {
+      this.plant = this.navParams.data.plant;
     }
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddRecordPage');
+    console.log('ionViewDidLoad RecordDetailPage');
+  }
 
-  }
-  ionViewWillEnter(){
-   
-  }
   gotoPlantDetail(){
     this.navCtrl.push("PlantDetailPage",{
       state: this.state,
@@ -160,16 +156,5 @@ export class AddRecordPage {
 
     this.navCtrl.push("KnowPeopleDetailPage",{state:this.state,knowPeopleArray:this.knowPeopleArray});
   }
-  photoClik(){
-    
-    this.navCtrl.push("PhotoSelectsPage",{
-      state: this.state,
-      imgArray:this.imgArray
-    });
-  }
 
-  //提交记录
-  commitClick(){
-    console.log("提交按钮点击");
-  }
 }

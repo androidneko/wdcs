@@ -32,45 +32,33 @@ page-login {
         bottom: 20px;
         color: color($colors,primary);
     }
-    .forget{
-        color: rgb(26, 26, 26);
-        font-size: 1.3rem;
-        text-align: center;
-    }
+
     .logo {
         padding: 20px 0;
         min-height: 130px;
         text-align: center;
-    
-        img {
-          max-width: 100px;
-          color: color($colors,primary);
-        }
       }
-    .regist{
-        color: color($colors,primary);
-        text-align: center;
-        margin-top: 15px;
-        font-size: 1.3rem;
-    }
 
-    .itemtop
-    {
-        .item-icon
-        {
-            
-            background: url(../assets/imgs/regist_username.png) no-repeat center !important;
-            background-size:70% 70% !important;
+    .fastEntry{
+        flex: 0 0 48%;
+        .regist{
+            color: color($colors,primary);
+            text-align: right;
+            margin-top: 15px;
+            font-size: 1.3rem;
+        }
+        .forget{
+            color: color($colors,primary);
+            text-align: left;
+            margin-top: 15px;
+            font-size: 1.3rem;
         }
     }
 
-    .itembottom
-    {
-        .item-icon
-        {
-            
-            background: url(../assets/imgs/regist_password.png) no-repeat center !important;
-            background-size:70% 70% !important;
-        }
+    .parent_gravity_center{
+        margin: 20px;
+        display:flex; 
+        justify-content:center; 
+        align-items:center; 
     }
 }
