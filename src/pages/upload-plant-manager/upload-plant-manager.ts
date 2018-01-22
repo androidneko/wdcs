@@ -14,9 +14,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'upload-plant-manager.html',
 })
 export class UploadPlantManagerPage {
-  waitLoadArray: Array<any> = ["1"];
-  hadUploadArray:Array<any> = ["2","21"];
-  reviewArray:Array<any> = ["31","32","33"];
+  waitLoadArray: Array<any> = [{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"}];
+  hadUploadArray:Array<any> = [{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"3"}];
+  reviewArray:Array<any> = [{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"9"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"4"}];
   type:String = "waitLoad";//待上传waitLoad 已上传hadUpload 审核中review
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

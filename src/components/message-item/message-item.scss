@@ -1,7 +1,9 @@
 message-item {
     .mimg{
         width: 100%;
-        min-height: 150px;
+        min-height: 130px;
+        max-height: 160px;
+        display: block;
     }
  .bottom{
      position: absolute;

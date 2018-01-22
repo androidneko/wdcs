@@ -30,16 +30,16 @@
   </ion-segment>
 <div [ngSwitch]="type">
     <ion-list *ngSwitchCase="'waitLoad'" >
-        <plant-item  *ngFor="let item of waitLoadArray"  (click)="waitLoadClicked(item)">
+        <plant-item  *ngFor="let item of waitLoadArray"  (click)="waitLoadClicked(item)" [item]="item">
         </plant-item>
       </ion-list>
   
     <ion-list *ngSwitchCase="'hadUpload'">
-      <plant-item *ngFor="let item of hadUploadArray"  (click)="hadUploadClicked(item)" >
+      <plant-item *ngFor="let item of hadUploadArray"  (click)="hadUploadClicked(item)" [item]="item" >
       </plant-item>
     </ion-list>
     <ion-list *ngSwitchCase="'review'">
-        <plant-item *ngFor="let item of reviewArray"  (click)="reviewClicked(item)" >
+        <plant-item *ngFor="let item of reviewArray"  (click)="reviewClicked(item)" [item]="item" >
         </plant-item>
       </ion-list>
   </div>
