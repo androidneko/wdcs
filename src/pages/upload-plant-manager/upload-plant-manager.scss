@@ -1,6 +1,13 @@
 page-upload-plant-manager {
-    .segment-activated{
+ 
+    .segment-button{
+        color:gray !important;
+    }
+    .segment-button.segment-activated{
         border-bottom-width: 2px !important;
+        color: color($colors,primary) !important;
+        font-weight: bold;
+   
     }
     ion-segment{
         background: white;
