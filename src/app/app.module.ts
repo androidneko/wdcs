@@ -69,6 +69,7 @@ export function dbFactory(platform:Platform) {
       backButtonText: '返回', 
       iconMode: 'ios',//安卓icon强制使用ios的icon以及样式
       mode: 'ios',//样式强制使用ios样式
+      pageTransition : "md-transition"
     }),
     MultiPickerModule,
     ComponentsModule,
