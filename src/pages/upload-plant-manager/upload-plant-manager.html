@@ -8,20 +8,17 @@
 
   <ion-navbar>
     <ion-title>上传管理</ion-title>
-    <ion-buttons end>
-      <button ion-button color="primary" (click)="uploadBtnCliked()">批量上传</button>
-    </ion-buttons>
   </ion-navbar>
   <div class="ty-line1"></div>
   <ion-segment mode="md" [(ngModel)]="type">
     <ion-segment-button value="waitLoad">
-      待上传
-    </ion-segment-button>
-    <ion-segment-button value="hadUpload">
       已上传
     </ion-segment-button>
-    <ion-segment-button value="review">
+    <ion-segment-button value="hadUpload">
       审核中
+    </ion-segment-button>
+    <ion-segment-button value="review">
+      待上传
     </ion-segment-button>
   </ion-segment>
 </ion-header>
