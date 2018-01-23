@@ -24,6 +24,9 @@ export class PhotoSelectsPage {
         this.dataArray = this.navParams.data.imgArray;
         if (this.state == '1') {
             if (this.dataArray!=null&&this.dataArray.length == 0) {
+              this.dataArray.push({src:"assets/imgs/addphoto.png",info:"深径"});
+              this.dataArray.push({src:"assets/imgs/addphoto.png",info:"植株"});
+              this.dataArray.push({src:"assets/imgs/addphoto.png",info:"样方标示"});
               this.dataArray.push({src:"assets/imgs/addphoto.png",info:""});
             }
         }
@@ -132,5 +135,9 @@ export class PhotoSelectsPage {
       // Handle error
         // this.toast(err);
      });
+  }
+
+  done(){
+    
   }
 }
