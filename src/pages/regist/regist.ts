@@ -19,7 +19,7 @@ import { Md5 } from 'ts-md5/dist/md5';
 })
 
 export class RegistPage extends BasePage{
-  logoUrl:string = "/assets/imgs/test.png";
+  logoUrl:string = "assets/imgs/test.png";
   phoneNum: string = "";
   smsCode: string = "";
   password: string = "";

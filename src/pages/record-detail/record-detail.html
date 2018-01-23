@@ -9,14 +9,16 @@
   <ion-navbar>
     <ion-title>记录详情</ion-title>
   </ion-navbar>
-  <ion-slides pager="true">
-    <ion-slide *ngFor="let pager of picUrls"  >
-      <img style="width:100%;height:170px;" src="{{pager.picUrl}}">
-    </ion-slide>
-  </ion-slides>
 </ion-header>
 
 <ion-content >
+  <ion-list-header>
+      <ion-slides pager="true">
+          <ion-slide *ngFor="let pager of picUrls"  >
+            <img style="width:100%;height:170px;" src="{{pager.picUrl}}">
+          </ion-slide>
+        </ion-slides>
+  </ion-list-header>
     <ion-list>
         <ion-item >
             <ion-label>雨霏霏</ion-label>

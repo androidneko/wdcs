@@ -28,7 +28,7 @@ export class PersonalInfoPage extends BasePage {
   email: string = 'androidcat@126.com';
   birthday:string = "1989-05-25";
   buttonTitle: string = '编辑';
-  avatarUrl: string = "assets/imgs/appicon.png";
+  avatarUrl: string = "assets/imgs/author_logo2.png";
   loading: Loading;
 
   gender = '女';

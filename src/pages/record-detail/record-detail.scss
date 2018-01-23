@@ -6,16 +6,21 @@ page-record-detail {
         .scroll-content{
             background: rgba($color: #000000, $alpha: 0) !important;
         }
+        
         background: #f5f4f4 !important;
     }
+
+    .item-ios{
+        font-size: 1.4rem !important;
+    }
+    .item-block{
+        min-height: 4rem !important;
+    }
+      
 
     .text{
         padding-top: 10px;
         padding-bottom: 15px;
-    }
-
-    .item-block{
-        min-height: 4rem !important;
     }
     
     .mylabel{
