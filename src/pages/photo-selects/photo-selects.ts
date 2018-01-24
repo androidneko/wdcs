@@ -1,3 +1,4 @@
+import { DeviceIntefaceServiceProvider } from './../../providers/device-inteface-service/device-inteface-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { CameraOptions ,Camera} from '@ionic-native/camera';
@@ -18,7 +19,7 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
 export class PhotoSelectsPage {
   dataArray:Array<any>=[];
   state="1";//可编辑 2不可编辑
-  constructor(public navCtrl: NavController, public navParams: NavParams,private camera:Camera,private actionSheet:ActionSheetController,private photoViewer: PhotoViewer) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private camera:Camera,private actionSheet:ActionSheetController,private photoViewer: PhotoViewer,private device:DeviceIntefaceServiceProvider) {
     if (this.navParams.data.state !=null) {
         this.state = this.navParams.data.state;
         this.dataArray = this.navParams.data.imgArray;
@@ -129,8 +130,13 @@ export class PhotoSelectsPage {
       let element = this.dataArray[idx];
       let img = {src:base64Image,info:element.info};
       this.dataArray[idx] = img;
+      // this.device.uploadfileWithBase64String(imageData,".jpeg",(msg)=>{
+      //   console.log(msg);
+      // },(err)=>{
+        
+      // });
       console.log(base64Image);
-      if (idx > 2) {
+      if (idx > 2&&this.dataArray.length<5) {
         this.dataArray.push({src:"assets/imgs/addphoto.png",info:""});
       }
      
