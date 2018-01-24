@@ -1,0 +1,12 @@
+{
+	"ACTION_INVOKER": null,
+	"ACTION_RETURN_CODE": "000000",
+	"ACTION_RETURN_MESSAGE": "成功",
+	"ACTION_INFO": {
+	"smsCode":"820421"
+	},
+	"ACTION_TOKEN": {
+		"TIMESTAMP": 1513303953923
+	},
+	"ACTION_NAME": "smsMsgApi|sendSMS"
+}

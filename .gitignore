@@ -59,7 +59,7 @@ freeline_project_description.json
 *.log
 *.tmp
 *.tmp.*
-*.json
+/*.json
 log.txt
 *.sublime-project
 *.sublime-workspace
