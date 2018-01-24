@@ -42,7 +42,7 @@ export class DeviceIntefaceServiceProvider {
         failed("平台暂不支持");
       }
     }else{
-      let param= {"url":AppGlobal.domain+AppGlobal.DATA.uploadDoc,"base64String":base64String,"fileType":fileType}
+      let param= {"url":AppGlobal.domain+AppGlobal.API.uploadImage,"base64String":base64String,"fileType":fileType}
       cordova.plugins.TYNative.uploadfileWithBase64String(param,msg=>{
         this.zone.runGuarded(()=>{
           if(success!=null){
