@@ -40,7 +40,7 @@ import { MessagePageModule } from '../pages/message/message.module';
 import { RecordDetailPageModule } from '../pages/record-detail/record-detail.module';
 
 export function netFactory(platform:Platform,loadingCtrl:LoadingController,http:Http,zone:NgZone) {
-  if (platform.is("mobileweb")/*||platform.is("mobile")*/) {
+  if (platform.is("mobileweb")||platform.is("mobile")) {
     return new WebTyNetworkServiceProvider(http,loadingCtrl);
   }else if(platform.is("mobile")){
     return new TyNetworkServiceProvider(loadingCtrl,zone,http);

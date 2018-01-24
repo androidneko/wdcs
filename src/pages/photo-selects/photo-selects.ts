@@ -51,7 +51,7 @@ export class PhotoSelectsPage {
       return;
     }
    let options: CameraOptions = {
-      quality: 200,
+      quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
@@ -77,7 +77,7 @@ export class PhotoSelectsPage {
        
       }
     }];
-    if (this.dataArray[idx].src!="assets/imgs/addphoto.png") {
+    if (this.dataArray[idx].src!="assets/imgs/addphoto.png" &&idx>2) {
        mbuttons = [{
         text:"拍照",
         handler: () => {
@@ -94,7 +94,6 @@ export class PhotoSelectsPage {
         text:"删除",
         handler: () => {
           this.dataArray.splice(idx,1);
-          
         }
       }
       ,{
@@ -130,7 +129,11 @@ export class PhotoSelectsPage {
       let element = this.dataArray[idx];
       let img = {src:base64Image,info:element.info};
       this.dataArray[idx] = img;
-      this.dataArray.push({src:"assets/imgs/addphoto.png",info:""});
+      console.log(base64Image);
+      if (idx > 2) {
+        this.dataArray.push({src:"assets/imgs/addphoto.png",info:""});
+      }
+     
      }, (err) => {
       // Handle error
         // this.toast(err);
