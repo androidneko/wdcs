@@ -19,14 +19,14 @@
 <ion-content>
   <ion-list>
       <ion-item >
-          <ion-label>雨霏霏</ion-label>
-          <ion-datetime disabled="{{state=='1'?'false':'true'}}" item-end style="color:darkgray;padding:0px;" displayFormat="YYYY-MM-DD" [(ngModel)]="gatherDate" doneText="确定"
+          <ion-label>{{data.userName}}</ion-label>
+          <ion-datetime disabled="{{state=='1'?'false':'true'}}" item-end style="color:darkgray;padding:0px;" displayFormat="YYYY-MM-DD" [(ngModel)]="data.date" doneText="确定"
             cancelText="取消"></ion-datetime>
         </ion-item>
     <div class="ac-line-tiny"></div>
     <ion-item >
         <ion-label>目的物种</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="number" placeholder="请输入物种名称" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="number" placeholder="请输入物种名称" maxlength="6" [(ngModel)]="data.target"></ion-input>
     </ion-item>
     <div class="ac-line-tiny"></div>
     <ion-item class="titleItem">
@@ -34,13 +34,13 @@
       <ion-label item-start>位置</ion-label>
     </ion-item>
     <ion-item>
-      <h3>神农架木鱼镇南阳村三里沟</h3>
+      <h3>{{data.address}}</h3>
       <div class="ac-line-tiny"></div>
-      <p>经度：114.36644 维度:35.84737839 海拔:1355米</p>
+      <p>经度：{{data.lng}} 维度:{{data.lat}} 海拔:{{data.alt}}米</p>
     </ion-item>
     <ion-item>
       <ion-label item-start>小地名</ion-label>
-      <ion-input  readonly="{{state=='1'?'false':'true'}}" type="number" placeholder="请输入小地名" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+      <ion-input  readonly="{{state=='1'?'false':'true'}}" type="number" placeholder="请输入小地名" maxlength="6" [(ngModel)]="data.smallAddressName"></ion-input>
     </ion-item>
 
     <ion-item  class="titleItem">
@@ -50,46 +50,46 @@
 
     <ion-item>
       <ion-label>就地保护状况</ion-label>
-      <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="gender" [(ngModel)]="proof" [multiPickerColumns]="proofArr" doneText="确定"
+      <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="gender" [(ngModel)]="data.proof" [multiPickerColumns]="proofArr" doneText="确定"
         cancelText="取消"></ion-multi-picker>
     </ion-item>
-    <ion-item *ngIf="proof=='其他'">
+    <ion-item *ngIf="data.proof=='其他'">
       <ion-label item-start>名称</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入保护状况名称" maxlength="6" [(ngModel)]="proofName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入保护状况名称" maxlength="6" [(ngModel)]="data.proofName"></ion-input>
     </ion-item>
-    <ion-item *ngIf="proof=='其他'">
+    <ion-item *ngIf="data.proof=='其他'">
       <ion-label item-start>级别</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入保护状况级别" maxlength="6" [(ngModel)]="proofLevel"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入保护状况级别" maxlength="6" [(ngModel)]="data.proofLevel"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>调查方法</ion-label>
-      <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="method" [(ngModel)]="method" [multiPickerColumns]="methods" doneText="确定"
+      <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="data.method" [(ngModel)]="method" [multiPickerColumns]="methods" doneText="确定"
         cancelText="取消"></ion-multi-picker>
     </ion-item>
 
     <ion-item>
       <ion-label item-start>主样方编号</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入主样方(样带)编号" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入主样方(样带)编号" maxlength="6" [(ngModel)]="data.mainSampleNo"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label item-start>环境描述</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="目的物种附近特征或位置示意图" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="目的物种附近特征或位置示意图" maxlength="6" [(ngModel)]="data.evnDesc"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label item-start>主样方面积</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入主样方面积" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入主样方面积" maxlength="6" [(ngModel)]="data.mainSampleArea"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label item-start>群落名称</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入群落名称" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入群落名称" maxlength="6" [(ngModel)]="data.communityName"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label item-start>群落面积</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入群落面积" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入群落面积" maxlength="6" [(ngModel)]="data.communityArea"></ion-input>
     </ion-item>
 
     <ion-item class="titleItem">
@@ -99,17 +99,17 @@
 
     <ion-item>
       <ion-label>坡向</ion-label>
-      <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="bearing" [(ngModel)]="bearing" [multiPickerColumns]="bearings" doneText="确定"
+      <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="bearing" [(ngModel)]="data.bearing" [multiPickerColumns]="bearings" doneText="确定"
         cancelText="取消"></ion-multi-picker>
     </ion-item>
     <ion-item>
       <ion-label>坡度</ion-label>
-      <ion-multi-picker disabled="{{state=='1'?'':'true'}}"  item-end style="color:darkgray" id="degree" [(ngModel)]="degree" [multiPickerColumns]="degrees" doneText="确定"
+      <ion-multi-picker disabled="{{state=='1'?'':'true'}}"  item-end style="color:darkgray" id="degree" [(ngModel)]="data.degree" [multiPickerColumns]="degrees" doneText="确定"
         cancelText="取消"></ion-multi-picker>
     </ion-item>
     <ion-item>
       <ion-label>坡位</ion-label>
-      <ion-multi-picker  disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="position" [(ngModel)]="position" [multiPickerColumns]="positions" doneText="确定"
+      <ion-multi-picker  disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="position" [(ngModel)]="data.position" [multiPickerColumns]="positions" doneText="确定"
         cancelText="取消"></ion-multi-picker>
     </ion-item>
 
@@ -119,56 +119,56 @@
     </ion-item>
     <ion-item>
       <ion-label item-start>郁闭度</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入郁闭度" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入郁闭度" maxlength="6" [(ngModel)]="data.crownDensity"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label item-start>盖度</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入盖度" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入盖度" maxlength="6" [(ngModel)]="data.coverage"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label item-start>土壤类型</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入土壤类型" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入土壤类型" maxlength="6" [(ngModel)]="data.soilType"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label item-start>土壤PH值</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入土壤PH值" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入土壤PH值" maxlength="6" [(ngModel)]="data.soilPH"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>人为干扰方式</ion-label>
-      <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="interference" [(ngModel)]="interference" [multiPickerColumns]="interferences"
+      <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="interference" [(ngModel)]="data.interference" [multiPickerColumns]="interferences"
         doneText="确定" cancelText="取消"></ion-multi-picker>
     </ion-item>
     <ion-item *ngIf="interference == '其他'" >
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入认为干扰方式" [(ngModel)]="interferenceOther" ></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入认为干扰方式" [(ngModel)]="data.interferenceName" ></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>人为干扰强度</ion-label>
-      <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="intensity" [(ngModel)]="intensity" [multiPickerColumns]="intensities"
+      <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="intensity" [(ngModel)]="data.intensity" [multiPickerColumns]="intensities"
         doneText="确定" cancelText="取消"></ion-multi-picker>
     </ion-item>
     <ion-item>
       <ion-label item-start>乔木层优势种</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入乔木层优势种" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入乔木层优势种" maxlength="6" [(ngModel)]="data.treeLayerDominant"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label item-start>乔木层伴生种</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入乔木层伴生种" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入乔木层伴生种" maxlength="6" [(ngModel)]="data.treeLayerAuxiliary"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label item-start>灌木层优势种</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入灌木层优势种" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入灌木层优势种" maxlength="6" [(ngModel)]="data.bushLayerDominant"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label item-start>灌木层伴生种</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入灌木层伴生种" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入灌木层伴生种" maxlength="6" [(ngModel)]="data.bushLayerAuxiliary"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label item-start>草本层优势种</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入草本层优势种" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入草本层优势种" maxlength="6" [(ngModel)]="data.herbageLayerDominant"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label item-start>草本层伴生种</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入草本层伴生种" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入草本层伴生种" maxlength="6" [(ngModel)]="data.herbageLayerAuxiliary"></ion-input>
     </ion-item>
 
     <ion-item (click)="addKnowPeople()">

@@ -27,7 +27,7 @@ export class PhotoItemComponent {
   }
   set item(val){
     this.itemValue = val;
-    this.inputSetValue = val.info;
+    this.inputSetValue = val.picName;
     this.itemChange.emit(this.itemValue);
   }
   get  inputSet(){
@@ -35,7 +35,7 @@ export class PhotoItemComponent {
   }
   set inputSet(val){
     this.inputSetValue = val;
-    this.itemValue.info = val;
+    this.itemValue.picName = val;
     this.itemChange.emit(this.itemValue);
   }
 

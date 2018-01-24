@@ -25,10 +25,10 @@ export class PhotoSelectsPage {
         this.dataArray = this.navParams.data.imgArray;
         if (this.state == '1') {
             if (this.dataArray!=null&&this.dataArray.length == 0) {
-              this.dataArray.push({src:"assets/imgs/addphoto.png",info:"深径"});
-              this.dataArray.push({src:"assets/imgs/addphoto.png",info:"植株"});
-              this.dataArray.push({src:"assets/imgs/addphoto.png",info:"样方标示"});
-              this.dataArray.push({src:"assets/imgs/addphoto.png",info:""});
+              this.dataArray.push({picUrl:"assets/imgs/addphoto.png",picName:"深径"});
+              this.dataArray.push({picUrl:"assets/imgs/addphoto.png",picName:"植株"});
+              this.dataArray.push({picUrl:"assets/imgs/addphoto.png",picName:"样方标示"});
+              this.dataArray.push({picUrl:"assets/imgs/addphoto.png",picName:""});
             }
         }
     }
@@ -48,7 +48,7 @@ export class PhotoSelectsPage {
     //背景点击
     if (this.state == '0') {
       let item = this.dataArray[idx];
-      this.photoViewer.show(item.src, '照片预览', {share: false});
+      this.photoViewer.show(item.picUrl, '照片预览', {share: false});
       return;
     }
    let options: CameraOptions = {
@@ -78,7 +78,7 @@ export class PhotoSelectsPage {
        
       }
     }];
-    if (this.dataArray[idx].src!="assets/imgs/addphoto.png" &&idx>2) {
+    if (this.dataArray[idx].picUrl!="assets/imgs/addphoto.png" &&idx>2) {
        mbuttons = [{
         text:"拍照",
         handler: () => {
@@ -128,7 +128,7 @@ export class PhotoSelectsPage {
       //   }
       // }
       let element = this.dataArray[idx];
-      let img = {src:base64Image,info:element.info};
+      let img = {picUrl:base64Image,picName:element.picName};
       this.dataArray[idx] = img;
       // this.device.uploadfileWithBase64String(imageData,".jpeg",(msg)=>{
       //   console.log(msg);
@@ -137,7 +137,7 @@ export class PhotoSelectsPage {
       // });
       console.log(base64Image);
       if (idx > 2&&this.dataArray.length<5) {
-        this.dataArray.push({src:"assets/imgs/addphoto.png",info:""});
+        this.dataArray.push({picUrl:"assets/imgs/addphoto.png",picName:""});
       }
      
      }, (err) => {

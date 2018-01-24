@@ -16,16 +16,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class AddRecordPage {
 
   state = "1";//1可编辑状态 0不可编辑状态
-  isShowApplying=false;//是否显示正在申请中
+  isShowApplying = false;//是否显示正在申请中
 
 
-  gatherDate:string = "2018-01-10";
-  proofName:string = "";
-  proofLevel:string = "";
-  speciesName:string = "";
+  // gatherDate:string = "2018-01-10";
+  proofName: string = "";
+  proofLevel: string = "";
+  speciesName: string = "";
 
   proof = '保护区';
-  proofArr:any = [
+  proofArr: any = [
     {
       name: '保护状况',
       options: [
@@ -39,7 +39,7 @@ export class AddRecordPage {
   ];
   proofOther = "";//保护状况其他;
   method = '实测法';
-  methods:any = [
+  methods: any = [
     {
       name: '调查方法',
       options: [
@@ -53,7 +53,7 @@ export class AddRecordPage {
   ];
 
   bearing = '正东';
-  bearings:any = [
+  bearings: any = [
     {
       name: '方位',
       options: [
@@ -70,7 +70,7 @@ export class AddRecordPage {
   ];
 
   degree = '30°';
-  degrees:any = [
+  degrees: any = [
     {
       name: '坡度',
       options: [
@@ -85,7 +85,7 @@ export class AddRecordPage {
   ];
 
   position = '脊';
-  positions:any = [
+  positions: any = [
     {
       name: '位置',
       options: [
@@ -100,7 +100,7 @@ export class AddRecordPage {
   ];
 
   interference = '采集';
-  interferences:any = [
+  interferences: any = [
     {
       name: '干扰',
       options: [
@@ -113,9 +113,9 @@ export class AddRecordPage {
       ]
     }
   ];
-  interferenceOther ="";
+  interferenceOther = "";
   intensity = '强';
-  intensities:any = [
+  intensities: any = [
     {
       name: '强度',
       options: [
@@ -126,14 +126,61 @@ export class AddRecordPage {
       ]
     }
   ];
+
+
   knowPeopleArray = [];
   imgArray = [];
   plants = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    if(this.navParams.data.state!=null){
-       this.state = this.navParams.data.state;
+  data = {
+    userName: "雨菲菲",//用户名
+    date: "2018-01-10",//日期
+    target: "",//目标植物
+    address: "",//地址
+    alt: "", //海拔
+    lat: "", //纬度
+    lng: "", //经度
+    smallAddressName: "",//小地名
+    proof: "保护区",//就地保护状况
+    proofName: "",//保护区名称 proof为其他是才显示
+    proofLevel: "",//proof 为其他时才显示
+    method: "实测法",//调查方法
+    mainSampleNo: "",//主样方编号
+    evnDesc: "",//环境描述
+    mainSampleArea: "",//主样方面积
+    communityName: "",//群落名称
+    communityArea: "",//群落面积
+    bearing: "正东",//坡向
+    degree: "30°",//坡度
+    position: "脊",//坡位
+    crownDensity: "",//郁闭度
+    coverage: "",//盖度
+    soilType: "",//土壤类型
+    soilPH: "",//土壤PH
+    interference: "采集",//人为干扰方式
+    interferenceName: "",//干扰方式为其他时才生效
+    intensity: "强",//人为干扰强度
+    treeLayerDominant: "",//乔木层优势种
+    treeLayerAuxiliary: "",//乔木层优势伴生种
+    bushLayerDominant: "",//灌木层优势种
+    bushLayerAuxiliary: "",//灌木层伴生种
+    herbageLayerDominant: "",//草本层优势种
+    herbageLayerAuxiliary: "",//草本层伴生种
+    insiders: [],//知情者
+    pictures: [],//图片
+    detailInfo: {
+      sampleNum: "",//副样方数
+      desSampleNum: "",//目的物种副样方数
+      desCategorys: [{ checked: false, name: "乔木" }, { checked: false, name: "灌木" }, { checked: false, name: "草本" }, { checked: false, name: "藤本" }, { checked: false, name: "常绿" }, { checked: false, name: "落叶" }, { checked: false, name: "一年生" }, { checked: false, name: "多年生" }, { checked: false, name: "木质" }, { checked: false, name: "肉质" }],//目的物种生活型
+      seedling: "",//幼树株数
+      sapling: "",//seedling
+      pluntList: [],
     }
-    if (this.navParams.data.isShowApplying!=null) {
+  };
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    if (this.navParams.data.state != null) {
+      this.state = this.navParams.data.state;
+    }
+    if (this.navParams.data.isShowApplying != null) {
       this.state = '0';
       this.isShowApplying = this.navParams.data.isShowApplying;
     }
@@ -146,30 +193,30 @@ export class AddRecordPage {
     console.log('ionViewDidLoad AddRecordPage');
 
   }
-  ionViewWillEnter(){
-   
+  ionViewWillEnter() {
+
   }
-  gotoPlantDetail(){
-    this.navCtrl.push("PlantDetailPage",{
+  gotoPlantDetail() {
+    this.navCtrl.push("PlantDetailPage", {
       state: this.state,
-      plants: this.plants
+      detailInfo: this.data.detailInfo
     }
     );
   }
-  addKnowPeople(){
+  addKnowPeople() {
 
-    this.navCtrl.push("KnowPeopleDetailPage",{state:this.state,knowPeopleArray:this.knowPeopleArray});
+    this.navCtrl.push("KnowPeopleDetailPage", { state: this.state, knowPeopleArray: this.data.insiders });
   }
-  photoClik(){
-    
-    this.navCtrl.push("PhotoSelectsPage",{
+  photoClik() {
+
+    this.navCtrl.push("PhotoSelectsPage", {
       state: this.state,
-      imgArray:this.imgArray
+      imgArray: this.data.pictures
     });
   }
 
   //提交记录
-  commitClick(){
+  commitClick() {
     console.log("提交按钮点击");
   }
 }
