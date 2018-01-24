@@ -43,41 +43,20 @@ export class LoginPage {
   login(username, password){
     if(this.isInfoLegal(username,password) == true){
 
-      this.net.httpPost(AppGlobal.API.test,{"ACTION_NAME":"merUserApi|merUserLogin","username":username.value,"password":Md5.hashStr(password.value).toString().toLowerCase()},msg => {
+      this.net.httpPost(AppGlobal.API.login,{
+          "userName":username.value,
+          "password":password.value
+          // "password":Md5.hashStr(password.value).toString().toLowerCase()
+        },msg => {
         let obj = JSON.parse(msg);
         this.events.publish('user:login');
-        if (obj.ACTION_RETURN_CODE==AppGlobal.RETURNCODE.succeed) {
-          AppServiceProvider.getInstance().userinfo = obj.ACTION_INFO;
-          AppServiceProvider.getInstance().merMenuList=[];
-          let merMenuList =  AppServiceProvider.getInstance().userinfo.merUser.merRole.merMenuList;
-          if (merMenuList!=null&&merMenuList.length>0) {
-            let fatherList=[];
-            for (let index = 0; index < merMenuList.length; index++) {
-              const element = merMenuList[index];
-              if (element.pid=="0") {
-                fatherList.push(element);
-                element.childList=[];
-              }
-            }
-            
-            for (let index = 0; index < merMenuList.length; index++) {
-              const item = merMenuList[index];
-              for (let index = 0; index < fatherList.length; index++) {
-                const element = fatherList[index];
-                if (element.pkid == item.pid) {
-                  item.isSelected=true;
-                  element.childList.push(item);
-                }
-              }
-            }
-            AppServiceProvider.getInstance().merMenuList =fatherList;
-            console.log(fatherList);
-          }
+        if (obj.ret == AppGlobal.RETURNCODE.succeed) {
+          AppServiceProvider.getInstance().userinfo = obj.data;
           this.db.saveString(username.value,"username");
           this.db.saveString(password.value,"password");
           this.navCtrl.setRoot("HomePage");
         }else{
-          this.toast(obj.ACTION_RETURN_MESSAGE);
+          this.toast(obj.desc);
         }
         
       },error => {
@@ -117,11 +96,15 @@ export class LoginPage {
 
   forgetpassword(){
     console.log("忘记密码")
-    this.navCtrl.push("ForgetPasswordPage");
+    this.navCtrl.setRoot("ForgetPasswordPage").catch((err: any) => {
+      console.log(`Didn't set nav root: ${err}`);
+    });
   }
 
   registBtnCliked(){
     console.log("注册按钮点击");
-    this.navCtrl.push("RegistPage");
+    this.navCtrl.setRoot("RegistPage").catch((err: any) => {
+      console.log(`Didn't set nav root: ${err}`);
+    });
   }
 }

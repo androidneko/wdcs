@@ -1,3 +1,4 @@
+import { ForgetPasswordPageModule } from './../pages/forget-password/forget-password.module';
 import { MessagePageModule } from './../pages/message/message.module';
 import { RegistPageModule } from './../pages/regist/regist.module';
 import { UploadPlantManagerPageModule } from './../pages/upload-plant-manager/upload-plant-manager.module';
@@ -9,13 +10,11 @@ import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { RegistPage } from '../pages/regist/regist';
-import { HomePage } from '../pages/home/home';
 import { SettingPage } from '../pages/setting/setting';
 import { WebDbServiceProvider } from '../providers/web-db-service/web-db-service';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { HomePage } from '../pages/home/home';
 import { HomePageModule } from '../pages/home/home.module';
-import { BuildingPageModule } from '../pages/building/building.module';
 
 export interface PageInterface {
   title: string;
@@ -52,12 +51,13 @@ export class MyApp {
     { title: '登出', name: 'LoginPage', component: LoginPageModule, icon: 'exit',ios:"ios-exit-outline",md:"ios-exit-outline", logsOut: true }
   ];
   loggedOutPages: PageInterface[] = [
-    { title: '登录', name: 'LoginPage', component: LoginPageModule, icon: 'log-in',ios:"md-log-in",md:"md-log-in", },
-    { title: '注册', name: 'RegistPage', component: RegistPageModule, icon: 'person-add',ios:"md-person-add",md:"md-person-add", }
+    { title: '登录', name: 'LoginPage', component: LoginPageModule, icon: 'log-in'},
+    { title: '注册', name: 'RegistPage', component: RegistPageModule, icon: 'person-add'},
+    { title: '忘记密码', name: 'ForgetPasswordPage', component: ForgetPasswordPageModule, icon: 'key'}
   ];
   rootPage: any;
   avatarUrl: string = "assets/imgs/author_logo2.png";
-  logoUrl: string = "assets/imgs/test.png";
+  logoUrl: string = "assets/imgs/visitor.png";
   userName:string = "androidcat";
 
   constructor(
@@ -72,16 +72,17 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      //this.statusBar.styleDefault();
+      
        //判断登录状态，并跳转
        this.db.getString(this.HAS_SEEN_TUTORIAL,(hasSeenTutorial)=>{
         this.db.getString(this.HAS_LOGGED_IN,(hasLoggedIn)=>{
           this.enableMenu(hasLoggedIn);
           this.platformReady(hasLoggedIn);
+          this.splashScreen.hide();
         });
       },(failure)=>{
-  
+        this.splashScreen.hide();
       });
     });
 

@@ -56,19 +56,16 @@ export class RegistPage extends BasePage{
   }
 
   geSmsCode(phoneNum:string){
-    this.net.httpPost(AppGlobal.API.test,{
-      "ACTION_NAME":"smsMsgApi|sendSMS",
-      "cellPhone":phoneNum
+    this.net.httpPost(AppGlobal.API.smsCode,{
+      "userName":phoneNum
     },msg => {
       let obj = JSON.parse(msg);
       console.log("cellPhone:"+obj.toString());
-      if (obj.ACTION_RETURN_CODE == AppGlobal.RETURNCODE.succeed) {
-        let info = obj.ACTION_INFO;
-        let smsCode:string = info.smsCode;
+      if (obj.ret == AppGlobal.RETURNCODE.succeed) {
         this.countingDown();
-        this.toast("收到验证码:"+smsCode+",仅供测试使用");
+        this.toast(obj.desc);
       }else{
-        this.toast(obj.ACTION_RETURN_MESSAGE);
+        this.toast(obj.desc);
         this.stopCounting();
       }
     },error => {
@@ -124,18 +121,18 @@ export class RegistPage extends BasePage{
     if (this.checkIfInputOk(phone, verifyCode, password, confirmPassword)) {
       this.net.httpPost(AppGlobal.API.test,
         {
-          "ACTION_NAME": "merUserApi|resetPasswordApp",
-          "cellphone": phone,
-          "smsCode": verifyCode,
-          "loginPassword": Md5.hashStr(password).toString().toLowerCase()
+          "userName": phone,
+          "vcode": verifyCode,
+          "password": password
+          // "password": Md5.hashStr(password).toString().toLowerCase()
         }, msg => {
           let obj = JSON.parse(msg);
-          if (obj.ACTION_RETURN_CODE == AppGlobal.RETURNCODE.succeed) {
+          if (obj.ret == AppGlobal.RETURNCODE.succeed) {
             this.db.saveString(this.password, "password");
-            this.toast(obj.ACTION_RETURN_MESSAGE);
+            this.toast(obj.desc);
             this.navCtrl.pop();
           } else {
-            this.toast(obj.ACTION_RETURN_MESSAGE);
+            this.toast(obj.desc);
           }
 
         }, error => {
@@ -146,10 +143,8 @@ export class RegistPage extends BasePage{
 
   loginBtnCliked(){
     console.log("登录按钮点击");
-    if (this.navCtrl.canGoBack()){
-      this.navCtrl.pop();
-    }else {
-      this.navCtrl.push("LoginPage");
-    }
+    this.navCtrl.setRoot("LoginPage").catch((err: any) => {
+      console.log(`Didn't set nav root: ${err}`);
+    });
   }
 }

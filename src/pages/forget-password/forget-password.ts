@@ -105,7 +105,8 @@ export class ForgetPasswordPage extends BasePage {
           "ACTION_NAME": "merUserApi|resetPasswordApp",
           "cellphone": phone,
           "smsCode": verifyCode,
-          "loginPassword": Md5.hashStr(password).toString().toLowerCase()
+          "loginPassword": password
+          // "loginPassword": Md5.hashStr(password).toString().toLowerCase()
         }, msg => {
           let obj = JSON.parse(msg);
           if (obj.ACTION_RETURN_CODE == AppGlobal.RETURNCODE.succeed) {

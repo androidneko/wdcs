@@ -39,8 +39,10 @@ export class ModifyPwdPage extends BasePage {
         {
           "ACTION_NAME":"merUserApi|modifyPassword",
           userId:AppServiceProvider.getInstance().userinfo.USERID,
-          oldPassword:Md5.hashStr(this.oldPassword).toString().toLowerCase(),
-          newPassword:Md5.hashStr(this.newPassword).toString().toLowerCase()
+          oldPassword:this.oldPassword,
+          newPassword:this.newPassword
+          // oldPassword:Md5.hashStr(this.oldPassword).toString().toLowerCase(),
+          // newPassword:Md5.hashStr(this.newPassword).toString().toLowerCase()
         },msg => {
         let obj = JSON.parse(msg);
         if (obj.ACTION_RETURN_CODE=="000000") {

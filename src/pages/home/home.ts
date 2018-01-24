@@ -53,15 +53,14 @@ export class HomePage extends BasePage {
         "dataInfo":"test",
         "start":  page==1?0:this.plants.length,
         "length": this.pageSize,
-        "ACTION_NAME": "plants"
       };
-    this.net.httpPost(AppGlobal.API.test, params, msg => {
+    this.net.httpPost(AppGlobal.API.recordList, params, msg => {
       let obj = JSON.parse(msg);
-      if (obj.ACTION_RETURN_CODE == AppGlobal.RETURNCODE.succeed) {
+      if (obj.ret == AppGlobal.RETURNCODE.succeed) {
         if (page == 1) {
           this.plants = [];
         }
-        let info = obj.ACTION_INFO;
+        let info = obj.data;
         let list = info.data;
         this.total = info.recordsTotal;
         for (let index = 0; index < list.length; index++) {

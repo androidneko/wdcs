@@ -109,12 +109,13 @@ export class WebTyNetworkServiceProvider {
         //     });
       }
 
-      httpGet(url, params, success,failed, loader: boolean = false) {
+      httpGet(api, params, success,failed, loader: boolean = false) {
         let loading = this.loadingCtrl.create();
         if (loader) {
             loading.present();
         }
-        let actioname = params.ACTION_NAME.replace("|","");
+        let i = api.lastIndexOf('/');
+        let actioname = api.substring(i+1);
         let murl ="assets/data/"+actioname+'.json';
         this.http.get(murl)
             .toPromise()

@@ -54,15 +54,15 @@ export class TyNetworkServiceProvider {
     });
     
   }
-  httpPost(url, params, success,failed, loader: boolean = false) {
+  httpPost(api, params, success,failed, loader: boolean = false) {
 
     //兼容部分接口模拟数据//
-    if("common|queryNews" == params.ACTION_NAME){
-      this.webGet(url, params, success,failed, loader);
-      return;
-    }
+    // if("common|queryNews" == params.ACTION_NAME){
+    //   this.webGet(url, params, success,failed, loader);
+    //   return;
+    // }
     let loading = this.loadingCtrl.create();
-    console.log("post:"+url+params);
+    console.log("post:"+api+"-->"+params);
     let sortParams = {};
     let sortKeys = Object.keys(params).sort();
     for (let index = 0; index < sortKeys.length; index++) {
@@ -81,13 +81,13 @@ export class TyNetworkServiceProvider {
         "sessionID":AppServiceProvider.getInstance().userinfo.SESSIONID,
         "userID":AppServiceProvider.getInstance().userinfo.USERID,
         "actionInfoStr":JSON.stringify(sortParams),
-        "url":(AppGlobal.domain+url+"")
+        "url":(AppGlobal.domain+api+"")
       };
     }else{
       mParams = {
         "requestActionName":params.ACTION_NAME,
         "actionInfoStr":JSON.stringify(sortParams),
-        "url":(AppGlobal.domain+url+"")
+        "url":(AppGlobal.domain+api+"")
       };
     }
     cordova.plugins.TYNative.post(mParams,msg=>{

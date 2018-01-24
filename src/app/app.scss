@@ -44,10 +44,6 @@
     border-bottom-color:color($colors,ty-partingline) !important;
 }
 
-//导航栏颜色
-.back-button-icon-ios {
-    color: color($colors,primary) ;
-}
 .item-ios{
     border-bottom-color:color($colors,ty-partingline) !important;
 }
@@ -72,9 +68,22 @@
 
 ion-navbar {
     .toolbar-background-ios{
-        background:white;
+        background:rgb(102, 189, 163);
+    }
+    .toolbar-title-ios{
+        color: white;
+        font-size: 1.8rem;
+        font-weight: 100;
+    }
+    .bar-button-default-ios{
+        color: white;
+    }    
+    //导航栏颜色
+    .back-button-icon-ios {
+        color:white;
     }
 }
+
 .outer-content{
     .item-inner{
         background-image: none !important;

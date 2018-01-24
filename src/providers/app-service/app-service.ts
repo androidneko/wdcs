@@ -18,23 +18,26 @@ export class AppGlobal {
         products: "_dress_products"
     }
 
-    // // static domain = "http://api2.shualeme.com.cn:9980"//全局静态地址
-    // static domain = "http://192.168.2.107"//全局静态地址
-    // static domain = "http://10.8.3.212"; //全局静态地址
-    static domain = "http://10.8.3.229"; //测试环境
-    // static domain = "http://10.8.3.51:9090"; //晖地址
-    //static domain = "http://10.8.3.128"; //杨凡地址
-    //static domain = "http://10.8.3.109:9090"; //雷哥地址地址
+
+    static domain = "http://120.25.249.105:8083"; //测试环境
+    // static domain = "http://10.8.3.51:9090"; //
+
     static API: any = {
-        // test: '/api/api/test',//擎动
-        test:':9090/api/test',//调试环境通用
-        trade: ':9090/api/apsPayment/trade.do',
+        login:'/api/v1/account/login',//登录
+        smsCode:'/api/v1/account/smsCode',//短信验证码
+        register: '/api/v1/create', //注册
+        resetPassword: '/api/v1/user/resetPassword', //忘记密码
+        modifyPassword: '/api/v1/modifyPassword', //修改密码
+        editUserInfo: '/api/v1/user/editUserInfo', //编辑用户信息
+        msgList: '/api/v1/msgList', //获取推送消息列表
+        recordList: '/api/v1/plants', //获取已上传记录列表
+        uploadRecord: '/api/v1/create' //上传采集数据
     };
     static DATA:any ={
       uploadDoc:':8080/pc/data/uploadDoc',//文件上传
     }
     static RETURNCODE:any ={
-        succeed:"000000"//成功
+        succeed:200//成功
     }
 
 }
