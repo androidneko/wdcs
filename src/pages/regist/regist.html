@@ -16,19 +16,19 @@
 </ion-header>
 <ion-content no-padding>
     <div class="parent_gravity_center">
-        <img style="width:100px;height:100px;border-radius:50%;" [src]="logoUrl">
+        <img style="width:130px;height:130px;border-radius:50%;" [src]="logoUrl">
     </div>
     
 <div class="iputcenter" >
     <ion-item  class="itemtop">
         <ion-icon name="contact" color="primary" item-left ios="ios-contact-outline" md="ios-contact-outline"></ion-icon>
         <ion-input clearInput=true type="tel" maxlength="11" placeholder="请输手机号" [(ngModel)]="phoneNum" ></ion-input>
-        <button ion-button   (click)="geSmsCodeClicked($event)" class="valcodebtn" item-end>{{valcodebtntext}}</button>
+        <button ion-button item-end (click)="geSmsCodeClicked(phoneNum)" [ngClass]="{'ready':!isCountingDown,'counting':isCountingDown}">{{valcodebtntext}}</button>
       </ion-item>
     
       <ion-item>
         <ion-icon name="contact" color="primary" item-left ios="ios-phone-portrait-outline" md="ios-phone-portrait-outline"></ion-icon>
-        <ion-input clearInput=true type="number" placeholder="请输入验证码" maxlength="6" [(ngModel)]="smsCode"></ion-input>
+        <ion-input clearInput=true type="number" placeholder="请输入验证码" maxlength="4" [(ngModel)]="smsCode"></ion-input>
       </ion-item>
       <ion-item>
           <ion-icon name="unlock" color="primary" item-left ios="ios-unlock-outline" md="ios-unlock-outline"></ion-icon>

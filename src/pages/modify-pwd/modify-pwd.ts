@@ -37,21 +37,20 @@ export class ModifyPwdPage extends BasePage {
     if(this.checkIfPwdOk(this.oldPassword, this.newPassword,this.confirmPassword)){
       this.net.httpPost(AppGlobal.API.test,
         {
-          "ACTION_NAME":"merUserApi|modifyPassword",
-          userId:AppServiceProvider.getInstance().userinfo.USERID,
-          oldPassword:this.oldPassword,
-          newPassword:this.newPassword
+          userName:AppServiceProvider.getInstance().userinfo.userName,
+          oldPwd:this.oldPassword,
+          newPwd:this.newPassword
           // oldPassword:Md5.hashStr(this.oldPassword).toString().toLowerCase(),
           // newPassword:Md5.hashStr(this.newPassword).toString().toLowerCase()
         },msg => {
         let obj = JSON.parse(msg);
-        if (obj.ACTION_RETURN_CODE=="000000") {
+        if (obj.ret == 200) {
           AppServiceProvider.getInstance().userinfo = obj.ACTION_INFO;
           this.db.saveString(this.newPassword,"password");
-          this.toast(obj.ACTION_RETURN_MESSAGE);
+          this.toast("修改成功!");
           this.navCtrl.pop();
         }else{
-          this.toast(obj.ACTION_RETURN_MESSAGE);
+          this.toast(obj.desc);
         }
         
       },error => {

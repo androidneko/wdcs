@@ -25,10 +25,10 @@ export class AppGlobal {
     static API: any = {
         login:'/api/v1/account/login',//登录
         smsCode:'/api/v1/account/smsCode',//短信验证码
-        register: '/api/v1/create', //注册
-        resetPassword: '/api/v1/user/resetPassword', //忘记密码
-        modifyPassword: '/api/v1/modifyPassword', //修改密码
-        editUserInfo: '/api/v1/user/editUserInfo', //编辑用户信息
+        register: '/api/v1/account/register', //注册
+        resetPassword: '/api/v1/account/resetPwd', //忘记密码
+        modifyPassword: '/api/v1/account/modifyPwd', //修改密码
+        editUserInfo: '/api/v1/account/editUserInfo', //编辑用户信息
         msgList: '/api/v1/msgList', //获取推送消息列表
         recordList: '/api/v1/plants', //获取已上传记录列表
         uploadRecord: '/api/v1/create' //上传采集数据

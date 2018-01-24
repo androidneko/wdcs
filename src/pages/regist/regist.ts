@@ -101,7 +101,7 @@ export class RegistPage extends BasePage{
       this.toast("请输入正确的手机号");
       return false;
     }
-    if (verifyCode.length != 6) {
+    if (verifyCode.length != 4) {
       this.toast("验证码输入有误，请输入6位数字验证码");
       return false;
     }
@@ -119,18 +119,19 @@ export class RegistPage extends BasePage{
 
   register(phone: string, verifyCode: string, password: string, confirmPassword: string) {
     if (this.checkIfInputOk(phone, verifyCode, password, confirmPassword)) {
-      this.net.httpPost(AppGlobal.API.test,
+      this.net.httpPost(AppGlobal.API.register,
         {
           "userName": phone,
-          "vcode": verifyCode,
+          "smsCode": verifyCode,
           "password": password
           // "password": Md5.hashStr(password).toString().toLowerCase()
         }, msg => {
           let obj = JSON.parse(msg);
           if (obj.ret == AppGlobal.RETURNCODE.succeed) {
+            this.db.saveString(this.phoneNum,"username");
             this.db.saveString(this.password, "password");
-            this.toast(obj.desc);
-            this.navCtrl.pop();
+            this.toast("注册成功!");
+            this.navCtrl.setRoot("LoginPage");
           } else {
             this.toast(obj.desc);
           }

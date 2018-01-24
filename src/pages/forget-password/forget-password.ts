@@ -73,23 +73,20 @@ export class ForgetPasswordPage extends BasePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ModifyPwdPage');
+    console.log('ionViewDidLoad ForgetPasswordPage');
   }
 
   getVerifyCode(phoneNum:string){
-    this.net.httpPost(AppGlobal.API.test,{
-      "ACTION_NAME":"smsMsgApi|sendSMS",
-      "cellPhone":phoneNum
+    this.net.httpPost(AppGlobal.API.smsCode,{
+      "userName":phoneNum
     },msg => {
       let obj = JSON.parse(msg);
       console.log("cellPhone:"+obj.toString());
-      if (obj.ACTION_RETURN_CODE == AppGlobal.RETURNCODE.succeed) {
-        let info = obj.ACTION_INFO;
-        let smsCode:string = info.smsCode;
+      if (obj.ret == AppGlobal.RETURNCODE.succeed) {
         this.countingDown();
-        this.toast("收到验证码:"+smsCode+",仅供测试使用");
+        this.toast(obj.desc);
       }else{
-        this.toast(obj.ACTION_RETURN_MESSAGE);
+        this.toast(obj.desc);
         this.stopCounting();
       }
     },error => {
@@ -100,21 +97,20 @@ export class ForgetPasswordPage extends BasePage {
 
   resetPwd(phone: string, verifyCode: string, password: string, confirmPassword: string) {
     if (this.checkIfInputOk(phone, verifyCode, password, confirmPassword)) {
-      this.net.httpPost(AppGlobal.API.test,
+      this.net.httpPost(AppGlobal.API.resetPassword,
         {
-          "ACTION_NAME": "merUserApi|resetPasswordApp",
-          "cellphone": phone,
+          "userName": phone,
           "smsCode": verifyCode,
-          "loginPassword": password
+          "newPwd": password
           // "loginPassword": Md5.hashStr(password).toString().toLowerCase()
         }, msg => {
           let obj = JSON.parse(msg);
-          if (obj.ACTION_RETURN_CODE == AppGlobal.RETURNCODE.succeed) {
+          if (obj.ret == AppGlobal.RETURNCODE.succeed) {
             this.db.saveString(this.password, "password");
-            this.toast(obj.ACTION_RETURN_MESSAGE);
-            this.navCtrl.pop();
+            this.toast(obj.desc);
+            this.navCtrl.setRoot("LoginPage");
           } else {
-            this.toast(obj.ACTION_RETURN_MESSAGE);
+            this.toast(obj.desc);
           }
 
         }, error => {
@@ -128,7 +124,7 @@ export class ForgetPasswordPage extends BasePage {
       this.toast("请输入正确的手机号");
       return false;
     }
-    if (verifyCode.length != 6) {
+    if (verifyCode.length != 4) {
       this.toast("验证码输入有误，请输入6位数字验证码");
       return false;
     }
@@ -136,12 +132,6 @@ export class ForgetPasswordPage extends BasePage {
       this.toast("密码长度只能是6-20位");
       return false;
     }
-    // var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/;
-    // if(!reg.test(newPassword.value.toString()))
-    // {
-    //   this.toast("密码必须包含数字字母");
-    //   return;
-    // }
     if (confirmPassword != newPassword) {
       this.toast("两次密码输入不一致");
       return false;
