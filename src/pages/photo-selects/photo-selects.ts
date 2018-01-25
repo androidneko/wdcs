@@ -130,11 +130,11 @@ export class PhotoSelectsPage {
       let element = this.dataArray[idx];
       let img = {picUrl:base64Image,picName:element.picName};
       this.dataArray[idx] = img;
-      // this.device.uploadfileWithBase64String(imageData,".jpeg",(msg)=>{
-      //   console.log(msg);
-      // },(err)=>{
+      this.device.uploadfileWithBase64String(imageData,".jpeg",(msg)=>{
+        console.log(msg);
+      },(err)=>{
         
-      // });
+      });
       console.log(base64Image);
       if (idx > 2&&this.dataArray.length<5) {
         this.dataArray.push({picUrl:"assets/imgs/addphoto.png",picName:""});

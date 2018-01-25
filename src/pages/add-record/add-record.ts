@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DeviceIntefaceServiceProvider } from '../../providers/device-inteface-service/device-inteface-service';
 
 /**
  * Generated class for the AddRecordPage page.
@@ -18,7 +19,7 @@ export class AddRecordPage {
   state = "1";//1可编辑状态 0不可编辑状态
   isShowApplying = false;//是否显示正在申请中
 
-
+  locantionDes="位置";
   // gatherDate:string = "2018-01-10";
   proofName: string = "";
   proofLevel: string = "";
@@ -135,6 +136,7 @@ export class AddRecordPage {
     userName: "雨菲菲",//用户名
     date: "2018-01-10",//日期
     target: "",//目标植物
+    county:"",
     address: "",//地址
     alt: "", //海拔
     lat: "", //纬度
@@ -176,7 +178,7 @@ export class AddRecordPage {
       pluntList: [],
     }
   };
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public device:DeviceIntefaceServiceProvider) {
     if (this.navParams.data.state != null) {
       this.state = this.navParams.data.state;
     }
@@ -186,6 +188,41 @@ export class AddRecordPage {
     }
     if (this.navParams.data.data != null) {
       this.speciesName = this.navParams.data.data;
+    }
+    if (this.state == "1"&&this.data.lat.length == 0) {
+      this.locantionDes = "正在获取位置信息";
+      this.device.push("location","",msg =>{
+        let obj = JSON.parse(msg);
+        this.data.county=  obj.county;
+        this.data.lat = obj.lat;
+        this.data.lng = obj.lng;
+        this.data.alt = obj.alt;
+        this.data.address = obj.address;
+        this.locantionDes = "位置";
+      },err => {
+        // this.toast(err);
+        this.locantionDes = "获取位置失败,点击重新获取";
+        console.log("push failed");
+      });
+    }
+  
+  }
+  locationClick(){
+    if (this.locantionDes == "获取位置失败,点击重新获取") {
+      this.locantionDes = "正在获取位置信息";
+      this.device.push("location","",msg =>{
+        let obj = JSON.parse(msg);
+        this.data.county=  obj.county;
+        this.data.lat = obj.lat;
+        this.data.lng = obj.lng;
+        this.data.alt = obj.alt;
+        this.data.address = obj.address;
+        this.locantionDes = "位置";
+      },err => {
+        // this.toast(err);
+        this.locantionDes = "获取位置失败,点击重新获取";
+        console.log("push failed");
+      });
     }
   }
 
@@ -218,5 +255,6 @@ export class AddRecordPage {
   //提交记录
   commitClick() {
     console.log("提交按钮点击");
+    console.log(JSON.stringify(this.data));
   }
 }

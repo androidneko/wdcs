@@ -26,13 +26,20 @@ export class DeviceIntefaceServiceProvider {
     }else{
       let param= {"command":command,"commandData":commandData}
       cordova.plugins.TYNative.push(param,msg=>{
-        if(success){
-          success(msg);
-        }
+        this.zone.runGuarded(()=>{
+      
+          if(success){
+            success(msg);
+          }
+        });
+        
       },error=>{
-        if(failed){
-          failed(error);
-        }
+        this.zone.runGuarded(()=>{
+          if(failed){
+            failed(error);
+          }
+        });
+       
       });
     }
   }

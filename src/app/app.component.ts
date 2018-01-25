@@ -1,3 +1,4 @@
+import { DbServiceProvider } from './../providers/db-service/db-service';
 import { ForgetPasswordPageModule } from './../pages/forget-password/forget-password.module';
 import { MessagePageModule } from './../pages/message/message.module';
 import { RegistPageModule } from './../pages/regist/regist.module';
@@ -11,7 +12,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SettingPage } from '../pages/setting/setting';
-import { WebDbServiceProvider } from '../providers/web-db-service/web-db-service';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { HomePageModule } from '../pages/home/home.module';
@@ -61,7 +61,7 @@ export class MyApp {
   userName:string = "androidcat";
 
   constructor(
-    public db:WebDbServiceProvider,
+    public db:DbServiceProvider,
     public menu: MenuController,
     public platform: Platform,
     public statusBar: StatusBar, 
@@ -80,9 +80,13 @@ export class MyApp {
           this.enableMenu(hasLoggedIn);
           this.platformReady(hasLoggedIn);
           this.splashScreen.hide();
+        },()=>{
+          this.splashScreen.hide();
+          console.log("hasLoggedIn fialded");
         });
-      },(failure)=>{
+      },()=>{
         this.splashScreen.hide();
+        console.log("hasSeenTutorial fialded");
       });
     });
 
