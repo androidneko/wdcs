@@ -33,7 +33,8 @@ export class AppGlobal {
         msgList: '/api/v1/msgList', //获取推送消息列表
         recordList: '/api/v1/plants', //获取已上传记录列表
         uploadRecord: '/api/v1/create', //上传采集数据
-        uploadImage:'/api/v1/user/uploadImage'
+        uploadImage:'/api/v1/user/uploadImage',
+        getNewsList:'/api/v1/news/getNewsList'
     };
     static DATA:any ={
       uploadDoc:':8080/pc/data/uploadDoc',//文件上传

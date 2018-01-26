@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { BasePage } from '../base/base';
 import { TyNetworkServiceProvider } from '../../providers/ty-network-service/ty-network-service';
 import { AppGlobal } from '../../providers/app-service/app-service';
+import { DeviceIntefaceServiceProvider } from '../../providers/device-inteface-service/device-inteface-service';
 
 /**
  * Generated class for the HomePage page.
@@ -18,13 +19,24 @@ import { AppGlobal } from '../../providers/app-service/app-service';
   templateUrl: 'home.html',
 })
 export class HomePage extends BasePage {
-
+  newsList:any = [
+    {
+			"imageUrl":"http://www.hbly.gov.cn/CMShbly/201703/201703151103044.jpg","url":"http://www.hbly.gov.cn/wzlm/xwzx/tpxw/85867.htm","title":"1310DFBDC418BEF"
+		},
+		{
+			"imageUrl":"http://www.hbly.gov.cn/CMShbly/201705/201705270450055.jpg","url":"http://www.hbly.gov.cn/wzlm/xwzx/tpxw/87998.htm","title":"1310DFBDC418BEF"
+		},
+		{
+			"imageUrl":"http://www.hbly.gov.cn/CMShbly/201708/201708080523053.jpg","url":"http://www.hbly.gov.cn/wzlm/xwzx/tpxw/89793.htm","title":"1310DFBDC418BEF"
+		}
+  ];
   plants:any = [];
   total: number = -1;
   currentPage: number = 1;
   pageSize: number = 8;
 
   constructor(
+    public device:DeviceIntefaceServiceProvider,
     public mtoast: ToastController, 
     public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -34,6 +46,7 @@ export class HomePage extends BasePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
+    this.getNewsList();
     this.sendQueryPlantsRequest(this.currentPage, null);
   }
 
@@ -46,6 +59,15 @@ export class HomePage extends BasePage {
   doInfinite(refresher) {
     console.log("上拉加载更多");
     this.sendQueryPlantsRequest(this.currentPage+1, refresher);
+  }
+
+  gotoNewsDetail(news){
+    this.device.push("webView",news.url,msg =>{
+      console.log("push success");
+    },err => {
+      this.toast(err);
+      console.log("push failed");
+    });
   }
 
   sendQueryPlantsRequest(page: any, refresher: any) {
@@ -81,6 +103,20 @@ export class HomePage extends BasePage {
         refresher.complete();
       }
     }, refresher == null);
+  }
+
+  getNewsList(){
+    this.net.httpPost(AppGlobal.API.getNewsList,{},msg => {
+      let obj = JSON.parse(msg);
+      console.log("cellPhone:"+obj.toString());
+      if (obj.ret == AppGlobal.RETURNCODE.succeed) {
+        this.newsList = obj.data;
+      }else{
+        this.toast(obj.desc);
+      }
+    },error => {
+      this.toast(error);
+    },true);
   }
 
   queryTarget(id:string){
