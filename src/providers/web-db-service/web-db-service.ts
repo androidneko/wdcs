@@ -1,5 +1,5 @@
 import { DbServiceProvider } from './../db-service/db-service';
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 
 /*
   Generated class for the WebDbServiceProvider provider.
@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class WebDbServiceProvider implements  DbServiceProvider{
 
-  constructor() {
+  constructor(public zone:NgZone) {
  
   }
   saveString(str,key,success?,filed?){

@@ -1,3 +1,4 @@
+import { DbServiceProvider } from './../providers/db-service/db-service';
 import { ForgetPasswordPageModule } from './../pages/forget-password/forget-password.module';
 import { MessagePageModule } from './../pages/message/message.module';
 import { RegistPageModule } from './../pages/regist/regist.module';
@@ -11,7 +12,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav, Keyboard, IonicApp, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SettingPage } from '../pages/setting/setting';
-import { WebDbServiceProvider } from '../providers/web-db-service/web-db-service';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { HomePageModule } from '../pages/home/home.module';
@@ -67,13 +67,13 @@ export class MyApp {
   ];
 
   constructor(
-    public ionicApp: IonicApp,
-    public db: WebDbServiceProvider,
-    public keyboard: Keyboard,
+    public db:DbServiceProvider,
     public menu: MenuController,
     public platform: Platform,
+    public ionicApp:IonicApp,
     public statusBar: StatusBar,
     public toastCtrl: ToastController,
+    public keyboard:Keyboard,
     public splashScreen: SplashScreen,
     public events: Events) {
     //注册登录事件监听，改变侧滑菜单
@@ -91,9 +91,13 @@ export class MyApp {
           this.enableMenu(hasLoggedIn);
           this.platformReady(hasLoggedIn);
           this.splashScreen.hide();
+        },()=>{
+          this.splashScreen.hide();
+          console.log("hasLoggedIn fialded");
         });
-      }, (failure) => {
+      },()=>{
         this.splashScreen.hide();
+        console.log("hasSeenTutorial fialded");
       });
     });
   }

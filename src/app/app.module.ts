@@ -48,13 +48,13 @@ export function netFactory(platform:Platform,loadingCtrl:LoadingController,http:
     return new WebTyNetworkServiceProvider(http,loadingCtrl);
   }
 }
-export function dbFactory(platform:Platform) {
+export function dbFactory(platform:Platform,zone:NgZone) {
   if (platform.is("mobileweb")) {
-    return new WebDbServiceProvider();
+    return new WebDbServiceProvider(zone);
   }else if(platform.is("mobile")){
-    return new DbServiceProvider();
+    return new DbServiceProvider(zone);
   }else{
-    return new WebDbServiceProvider();
+    return new WebDbServiceProvider(zone);
   }
 }
 
@@ -117,10 +117,7 @@ export function dbFactory(platform:Platform) {
       deps:[Platform,LoadingController,Http,NgZone]
     },
     {provide: DbServiceProvider,useFactory:dbFactory,
-      deps:[Platform]
-    },
-    {provide: WebDbServiceProvider,useFactory:dbFactory,
-      deps:[Platform]
+      deps:[Platform,NgZone]
     },
     DeviceIntefaceServiceProvider,
     UploadManagerProvider
