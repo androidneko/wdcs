@@ -19,7 +19,11 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 export class SettingPage {
 
   cacheSize:string = '10.8';
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alert:AlertController,public events:Events) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public alert:AlertController,
+    public events:Events) {
   }
 
   ionViewDidLoad() {

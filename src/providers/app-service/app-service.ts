@@ -29,6 +29,7 @@ export class AppGlobal {
         resetPassword: '/api/v1/account/resetPwd', //忘记密码
         modifyPassword: '/api/v1/account/modifyPwd', //修改密码
         editUserInfo: '/api/v1/account/editUserInfo', //编辑用户信息
+        getUserInfo: '/api/v1/account/getUserInfo', //获取用户信息
         msgList: '/api/v1/msgList', //获取推送消息列表
         recordList: '/api/v1/plants', //获取已上传记录列表
         uploadRecord: '/api/v1/create', //上传采集数据
@@ -46,7 +47,10 @@ export class AppGlobal {
 @Injectable()
 export class AppServiceProvider {
   private static instance:AppServiceProvider = new AppServiceProvider();
-  public userinfo:any;//当前用户信息
+  public userinfo:any = {
+    loginData:{userName:"13555555555"},
+    userData:{}
+  };//当前用户信息
   public merMenuList:any=[];
 
   constructor() {

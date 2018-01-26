@@ -13,7 +13,7 @@
 
           <ion-list-header style="background-color:#c8ddd4">
               <ion-avatar>
-                  <img style="width:100px;height:100px;" [src]="logoUrl">
+                  <img style="width:130px;height:130px;" [src]="logoUrl">
               </ion-avatar>
               <h2 style="color:gray">游客，你好。</h2>
           </ion-list-header>
@@ -35,7 +35,7 @@
 
         <ion-list>
             <ion-list-header style="background-color:#c8ddd4">
-                <ion-avatar>
+                <ion-avatar (click)="gotoPersonalInfoPage()">
                     <img style="width:100px;height:100px;" [src]="avatarUrl">
                 </ion-avatar>
                 <h2 style="color:gray">{{userName}}</h2>

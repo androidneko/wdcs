@@ -51,7 +51,7 @@ export class LoginPage {
         let obj = JSON.parse(msg);
         this.events.publish('user:login');
         if (obj.ret == AppGlobal.RETURNCODE.succeed) {
-          AppServiceProvider.getInstance().userinfo = obj.data;
+          AppServiceProvider.getInstance().userinfo.loginData = obj.data;
           this.db.saveString(username.value,"username");
           this.db.saveString(password.value,"password");
           this.navCtrl.setRoot("HomePage");

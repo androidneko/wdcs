@@ -1,3 +1,31 @@
-page-message {
+$categories: (
+ ionic: color($colors, primary),
+ angular: #AC282B,
+ emergency: #FE4C52,
+ important: #FD8B2D,
+ common: #69BB7B
+);
 
-}
+@function auxiliary-categories() {
+    @return map-remove($categories);
+  }
+
+  page-message {
+    @each $type, $value in auxiliary-categories() {
+     ion-item-sliding[type=#{$type}] ion-label {
+       border-left: 2px solid $value;
+       padding-left: 10px;
+       white-space:normal;
+     }
+     ion-item-sliding[type=""] ion-label {
+        border-left: 2px solid gray;
+        padding-left: 10px;
+        white-space:normal;
+      }
+
+     .item-inner{
+        background-image:none !important;
+     }
+    }
+
+  }

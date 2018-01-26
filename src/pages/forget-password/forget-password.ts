@@ -1,3 +1,4 @@
+import { AppServiceProvider } from './../../providers/app-service/app-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { BasePage } from '../base/base';
@@ -74,6 +75,10 @@ export class ForgetPasswordPage extends BasePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ForgetPasswordPage');
+    this.db.getString("username",(msg)=>{
+      this.phoneNum = msg;
+      console.log("username:"+msg);
+    });
   }
 
   getVerifyCode(phoneNum:string){

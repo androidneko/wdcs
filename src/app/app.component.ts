@@ -8,21 +8,26 @@ import { PersonalInfoPageModule } from './../pages/personal-info/personal-info.m
 import { Events } from 'ionic-angular/util/events';
 import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
-import { Platform, MenuController, Nav } from 'ionic-angular';
+import { Platform, MenuController, Nav, Keyboard, IonicApp, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SettingPage } from '../pages/setting/setting';
 import { WebDbServiceProvider } from '../providers/web-db-service/web-db-service';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { HomePageModule } from '../pages/home/home.module';
+import { AppServiceProvider } from '../providers/app-service/app-service';
+import { PersonalInfoPage } from '../pages/personal-info/personal-info';
+import { ForgetPasswordPage } from '../pages/forget-password/forget-password';
+import { RegistPage } from '../pages/regist/regist';
+import { ModifyPwdPage } from '../pages/modify-pwd/modify-pwd';
 
 export interface PageInterface {
   title: string;
   name: string;
   component: any;//对应跳转的独立页面
   icon: string;
-  ios?:string;
-  md?:string;
+  ios?: string;
+  md?: string;
   logsOut?: boolean;
   index?: number; //tab index,如非tab页面，可空
   tabName?: string;
@@ -37,76 +42,81 @@ export class MyApp {
   // the root nav is a child of the root app component
   // @ViewChild(Nav) gets a reference to the app's root nav
   @ViewChild(Nav) nav: Nav;
-  
+  backButtonPressed: boolean = false;
+  rootPage: any;
+  avatarUrl: string = "assets/imgs/author_logo2.png";
+  logoUrl: string = "assets/imgs/visitor.png";
+  userName: string = "androidcat";
+
   HAS_LOGGED_IN = 'hasLoggedIn';
   HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
 
   loggedInPages: PageInterface[] = [
-    { title: '首页', name: 'HomePage', component: HomePageModule, icon: 'home',ios:"ios-home-outline",md:"ios-home-outline"},
-    { title: '物种采集', name: 'AddRecordPage', component: AddRecordPageModule, icon: 'camera',ios:"ios-camera-outline",md:"ios-camera-outline",leafPage:true },
-    { title: '上传管理', name: 'UploadPlantManagerPage', component: UploadPlantManagerPageModule, icon: 'cloud-upload',ios:"ios-cloud-upload-outline",md:"ios-cloud-upload-outline",leafPage:true },
-    { title: '个人信息', name: 'PersonalInfoPage', component: PersonalInfoPageModule, icon: 'contact',ios:"ios-contact-outline",md:"ios-contact-outline",leafPage:true },
-    { title: '推送消息', name: 'MessagePage', component: MessagePageModule, icon: 'chatboxes',ios:"ios-chatboxes-outline",md:"ios-chatboxes-outline",leafPage:true },
-    { title: '设置', name: 'SettingPage', component: SettingPage, icon: 'settings' ,ios:"ios-settings-outline",md:"ios-settings-outline",leafPage:true },
-    { title: '登出', name: 'LoginPage', component: LoginPageModule, icon: 'exit',ios:"ios-exit-outline",md:"ios-exit-outline", logsOut: true }
+    { title: '首页', name: 'HomePage', component: HomePageModule, icon: 'home', ios: "ios-home-outline", md: "ios-home-outline" },
+    { title: '物种采集', name: 'AddRecordPage', component: AddRecordPageModule, icon: 'camera', ios: "ios-camera-outline", md: "ios-camera-outline", leafPage: true },
+    { title: '上传管理', name: 'UploadPlantManagerPage', component: UploadPlantManagerPageModule, icon: 'cloud-upload', ios: "ios-cloud-upload-outline", md: "ios-cloud-upload-outline", leafPage: true },
+    { title: '个人信息', name: 'PersonalInfoPage', component: PersonalInfoPageModule, icon: 'contact', ios: "ios-contact-outline", md: "ios-contact-outline", leafPage: true },
+    { title: '推送消息', name: 'MessagePage', component: MessagePageModule, icon: 'chatboxes', ios: "ios-chatboxes-outline", md: "ios-chatboxes-outline", leafPage: true },
+    { title: '修改密码', name: 'ModifyPwdPage', component: ModifyPwdPage, icon: 'unlock', ios: "ios-unlock-outline", md: "ios-unlock-outline", leafPage: true },
+    { title: '登出', name: 'LoginPage', component: LoginPageModule, icon: 'exit', ios: "ios-exit-outline", md: "ios-exit-outline", logsOut: true }
   ];
   loggedOutPages: PageInterface[] = [
-    { title: '登录', name: 'LoginPage', component: LoginPageModule, icon: 'log-in'},
-    { title: '注册', name: 'RegistPage', component: RegistPageModule, icon: 'person-add'},
-    { title: '忘记密码', name: 'ForgetPasswordPage', component: ForgetPasswordPageModule, icon: 'key'}
+    { title: '登录', name: 'LoginPage', component: LoginPageModule, icon: 'log-in' },
+    { title: '注册', name: 'RegistPage', component: RegistPageModule, icon: 'person-add' },
+    { title: '忘记密码', name: 'ForgetPasswordPage', component: ForgetPasswordPageModule, icon: 'key' }
   ];
-  rootPage: any;
-  avatarUrl: string = "assets/imgs/author_logo2.png";
-  logoUrl: string = "assets/imgs/visitor.png";
-  userName:string = "androidcat";
 
   constructor(
-    public db:WebDbServiceProvider,
+    public ionicApp: IonicApp,
+    public db: WebDbServiceProvider,
+    public keyboard: Keyboard,
     public menu: MenuController,
     public platform: Platform,
-    public statusBar: StatusBar, 
+    public statusBar: StatusBar,
+    public toastCtrl: ToastController,
     public splashScreen: SplashScreen,
-    public events:Events) {
+    public events: Events) {
     //注册登录事件监听，改变侧滑菜单
     this.listenToLoginEvents();
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       //this.statusBar.styleDefault();
-      
-       //判断登录状态，并跳转
-       this.db.getString(this.HAS_SEEN_TUTORIAL,(hasSeenTutorial)=>{
-        this.db.getString(this.HAS_LOGGED_IN,(hasLoggedIn)=>{
+      if (this.platform.is("android")) {
+        this.registerBackButtonAction();
+      }
+      //判断登录状态，并跳转
+      this.db.getString(this.HAS_SEEN_TUTORIAL, (hasSeenTutorial) => {
+        this.db.getString(this.HAS_LOGGED_IN, (hasLoggedIn) => {
           this.enableMenu(hasLoggedIn);
           this.platformReady(hasLoggedIn);
           this.splashScreen.hide();
         });
-      },(failure)=>{
+      }, (failure) => {
         this.splashScreen.hide();
       });
     });
-
-
   }
 
   enableMenu(loggedIn: boolean) {
-    if (loggedIn){
+    if (loggedIn) {
       this.menu.enable(loggedIn, 'loggedInMenu');
-    }else {
+    } else {
       this.menu.enable(!loggedIn, 'loggedOutMenu');
     }
   }
 
   platformReady(hasLoggedIn) {
-    if (hasLoggedIn){
+    if (hasLoggedIn) {
       this.rootPage = HomePage;
-    }else {
+    } else {
       this.rootPage = LoginPage;
-    }    
+    }
   }
 
   listenToLoginEvents() {
     this.events.subscribe('user:login', () => {
+      this.userName = AppServiceProvider.getInstance().userinfo.loginData.userName;
       this.enableMenu(true);
     });
 
@@ -117,9 +127,14 @@ export class MyApp {
     this.events.subscribe('user:logout', () => {
       this.enableMenu(false);
     });
+
+    this.events.subscribe('userinfo:saved', () => {
+      this.userName = AppServiceProvider.getInstance().userinfo.userData.nickname;
+      //this.logoUrl = AppServiceProvider.getInstance().userinfo.userData.nickname;
+    });
   }
 
-  isActive(page: PageInterface):boolean {
+  isActive(page: PageInterface): boolean {
     let childNav = this.nav.getActiveChildNavs()[0];
 
     // Tabs are a special case because they have their own navigation
@@ -134,6 +149,11 @@ export class MyApp {
       return true;
     }
     return false;
+  }
+
+  gotoPersonalInfoPage() {
+    this.openPage(this.loggedInPages[3]);
+    this.menu.close();
   }
 
   openPage(page: PageInterface) {
@@ -155,21 +175,81 @@ export class MyApp {
     } else {
       // Set the root of the nav with params if it's a tab index
       //这里处理非tab框架的页面跳转，处于便利性考虑，目前我们将所有页面声明位MyApp的module，使用push的方式跳转
-      if (page.leafPage){
+      if (page.leafPage) {
         this.nav.push(page.name);
-      }else {
+      } else {
         this.nav.setRoot(page.name, params).catch((err: any) => {
           console.log(`Didn't set nav root: ${err}`);
         });
       }
-      
+
       //this.nav.push(page.name);
     }
 
     if (page.logsOut === true) {
       // Give the menu time to close before changing to logged out
       this.events.publish('user:logout');
-      this.db.saveString(this.HAS_LOGGED_IN,false);
+      this.db.saveString(this.HAS_LOGGED_IN, false);
     }
   }
+
+  registerBackButtonAction() {
+    this.platform.registerBackButtonAction(() => {
+      console.log("this.keyboard.isOpen():" + this.keyboard.isOpen());
+      if (this.keyboard.isOpen()) {
+        //按下返回键时，先关闭键盘
+        this.keyboard.close();
+        return;
+      };
+      //如果想点击返回按钮隐藏toast或loading或Overlay就把下面加上
+      // this.ionicApp._toastPortal.gaetActive() || this.ionicApp._loadingPortal.getActive() || this.ionicApp._overlayPortal.getActive()
+      //不写this.ionicApp._toastPortal.getActive()是因为连按2次退出
+      let activePortal = this.ionicApp._modalPortal.getActive() || this.ionicApp._overlayPortal.getActive();
+      let loadingPortal = this.ionicApp._loadingPortal.getActive();
+
+      if (activePortal) {
+        //其他的关闭
+        activePortal.dismiss().catch(() => {
+        });
+        activePortal.onDidDismiss(() => {
+        });
+        return;
+      }
+      if (loadingPortal) {
+        //loading的话，返回键无效
+        return;
+      }
+      if (this.menu.isOpen()){
+          this.menu.close();
+          return ;
+      }
+
+      console.log("events go on ");
+      let activeVC = this.nav.getActive();
+      let page = activeVC.instance;
+
+      if (page instanceof LoginPage || page instanceof HomePage || page instanceof RegistPage || page instanceof ForgetPasswordPage) {
+        //this.platform.exitApp();
+        return this.showExit();
+      }
+      //return this.nav.canGoBack() ? this.nav.pop() : this.showExit();//另外两种方法在这里将this.showExit()改为其他两种的方法的逻辑就好。
+    }, 1);
+  }
+
+  //双击退出提示框
+  showExit() {
+    if (this.backButtonPressed) { //当触发标志为true时，即1秒内双击返回按键则退出APP
+      this.platform.exitApp();
+    } else {
+      this.toastCtrl.create({
+        message: '再按一次退出应用',
+        duration: 1000,
+        position: 'bottom',
+        cssClass: 'text-align: center'
+      }).present();
+      this.backButtonPressed = true;
+      setTimeout(() => this.backButtonPressed = false, 1000);//1秒内没有再次点击返回则将触发标志标记为false
+    }
+  }
+
 }

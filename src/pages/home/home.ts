@@ -1,3 +1,4 @@
+import { AppServiceProvider } from './../../providers/app-service/app-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { BasePage } from '../base/base';
@@ -50,7 +51,7 @@ export class HomePage extends BasePage {
   sendQueryPlantsRequest(page: any, refresher: any) {
     let params =
       {
-        "dataInfo":"test",
+        "userName":AppServiceProvider.getInstance().userinfo.loginData.userName,
         "start":  page==1?0:this.plants.length,
         "length": this.pageSize,
       };
@@ -60,19 +61,16 @@ export class HomePage extends BasePage {
         if (page == 1) {
           this.plants = [];
         }
-        let info = obj.data;
-        let list = info.data;
-        this.total = info.recordsTotal;
+        let list = obj.data;
+        this.total = obj.recordsTotal;
         for (let index = 0; index < list.length; index++) {
           let element = list[index];
           this.plants.push(element);
         }
         this.currentPage = page;
-
         if (refresher != null) {
           refresher.complete();
         }
-
       } else {
         this.toast(obj.ACTION_RETURN_MESSAGE);
       }
@@ -85,7 +83,24 @@ export class HomePage extends BasePage {
     }, refresher == null);
   }
 
+  queryTarget(id:string){
+    this.net.httpPost(AppGlobal.API.plantDetail,{
+      "recordId":id
+    },msg => {
+      let obj = JSON.parse(msg);
+      console.log("cellPhone:"+obj.toString());
+      if (obj.ret == AppGlobal.RETURNCODE.succeed) {
+        let plant = obj.data;
+        this.navCtrl.push("AddRecordPage",{state:"0",data:plant});
+      }else{
+        this.toast(obj.desc);
+      }
+    },error => {
+      this.toast(error);
+    },true);
+  }
+
   recordClicked(plant){
-    this.navCtrl.push("RecordDetailPage",{state:"0",data:plant});
+    this.queryTarget(plant.recordId);
   }
 }

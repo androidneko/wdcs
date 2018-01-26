@@ -2,11 +2,12 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { BasePage } from './../base/base';
 import { TyNetworkServiceProvider } from './../../providers/ty-network-service/ty-network-service';
 import { AppServiceProvider, AppGlobal } from './../../providers/app-service/app-service';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController, Events, AlertController, Platform } from 'ionic-angular';
 import { ActionSheetController } from 'ionic-angular/components/action-sheet/action-sheet-controller';
 import { DeviceIntefaceServiceProvider } from '../../providers/device-inteface-service/device-inteface-service';
 import { Loading } from 'ionic-angular/components/loading/loading';
+import { Navbar } from 'ionic-angular/components/toolbar/navbar';
 /**
  * Generated class for the PersonalInfoPage page.
  *
@@ -23,16 +24,21 @@ export class PersonalInfoPage extends BasePage {
 
   // imgArray:Array<any> = [""];
   isEditMode: Boolean = false;
-  nickname: string = 'Cat';
-  telephone: string = '13500000000';
-  email: string = 'androidcat@126.com';
-  birthday:string = "1989-05-25";
-  buttonTitle: string = '编辑';
-  avatarUrl: string = "assets/imgs/author_logo2.png";
   loading: Loading;
+  buttonTitle: string = "编辑";
 
-  gender = '女';
-  genders:any = [
+  info: any = {
+    userName: AppServiceProvider.getInstance().userinfo.loginData.userName,
+    nickname: "ANDROIDNEKO",
+    image: "assets/imgs/author_logo2.png",
+    email: "未填写",
+    gender: "秘密",
+    height: "175CM",
+    weight: "60KG",
+    birthday: "1990-01-01"
+  };
+
+  genders: any = [
     {
       name: '性别',
       options: [
@@ -43,21 +49,21 @@ export class PersonalInfoPage extends BasePage {
     }
   ];
 
-  height:string = "170CM";
-  heights:any = [
+  heights: any = [
     {
       name: '身高',
-      options:[]
+      options: []
     }
   ];
-  
-  weight:string = "60KG";
-  weights:any = [
+
+  weights: any = [
     {
       name: '体重',
-      options:[]
+      options: []
     }
   ];
+
+  @ViewChild(Navbar) navBar: Navbar;
 
   constructor(
     public navCtrl: NavController,
@@ -66,34 +72,44 @@ export class PersonalInfoPage extends BasePage {
     private camera: Camera,
     private actionSheet: ActionSheetController,
     private device: DeviceIntefaceServiceProvider,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    public alert: AlertController,
+    public events: Events) {
     super(navCtrl, navParams);
-    // Using enum
-    // this.gender = Gender.秘密;
-    // this.Gender = Gender;
-    // this.genders = convertEnumToColumn(this.Gender);
+
     this.initHeightAndWeight();
-    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PersonalInfoPage');
-    //this.sendRequest();
+    this.navBar.backButtonClick = this.backButtonClick;
+    this.sendRequest();
   }
 
-  initHeightAndWeight(){
-    let options:any = [];
-    for (let i = 0;i < 200; i++){
-      let item:any = {text: '', value: '' };
+  backButtonClick = (e: UIEvent) => {
+    // do something
+    if (this.isEditMode) {
+      this.showUnsavedAlert();
+      console.log("isEditMode:" + this.isEditMode);
+    } else {
+      this.navCtrl.pop();
+      console.log("isEditMode:" + this.isEditMode);
+    }
+  }
+
+  initHeightAndWeight() {
+    let options: any = [];
+    for (let i = 0; i < 200; i++) {
+      let item: any = { text: '', value: '' };
       item.text = 50 + i + 'CM';
       item.value = 50 + i + 'CM';
       options[i] = item;
     }
     this.heights[0].options = options;
 
-    let options2:any = [];
-    for (let j = 0;j < 200; j++){
-      let item:any = {text: '', value: '' };
+    let options2: any = [];
+    for (let j = 0; j < 200; j++) {
+      let item: any = { text: '', value: '' };
       item.text = 20 + j + 'KG';
       item.value = 20 + j + 'KG';
       options2[j] = item;
@@ -103,47 +119,31 @@ export class PersonalInfoPage extends BasePage {
 
   sendRequest() {
     let params = {
-      "userId": AppServiceProvider.getInstance().userinfo.USERID,
-      "MERCHANT_ID": AppServiceProvider.getInstance().userinfo.MERCHANT_ID,
-      "ACTION_NAME": "merUserApi|viewMerUser"
+      "userName": AppServiceProvider.getInstance().userinfo.loginData.userName,
+      "token": AppServiceProvider.getInstance().userinfo.loginData.token
     };
-    this.net.httpPost(AppGlobal.API.test, params, msg => {
+    this.net.httpPost(AppGlobal.API.getUserInfo, params, msg => {
       console.log(msg);
       let obj = JSON.parse(msg);
-      if (obj.ACTION_RETURN_CODE == AppGlobal.RETURNCODE.succeed || obj.ACTION_RETURN_CODE == null) {
-
-        this.nickname = obj.ACTION_INFO.data.realName;
-        this.telephone = obj.ACTION_INFO.data.cellPhone;
-        this.email = obj.ACTION_INFO.data.eMail;
-        this.avatarUrl = obj.ACTION_INFO.data.picUrl;
-
+      if (obj.ret == AppGlobal.RETURNCODE.succeed) {
+        this.info = obj.data;
+        AppServiceProvider.getInstance().userinfo.userData = obj.data;
       }
       console.log(obj);
-    }, error => {
-
-    }, true);
+    }, error => { }, true);
   }
 
   saveRequest() {
-    let params = {
-      "userId": AppServiceProvider.getInstance().userinfo.USERID,
-      "MERCHANT_ID": AppServiceProvider.getInstance().userinfo.MERCHANT_ID,
-      "picUrl": this.avatarUrl,
-      "picName": "我的头像",
-      "merName": "商户名称--my",
-      "eMail": this.email,
-      "ACTION_NAME": "merUserApi|updateMerUser"
-    };
-
-    this.net.httpPost(AppGlobal.API.test, params, msg => {
+    let params = this.info;
+    this.net.httpPost(AppGlobal.API.editUserInfo, params, msg => {
       console.log(msg);
       let obj = JSON.parse(msg);
-      if (obj.ACTION_RETURN_CODE == AppGlobal.RETURNCODE.succeed || obj.ACTION_RETURN_CODE == null) {
-
-        this.toast('');
-
+      if (obj.ret == AppGlobal.RETURNCODE.succeed) {
+        this.toastShort("保存成功!");
+        this.buttonTitle = '编辑';
+        AppServiceProvider.getInstance().userinfo.userData = this.info;
+        this.events.publish('userinfo:saved');
       }
-      // console.log(obj);
     }, error => {
       this.toast(error);
     }, true);
@@ -159,9 +159,7 @@ export class PersonalInfoPage extends BasePage {
     if (this.isEditMode) {
       this.buttonTitle = '保存';
     } else {
-      this.buttonTitle = '编辑';
-      // this.saveRequest();
-      this.uploadHeaderImage();
+      this.saveRequest();
     }
   }
 
@@ -170,7 +168,8 @@ export class PersonalInfoPage extends BasePage {
     this.camera.getPicture(options).then((imageData) => {
       console.log('success');
       let base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.avatarUrl = base64Image;
+      this.info.image = base64Image;
+      this.uploadHeaderImage();
     }, (err) => {
       console.log('error');
       this.toast(err);
@@ -221,18 +220,16 @@ export class PersonalInfoPage extends BasePage {
 
   //上传头像
   uploadHeaderImage() {
-
-    if (this.avatarUrl != null && this.avatarUrl.indexOf("data:image/jpeg;base64,") >= 0) {
+    if (this.info.image != null && this.info.image.indexOf("data:image/jpeg;base64,") >= 0) {
       this.startLoading();
-      console.log('header in');
-      console.log(this.avatarUrl);
-      let str = this.avatarUrl.replace("data:image/jpeg;base64,", "");
+      console.log(this.info.image);
+      let str = this.info.image.replace("data:image/jpeg;base64,", "");
       this.device.uploadfileWithBase64String(str, "jpeg", (msg) => {
         console.log('success in');
         console.log(msg);
-        this.avatarUrl = msg;
+        let obj = JSON.parse(msg);
+        this.info.image = obj.data;
         this.endLoading();
-        this.saveRequest();
       }, (err) => {
         this.endLoading();
         this.toast(err);
@@ -240,9 +237,25 @@ export class PersonalInfoPage extends BasePage {
       });
     } else {
       console.log('headerImageUrl == null');
-      console.log(this.avatarUrl);
-      this.saveRequest();
+      console.log(this.info.image);
     }
+  }
+
+  showUnsavedAlert() {
+    let alert = this.alert.create({
+      title: '您尚未保存，确定要退出该页面吗？',
+      buttons: [{
+        text: '取消'
+      }, {
+        text: '确定',
+        handler: () => {
+          console.log('confirm');
+          this.isEditMode = false;
+          this.navCtrl.pop();
+        }
+      }]
+    });
+    alert.present();
   }
 
   startLoading() {

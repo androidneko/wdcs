@@ -26,12 +26,11 @@
   </ion-slides>
 </ion-header>
 
-
 <ion-content no-padding no-margin>
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
       <ion-refresher-content pullingText="下拉刷新"></ion-refresher-content>
-    </ion-refresher>
+  </ion-refresher>
   <ion-list no-lines>
     <plant-item *ngFor="let item of plants" (click)="recordClicked(item)" [item]=item></plant-item>
     <ion-allitem-showed-bottom *ngIf="plants.length>=total&&plants.length>0"></ion-allitem-showed-bottom>

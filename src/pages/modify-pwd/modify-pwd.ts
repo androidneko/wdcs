@@ -37,7 +37,7 @@ export class ModifyPwdPage extends BasePage {
     if(this.checkIfPwdOk(this.oldPassword, this.newPassword,this.confirmPassword)){
       this.net.httpPost(AppGlobal.API.modifyPassword,
         {
-          userName:AppServiceProvider.getInstance().userinfo.userName,
+          userName:AppServiceProvider.getInstance().userinfo.loginData.userName,
           oldPwd:this.oldPassword,
           newPwd:this.newPassword
           // oldPassword:Md5.hashStr(this.oldPassword).toString().toLowerCase(),
