@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { File } from '@ionic-native/file';
 /**
  * Generated class for the UploadPlantManagerPage page.
  *
@@ -17,19 +17,21 @@ export class UploadPlantManagerPage {
   waitLoadArray: Array<any> = [{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"}];
   hadUploadArray:Array<any> = [{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"3"}];
   reviewArray:Array<any> = [{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"9"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"4"}];
+  catCheData:any;
   currentPage1: number = 1;
   pageSize1: number = 20;
+  total1 = -1;
   currentPage2: number = 1;
-  total1 = 999;
   pageSize2: number = 20;
   currentPage3: number = 1;
   pageSize3: number = 20;
   type:String = "waitLoad";//待上传waitLoad 已上传hadUpload 审核中review
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private file: File,public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UploadPlantManagerPage');
+    this.readLocalFiles();
   }
   uploadBtnCliked(){
     console.log('批量上传');
@@ -38,7 +40,7 @@ export class UploadPlantManagerPage {
   }
   waitLoadClicked(item){
     //待上传
-    this.navCtrl.push("AddRecordPage",{state:"1",data:item});
+    this.navCtrl.push("AddRecordPage",{state:"1",data:this.catCheData});
   }
   hadUploadClicked(item){
     //已上传
@@ -64,6 +66,30 @@ export class UploadPlantManagerPage {
     //   refresher.complete();
     // }
   }
+  readLocalFiles(){
+    this.file.readAsText(this.file.dataDirectory,"datainfo.text").then((success)=>{
+      if (success!=null&&success.length>0) {
+        let data = JSON.parse(success);
+        this.catCheData = data;
+        let picCount = 0;
+        for (let index = 0; index < data.pictures.length; index++) {
+          const element = data.pictures[index];
+          if (element.picUrl == "assets/imgs/addphoto.png") {
+            break;
+          }else{
+            picCount ++;
+          }
+        }
+       this.waitLoadArray = [{picUrl:data.pictures[0].picUrl,target:"等待上传",picNum: picCount + ""}]
+        this.total1 = 1;
+      }else
+      this.total1 = 0;
+    }).catch((err)=>{
+      console.log(err);
+      this.total1 = 0;
+    });
+  }
+
   doRefresh2(refresher) {
     //刷新
     console.log("下拉刷新");

@@ -11,30 +11,32 @@
   </ion-navbar>
   <div class="ty-line1"></div>
   <ion-segment mode="md" [(ngModel)]="type">
-    <ion-segment-button value="waitLoad">
+    <ion-segment-button value="hadUpload">
       已上传
     </ion-segment-button>
-    <ion-segment-button value="hadUpload">
+    <ion-segment-button value="review">
       审核中
     </ion-segment-button>
-    <ion-segment-button value="review">
+    <ion-segment-button value="waitLoad">
       待上传
     </ion-segment-button>
+
   </ion-segment>
 </ion-header>
 
 
 <ion-content class="ion-content-background-partingline" no-padding [ngSwitch]="type">
 
-  <ion-refresher (ionRefresh)="doRefresh1($event)" *ngSwitchCase="'waitLoad'">
+  <!-- <ion-refresher (ionRefresh)="doRefresh1($event)" *ngSwitchCase="'waitLoad'">
     <ion-refresher-content pullingText="下拉刷新"></ion-refresher-content>
-  </ion-refresher>
+  </ion-refresher> -->
   <ion-list *ngSwitchCase="'waitLoad'">
     <plant-item *ngFor="let item of waitLoadArray" (click)="waitLoadClicked(item)" [item]="item">
     </plant-item>
-    <ion-infinite-scroll *ngIf="waitLoadArray.length<total1" (ionInfinite)="doInfinite1($event)">
+    <!-- <ion-infinite-scroll *ngIf="waitLoadArray.length<total1" (ionInfinite)="doInfinite1($event)">
       <ion-infinite-scroll-content loadingText="正在加载..."></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+    </ion-infinite-scroll> -->
+    <ion-custom-empty *ngIf="total1==0"></ion-custom-empty>
   </ion-list>
 
 

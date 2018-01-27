@@ -2,7 +2,8 @@
 <div style="position:relative;margin:8px;border-radius:5px;overflow:hidden;">
    <img class="mimg" src="{{item.picUrl}}" alt="">
    <div class="bottom">
-     <p class="bleft">编号{{item.target}}</p>
+     <p *ngIf="item.target=='等待上传'"  class="bleft">编号{{item.target}}</p>
+     <p *ngIf="item.target!='等待上传'"  class="bleft">编号{{item.target}}</p>
      <p class="bright">{{item.picNum}}</p>
      <ion-icon name="md-photos"></ion-icon>
    </div>
