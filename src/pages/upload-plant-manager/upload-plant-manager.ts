@@ -25,7 +25,7 @@ export class UploadPlantManagerPage {
   pageSize2: number = 20;
   currentPage3: number = 1;
   pageSize3: number = 20;
-  type:String = "waitLoad";//待上传waitLoad 已上传hadUpload 审核中review
+  type:String = "hadUpload";//待上传waitLoad 已上传hadUpload 审核中review
   constructor(private file: File,public navCtrl: NavController, public navParams: NavParams) {
   }
 
