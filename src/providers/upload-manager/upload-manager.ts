@@ -48,6 +48,7 @@ export class UploadManagerProvider {
     console.log("hide loading");
     if (this.loading!=null) {
       this.loading.dismiss();
+      this.loading=null;
    }
   }
   uploadItemImg(index){
@@ -67,8 +68,15 @@ export class UploadManagerProvider {
       console.log('success in');
       console.log(msg);
       let obj = JSON.parse(msg);
-      pic.picUrl = obj.data;
-      this.uploadItemImg(index+1);
+      if (obj.ret == AppGlobal.RETURNCODE.succeed) {
+        
+        pic.picUrl = obj.data;
+        this.uploadItemImg(index+1);
+      } else {
+        this.toast(obj.desc);
+        this.upfiled();
+      }
+    
     }, (err) => {
      
       this.toast(err);
@@ -89,8 +97,9 @@ export class UploadManagerProvider {
   }
   upfiled(){
     //缓存
+    console.log(this.file.dataDirectory);
     this.file.writeFile(this.file.dataDirectory,this.filename,JSON.stringify(this.data),{replace:true}).then((success)=>{
-      // console.log("succceds");
+      console.log("succceds");
       if (this.filed != null) {
         this.filed();
       }
