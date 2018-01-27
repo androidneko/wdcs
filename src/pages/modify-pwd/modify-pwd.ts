@@ -45,7 +45,6 @@ export class ModifyPwdPage extends BasePage {
         },msg => {
         let obj = JSON.parse(msg);
         if (obj.ret == 200) {
-          AppServiceProvider.getInstance().userinfo = obj.ACTION_INFO;
           this.db.saveString(this.newPassword,"password");
           this.toast("修改成功!");
           this.navCtrl.pop();

@@ -49,7 +49,7 @@ export class AppGlobal {
 export class AppServiceProvider {
   private static instance:AppServiceProvider = new AppServiceProvider();
   public userinfo:any = {
-    loginData:{userName:"13555555555"},
+    loginData:{userName:""},
     userData:{}
   };//当前用户信息
   public merMenuList:any=[];

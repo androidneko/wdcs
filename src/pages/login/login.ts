@@ -49,12 +49,12 @@ export class LoginPage {
           // "password":Md5.hashStr(password.value).toString().toLowerCase()
         },msg => {
         let obj = JSON.parse(msg);
-        this.events.publish('user:login');
         if (obj.ret == AppGlobal.RETURNCODE.succeed) {
           AppServiceProvider.getInstance().userinfo.loginData = obj.data;
           this.db.saveString(username.value,"username");
           this.db.saveString(password.value,"password");
           this.navCtrl.setRoot("HomePage");
+          this.events.publish('user:login');
         }else{
           this.toast(obj.desc);
         }
