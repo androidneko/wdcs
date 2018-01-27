@@ -1,6 +1,9 @@
+import { BasePage } from './../base/base';
+import { UploadManagerProvider } from './../../providers/upload-manager/upload-manager';;
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { DeviceIntefaceServiceProvider } from '../../providers/device-inteface-service/device-inteface-service';
+import { TydatePipe } from '../../pipes/tydate/tydate';
 
 /**
  * Generated class for the AddRecordPage page.
@@ -11,10 +14,11 @@ import { DeviceIntefaceServiceProvider } from '../../providers/device-inteface-s
 
 @IonicPage()
 @Component({
+  providers:[TydatePipe],
   selector: 'page-add-record',
   templateUrl: 'add-record.html',
 })
-export class AddRecordPage {
+export class AddRecordPage extends BasePage{
 
   state = "1";//1可编辑状态 0不可编辑状态
   isShowApplying = false;//是否显示正在申请中
@@ -141,7 +145,7 @@ export class AddRecordPage {
     alt: "", //海拔
     lat: "", //纬度
     lng: "", //经度
-    smallAddressName: "",//小地名
+    spot: "",//小地名
     proof: "保护区",//就地保护状况
     proofName: "",//保护区名称 proof为其他是才显示
     proofLevel: "",//proof 为其他时才显示
@@ -178,7 +182,8 @@ export class AddRecordPage {
       pluntList: [],
     }
   };
-  constructor(public navCtrl: NavController, public navParams: NavParams,public device:DeviceIntefaceServiceProvider) {
+  constructor(public toastCtrl: ToastController,public navCtrl: NavController, public navParams: NavParams,public device:DeviceIntefaceServiceProvider,private datePipe:TydatePipe,private upManager:UploadManagerProvider) {
+    super(navCtrl,navParams,toastCtrl);
     if (this.navParams.data.state != null) {
       this.state = this.navParams.data.state;
     }
@@ -188,23 +193,29 @@ export class AddRecordPage {
     }
     if (this.navParams.data.data != null) {
       this.speciesName = this.navParams.data.data;
+    }else{
+      //时间赋值
+      //用户名赋值
+
+      this.data.date = this.datePipe.transform(new Date(),"yyyy-MM-dd");
+      if (this.state == "1"&&this.data.lat.length == 0) {
+        this.locantionDes = "正在获取位置信息";
+        this.device.push("location","",msg =>{
+          let obj = JSON.parse(msg);
+          this.data.county=  obj.county;
+          this.data.lat = obj.lat;
+          this.data.lng = obj.lng;
+          this.data.alt = obj.alt;
+          this.data.address = obj.address;
+          this.locantionDes = "位置";
+        },err => {
+          // this.toast(err);
+          this.locantionDes = "获取位置失败,点击重新获取";
+          console.log("push failed");
+        });
+      }
     }
-    if (this.state == "1"&&this.data.lat.length == 0) {
-      this.locantionDes = "正在获取位置信息";
-      this.device.push("location","",msg =>{
-        let obj = JSON.parse(msg);
-        this.data.county=  obj.county;
-        this.data.lat = obj.lat;
-        this.data.lng = obj.lng;
-        this.data.alt = obj.alt;
-        this.data.address = obj.address;
-        this.locantionDes = "位置";
-      },err => {
-        // this.toast(err);
-        this.locantionDes = "获取位置失败,点击重新获取";
-        console.log("push failed");
-      });
-    }
+   
   
   }
   locationClick(){
@@ -255,6 +266,26 @@ export class AddRecordPage {
   //提交记录
   commitClick() {
     console.log("提交按钮点击");
-    console.log(JSON.stringify(this.data));
+    // console.log(JSON.stringify(this.data));
+    //异常判断 暂时保存
+    if (this.data.pictures.length>0) {
+      for (let index = 0; index < 3; index++) {
+        let item = this.data.pictures[index];
+        if (item.picUrl == "assets/imgs/addphoto.png") {
+          this.toast("前三张照片不能为空");
+            return;
+        }
+     
+     }
+    }else{
+      this.toast("请选择照片");
+      return;
+    }
+    this.upManager.successed = ()=>{
+
+      this.navCtrl.pop();
+    };
+    this.upManager.uploadWithData(this.data);
+
   }
 }
