@@ -22,7 +22,7 @@ export class PhotoSelectsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,private camera:Camera,private actionSheet:ActionSheetController,private photoViewer: PhotoViewer,private device:DeviceIntefaceServiceProvider) {
     if (this.navParams.data.state !=null) {
         this.state = this.navParams.data.state;
-        this.dataArray = this.navParams.data.imgArray;
+        this.dataArray = this.navParams.data.pictures;
         if (this.state == '1') {
             if (this.dataArray!=null&&this.dataArray.length == 0) {
               this.dataArray.push({picUrl:"assets/imgs/addphoto.png",picName:"深径"});

@@ -31,7 +31,7 @@ export class UploadPlantManagerPage extends BasePage {
   pageSize3: number = 20;
   total3 = -1;
   type:String = "hadUpload";//待上传waitLoad 已上传hadUpload 审核中review
-  constructor(public toastCtrl: ToastController, ,private file: File,public navCtrl: NavController, public navParams: NavParams,private net:TyNetworkServiceProvider) {
+  constructor(public toastCtrl: ToastController,private file: File,public navCtrl: NavController, public navParams: NavParams,private net:TyNetworkServiceProvider) {
     super(navCtrl, navParams, toastCtrl);
   }
 
@@ -114,7 +114,7 @@ export class UploadPlantManagerPage extends BasePage {
     // }
   }
 
-  sendQueryPlantsRequest2(page: any, refresher: any,isLoading?=true) {
+  sendQueryPlantsRequest2(page: any, refresher: any,isLoading:boolean=true) {
     let params =
       {
         "userName":AppServiceProvider.getInstance().userinfo.loginData.userName,
@@ -169,7 +169,7 @@ export class UploadPlantManagerPage extends BasePage {
 
 
   
-  sendQueryPlantsRequest3(page: any, refresher: any,isloading?=true) {
+  sendQueryPlantsRequest3(page: any, refresher: any,isloading:boolean=true) {
     let params =
       {
         "userName":AppServiceProvider.getInstance().userinfo.loginData.userName,
