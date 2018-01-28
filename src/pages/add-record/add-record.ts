@@ -192,7 +192,7 @@ export class AddRecordPage extends BasePage{
       this.isShowApplying = this.navParams.data.isShowApplying;
     }
     if (this.navParams.data.data != null) {
-      this.speciesName = this.navParams.data.data;
+      this.data = this.navParams.data.data;
     }else{
       //时间赋值
       //用户名赋值
