@@ -52,8 +52,8 @@ export class RecordDetailPage {
     }
   ];
 
-  bearing = '正东';
-  bearings:any = [
+  aspect = '正东';
+  aspects:any = [
     {
       name: '方位',
       options: [

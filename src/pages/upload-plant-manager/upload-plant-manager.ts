@@ -17,9 +17,9 @@ import { BasePage } from '../base/base';
   templateUrl: 'upload-plant-manager.html',
 })
 export class UploadPlantManagerPage extends BasePage {
-  waitLoadArray: Array<any> = [{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"}];
-  hadUploadArray:Array<any> = [{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"3"}];
-  reviewArray:Array<any> = [{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"8"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"9"},{picUrl:"assets/imgs/test.png",no:"zj50003",picNum:"4"}];
+  waitLoadArray: Array<any> = [];
+  hadUploadArray:Array<any> = [];
+  reviewArray:Array<any> = [];
   catCheData:any;
   currentPage1: number = 1;
   pageSize1: number = 20;
@@ -128,7 +128,7 @@ export class UploadPlantManagerPage extends BasePage {
           this.reviewArray = [];
         }
         let list = obj.data;
-        this.total2 = obj.recordsTotal;
+        this.total2 = parseInt(obj.recordsTotal) ;
         for (let index = 0; index < list.length; index++) {
           let element = list[index];
           this.reviewArray.push(element);
@@ -138,9 +138,10 @@ export class UploadPlantManagerPage extends BasePage {
           refresher.complete();
         }
       } else {
+        this.total2 = 0;
         this.toast(obj.ACTION_RETURN_MESSAGE);
       }
-      this.total2 = 0;
+      
     }, error => {
       this.toast(error);
       this.total2 = 0;
@@ -183,7 +184,7 @@ export class UploadPlantManagerPage extends BasePage {
           this.hadUploadArray = [];
         }
         let list = obj.data;
-        this.total3 = obj.recordsTotal;
+        this.total3 = parseInt(obj.recordsTotal);
         for (let index = 0; index < list.length; index++) {
           let element = list[index];
           this.hadUploadArray.push(element);
@@ -193,9 +194,10 @@ export class UploadPlantManagerPage extends BasePage {
           refresher.complete();
         }
       } else {
+        this.total3 = 0;
         this.toast(obj.ACTION_RETURN_MESSAGE);
       }
-      this.total3 = 0;
+      
     }, error => {
       this.toast(error);
      this.total3 = 0;

@@ -14,18 +14,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'plant-detail.html',
 })
 export class PlantDetailPage {
-  sampleNum:string = "";
-  seedling:string = "";
-  sapling:string = "";
+  coSampleNum:string = "";
+  seedlingNum:string = "";
+  saplingNum:string = "";
   // plants:any = [];
   
   state = "1";
   detailInfo = {
-    sampleNum:"",//副样方数
-    desSampleNum:"",//目的物种副样方数
-    desCategorys:[{checked:false,name:"乔木"},{checked:false,name:"灌木"},{checked:false,name:"草本"},{checked:false,name:"藤本"},{checked:false,name:"常绿"},{checked:false,name:"落叶"},{checked:false,name:"一年生"},{checked:false,name:"多年生"},{checked:false,name:"木质"},{checked:false,name:"肉质"}],//目的物种生活型
-    seedling :"",//幼树株数
-    sapling:"",//seedling
+    coSampleNum:"",//副样方数
+    targetCoSampleNum:"",//目的物种副样方数
+    lifeForm:[{checked:false,name:"乔木"},{checked:false,name:"灌木"},{checked:false,name:"草本"},{checked:false,name:"藤本"},{checked:false,name:"常绿"},{checked:false,name:"落叶"},{checked:false,name:"一年生"},{checked:false,name:"多年生"},{checked:false,name:"木质"},{checked:false,name:"肉质"}],//目的物种生活型
+    seedlingNum :"",//幼苗
+    saplingNum:"",//幼树
     pluntList:[],
   };
   constructor(public navCtrl: NavController, public navParams: NavParams) {

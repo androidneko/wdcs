@@ -16,84 +16,84 @@
   <ion-list>
     <ion-item>
       <ion-label item-start>副样方数</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入副样方(样圆)数" maxlength="6" [(ngModel)]="detailInfo.sampleNum"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入副样方(样圆)数" maxlength="6" [(ngModel)]="detailInfo.coSampleNum"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label item-start>目的物种副样方数</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="出现目的物种的副样方(样园)数" maxlength="6" [(ngModel)]="detailInfo.desSampleNum"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="出现目的物种的副样方(样园)数" maxlength="6" [(ngModel)]="detailInfo.targetCoSampleNum"></ion-input>
     </ion-item>
     <p style="margin-left:10px;color:gray">目的物种生活型</p>
     <div padding-left class="checkMark" style="width:100%;">
       <div class="col" float-left text-center>
         <div style="overflow:auto;margin:0 auto;display: inline-block;">
-          <ion-checkbox disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.desCategorys[0].checked" ></ion-checkbox>
-          <p float-left>{{detailInfo.desCategorys[0].name}}</p>
+          <ion-checkbox disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.lifeForm[0].checked" ></ion-checkbox>
+          <p float-left>{{detailInfo.lifeForm[0].name}}</p>
         </div>
       </div>
       <div class="col" float-left text-center>
         <div style="overflow:auto;margin:0 auto;display: inline-block;*display:inline; *zoom:1;">
-          <ion-checkbox disabled="{{state=='1'?'false':'true'}}" disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.desCategorys[1].checked"></ion-checkbox>
-          <p float-left>{{detailInfo.desCategorys[1].name}}</p>
+          <ion-checkbox disabled="{{state=='1'?'false':'true'}}" disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.lifeForm[1].checked"></ion-checkbox>
+          <p float-left>{{detailInfo.lifeForm[1].name}}</p>
         </div>
       </div>
       <div class="col" float-left text-center>
         <div style="overflow:auto;margin:0 auto;display: inline-block;*display:inline; *zoom:1;">
-          <ion-checkbox disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.desCategorys[2].checked"></ion-checkbox>
-          <p float-left>{{detailInfo.desCategorys[2].name}}</p>
+          <ion-checkbox disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.lifeForm[2].checked"></ion-checkbox>
+          <p float-left>{{detailInfo.lifeForm[2].name}}</p>
         </div>
       </div>
       <div class="col" float-left text-center>
           <div style="overflow:auto;margin:0 auto;display: inline-block;*display:inline; *zoom:1;">
-            <ion-checkbox disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.desCategorys[3].checked"></ion-checkbox>
-            <p float-left>{{detailInfo.desCategorys[3].name}}</p>
+            <ion-checkbox disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.lifeForm[3].checked"></ion-checkbox>
+            <p float-left>{{detailInfo.lifeForm[3].name}}</p>
           </div>
         </div>
         <div class="col" float-left text-center>
             <div style="overflow:auto;margin:0 auto;display: inline-block;*display:inline; *zoom:1;">
-              <ion-checkbox disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.desCategorys[4].checked"></ion-checkbox>
-              <p float-left>{{detailInfo.desCategorys[4].name}}</p>
+              <ion-checkbox disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.lifeForm[4].checked"></ion-checkbox>
+              <p float-left>{{detailInfo.lifeForm[4].name}}</p>
             </div>
           </div>
           <div padding-left class="ty-line1" float-left></div>
           <div class="col" float-left text-center>
               <div style="overflow:auto;margin:0 auto;display: inline-block;">
-                <ion-checkbox disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.desCategorys[5].checked"></ion-checkbox>
-                <p float-left>{{detailInfo.desCategorys[5].name}}</p>
+                <ion-checkbox disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.lifeForm[5].checked"></ion-checkbox>
+                <p float-left>{{detailInfo.lifeForm[5].name}}</p>
               </div>
             </div>
             <div class="col" float-left text-center>
               <div style="overflow:auto;margin:0 auto;display: inline-block;*display:inline; *zoom:1;">
-                <ion-checkbox disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.desCategorys[6].checked"></ion-checkbox>
-                <p float-left>{{detailInfo.desCategorys[6].name}}</p>
+                <ion-checkbox disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.lifeForm[6].checked"></ion-checkbox>
+                <p float-left>{{detailInfo.lifeForm[6].name}}</p>
               </div>
             </div>
             <div class="col" float-left text-center>
               <div style="overflow:auto;margin:0 auto;display: inline-block;*display:inline; *zoom:1;">
-                <ion-checkbox disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.desCategorys[7].checked"></ion-checkbox>
-                <p float-left>{{detailInfo.desCategorys[7].name}}</p>
+                <ion-checkbox disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.lifeForm[7].checked"></ion-checkbox>
+                <p float-left>{{detailInfo.lifeForm[7].name}}</p>
               </div>
             </div>
             <div class="col" float-left text-center>
                 <div style="overflow:auto;margin:0 auto;display: inline-block;*display:inline; *zoom:1;">
-                  <ion-checkbox disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.desCategorys[8].checked"></ion-checkbox>
-                  <p float-left>{{detailInfo.desCategorys[8].name}}</p>
+                  <ion-checkbox disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.lifeForm[8].checked"></ion-checkbox>
+                  <p float-left>{{detailInfo.lifeForm[8].name}}</p>
                 </div>
               </div>
               <div class="col" float-left text-center>
                   <div style="overflow:auto;margin:0 auto;display: inline-block;*display:inline; *zoom:1;">
-                    <ion-checkbox disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.desCategorys[9].checked"></ion-checkbox>
-                    <p float-left>{{detailInfo.desCategorys[9].name}}</p>
+                    <ion-checkbox disabled="{{state=='1'?'false':'true'}}" class="checkbox-md checkbox_normal" color="primary" float-left [(ngModel)]="detailInfo.lifeForm[9].checked"></ion-checkbox>
+                    <p float-left>{{detailInfo.lifeForm[9].name}}</p>
                   </div>
                 </div>
     </div>
     <div class="ty-line1"></div>
     <ion-item>
       <ion-label item-start>幼树株数</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入幼树株数" maxlength="6" [(ngModel)]="detailInfo.sapling"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入幼树株数" maxlength="6" [(ngModel)]="detailInfo.saplingNum"></ion-input>
     </ion-item>
     <ion-item no-lines>
       <ion-label item-start>幼苗株数</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入幼苗株数" maxlength="6" [(ngModel)]="detailInfo.seedling"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入幼苗株数" maxlength="6" [(ngModel)]="detailInfo.seedlingNum"></ion-input>
     </ion-item>
     <ion-item no-lines style="margin-top:20px;" *ngIf="detailInfo.pluntList.length > 0">
       <ion-icon item-start name="leaf" ios="ios-leaf-outline" md="ios-leaf-outline" color="primary"></ion-icon>

@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { DeviceIntefaceServiceProvider } from '../../providers/device-inteface-service/device-inteface-service';
 import { TydatePipe } from '../../pipes/tydate/tydate';
+import { AppServiceProvider } from '../../providers/app-service/app-service';
 
 /**
  * Generated class for the AddRecordPage page.
@@ -57,8 +58,8 @@ export class AddRecordPage extends BasePage{
     }
   ];
 
-  bearing = '正东';
-  bearings: any = [
+  aspect = '正东';
+  aspects: any = [
     {
       name: '方位',
       options: [
@@ -137,7 +138,7 @@ export class AddRecordPage extends BasePage{
   imgArray = [];
   plants = [];
   data = {
-    userName: "雨菲菲",//用户名
+    userName: AppServiceProvider.getInstance().userinfo.loginData.userName,//用户名
     date: "2018-01-10",//日期
     target: "",//目标植物
     county:"",
@@ -153,9 +154,9 @@ export class AddRecordPage extends BasePage{
     mainSampleNo: "",//主样方编号
     evnDesc: "",//环境描述
     mainSampleArea: "",//主样方面积
-    communityName: "",//群落名称
+    community: "",//群落名称
     communityArea: "",//群落面积
-    bearing: "正东",//坡向
+    aspect: "正东",//坡向
     degree: "30°",//坡度
     position: "脊",//坡位
     crownDensity: "",//郁闭度
@@ -174,11 +175,11 @@ export class AddRecordPage extends BasePage{
     insiders: [],//知情者
     pictures: [],//图片
     detailInfo: {
-      sampleNum: "",//副样方数
-      desSampleNum: "",//目的物种副样方数
-      desCategorys: [{ checked: false, name: "乔木" }, { checked: false, name: "灌木" }, { checked: false, name: "草本" }, { checked: false, name: "藤本" }, { checked: false, name: "常绿" }, { checked: false, name: "落叶" }, { checked: false, name: "一年生" }, { checked: false, name: "多年生" }, { checked: false, name: "木质" }, { checked: false, name: "肉质" }],//目的物种生活型
-      seedling: "",//幼树株数
-      sapling: "",//seedling
+      coSampleNum: "",//副样方数
+      targetCoSampleNum: "",//目的物种副样方数
+      lifeForm: [{ checked: false, name: "乔木" }, { checked: false, name: "灌木" }, { checked: false, name: "草本" }, { checked: false, name: "藤本" }, { checked: false, name: "常绿" }, { checked: false, name: "落叶" }, { checked: false, name: "一年生" }, { checked: false, name: "多年生" }, { checked: false, name: "木质" }, { checked: false, name: "肉质" }],//目的物种生活型
+      seedlingNum: "",//幼苗
+      saplingNum: "",//幼树
       pluntList: [],
     }
   };

@@ -84,7 +84,7 @@
 
     <ion-item>
       <ion-label item-start>群落名称</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入群落名称" maxlength="6" [(ngModel)]="data.communityName"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入群落名称" maxlength="6" [(ngModel)]="data.community"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -99,7 +99,7 @@
 
     <ion-item>
       <ion-label>坡向</ion-label>
-      <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="bearing" [(ngModel)]="data.bearing" [multiPickerColumns]="bearings" doneText="确定"
+      <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="aspect" [(ngModel)]="data.aspect" [multiPickerColumns]="aspects" doneText="确定"
         cancelText="取消"></ion-multi-picker>
     </ion-item>
     <ion-item>
