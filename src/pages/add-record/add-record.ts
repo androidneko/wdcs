@@ -199,24 +199,24 @@ export class AddRecordPage extends BasePage{
       //用户名赋值
 
       this.data.date = this.datePipe.transform(new Date(),"yyyy-MM-dd");
-      if (this.state == "1"&&this.data.lat.length == 0) {
-        this.locantionDes = "正在获取位置信息";
-        this.device.push("location","",msg =>{
-          let obj = JSON.parse(msg);
-          this.data.county=  obj.county;
-          this.data.lat = obj.lat;
-          this.data.lng = obj.lng;
-          this.data.alt = obj.alt;
-          this.data.address = obj.address;
-          this.locantionDes = "位置";
-        },err => {
-          // this.toast(err);
-          this.locantionDes = "获取位置失败,点击重新获取";
-          console.log("push failed");
-        });
-      }
+    
     }
-   
+    if (this.state == "1"&&this.data.lat.length == 0) {
+      this.locantionDes = "正在获取位置信息";
+      this.device.push("location","",msg =>{
+        let obj = JSON.parse(msg);
+        this.data.county=  obj.county;
+        this.data.lat = obj.lat;
+        this.data.lng = obj.lng;
+        this.data.alt = obj.alt;
+        this.data.address = obj.address;
+        this.locantionDes = "位置";
+      },err => {
+        // this.toast(err);
+        this.locantionDes = "获取位置失败,点击重新获取";
+        console.log("push failed");
+      });
+    }
   
   }
   locationClick(){
