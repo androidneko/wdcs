@@ -29,14 +29,19 @@
         <ion-input readonly="{{state=='1'?'false':'true'}}" type="number" placeholder="请输入物种名称" maxlength="6" [(ngModel)]="data.target"></ion-input>
     </ion-item>
     <div class="ac-line-tiny"></div>
-    <ion-item class="titleItem" (click)="locationClick()">
+    <ion-item class="titleItem" >
       <ion-icon item-start name="pin" ios="ios-pin-outline" md="ios-pin-outline" color="primary"></ion-icon>
-      <ion-label item-start>{{locantionDes}}</ion-label>
+      <ion-label item-content>{{locantionDes}}</ion-label>
+      <button *ngIf="state!='0'&&locantionDes!='正在获取位置信息'"  ion-button icon-start clear item-end (click)="locationClick()">
+        <ion-icon style="margin-right:0px !important" item-end  name="refresh" ios="ios-refresh-outline" md="ios-refresh-outline" color="primary"></ion-icon>
+        刷新
+      </button>
     </ion-item>
     <ion-item *ngIf="data.lat!=null&&data.lat.length>0" >
       <h3>{{data.address}}</h3>
       <div class="ac-line-tiny"></div>
       <p>经度：{{data.lng}} 维度:{{data.lat}} 海拔:{{data.alt}}米</p>
+    
     </ion-item>
     <ion-item>
       <ion-label item-start>小地名</ion-label>

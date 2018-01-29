@@ -220,7 +220,6 @@ export class AddRecordPage extends BasePage{
   
   }
   locationClick(){
-    if (this.locantionDes == "获取位置失败,点击重新获取") {
       this.locantionDes = "正在获取位置信息";
       this.device.push("location","",msg =>{
         let obj = JSON.parse(msg);
@@ -235,7 +234,6 @@ export class AddRecordPage extends BasePage{
         this.locantionDes = "获取位置失败,点击重新获取";
         console.log("push failed");
       });
-    }
   }
 
   ionViewDidLoad() {
