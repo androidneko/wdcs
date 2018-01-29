@@ -1,0 +1,147 @@
+{
+  "data" : [
+    {
+      "picNum" : 0,
+      "pictures" : [],
+      "recordId" : "10",
+      "target" : "10"
+    },
+    {
+      "picNum" : 0,
+      "pictures" : [],
+      "recordId" : "11",
+      "target" : "11"
+    },
+    {
+      "picNum" : 0,
+      "pictures" : [],
+      "recordId" : "3",
+      "target" : "3"
+    },
+    {
+      "picNum" : 0,
+      "pictures" : [],
+      "recordId" : "4",
+      "target" : "4"
+    },
+    {
+      "picNum" : 4,
+      "pictures" : [
+        {
+          "createUserId" : "admin",
+          "createtime" : "2018-01-29 13:45:26",
+          "id" : "3fbe3e97229a4664954c82fb7a0f4f69",
+          "picName" : "",
+          "picUrl" : "http://120.25.249.105:8083/api/v1/3034401152640.jpeg",
+          "remark" : null,
+          "sampleInfoId" : "4aefcfb9e32342a4826ed2ad26d6c7fd"
+        },
+        {
+          "createUserId" : "admin",
+          "createtime" : "2018-01-29 13:45:26",
+          "id" : "530925df7df342efb26e3a33f3b733ae",
+          "picName" : "深径",
+          "picUrl" : "http://120.25.249.105:8083/api/v1/3034401110818.jpeg",
+          "remark" : null,
+          "sampleInfoId" : "4aefcfb9e32342a4826ed2ad26d6c7fd"
+        },
+        {
+          "createUserId" : "admin",
+          "createtime" : "2018-01-29 13:45:26",
+          "id" : "5fd1305062ef42848760ba0246049b5a",
+          "picName" : "样方标示",
+          "picUrl" : "http://120.25.249.105:8083/api/v1/3034401139072.jpeg",
+          "remark" : null,
+          "sampleInfoId" : "4aefcfb9e32342a4826ed2ad26d6c7fd"
+        },
+        {
+          "createUserId" : "admin",
+          "createtime" : "2018-01-29 13:45:26",
+          "id" : "788de92a58764e65834c8d580d422d9d",
+          "picName" : "植株",
+          "picUrl" : "http://120.25.249.105:8083/api/v1/3034401126130.jpeg",
+          "remark" : null,
+          "sampleInfoId" : "4aefcfb9e32342a4826ed2ad26d6c7fd"
+        }
+      ],
+      "recordId" : "4aefcfb9e32342a4826ed2ad26d6c7fd",
+      "target" : "123"
+    },
+    {
+      "picNum" : 0,
+      "pictures" : [],
+      "recordId" : "5",
+      "target" : "5"
+    },
+    {
+      "picNum" : 0,
+      "pictures" : [],
+      "recordId" : "6",
+      "target" : "6"
+    },
+    {
+      "picNum" : 0,
+      "pictures" : [],
+      "recordId" : "7",
+      "target" : "7"
+    },
+    {
+      "picNum" : 0,
+      "pictures" : [],
+      "recordId" : "8",
+      "target" : "8"
+    },
+    {
+      "picNum" : 0,
+      "pictures" : [],
+      "recordId" : "9",
+      "target" : "9"
+    },
+    {
+      "picNum" : 4,
+      "pictures" : [
+        {
+          "createUserId" : "admin",
+          "createtime" : "2018-01-29 13:44:33",
+          "id" : "c25866dcbb6541d59bd2f8b5ac51037a",
+          "picName" : "深径",
+          "picUrl" : "http://120.25.249.105:8083/api/v1/3034401110818.jpeg",
+          "remark" : null,
+          "sampleInfoId" : "bc8db1893f8e4d89a7a3f94dc069a467"
+        },
+        {
+          "createUserId" : "admin",
+          "createtime" : "2018-01-29 13:44:33",
+          "id" : "d513176bd86d446a8ed003e571cf22f8",
+          "picName" : "",
+          "picUrl" : "http://120.25.249.105:8083/api/v1/3034401152640.jpeg",
+          "remark" : null,
+          "sampleInfoId" : "bc8db1893f8e4d89a7a3f94dc069a467"
+        },
+        {
+          "createUserId" : "admin",
+          "createtime" : "2018-01-29 13:44:33",
+          "id" : "e06255df89ac436394853ee49ca49c86",
+          "picName" : "植株",
+          "picUrl" : "http://120.25.249.105:8083/api/v1/3034401126130.jpeg",
+          "remark" : null,
+          "sampleInfoId" : "bc8db1893f8e4d89a7a3f94dc069a467"
+        },
+        {
+          "createUserId" : "admin",
+          "createtime" : "2018-01-29 13:44:33",
+          "id" : "f932c11995704a17afa00c5f007f47c6",
+          "picName" : "样方标示",
+          "picUrl" : "http://120.25.249.105:8083/api/v1/3034401139072.jpeg",
+          "remark" : null,
+          "sampleInfoId" : "bc8db1893f8e4d89a7a3f94dc069a467"
+        }
+      ],
+      "recordId" : "bc8db1893f8e4d89a7a3f94dc069a467",
+      "target" : "123"
+    }
+  ],
+  "desc" : null,
+  "recordsTotal" : 11,
+  "ret" : 200
+}
