@@ -120,6 +120,7 @@ export class UploadPlantManagerPage extends BasePage {
         "userName":AppServiceProvider.getInstance().userinfo.loginData.userName,
         "start":  page==1?0:this.reviewArray.length,
         "length": this.reviewArray,
+        "status":"1"
       };
     this.net.httpPost(AppGlobal.API.recordList, params, msg => {
       let obj = JSON.parse(msg);
@@ -176,6 +177,7 @@ export class UploadPlantManagerPage extends BasePage {
         "userName":AppServiceProvider.getInstance().userinfo.loginData.userName,
         "start":  page==1?0:this.hadUploadArray.length,
         "length": this.hadUploadArray,
+        "status":"0"
       };
     this.net.httpPost(AppGlobal.API.recordList, params, msg => {
       let obj = JSON.parse(msg);
