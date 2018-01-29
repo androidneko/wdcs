@@ -26,11 +26,11 @@ export class AddRecordPage extends BasePage{
 
   locantionDes="位置";
   // gatherDate:string = "2018-01-10";
-  proofName: string = "";
-  proofLevel: string = "";
+  protectionName: string = "";
+  protectionLevel: string = "";
   speciesName: string = "";
 
-  proof = '保护区';
+  protection = '保护区';
   proofArr: any = [
     {
       name: '保护状况',
@@ -147,9 +147,9 @@ export class AddRecordPage extends BasePage{
     lat: "", //纬度
     lng: "", //经度
     spot: "",//小地名
-    proof: "保护区",//就地保护状况
-    proofName: "",//保护区名称 proof为其他是才显示
-    proofLevel: "",//proof 为其他时才显示
+    protection: "保护区",//就地保护状况
+    protectionName: "",//保护区名称 proof为其他是才显示
+    protectionLevel: "",//protection 为其他时才显示
     method: "实测法",//调查方法
     mainSampleNo: "",//主样方编号
     evnDesc: "",//环境描述
