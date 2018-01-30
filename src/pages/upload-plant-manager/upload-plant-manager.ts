@@ -89,7 +89,7 @@ export class UploadPlantManagerPage extends BasePage {
             picCount ++;
           }
         }
-       this.waitLoadArray = [{picUrl:data.pictures[0].picUrl,target:"等待上传",picNum: picCount + ""}]
+       this.waitLoadArray = [{pictures:data.pictures[0].picUrl,target:"等待上传",picNum: picCount + ""}]
         this.total1 = 1;
       }else
       this.total1 = 0;
