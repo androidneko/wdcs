@@ -267,6 +267,47 @@ export class AddRecordPage extends BasePage{
     console.log("提交按钮点击");
     // console.log(JSON.stringify(this.data));
     //异常判断 暂时保存
+
+    if (this.data.target=="") {
+      this.toast("请输入目标植物");
+      return;
+    }
+    if (this.data.county == "") {
+      this.toast("请刷新获取当前位置");
+      return;
+    }
+    if (this.data.mainSampleNum == "") {
+      this.toast("请输入主样方编号");
+      return;
+    }
+    if (this.data.spot == "") {
+      this.toast("请输入小地名");
+      return;
+    }
+    if (this.data.evnDesc == "") {
+      this.toast("请输入环境描述");
+      return;
+    }
+    if (this.data.community == "community") {
+      this.toast("请输入群落名称");
+      return;
+    }
+    if (this.data.communityArea == "") {
+      this.toast("请输入群落面积");
+      return;
+    }
+    if (this.data.communityArea == "" && this.data.coverage == "") {
+      this.toast("请输入郁闭度或盖度");
+      return;
+    }
+    if (this.data.soilType == "") {
+      this.toast("请输入土壤类型");
+      return;
+    }
+    if (this.data.soilPH == "") {
+      this.toast("请输入土壤PH");
+      return;
+    }
     if (this.data.pictures.length>0) {
       for (let index = 0; index < 3; index++) {
         let item = this.data.pictures[index];
@@ -284,6 +325,7 @@ export class AddRecordPage extends BasePage{
 
       this.navCtrl.pop();
     };
+
     this.upManager.uploadWithData(this.data);
 
   }
