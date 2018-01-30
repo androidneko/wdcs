@@ -120,7 +120,7 @@ export class HomePage extends BasePage {
   }
 
   queryTarget(id:string){
-    this.net.httpPost(AppGlobal.API.plantDetail,{
+    this.net.httpPost(AppGlobal.API.sampleDetails,{
       "recordId":id
     },msg => {
       let obj = JSON.parse(msg);

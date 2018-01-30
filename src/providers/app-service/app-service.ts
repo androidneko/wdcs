@@ -23,6 +23,7 @@ export class AppGlobal {
     // static domain = "http://10.8.3.51:9090"; //
 
     static API = {
+        test:"",
         login:'/api/v1/account/login',//登录
         smsCode:'/api/v1/account/smsCode',//短信验证码
         register: '/api/v1/account/register', //注册
