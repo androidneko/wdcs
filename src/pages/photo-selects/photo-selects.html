@@ -19,7 +19,7 @@
 </ion-header>
 
 <ion-content >
-    <ion-item *ngIf="state=='0'"  no-lines style="min-height:3.5rem;background-color:rgb(236, 234, 234)">
+    <ion-item *ngIf="state=='1'"  no-lines style="min-height:3.5rem;background-color:rgb(236, 234, 234)">
         <p item-start>请添加3张基础照片(必填)</p>
     </ion-item>
 
@@ -28,7 +28,7 @@
       <photo-item  *ngIf="idx < 3" [item]="item" (click)="itemClick(idx)" state="{{state}}"></photo-item>
     </ion-col>
   </ion-row>
-  <ion-item no-lines *ngIf="state=='0'"  style="min-height:3.5rem;background-color:rgb(236, 234, 234)">
+  <ion-item no-lines *ngIf="state=='1'"  style="min-height:3.5rem;background-color:rgb(236, 234, 234)">
       <p item-start>请添加1-5张特征照片(至少一张)</p>
     </ion-item>
   <ion-row>
