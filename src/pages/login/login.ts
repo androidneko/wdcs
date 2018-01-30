@@ -20,6 +20,19 @@ export class LoginPage {
   logoUrl:string = "assets/imgs/logo.png";
   username1:String;
   password1:String;
+
+  info: any = {
+    userName: "",
+    token: "",
+    nickName: "ANDROIDNEKO",
+    avatar: "assets/imgs/author_logo2.png",
+    email: "",
+    gender: "秘密",
+    height: "175CM",
+    weight: "60KG",
+    birthday: "1990-01-01"
+  };
+
   constructor(
     public events: Events,
     public toastCtrl: ToastController,
@@ -40,6 +53,7 @@ export class LoginPage {
       console.log("password:"+msg);
     });
   }
+
   login(username, password){
     if(this.isInfoLegal(username,password) == true){
 
@@ -53,8 +67,9 @@ export class LoginPage {
           AppServiceProvider.getInstance().userinfo.loginData = obj.data;
           this.db.saveString(username.value,"username");
           this.db.saveString(password.value,"password");
-          this.navCtrl.setRoot("HomePage");
           this.events.publish('user:login');
+          //获取用户信息
+          this.sendUserInfoRequest();
         }else{
           this.toast(obj.desc);
         }
@@ -64,6 +79,36 @@ export class LoginPage {
       },true);
     }
   }
+
+  sendUserInfoRequest() {
+    let params = {
+      "userName": AppServiceProvider.getInstance().userinfo.loginData.userName,
+      "token": AppServiceProvider.getInstance().userinfo.loginData.token
+    };
+    this.net.httpPost(AppGlobal.API.getUserInfo, params, msg => {
+      console.log(msg);
+      let obj = JSON.parse(msg);
+      if (obj.ret == AppGlobal.RETURNCODE.succeed) {
+        this.info.userName = AppServiceProvider.getInstance().userinfo.loginData.userName;
+        this.info.token = AppServiceProvider.getInstance().userinfo.loginData.token;
+        this.info.avatar = obj.data.avatar;
+        this.info.birthday = obj.data.birthday;
+        this.info.email = obj.data.email;
+        this.info.gender = obj.data.gender;
+        this.info.height = obj.data.height;
+        this.info.nickName = obj.data.nickName;
+        this.info.weight = obj.data.weight;
+        AppServiceProvider.getInstance().userinfo.userData = this.info;
+        this.events.publish('userinfo:saved');
+
+        this.navCtrl.setRoot("HomePage");
+      }
+      console.log(obj);
+    }, error => { 
+      this.navCtrl.setRoot("HomePage");
+    }, true);
+  }
+
   keydown(event){
     if(event.keyCode==13){
       //返回确定按钮
