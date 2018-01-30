@@ -75,7 +75,7 @@
 
     <ion-item>
       <ion-label item-start>主样方编号</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入主样方(样带)编号" maxlength="6" [(ngModel)]="data.mainSampleNo"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入主样方(样带)编号" maxlength="6" [(ngModel)]="data.mainSampleNum"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -114,7 +114,7 @@
     </ion-item>
     <ion-item>
       <ion-label>坡位</ion-label>
-      <ion-multi-picker  disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="slopePosition" [(ngModel)]="data.position" [multiPickerColumns]="positions" doneText="确定"
+      <ion-multi-picker  disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="slopePosition" [(ngModel)]="data.slopePosition" [multiPickerColumns]="positions" doneText="确定"
         cancelText="取消"></ion-multi-picker>
     </ion-item>
 
@@ -148,7 +148,7 @@
     </ion-item>
     <ion-item>
       <ion-label>人为干扰强度</ion-label>
-      <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="intensity" [(ngModel)]="data.intensity" [multiPickerColumns]="intensities"
+      <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="interferenceLevel" [(ngModel)]="data.interferenceLevel" [multiPickerColumns]="intensities"
         doneText="确定" cancelText="取消"></ion-multi-picker>
     </ion-item>
     <ion-item>

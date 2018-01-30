@@ -90,7 +90,7 @@ export class AddRecordPage extends BasePage{
     }
   ];
 
-  position = '脊';
+  slopePosition = '脊';
   positions: any = [
     {
       name: '位置',
@@ -120,7 +120,7 @@ export class AddRecordPage extends BasePage{
     }
   ];
   interferenceOther = "";
-  intensity = '强';
+  interferenceLevel = '强';
   intensities: any = [
     {
       name: '强度',
@@ -151,7 +151,7 @@ export class AddRecordPage extends BasePage{
     protectionName: "",//保护区名称 proof为其他是才显示
     protectionLevel: "",//protection 为其他时才显示
     method: "实测法",//调查方法
-    mainSampleNo: "",//主样方编号
+    mainSampleNum: "",//主样方编号
     evnDesc: "",//环境描述
     mainSampleArea: "",//主样方面积
     community: "",//群落名称
@@ -165,7 +165,7 @@ export class AddRecordPage extends BasePage{
     soilPH: "",//土壤PH
     interference: "采集",//人为干扰方式
     interferenceName: "",//干扰方式为其他时才生效
-    intensity: "强",//人为干扰强度
+    interferenceLevel: "强",//人为干扰强度
     treeLayerDominant: "",//乔木层优势种
     treeLayerAuxiliary: "",//乔木层优势伴生种
     bushLayerDominant: "",//灌木层优势种
