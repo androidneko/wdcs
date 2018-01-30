@@ -18,7 +18,7 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
 })
 export class PhotoSelectsPage {
   dataArray:Array<any>=[];
-  state="1";//可编辑 2不可编辑
+  state="1";//可编辑 0不可编辑
   constructor(public navCtrl: NavController, public navParams: NavParams,private camera:Camera,private actionSheet:ActionSheetController,private photoViewer: PhotoViewer,private device:DeviceIntefaceServiceProvider) {
     if (this.navParams.data.state !=null) {
         this.state = this.navParams.data.state;
