@@ -31,7 +31,7 @@ export class AppGlobal {
         editUserInfo: '/api/v1/account/editUserInfo', //编辑用户信息
         getUserInfo: '/api/v1/account/getUserInfo', //获取用户信息
         msgList: '/api/v1/msgList', //获取推送消息列表
-        recordList: '//api/v1/recordList', //获取已上传记录列表
+        recordList: '/api/v1/recordList', //获取已上传记录列表
         uploadRecord: '/api/v1/sampleInfo', //上传采集数据
         uploadImage:'/api/v1/user/uploadImage',
         getNewsList:'/api/v1/news/getNewsList'

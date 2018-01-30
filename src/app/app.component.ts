@@ -85,6 +85,7 @@ export class MyApp {
       if (this.platform.is("android")) {
         this.registerBackButtonAction();
       }
+      
       //判断登录状态，并跳转
       this.db.getString(this.HAS_SEEN_TUTORIAL, (hasSeenTutorial) => {
         this.db.getString(this.HAS_LOGGED_IN, (hasLoggedIn) => {
@@ -133,8 +134,8 @@ export class MyApp {
     });
 
     this.events.subscribe('userinfo:saved', () => {
-      this.userName = AppServiceProvider.getInstance().userinfo.userData.nickname;
-      //this.logoUrl = AppServiceProvider.getInstance().userinfo.userData.nickname;
+      this.userName = AppServiceProvider.getInstance().userinfo.userData.nickName;
+      this.avatarUrl = AppServiceProvider.getInstance().userinfo.userData.avatar;
     });
   }
 

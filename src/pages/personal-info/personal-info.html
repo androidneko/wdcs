@@ -21,10 +21,10 @@
 <ion-list>
   <ion-item no-lines>
     <ion-avatar item-start (click)="openCamera()">
-        <img [src]="info.image">
+        <img [src]="info.avatar">
     </ion-avatar>
     <div float-left>
-      <h3>{{info.nickname}}</h3>
+      <h3>{{info.nickName}}</h3>
       <p>{{info.userName}}</p>
       </div>
   </ion-item>
@@ -32,8 +32,8 @@
   <ion-item style="margin-top:20px;">
     <ion-icon name="paper-plane" ios="ios-paper-plane-outline" md="ios-paper-plane-outline" item-start color="primary"></ion-icon>
     <ion-label>昵称</ion-label>
-    <ion-note item-end *ngIf="!isEditMode">{{info.nickname}}</ion-note>
-    <ion-input item-end *ngIf="isEditMode" type="text" maxlength="20" minlength="6" placeholder="请输入昵称" [(ngModel)]="info.nickname" clearInput="true"></ion-input>
+    <ion-note item-end *ngIf="!isEditMode">{{info.nickName}}</ion-note>
+    <ion-input item-end *ngIf="isEditMode" type="text" maxlength="20" minlength="6" placeholder="请输入昵称" [(ngModel)]="info.nickName" clearInput="true"></ion-input>
   </ion-item>
 
   <ion-item>

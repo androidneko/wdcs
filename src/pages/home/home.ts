@@ -46,7 +46,7 @@ export class HomePage extends BasePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
-    this.getNewsList();
+    //this.getNewsList();
     this.sendQueryPlantsRequest(this.currentPage, null);
   }
 
@@ -75,7 +75,7 @@ export class HomePage extends BasePage {
       {
         "userName":AppServiceProvider.getInstance().userinfo.loginData.userName,
         "start":  page==1?0:this.plants.length,
-        "length": this.pageSize,
+        "rowCount": this.pageSize,
       };
     this.net.httpPost(AppGlobal.API.recordList, params, msg => {
       let obj = JSON.parse(msg);

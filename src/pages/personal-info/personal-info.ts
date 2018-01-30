@@ -8,6 +8,7 @@ import { ActionSheetController } from 'ionic-angular/components/action-sheet/act
 import { DeviceIntefaceServiceProvider } from '../../providers/device-inteface-service/device-inteface-service';
 import { Loading } from 'ionic-angular/components/loading/loading';
 import { Navbar } from 'ionic-angular/components/toolbar/navbar';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 /**
  * Generated class for the PersonalInfoPage page.
  *
@@ -29,9 +30,10 @@ export class PersonalInfoPage extends BasePage {
 
   info: any = {
     userName: AppServiceProvider.getInstance().userinfo.loginData.userName,
-    nickname: "ANDROIDNEKO",
-    image: "assets/imgs/author_logo2.png",
-    email: "未填写",
+    token: AppServiceProvider.getInstance().userinfo.loginData.token,
+    nickName: "ANDROIDNEKO",
+    avatar: "assets/imgs/author_logo2.png",
+    email: "",
     gender: "秘密",
     height: "175CM",
     weight: "60KG",
@@ -74,6 +76,7 @@ export class PersonalInfoPage extends BasePage {
     private device: DeviceIntefaceServiceProvider,
     public loadingCtrl: LoadingController,
     public alert: AlertController,
+    private nativePageTransitions: NativePageTransitions,
     public events: Events) {
     super(navCtrl, navParams);
 
@@ -82,9 +85,36 @@ export class PersonalInfoPage extends BasePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PersonalInfoPage');
+
     this.navBar.backButtonClick = this.backButtonClick;
     this.sendRequest();
   }
+
+  ionViewWillEnter(){
+    let options: NativeTransitionOptions = {
+      "duration"       :  300, // in milliseconds (ms), default 400
+      "androiddelay"   :  50
+    };
+
+    this.nativePageTransitions.fade(options)
+      .then((data) => {
+        
+      })
+      .catch((err) => {
+        
+      });
+  } 
+
+  ionViewWillLeave() {
+    let options: NativeTransitionOptions = {
+       duration: 300,
+       androiddelay: 100
+      };
+   
+    this.nativePageTransitions.fade(options)
+      .then()
+      .catch();
+   }
 
   backButtonClick = (e: UIEvent) => {
     // do something
@@ -126,8 +156,14 @@ export class PersonalInfoPage extends BasePage {
       console.log(msg);
       let obj = JSON.parse(msg);
       if (obj.ret == AppGlobal.RETURNCODE.succeed) {
-        this.info = obj.data;
-        AppServiceProvider.getInstance().userinfo.userData = obj.data;
+        this.info.avatar = obj.data.avatar;
+        this.info.birthday = obj.data.birthday;
+        this.info.email = obj.data.email;
+        this.info.gender = obj.data.gender;
+        this.info.height = obj.data.height;
+        this.info.nickName = obj.data.nickName;
+        this.info.weight = obj.data.weight;
+        AppServiceProvider.getInstance().userinfo.userData = this.info;
       }
       console.log(obj);
     }, error => { }, true);
@@ -168,7 +204,7 @@ export class PersonalInfoPage extends BasePage {
     this.camera.getPicture(options).then((imageData) => {
       console.log('success');
       let base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.info.image = base64Image;
+      this.info.avatar = base64Image;
       this.uploadHeaderImage();
     }, (err) => {
       console.log('error');
@@ -183,7 +219,7 @@ export class PersonalInfoPage extends BasePage {
     }
     console.log('open click 1');
     let options: CameraOptions = {
-      quality: 100,
+      quality: 80,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
@@ -220,15 +256,15 @@ export class PersonalInfoPage extends BasePage {
 
   //上传头像
   uploadHeaderImage() {
-    if (this.info.image != null && this.info.image.indexOf("data:image/jpeg;base64,") >= 0) {
+    if (this.info.avatar != null && this.info.avatar.indexOf("data:image/jpeg;base64,") >= 0) {
       this.startLoading();
-      console.log(this.info.image);
-      let str = this.info.image.replace("data:image/jpeg;base64,", "");
+      console.log(this.info.avatar);
+      let str = this.info.avatar.replace("data:image/jpeg;base64,", "");
       this.device.uploadfileWithBase64String(str, "jpeg", (msg) => {
         console.log('success in');
         console.log(msg);
         let obj = JSON.parse(msg);
-        this.info.image = obj.data;
+        this.info.avatar = obj.data;
         this.endLoading();
       }, (err) => {
         this.endLoading();
@@ -237,7 +273,7 @@ export class PersonalInfoPage extends BasePage {
       });
     } else {
       console.log('headerImageUrl == null');
-      console.log(this.info.image);
+      console.log(this.info.avatar);
     }
   }
 

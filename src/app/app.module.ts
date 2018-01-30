@@ -38,6 +38,7 @@ import { PlantDetailPageModule } from '../pages/plant-detail/plant-detail.module
 import { UploadManagerProvider } from '../providers/upload-manager/upload-manager';
 import { MessagePageModule } from '../pages/message/message.module';
 import { RecordDetailPageModule } from '../pages/record-detail/record-detail.module';
+import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 
 export function netFactory(platform:Platform,loadingCtrl:LoadingController,http:Http,zone:NgZone) {
   if (platform.is("mobileweb") /*||platform.is("mobile")*/) {
@@ -69,15 +70,6 @@ export function dbFactory(platform:Platform,zone:NgZone) {
       backButtonText: '返回', 
       iconMode: 'ios',//安卓icon强制使用ios的icon以及样式
       mode: 'ios',//样式强制使用ios样式
-      platforms: {
-        ios: {
-          // tabsPlacement: 'top',
-          pageTransition : "ios-transition"
-        },
-        android:{
-          pageTransition : "md-transition"
-        }
-      }
     }),
     MultiPickerModule,
     ComponentsModule,
@@ -120,7 +112,8 @@ export function dbFactory(platform:Platform,zone:NgZone) {
       deps:[Platform,NgZone]
     },
     DeviceIntefaceServiceProvider,
-    UploadManagerProvider
+    UploadManagerProvider,
+    NativePageTransitions
   ]
 })
 export class AppModule {}

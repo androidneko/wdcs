@@ -17,7 +17,7 @@ import { Md5 } from 'ts-md5/dist/md5';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  logoUrl:string = "assets/imgs/test.png";
+  logoUrl:string = "assets/imgs/logo.png";
   username1:String;
   password1:String;
   constructor(

@@ -14,40 +14,39 @@
       </ion-navbar>
 
 </ion-header>
-<ion-content no-padding no-margin>
-  <div style="position:absolute;width:100%;height:100%;">
-    <div class="parent_gravity_center">
-        <img style="width:130px;height:130px;border-radius:50%;margin-top:20px;" [src]="logoUrl">
-    </div>
+<ion-content no-padding scroll="false" style="position:absolute;bottom:0px;"></ion-content>
+<ion-footer class="background">
+  <div class="logoHeader" text-center>
+    <img [src]="logoUrl">
+</div>
 
-    <div class="iputcenter">
-        <ion-item no-lines >
-          <!--<ion-label fixed>账号</ion-label>-->
-          <ion-icon name="contact" color="primary" item-left ios="ios-contact-outline" md="ios-contact-outline"></ion-icon>
-          <ion-input clearInput=true type="text" (keydown)="keydown($event)" placeholder="请输入账号" #username [(ngModel)]="username1"></ion-input>
-        </ion-item>
-        
-        <ion-item no-lines style="margin-top:1px;">
-          <ion-icon name="lock" color="primary" item-left ios="ios-lock-outline" md="ios-lock-outline"></ion-icon>
-          <ion-input clearInput=true style="width:70%" type="password" (keydown)="keydown($event)" placeholder="请输入密码" #password [(ngModel)]="password1"></ion-input>
-        </ion-item>
-      </div>
+<div class="iputcenter">
+    <ion-item no-lines >
+      <!--<ion-label fixed>账号</ion-label>-->
+      <ion-icon name="contact" color="primary" item-left ios="ios-contact-outline" md="ios-contact-outline"></ion-icon>
+      <ion-input clearInput=true type="text" (keydown)="keydown($event)" placeholder="请输入账号" #username [(ngModel)]="username1"></ion-input>
+    </ion-item>
     
-      <div style="margin-top:30px;margin-left:20px;margin-right:20px">
-        <button ion-button block color="primary" (click)="login(username, password)">
-          登录
-        </button>
-      </div>
-      <ion-row no-margin>
-        <ion-col class="fastEntry" text-center>
-          <p class="regist" (click)="registBtnCliked()">快速注册</p>
-        </ion-col>
-        <ion-col text-center>
-          <p style="font-size:1.5rem;color:rgb(184, 184, 184)" text-center>|</p>
-        </ion-col>
-        <ion-col class="fastEntry" text-center>
-          <p class="forget" (click)="forgetpassword()">忘记密码?</p>
-        </ion-col>
-      </ion-row>
+    <ion-item no-lines style="margin-top:1px;">
+      <ion-icon name="lock" color="primary" item-left ios="ios-lock-outline" md="ios-lock-outline"></ion-icon>
+      <ion-input clearInput=true style="width:70%" type="password" (keydown)="keydown($event)" placeholder="请输入密码" #password [(ngModel)]="password1"></ion-input>
+    </ion-item>
   </div>
-</ion-content>
+
+  <div style="margin-top:30px;margin-left:20px;margin-right:20px">
+    <button ion-button block color="primary" (click)="login(username, password)">
+      登录
+    </button>
+  </div>
+  <ion-row no-margin>
+    <ion-col class="fastEntry" text-center>
+      <p class="regist" (click)="registBtnCliked()">快速注册</p>
+    </ion-col>
+    <ion-col text-center>
+      <p style="font-size:1.5rem;color:rgb(184, 184, 184)" text-center>|</p>
+    </ion-col>
+    <ion-col class="fastEntry" text-center>
+      <p class="forget" (click)="forgetpassword()">忘记密码?</p>
+    </ion-col>
+  </ion-row>
+</ion-footer>

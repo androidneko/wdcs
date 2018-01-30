@@ -9,9 +9,12 @@ import { NavController, NavParams, ToastController } from 'ionic-angular';
 
 
 export class BasePage {
-  constructor(public navCtrl: NavController, public navParams: NavParams,public toastCtrl?: ToastController) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public toastCtrl?: ToastController,
+    ) {
   }
-
   
   toast(info){
     if(this.toastCtrl!=null)
