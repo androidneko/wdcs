@@ -52,11 +52,12 @@ export class UploadPlantManagerPage extends BasePage {
   }
   hadUploadClicked(item){
     //已上传
-    this.navCtrl.push("AddRecordPage",{state:"0",data:item});
+   
+    this.getSampleDetails(item,1);
   }
   reviewClicked(item){
     //待审核
-    this.navCtrl.push("AddRecordPage",{isShowApplying:true,data:item});
+    this.getSampleDetails(item,0);
   }
 
   doRefresh1(refresher) {
@@ -208,8 +209,31 @@ export class UploadPlantManagerPage extends BasePage {
       }
     }, isloading);
   }
+  getSampleDetails(item ,tag){
+    let params =
+    {
+      "recordId": item.recordId
+    };
+    this.net.httpPost(AppGlobal.API.sampleDetails, params, msg => {
+      let obj = JSON.parse(msg);
+      if (obj.ret == AppGlobal.RETURNCODE.succeed) {
+        obj.data.detailInfo.lifeForm = JSON.parse(obj.data.detailInfo.lifeForm);
 
+        if (tag == 0) {
+          this.navCtrl.push("AddRecordPage",{isShowApplying:true,data:obj.data});
+        }
+        
+        if (tag == 1) {
+          this.navCtrl.push("AddRecordPage",{state:"0",data:obj.data});
+        }
+      
+      } else {
+        this.toast(obj.ACTION_RETURN_MESSAGE);
+      }
+      
+    }, error => {
 
-
-
+      this.toast(error);
+    }, true);
+  }
 }
