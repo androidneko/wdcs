@@ -17,5 +17,12 @@ export class PlantItemComponent {
   constructor() {
     console.log('Hello PlantItemComponent Component');
   }
-
+  myurl(){
+    if (this.item.pictures.length==0) {
+      return "assets/imgs/6.jpg";
+    }else{
+      return this.item.pictures[0].picUrl;
+    }
+    
+  }
 }

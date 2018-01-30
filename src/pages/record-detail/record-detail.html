@@ -51,16 +51,16 @@
   
       <ion-item>
         <ion-label>就地保护状况</ion-label>
-        <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="gender" [(ngModel)]="proof" [multiPickerColumns]="proofArr" doneText="确定"
+        <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="gender" [(ngModel)]="protection" [multiPickerColumns]="proofArr" doneText="确定"
           cancelText="取消"></ion-multi-picker>
       </ion-item>
-      <ion-item *ngIf="proof=='其他'">
+      <ion-item *ngIf="protection=='其他'">
         <ion-label item-start>名称</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入保护状况名称" maxlength="6" [(ngModel)]="proofName"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入保护状况名称" maxlength="6" [(ngModel)]="protectionName"></ion-input>
       </ion-item>
-      <ion-item *ngIf="proof=='其他'">
+      <ion-item *ngIf="protection=='其他'">
         <ion-label item-start>级别</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入保护状况级别" maxlength="6" [(ngModel)]="proofLevel"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入保护状况级别" maxlength="6" [(ngModel)]="protectionLevel"></ion-input>
       </ion-item>
   
       <ion-item>

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { DeviceIntefaceServiceProvider } from '../device-inteface-service/device-inteface-service';
 import { LoadingController, ToastController } from 'ionic-angular';
 import { Loading } from 'ionic-angular/components/loading/loading';
-import { AppGlobal } from '../app-service/app-service';
+import { AppGlobal, AppServiceProvider } from '../app-service/app-service';
 import { File } from '@ionic-native/file';
 /*
   Generated class for the UploadManagerProvider provider.
@@ -62,6 +62,10 @@ export class UploadManagerProvider {
       this.uploadItemData();
       return;
     }
+    if (pic.picUrl.indexOf("http://")>=0) {
+      this.uploadItemImg(index+1);
+      return
+    }
     let base64 = pic.picUrl.replace('data:image/jpeg;base64,','');
 
     this.device.uploadfileWithBase64String(base64, "jpeg", (msg) => {
@@ -117,11 +121,13 @@ export class UploadManagerProvider {
      let updatObj = JSON.parse(JSON.stringify(this.data));
      let index = updatObj.pictures.length -1;
      let pic = updatObj.pictures[index];
+     updatObj.detailInfo.lifeForm = JSON.stringify(updatObj.detailInfo.lifeForm);
+     updatObj.token = AppServiceProvider.getInstance().userinfo.loginData.token;
      if (pic.picUrl == "assets/imgs/addphoto.png") {
       updatObj.pictures.pop();
      }
      this.net.httpPost(AppGlobal.API.uploadRecord,
-        JSON.stringify(updatObj), msg => {
+      updatObj, msg => {
         let obj = JSON.parse(msg);
         if (obj.ret == AppGlobal.RETURNCODE.succeed) {
           this.toast(obj.desc);

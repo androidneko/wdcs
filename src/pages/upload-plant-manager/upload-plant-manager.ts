@@ -21,13 +21,13 @@ export class UploadPlantManagerPage extends BasePage {
   hadUploadArray:Array<any> = [];
   reviewArray:Array<any> = [];
   catCheData:any;
-  currentPage1: number = 1;
+  currentPage1: number = 0;
   pageSize1: number = 20;
   total1 = -1;
-  currentPage2: number = 1;
+  currentPage2: number = 0;
   pageSize2: number = 20;
   total2 = -1;
-  currentPage3: number = 1;
+  currentPage3: number = 0;
   pageSize3: number = 20;
   total3 = -1;
   type:String = "hadUpload";//待上传waitLoad 已上传hadUpload 审核中review
@@ -38,8 +38,8 @@ export class UploadPlantManagerPage extends BasePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad UploadPlantManagerPage');
     this.readLocalFiles();
-    this.sendQueryPlantsRequest2(1,null,false);
-    this.sendQueryPlantsRequest3(1,null,false);
+    this.sendQueryPlantsRequest2(0,null,false);
+    this.sendQueryPlantsRequest3(0,null,false);
   }
   uploadBtnCliked(){
     console.log('批量上传');
@@ -101,7 +101,7 @@ export class UploadPlantManagerPage extends BasePage {
   doRefresh2(refresher) {
     //刷新
     console.log("下拉刷新");
-    this.sendQueryPlantsRequest2(1, refresher);
+    this.sendQueryPlantsRequest2(0, refresher);
     // if (refresher != null) {
     //   refresher.complete();
     // }
@@ -118,30 +118,31 @@ export class UploadPlantManagerPage extends BasePage {
     let params =
       {
         "userName":AppServiceProvider.getInstance().userinfo.loginData.userName,
-        "start":  page==1?0:this.reviewArray.length,
-        "length": this.reviewArray,
+        "start":  page,
+        "rowCount": 20,
+        "status":"1"
       };
     this.net.httpPost(AppGlobal.API.recordList, params, msg => {
       let obj = JSON.parse(msg);
       if (obj.ret == AppGlobal.RETURNCODE.succeed) {
-        if (page == 1) {
-          this.reviewArray = [];
+        if (page == 0) {
+          this.hadUploadArray = [];
         }
         let list = obj.data;
         this.total2 = parseInt(obj.recordsTotal) ;
         for (let index = 0; index < list.length; index++) {
           let element = list[index];
-          this.reviewArray.push(element);
+          this.hadUploadArray.push(element);
         }
         this.currentPage2 = page;
-        if (refresher != null) {
-          refresher.complete();
-        }
+    
       } else {
         this.total2 = 0;
         this.toast(obj.ACTION_RETURN_MESSAGE);
       }
-      
+      if (refresher != null) {
+        refresher.complete();
+      }
     }, error => {
       this.toast(error);
       this.total2 = 0;
@@ -155,7 +156,7 @@ export class UploadPlantManagerPage extends BasePage {
   doRefresh3(refresher) {
     //刷新
     console.log("下拉刷新");
-    this.sendQueryPlantsRequest3(1, refresher);
+    this.sendQueryPlantsRequest3(0, refresher);
     // if (refresher != null) {
     //   refresher.complete();
     // }
@@ -174,30 +175,31 @@ export class UploadPlantManagerPage extends BasePage {
     let params =
       {
         "userName":AppServiceProvider.getInstance().userinfo.loginData.userName,
-        "start":  page==1?0:this.hadUploadArray.length,
-        "length": this.hadUploadArray,
+        "start":  page,
+        "rowCount": 20,
+        "status":0
       };
     this.net.httpPost(AppGlobal.API.recordList, params, msg => {
       let obj = JSON.parse(msg);
       if (obj.ret == AppGlobal.RETURNCODE.succeed) {
-        if (page == 1) {
-          this.hadUploadArray = [];
+        if (page == 0) {
+          this.reviewArray = [];
         }
         let list = obj.data;
         this.total3 = parseInt(obj.recordsTotal);
         for (let index = 0; index < list.length; index++) {
           let element = list[index];
-          this.hadUploadArray.push(element);
+          this.reviewArray.push(element);
         }
         this.currentPage3 = page;
-        if (refresher != null) {
-          refresher.complete();
-        }
+      
       } else {
         this.total3 = 0;
         this.toast(obj.ACTION_RETURN_MESSAGE);
       }
-      
+        if (refresher != null) {
+          refresher.complete();
+        }
     }, error => {
       this.toast(error);
      this.total3 = 0;

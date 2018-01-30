@@ -20,11 +20,11 @@ export class RecordDetailPage {
 
   };
   gatherDate:string = "2018-01-10";
-  proofName:string = "";
-  proofLevel:string = "";
+  protectionName:string = "";
+  protectionLevel:string = "";
   speciesName:string = "";
 
-  proof = '保护区';
+  protection = '保护区';
   proofArr:any = [
     {
       name: '保护状况',
