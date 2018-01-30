@@ -69,7 +69,7 @@ export class RecordDetailPage {
     }
   ];
 
-  degree = '30°';
+  slope = '30°';
   degrees:any = [
     {
       name: '坡度',
@@ -84,7 +84,7 @@ export class RecordDetailPage {
     }
   ];
 
-  position = '脊';
+  slopePosition = '脊';
   positions:any = [
     {
       name: '位置',

@@ -75,7 +75,7 @@ export class AddRecordPage extends BasePage{
     }
   ];
 
-  degree = '30°';
+  slope = '30°';
   degrees: any = [
     {
       name: '坡度',
@@ -157,8 +157,8 @@ export class AddRecordPage extends BasePage{
     community: "",//群落名称
     communityArea: "",//群落面积
     aspect: "正东",//坡向
-    degree: "30°",//坡度
-    position: "脊",//坡位
+    slope: "30°",//坡度
+    slopePosition: "脊",//坡位
     crownDensity: "",//郁闭度
     coverage: "",//盖度
     soilType: "",//土壤类型

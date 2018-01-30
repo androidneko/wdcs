@@ -26,7 +26,7 @@
     <div class="ac-line-tiny"></div>
     <ion-item >
         <ion-label>目的物种</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="number" placeholder="请输入物种名称" maxlength="6" [(ngModel)]="data.target"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入物种名称" maxlength="6" [(ngModel)]="data.target"></ion-input>
     </ion-item>
     <div class="ac-line-tiny"></div>
     <ion-item class="titleItem" >
@@ -45,7 +45,7 @@
     </ion-item>
     <ion-item>
       <ion-label item-start>小地名</ion-label>
-      <ion-input  readonly="{{state=='1'?'false':'true'}}" type="number" placeholder="请输入小地名" maxlength="6" [(ngModel)]="data.spot"></ion-input>
+      <ion-input  readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入小地名" maxlength="6" [(ngModel)]="data.spot"></ion-input>
     </ion-item>
 
     <ion-item  class="titleItem">
@@ -109,12 +109,12 @@
     </ion-item>
     <ion-item>
       <ion-label>坡度</ion-label>
-      <ion-multi-picker disabled="{{state=='1'?'':'true'}}"  item-end style="color:darkgray" id="degree" [(ngModel)]="data.degree" [multiPickerColumns]="degrees" doneText="确定"
+      <ion-multi-picker disabled="{{state=='1'?'':'true'}}"  item-end style="color:darkgray" id="slope" [(ngModel)]="data.slope" [multiPickerColumns]="degrees" doneText="确定"
         cancelText="取消"></ion-multi-picker>
     </ion-item>
     <ion-item>
       <ion-label>坡位</ion-label>
-      <ion-multi-picker  disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="position" [(ngModel)]="data.position" [multiPickerColumns]="positions" doneText="确定"
+      <ion-multi-picker  disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="slopePosition" [(ngModel)]="data.position" [multiPickerColumns]="positions" doneText="确定"
         cancelText="取消"></ion-multi-picker>
     </ion-item>
 
