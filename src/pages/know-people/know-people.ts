@@ -35,7 +35,7 @@ export class KnowPeoplePage extends BasePage {
       return;
     }
     if (this.navParams.data.callback!=null) {
-      let contact={contactName:this.contactName,telNo:this.telNo,defaultOrNot:"0"};
+      let contact={contactName:this.contactName,telNo:this.telNo};
       this.navParams.data.callback(contact);
       this.navCtrl.pop();
     }
