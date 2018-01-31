@@ -3,7 +3,7 @@ import { AppGlobal, AppServiceProvider } from './../../providers/app-service/app
 import { TyNetworkServiceProvider } from './../../providers/ty-network-service/ty-network-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams ,ToastController, Events} from 'ionic-angular';
-import { Md5 } from 'ts-md5/dist/md5';
+// import { Md5 } from 'ts-md5/dist/md5';
 /**
  * Generated class for the LoginPage page.
  *

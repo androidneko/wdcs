@@ -4,7 +4,6 @@ import { BasePage } from '../base/base';
 import { DbServiceProvider } from './../../providers/db-service/db-service';
 import { AppGlobal} from './../../providers/app-service/app-service';
 import { TyNetworkServiceProvider } from './../../providers/ty-network-service/ty-network-service';
-import { Md5 } from 'ts-md5/dist/md5';
 /**
  * Generated class for the RegistPage page.
  *

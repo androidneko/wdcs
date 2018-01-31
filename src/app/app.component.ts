@@ -11,15 +11,13 @@ import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav, Keyboard, IonicApp, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
-import { SettingPage } from '../pages/setting/setting';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { HomePage } from '../pages/home/home';
 import { HomePageModule } from '../pages/home/home.module';
 import { AppServiceProvider } from '../providers/app-service/app-service';
-import { PersonalInfoPage } from '../pages/personal-info/personal-info';
 import { ForgetPasswordPage } from '../pages/forget-password/forget-password';
 import { RegistPage } from '../pages/regist/regist';
 import { ModifyPwdPage } from '../pages/modify-pwd/modify-pwd';
+import { HomePage } from '../pages/home/home';
 
 export interface PageInterface {
   title: string;
