@@ -47,4 +47,7 @@ export class PlantDetailPage {
    }});
   }
 
+  done(){
+    this.navCtrl.pop();
+  }
 }
