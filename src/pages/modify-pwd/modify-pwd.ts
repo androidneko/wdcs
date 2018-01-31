@@ -3,7 +3,7 @@ import { DbServiceProvider } from './../../providers/db-service/db-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
 import { TyNetworkServiceProvider } from '../../providers/ty-network-service/ty-network-service';
-import { Md5 } from 'ts-md5/dist/md5';
+// import { Md5 } from 'ts-md5/dist/md5';
 import { AppGlobal, AppServiceProvider } from '../../providers/app-service/app-service';
 
 

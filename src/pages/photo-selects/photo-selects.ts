@@ -1,4 +1,3 @@
-import { DeviceIntefaceServiceProvider } from './../../providers/device-inteface-service/device-inteface-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { CameraOptions ,Camera} from '@ionic-native/camera';
@@ -19,7 +18,7 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
 export class PhotoSelectsPage {
   dataArray:Array<any>=[];
   state="1";//可编辑 0不可编辑
-  constructor(public navCtrl: NavController, public navParams: NavParams,private camera:Camera,private actionSheet:ActionSheetController,private photoViewer: PhotoViewer,private device:DeviceIntefaceServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private camera:Camera,private actionSheet:ActionSheetController,private photoViewer: PhotoViewer) {
     if (this.navParams.data.state !=null) {
         this.state = this.navParams.data.state;
         this.dataArray = this.navParams.data.imgArray;

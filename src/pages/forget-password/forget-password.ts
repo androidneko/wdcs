@@ -1,11 +1,9 @@
-import { AppServiceProvider } from './../../providers/app-service/app-service';
+import {AppGlobal } from './../../providers/app-service/app-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { BasePage } from '../base/base';
 import { TyNetworkServiceProvider } from '../../providers/ty-network-service/ty-network-service';
 import { DbServiceProvider } from '../../providers/db-service/db-service';
-import { AppGlobal } from '../../providers/app-service/app-service';
-import { Md5 } from 'ts-md5/dist/md5';
 
 /**
  * Generated class for the ForgetPasswordPage page.

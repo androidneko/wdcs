@@ -3,7 +3,7 @@ import { BasePage } from './../base/base';
 import { TyNetworkServiceProvider } from './../../providers/ty-network-service/ty-network-service';
 import { AppServiceProvider, AppGlobal } from './../../providers/app-service/app-service';
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, Events, AlertController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Events, AlertController } from 'ionic-angular';
 import { ActionSheetController } from 'ionic-angular/components/action-sheet/action-sheet-controller';
 import { DeviceIntefaceServiceProvider } from '../../providers/device-inteface-service/device-inteface-service';
 import { Loading } from 'ionic-angular/components/loading/loading';
