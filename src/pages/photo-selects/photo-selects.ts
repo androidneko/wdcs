@@ -146,6 +146,6 @@ export class PhotoSelectsPage {
   }
 
   done(){
-    
+    this.navCtrl.pop();
   }
 }

@@ -8,6 +8,10 @@
 
   <ion-navbar no-border>
     <ion-title>知情者详情</ion-title>
+
+    <ion-buttons end *ngIf="state==1 && knowPeopleArray.length > 0">
+      <button ion-button color="white" (click)="done()">完成</button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -30,7 +34,7 @@
                   </div>     
           </ion-item>
       <ion-item-options side="right"  >
-        <button ion-button (click)="deleteItem(item,idx)">删除</button>
+        <button ion-button color="red" (click)="deleteItem(item,idx)">删除</button>
       </ion-item-options>
       </ion-item-sliding>
       <div *ngIf="state==1"  style="width:100%;background:white;margin-top:1px;">

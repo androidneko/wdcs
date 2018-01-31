@@ -8,6 +8,9 @@
 
   <ion-navbar no-border>
     <ion-title>目的物种详情</ion-title>
+    <ion-buttons end *ngIf="state==1">
+      <button ion-button color="white" (click)="done()">完成</button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>

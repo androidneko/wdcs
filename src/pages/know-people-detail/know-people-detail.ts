@@ -28,9 +28,15 @@ export class KnowPeopleDetailPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad KnowPeopleDetailPage');
   }
+
   deleteItem(item,idx){
     this.knowPeopleArray.splice(idx,1);
   }
+
+  done(){
+    this.navCtrl.pop();
+  }
+
   addPeople(){
     this.navCtrl.push("KnowPeoplePage",{
       callback:(people)=>{
