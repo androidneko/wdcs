@@ -108,7 +108,7 @@ export class MyApp {
       }else {
         console.log("please login first")
       }
-      console.log(event)
+      console.log("收到pushMessage event:"+ev)
     });
       
     });
