@@ -262,6 +262,14 @@ export class AddRecordPage extends BasePage{
     });
   }
 
+  keydown(event){
+    if(event.keyCode==13){
+      //返回确定按钮
+      event.target.blur();
+      return false;
+    }
+  }
+
   //提交记录
   commitClick() {
     console.log("提交按钮点击");

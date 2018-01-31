@@ -46,7 +46,14 @@ export class PlantDetailPage {
       this.detailInfo.pluntList.push(plant);
    }});
   }
-
+  
+  keydown(event){
+    if(event.keyCode==13){
+      //返回确定按钮
+      event.target.blur();
+      return false;
+    }
+  }
   done(){
     this.navCtrl.pop();
   }
