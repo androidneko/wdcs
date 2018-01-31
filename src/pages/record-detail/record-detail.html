@@ -27,7 +27,7 @@
       <div class="ac-line-tiny"></div>
       <ion-item >
           <ion-label>目的物种</ion-label>
-          <ion-input readonly="{{state=='1'?'false':'true'}}" type="number" placeholder="请输入物种名称" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+          <ion-input readonly="{{state=='1'?'false':'true'}}" type="number" placeholder="请输入物种名称"  [(ngModel)]="speciesName"></ion-input>
       </ion-item>
       <div class="ac-line-tiny"></div>
       <ion-item class="titleItem">
@@ -41,7 +41,7 @@
       </ion-item>
       <ion-item>
         <ion-label item-start>小地名</ion-label>
-        <ion-input  readonly="{{state=='1'?'false':'true'}}" type="number" placeholder="请输入小地名" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+        <ion-input  readonly="{{state=='1'?'false':'true'}}" type="number" placeholder="请输入小地名"  [(ngModel)]="speciesName"></ion-input>
       </ion-item>
   
       <ion-item  class="titleItem">
@@ -56,11 +56,11 @@
       </ion-item>
       <ion-item *ngIf="protection=='其他'">
         <ion-label item-start>名称</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入保护状况名称" maxlength="6" [(ngModel)]="protectionName"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入保护状况名称"  [(ngModel)]="protectionName"></ion-input>
       </ion-item>
       <ion-item *ngIf="protection=='其他'">
         <ion-label item-start>级别</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入保护状况级别" maxlength="6" [(ngModel)]="protectionLevel"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入保护状况级别"  [(ngModel)]="protectionLevel"></ion-input>
       </ion-item>
   
       <ion-item>
@@ -71,26 +71,26 @@
   
       <ion-item>
         <ion-label item-start>主样方编号</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入主样方(样带)编号" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入主样方(样带)编号"  [(ngModel)]="speciesName"></ion-input>
       </ion-item>
   
       <ion-item>
         <ion-label item-start>环境描述</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="目的物种附近特征或位置示意图" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="目的物种附近特征或位置示意图"  [(ngModel)]="speciesName"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label item-start>主样方面积</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入主样方面积" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入主样方面积"  [(ngModel)]="speciesName"></ion-input>
       </ion-item>
   
       <ion-item>
         <ion-label item-start>群落名称</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入群落名称" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入群落名称"  [(ngModel)]="speciesName"></ion-input>
       </ion-item>
   
       <ion-item>
         <ion-label item-start>群落面积</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入群落面积" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入群落面积"  [(ngModel)]="speciesName"></ion-input>
       </ion-item>
   
       <ion-item class="titleItem">
@@ -120,19 +120,19 @@
       </ion-item>
       <ion-item>
         <ion-label item-start>郁闭度</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入郁闭度" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入郁闭度"  [(ngModel)]="speciesName"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label item-start>盖度</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入盖度" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入盖度"  [(ngModel)]="speciesName"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label item-start>土壤类型</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入土壤类型" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入土壤类型"  [(ngModel)]="speciesName"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label item-start>土壤PH值</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入土壤PH值" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入土壤PH值"  [(ngModel)]="speciesName"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>人为干扰方式</ion-label>
@@ -149,27 +149,27 @@
       </ion-item>
       <ion-item>
         <ion-label item-start>乔木层优势种</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入乔木层优势种" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入乔木层优势种"  [(ngModel)]="speciesName"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label item-start>乔木层伴生种</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入乔木层伴生种" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入乔木层伴生种"  [(ngModel)]="speciesName"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label item-start>灌木层优势种</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入灌木层优势种" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入灌木层优势种"  [(ngModel)]="speciesName"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label item-start>灌木层伴生种</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入灌木层伴生种" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入灌木层伴生种"  [(ngModel)]="speciesName"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label item-start>草本层优势种</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入草本层优势种" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入草本层优势种"  [(ngModel)]="speciesName"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label item-start>草本层伴生种</ion-label>
-        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入草本层伴生种" maxlength="6" [(ngModel)]="speciesName"></ion-input>
+        <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入草本层伴生种"  [(ngModel)]="speciesName"></ion-input>
       </ion-item>
   
       <ion-item class="titleItem">

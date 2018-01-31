@@ -19,11 +19,11 @@
   <ion-list>
     <ion-item>
       <ion-label item-start>副样方数</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入副样方(样圆)数" maxlength="6" [(ngModel)]="detailInfo.coSampleNum"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入副样方(样圆)数"  [(ngModel)]="detailInfo.coSampleNum"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label item-start>目的物种副样方数</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="出现目的物种的副样方(样园)数" maxlength="6" [(ngModel)]="detailInfo.targetCoSampleNum"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="出现目的物种的副样方(样园)数"  [(ngModel)]="detailInfo.targetCoSampleNum"></ion-input>
     </ion-item>
     <p style="margin-left:10px;color:gray">目的物种生活型</p>
     <div padding-left class="checkMark" style="width:100%;">
@@ -92,11 +92,11 @@
     <div class="ty-line1"></div>
     <ion-item>
       <ion-label item-start>幼树株数</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入幼树株数" maxlength="6" [(ngModel)]="detailInfo.saplingNum"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入幼树株数"  [(ngModel)]="detailInfo.saplingNum"></ion-input>
     </ion-item>
     <ion-item no-lines>
       <ion-label item-start>幼苗株数</ion-label>
-      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入幼苗株数" maxlength="6" [(ngModel)]="detailInfo.seedlingNum"></ion-input>
+      <ion-input readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入幼苗株数"  [(ngModel)]="detailInfo.seedlingNum"></ion-input>
     </ion-item>
     <ion-item no-lines style="margin-top:20px;" *ngIf="detailInfo.pluntList.length > 0">
       <ion-icon item-start name="leaf" ios="ios-leaf-outline" md="ios-leaf-outline" color="primary"></ion-icon>
