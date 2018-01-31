@@ -251,7 +251,6 @@ export class AddRecordPage extends BasePage{
     );
   }
   addKnowPeople() {
-
     this.navCtrl.push("KnowPeopleDetailPage", { state: this.state, knowPeopleArray: this.data.insiders });
   }
   photoClik() {

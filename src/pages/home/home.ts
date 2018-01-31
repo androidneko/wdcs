@@ -46,7 +46,7 @@ export class HomePage extends BasePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
-    //this.getNewsList();
+    this.getNewsList();
     this.sendQueryPlantsRequest(this.currentPage, null);
   }
 
@@ -106,9 +106,8 @@ export class HomePage extends BasePage {
   }
 
   getNewsList(){
-    this.net.httpPost(AppGlobal.API.getNewsList,{},msg => {
+    this.net.httpPost(AppGlobal.API.getNewsList,"",msg => {
       let obj = JSON.parse(msg);
-      console.log("cellPhone:"+obj.toString());
       if (obj.ret == AppGlobal.RETURNCODE.succeed) {
         this.newsList = obj.data;
       }else{
@@ -127,6 +126,7 @@ export class HomePage extends BasePage {
       let obj = JSON.parse(msg);
       console.log("cellPhone:"+obj.toString());
       if (obj.ret == AppGlobal.RETURNCODE.succeed) {
+        obj.data.detailInfo.lifeForm = JSON.parse(obj.data.detailInfo.lifeForm);
         let plant = obj.data;
         this.navCtrl.push("AddRecordPage",{state:"0",data:plant});
       }else{

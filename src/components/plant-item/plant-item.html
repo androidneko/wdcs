@@ -3,7 +3,7 @@
    <img class="mimg" src="{{myurl()}}" alt="">
    <div class="bottom">
      <p *ngIf="item.target=='等待上传'"  class="bleft">{{item.target}}</p>
-     <p *ngIf="item.target!='等待上传'"  class="bleft">编号{{item.target}}</p>
+     <p *ngIf="item.target!='等待上传'"  class="bleft">{{item.target}}</p>
      <p class="bright">{{item.picNum}}</p>
      <ion-icon name="md-photos"></ion-icon>
    </div>

@@ -12,12 +12,13 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav, Keyboard, IonicApp, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { HomePage } from '../pages/home/home';
 import { HomePageModule } from '../pages/home/home.module';
 import { AppServiceProvider } from '../providers/app-service/app-service';
 import { ForgetPasswordPage } from '../pages/forget-password/forget-password';
 import { RegistPage } from '../pages/regist/regist';
 import { ModifyPwdPage } from '../pages/modify-pwd/modify-pwd';
-import { HomePage } from '../pages/home/home';
+import { Broadcaster } from '@ionic-native/broadcaster';
 
 export interface PageInterface {
   title: string;
@@ -46,6 +47,7 @@ export class MyApp {
   logoUrl: string = "assets/imgs/visitor.png";
   userName: string = "androidcat";
 
+  hasLoggedIn:boolean = false;
   HAS_LOGGED_IN = 'hasLoggedIn';
   HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
 
@@ -73,7 +75,8 @@ export class MyApp {
     public toastCtrl: ToastController,
     public keyboard:Keyboard,
     public splashScreen: SplashScreen,
-    public events: Events) {
+    public events: Events,
+    private broadcaster: Broadcaster) {
     //注册登录事件监听，改变侧滑菜单
     this.listenToLoginEvents();
     this.platform.ready().then(() => {
@@ -98,6 +101,18 @@ export class MyApp {
         this.splashScreen.hide();
         console.log("hasSeenTutorial fialded");
       });
+      
+    // Listen to events from Native
+    window.addEventListener("pushMessage",(ev) =>{
+      if (this.hasLoggedIn){
+        //打开推送消息页面
+        this.openPage(this.loggedInPages[4]);
+      }else {
+        console.log("please login first")
+      }
+      console.log(event)
+    });
+      
     });
   }
 
@@ -119,16 +134,20 @@ export class MyApp {
 
   listenToLoginEvents() {
     this.events.subscribe('user:login', () => {
+      this.hasLoggedIn = true;
       this.userName = AppServiceProvider.getInstance().userinfo.loginData.userName;
       this.enableMenu(true);
+      this.db.saveString(this.HAS_LOGGED_IN, true);
     });
 
     this.events.subscribe('user:signup', () => {
-      this.enableMenu(true);
+      //this.enableMenu(true);
     });
 
     this.events.subscribe('user:logout', () => {
+      this.hasLoggedIn = false;
       this.enableMenu(false);
+      this.db.saveString(this.HAS_LOGGED_IN, false);
     });
 
     this.events.subscribe('userinfo:saved', () => {
@@ -169,6 +188,11 @@ export class MyApp {
       params = { tabIndex: page.index };
     }
 
+    if (this.nav.getActive() && this.nav.getActive().name === page.name) {
+      this.menu.close();
+      return;
+    }
+
     // If we are already on tabs just change the selected tab
     // don't setRoot again, this maintains the history stack of the
     // tabs even if changing them from the menu
@@ -192,7 +216,6 @@ export class MyApp {
     if (page.logsOut === true) {
       // Give the menu time to close before changing to logged out
       this.events.publish('user:logout');
-      this.db.saveString(this.HAS_LOGGED_IN, false);
     }
   }
 
