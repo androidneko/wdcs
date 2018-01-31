@@ -18,7 +18,6 @@ import { AppServiceProvider } from '../providers/app-service/app-service';
 import { ForgetPasswordPage } from '../pages/forget-password/forget-password';
 import { RegistPage } from '../pages/regist/regist';
 import { ModifyPwdPage } from '../pages/modify-pwd/modify-pwd';
-import { Broadcaster } from '@ionic-native/broadcaster';
 
 export interface PageInterface {
   title: string;
@@ -75,8 +74,7 @@ export class MyApp {
     public toastCtrl: ToastController,
     public keyboard:Keyboard,
     public splashScreen: SplashScreen,
-    public events: Events,
-    private broadcaster: Broadcaster) {
+    public events: Events) {
     //注册登录事件监听，改变侧滑菜单
     this.listenToLoginEvents();
     this.platform.ready().then(() => {
@@ -101,7 +99,7 @@ export class MyApp {
         this.splashScreen.hide();
         console.log("hasSeenTutorial fialded");
       });
-      
+
     // Listen to events from Native
     window.addEventListener("pushMessage",(ev) =>{
       if (this.hasLoggedIn){
