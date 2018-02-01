@@ -19,7 +19,7 @@ export class PlantItemComponent {
   }
   myurl(){
     if (this.item.pictures.length==0) {
-      return "assets/imgs/6.jpg";
+      return "assets/imgs/login_bg.jpg";
     }else{
       return this.item.pictures[0].picUrl;
     }

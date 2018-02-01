@@ -25,6 +25,7 @@ import { JlBlanceSpliterComponent } from './jl-blance-spliter/jl-blance-spliter'
 import { PlantItemComponent } from './plant-item/plant-item';
 import { PhotoItemComponent } from './photo-item/photo-item';
 import { MessageItemComponent } from './message-item/message-item';
+import { ImgLazyLoadComponent } from './img-lazy-load/img-lazy-load';
 @NgModule({
 	declarations: [IonTyfunctionGridComponent,
     BusinessItemComponent,
@@ -51,7 +52,8 @@ import { MessageItemComponent } from './message-item/message-item';
     JlBlanceSpliterComponent,
     PlantItemComponent,
     PhotoItemComponent,
-    MessageItemComponent],
+    MessageItemComponent,
+    ImgLazyLoadComponent],
 
 	imports: [IonicModule,PipesModule],
 	exports: [IonTyfunctionGridComponent,
@@ -79,7 +81,8 @@ import { MessageItemComponent } from './message-item/message-item';
     JlBlanceSpliterComponent,
     PlantItemComponent,
     PhotoItemComponent,
-    MessageItemComponent]
+    MessageItemComponent,
+    ImgLazyLoadComponent]
 
 })
 export class ComponentsModule {}
