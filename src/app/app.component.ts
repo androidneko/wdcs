@@ -1,3 +1,4 @@
+import { ModifyPwdPageModule } from './../pages/modify-pwd/modify-pwd.module';
 import { DbServiceProvider } from './../providers/db-service/db-service';
 import { ForgetPasswordPageModule } from './../pages/forget-password/forget-password.module';
 import { MessagePageModule } from './../pages/message/message.module';
@@ -7,17 +8,12 @@ import { AddRecordPageModule } from './../pages/add-record/add-record.module';
 import { LoginPageModule } from './../pages/login/login.module';
 import { PersonalInfoPageModule } from './../pages/personal-info/personal-info.module';
 import { Events } from 'ionic-angular/util/events';
-import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav, Keyboard, IonicApp, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { HomePage } from '../pages/home/home';
 import { HomePageModule } from '../pages/home/home.module';
 import { AppServiceProvider } from '../providers/app-service/app-service';
-import { ForgetPasswordPage } from '../pages/forget-password/forget-password';
-import { RegistPage } from '../pages/regist/regist';
-import { ModifyPwdPage } from '../pages/modify-pwd/modify-pwd';
 
 export interface PageInterface {
   title: string;
@@ -42,6 +38,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   backButtonPressed: boolean = false;
   rootPage: any;
+  rootPages:Array<string> = ["HomePage","LoginPage","RegistPage","ForgetPasswordPage"];
   avatarUrl: string = "assets/imgs/author_logo2.png";
   logoUrl: string = "assets/imgs/visitor.png";
   userName: string = "androidcat";
@@ -56,7 +53,7 @@ export class MyApp {
     { title: '上传管理', name: 'UploadPlantManagerPage', component: UploadPlantManagerPageModule, icon: 'cloud-upload', ios: "ios-cloud-upload-outline", md: "ios-cloud-upload-outline", leafPage: true },
     { title: '个人信息', name: 'PersonalInfoPage', component: PersonalInfoPageModule, icon: 'contact', ios: "ios-contact-outline", md: "ios-contact-outline", leafPage: true },
     { title: '推送消息', name: 'MessagePage', component: MessagePageModule, icon: 'chatboxes', ios: "ios-chatboxes-outline", md: "ios-chatboxes-outline", leafPage: true },
-    { title: '修改密码', name: 'ModifyPwdPage', component: ModifyPwdPage, icon: 'unlock', ios: "ios-unlock-outline", md: "ios-unlock-outline", leafPage: true },
+    { title: '修改密码', name: 'ModifyPwdPage', component: ModifyPwdPageModule, icon: 'unlock', ios: "ios-unlock-outline", md: "ios-unlock-outline", leafPage: true },
     { title: '登出', name: 'LoginPage', component: LoginPageModule, icon: 'exit', ios: "ios-exit-outline", md: "ios-exit-outline", logsOut: true }
   ];
   loggedOutPages: PageInterface[] = [
@@ -124,9 +121,9 @@ export class MyApp {
 
   platformReady(hasLoggedIn) {
     if (hasLoggedIn) {
-      this.rootPage = HomePage;
+      this.rootPage = "HomePage";
     } else {
-      this.rootPage = LoginPage;
+      this.rootPage = "LoginPage";
     }
   }
 
@@ -165,7 +162,7 @@ export class MyApp {
       return false;
     }
 
-    if (this.nav.getActive() && this.nav.getActive().name === page.name) {
+    if (this.nav.getActive() && this.nav.getActive().id === page.name) {
       return true;
     }
     return false;
@@ -186,7 +183,8 @@ export class MyApp {
       params = { tabIndex: page.index };
     }
 
-    if (this.nav.getActive() && this.nav.getActive().name === page.name) {
+    let act = this.nav.getActive();
+    if (act && act.id === page.name) {
       this.menu.close();
       return;
     }
@@ -244,16 +242,13 @@ export class MyApp {
         return;
       }
       if (this.menu.isOpen()){
+          console.log("menu.isOpen:");
           this.menu.close();
           return ;
       }
 
       console.log("events go on ");
-      let activeVC = this.nav.getActive();
-      let page = activeVC.instance;
-
-      if (page instanceof LoginPage || page instanceof HomePage || page instanceof RegistPage || page instanceof ForgetPasswordPage) {
-        //this.platform.exitApp();
+      if (this.rootPages.indexOf(this.nav.getActive().id) >= 0){
         return this.showExit();
       }
       //return this.nav.canGoBack() ? this.nav.pop() : this.showExit();//另外两种方法在这里将this.showExit()改为其他两种的方法的逻辑就好。
