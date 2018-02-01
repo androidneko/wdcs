@@ -7,7 +7,7 @@ page-login {
         .scroll-content{
             background: rgba($color: #000000, $alpha: 0) !important;
         }
-        background: color($colors,ty-partingline) !important;
+        background: rgb(238, 237, 237) !important;
 
         .item-ios{
             background-color:rgb(253, 252, 252);
@@ -48,9 +48,6 @@ page-login {
             font-size: 10px;
             padding-left: 2px;
             color: color($colors,primary);
-        }
-        .p1{
-            color: color($colors,ty-blue) !important;
         }
     }
     .bottom{
