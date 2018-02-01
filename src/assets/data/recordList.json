@@ -39,7 +39,15 @@
     },
     {
       "picNum": 0,
-      "pictures": [],
+      "pictures": [ {
+          "createUserId": "admin",
+          "createtime": "2018-01-29 13:44:33",
+          "id": "c25866dcbb6541d59bd2f8b5ac51037a",
+          "picName": "深径",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034592603504.jpeg",
+          "remark": null,
+          "sampleInfoId": "bc8db1893f8e4d89a7a3f94dc069a467"
+        }],
       "recordId": "4",
       "target": "4"
     },
@@ -51,7 +59,7 @@
           "createtime": "2018-01-29 13:45:26",
           "id": "3fbe3e97229a4664954c82fb7a0f4f69",
           "picName": "",
-          "picUrl": "http://120.25.249.105:8083/api/v1/3034401152640.jpeg",
+          "picUrl": "http://www.baidu.com/img/bd_logo1.png",
           "remark": null,
           "sampleInfoId": "4aefcfb9e32342a4826ed2ad26d6c7fd"
         },
@@ -88,7 +96,15 @@
     },
     {
       "picNum": 0,
-      "pictures": [],
+      "pictures": [ {
+          "createUserId": "admin",
+          "createtime": "2018-01-29 13:44:33",
+          "id": "c25866dcbb6541d59bd2f8b5ac51037a",
+          "picName": "深径",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034592603504.jpeg",
+          "remark": null,
+          "sampleInfoId": "bc8db1893f8e4d89a7a3f94dc069a467"
+        }],
       "recordId": "5",
       "target": "5"
     },
@@ -106,13 +122,29 @@
     },
     {
       "picNum": 0,
-      "pictures": [],
+      "pictures": [ {
+          "createUserId": "admin",
+          "createtime": "2018-01-29 13:44:33",
+          "id": "c25866dcbb6541d59bd2f8b5ac51037a",
+          "picName": "深径",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034592603504.jpeg",
+          "remark": null,
+          "sampleInfoId": "bc8db1893f8e4d89a7a3f94dc069a467"
+        }],
       "recordId": "8",
       "target": "8"
     },
     {
       "picNum": 0,
-      "pictures": [],
+      "pictures": [ {
+          "createUserId": "admin",
+          "createtime": "2018-01-29 13:44:33",
+          "id": "c25866dcbb6541d59bd2f8b5ac51037a",
+          "picName": "深径",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034592603504.jpeg",
+          "remark": null,
+          "sampleInfoId": "bc8db1893f8e4d89a7a3f94dc069a467"
+        }],
       "recordId": "9",
       "target": "9"
     },
@@ -124,7 +156,7 @@
           "createtime": "2018-01-29 13:44:33",
           "id": "c25866dcbb6541d59bd2f8b5ac51037a",
           "picName": "深径",
-          "picUrl": "http://120.25.249.105:8083/api/v1/3034401110818.jpeg",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034592603504.jpeg",
           "remark": null,
           "sampleInfoId": "bc8db1893f8e4d89a7a3f94dc069a467"
         },

@@ -14,15 +14,8 @@ export class PlantItemComponent {
 
   @Input() item:any;
 
+
   constructor() {
     console.log('Hello PlantItemComponent Component');
-  }
-  myurl(){
-    if (this.item.pictures.length==0) {
-      return "assets/imgs/login_bg.jpg";
-    }else{
-      return this.item.pictures[0].picUrl;
-    }
-    
   }
 }

@@ -1,7 +1,7 @@
 <!-- Generated template for the PlantItemComponent component -->
 <div style="position:relative;margin:8px;border-radius:5px;overflow:hidden;">
    <!-- <img class="mimg" src="{{myurl()}}" alt=""> -->
-   <img-lazy-load default="assets/imgs/login_bg.jpg" class="mimg" src="{{myurl()}}"></img-lazy-load>
+   <img-lazy-load default="assets/imgs/login_bg.jpg" class="mimg" src="{{this.item.pictures.length>0?this.item.pictures[0].picUrl:'assets/imgs/login_bg.jpg'}}"></img-lazy-load>
    <div class="bottom">
      <p *ngIf="item.target=='等待上传'"  class="bleft">{{item.target}}</p>
      <p *ngIf="item.target!='等待上传'"  class="bleft">{{item.target}}</p>
