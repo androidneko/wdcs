@@ -1,5 +1,10 @@
 plant-item {
     .mimg{
+        width: 100%;
+        display: block;
+        div{
+            width: 100%; 
+        }
       img{
         width: 100%;
         min-height: 160px;
