@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, NgZone } from '@angular/core';
 
 /**
  * Generated class for the ImgLazyLoadComponent component.
@@ -23,14 +23,15 @@ export class ImgLazyLoadComponent {
     if (this.curentLoadingImg != val && val != null && val.length > 0) {
       this.curentLoadingImg = val;
       let img = new Image();
-      img.src = this.src;
+      img.src =  this.curentLoadingImg;
       img.onload = () => {
-        //这里为了达到演示效果给了两秒的延迟，实际使用中不需要延迟
-          this.default = this.src;
+          this.zone.runGuarded(()=>{
+            this.default =  this.curentLoadingImg;
+          });
       }
     }
   };
-  constructor() {
+  constructor(public zone:NgZone) {
     console.log('Hello ImgLazyLoadComponent Component');
     // this.text = 'Hello World';
   }
