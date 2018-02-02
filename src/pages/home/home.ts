@@ -1,10 +1,11 @@
 import { AppServiceProvider } from './../../providers/app-service/app-service';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import { BasePage } from '../base/base';
 import { TyNetworkServiceProvider } from '../../providers/ty-network-service/ty-network-service';
 import { AppGlobal } from '../../providers/app-service/app-service';
 import { DeviceIntefaceServiceProvider } from '../../providers/device-inteface-service/device-inteface-service';
+import { MenuToggle } from 'ionic-angular/components/menu/menu-toggle';
 
 /**
  * Generated class for the HomePage page.
@@ -30,6 +31,9 @@ export class HomePage extends BasePage {
 			"imageUrl":"http://www.hbly.gov.cn/CMShbly/201708/201708080523053.jpg","url":"http://www.hbly.gov.cn/wzlm/xwzx/tpxw/89793.htm","title":"1310DFBDC418BEF"
 		}
   ];
+
+  @ViewChild(MenuToggle) menuBtn: MenuToggle;
+
   plants:any = [];
   total: number = -1;
   currentPage: number = 1;

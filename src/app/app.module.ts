@@ -1,19 +1,6 @@
 import { PhotoViewer } from '@ionic-native/photo-viewer';
-import { KnowPeopleDetailPageModule } from './../pages/know-people-detail/know-people-detail.module';
-import { PhotoSelectsPageModule } from './../pages/photo-selects/photo-selects.module';
-import { KnowPeoplePageModule } from './../pages/know-people/know-people.module';
-import { UploadPlantManagerPageModule } from './../pages/upload-plant-manager/upload-plant-manager.module';
-import { NewPlantPageModule } from './../pages/new-plant/new-plant.module';
-import { AddRecordPageModule } from './../pages/add-record/add-record.module';
-import { HomePageModule } from './../pages/home/home.module';
-import { ForgetPasswordPageModule } from './../pages/forget-password/forget-password.module';
-import { TabsPageModule } from './../pages/tabs/tabs.module';
-import { RegistPageModule } from './../pages/regist/regist.module';
-import { BuildingPageModule } from './../pages/building/building.module';
-
 import { MultiPickerModule } from 'ion-multi-picker';
 import { Http, HttpModule } from '@angular/http';
-import { LoginPageModule } from './../pages/login/login.module';
 import { NgModule, ErrorHandler, NgZone } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler, Platform, LoadingController } from 'ionic-angular';
@@ -28,17 +15,10 @@ import { DbServiceProvider } from '../providers/db-service/db-service';
 import { WebDbServiceProvider } from '../providers/web-db-service/web-db-service';
 import { WebTyNetworkServiceProvider } from '../providers/web-ty-network-service/web-ty-network-service';
 import { DeviceIntefaceServiceProvider } from '../providers/device-inteface-service/device-inteface-service';
-import { BusinessPageModule } from '../pages/business/business.module';
-import { ModifyPwdPageModule } from '../pages/modify-pwd/modify-pwd.module';
-import { PersonalInfoPageModule } from '../pages/personal-info/personal-info.module';
 import { Camera } from '@ionic-native/camera';
-import { NewInfoPageModule } from '../pages/new-info/new-info.module';
 import { File } from '@ionic-native/file';
-import { PlantDetailPageModule } from '../pages/plant-detail/plant-detail.module';
-import { UploadManagerProvider } from '../providers/upload-manager/upload-manager';
-import { MessagePageModule } from '../pages/message/message.module';
-import { RecordDetailPageModule } from '../pages/record-detail/record-detail.module';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
+import { UploadManagerProvider } from '../providers/upload-manager/upload-manager';
 
 export function netFactory(platform:Platform,loadingCtrl:LoadingController,http:Http,zone:NgZone) {
   if (platform.is("mobileweb") /*||platform.is("mobile")*/) {
@@ -72,26 +52,7 @@ export function dbFactory(platform:Platform,zone:NgZone) {
       mode: 'ios',//样式强制使用ios样式
     }),
     MultiPickerModule,
-    ComponentsModule,
-    LoginPageModule,
-    HomePageModule,
-    BuildingPageModule,
-    RegistPageModule,
-    BusinessPageModule,
-    TabsPageModule,
-    ModifyPwdPageModule,
-    ForgetPasswordPageModule,
-    PersonalInfoPageModule,
-    NewInfoPageModule,
-    AddRecordPageModule,
-    PlantDetailPageModule,
-    NewPlantPageModule,
-    UploadPlantManagerPageModule,
-    KnowPeoplePageModule,
-    PhotoSelectsPageModule,
-    KnowPeopleDetailPageModule,
-    MessagePageModule,
-    RecordDetailPageModule
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

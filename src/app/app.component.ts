@@ -1,19 +1,19 @@
-import { ModifyPwdPageModule } from './../pages/modify-pwd/modify-pwd.module';
 import { DbServiceProvider } from './../providers/db-service/db-service';
-import { ForgetPasswordPageModule } from './../pages/forget-password/forget-password.module';
-import { MessagePageModule } from './../pages/message/message.module';
-import { RegistPageModule } from './../pages/regist/regist.module';
-import { UploadPlantManagerPageModule } from './../pages/upload-plant-manager/upload-plant-manager.module';
-import { AddRecordPageModule } from './../pages/add-record/add-record.module';
-import { LoginPageModule } from './../pages/login/login.module';
-import { PersonalInfoPageModule } from './../pages/personal-info/personal-info.module';
 import { Events } from 'ionic-angular/util/events';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav, Keyboard, IonicApp, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { HomePageModule } from '../pages/home/home.module';
 import { AppServiceProvider } from '../providers/app-service/app-service';
+import { HomePage } from '../pages/home/home';
+import { AddRecordPage } from '../pages/add-record/add-record';
+import { UploadPlantManagerPage } from '../pages/upload-plant-manager/upload-plant-manager';
+import { PersonalInfoPage } from '../pages/personal-info/personal-info';
+import { MessagePage } from '../pages/message/message';
+import { ModifyPwdPage } from '../pages/modify-pwd/modify-pwd';
+import { LoginPage } from '../pages/login/login';
+import { RegistPage } from '../pages/regist/regist';
+import { ForgetPasswordPage } from '../pages/forget-password/forget-password';
 
 export interface PageInterface {
   title: string;
@@ -48,18 +48,18 @@ export class MyApp {
   HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
 
   loggedInPages: PageInterface[] = [
-    { title: '首页', name: 'HomePage', component: HomePageModule, icon: 'home', ios: "ios-home-outline", md: "ios-home-outline" },
-    { title: '物种采集', name: 'AddRecordPage', component: AddRecordPageModule, icon: 'camera', ios: "ios-camera-outline", md: "ios-camera-outline", leafPage: true },
-    { title: '上传管理', name: 'UploadPlantManagerPage', component: UploadPlantManagerPageModule, icon: 'cloud-upload', ios: "ios-cloud-upload-outline", md: "ios-cloud-upload-outline", leafPage: true },
-    { title: '个人信息', name: 'PersonalInfoPage', component: PersonalInfoPageModule, icon: 'contact', ios: "ios-contact-outline", md: "ios-contact-outline", leafPage: true },
-    { title: '推送消息', name: 'MessagePage', component: MessagePageModule, icon: 'chatboxes', ios: "ios-chatboxes-outline", md: "ios-chatboxes-outline", leafPage: true },
-    { title: '修改密码', name: 'ModifyPwdPage', component: ModifyPwdPageModule, icon: 'unlock', ios: "ios-unlock-outline", md: "ios-unlock-outline", leafPage: true },
-    { title: '登出', name: 'LoginPage', component: LoginPageModule, icon: 'exit', ios: "ios-exit-outline", md: "ios-exit-outline", logsOut: true }
+    { title: '首页', name: 'HomePage', component: HomePage, icon: 'home', ios: "ios-home-outline", md: "ios-home-outline" },
+    { title: '物种采集', name: 'AddRecordPage', component: AddRecordPage, icon: 'camera', ios: "ios-camera-outline", md: "ios-camera-outline", leafPage: true },
+    { title: '上传管理', name: 'UploadPlantManagerPage', component: UploadPlantManagerPage, icon: 'cloud-upload', ios: "ios-cloud-upload-outline", md: "ios-cloud-upload-outline", leafPage: true },
+    { title: '个人信息', name: 'PersonalInfoPage', component: PersonalInfoPage, icon: 'contact', ios: "ios-contact-outline", md: "ios-contact-outline", leafPage: true },
+    { title: '推送消息', name: 'MessagePage', component: MessagePage, icon: 'chatboxes', ios: "ios-chatboxes-outline", md: "ios-chatboxes-outline", leafPage: true },
+    { title: '修改密码', name: 'ModifyPwdPage', component: ModifyPwdPage, icon: 'unlock', ios: "ios-unlock-outline", md: "ios-unlock-outline", leafPage: true },
+    { title: '登出', name: 'LoginPage', component: LoginPage, icon: 'exit', ios: "ios-exit-outline", md: "ios-exit-outline", logsOut: true }
   ];
   loggedOutPages: PageInterface[] = [
-    { title: '登录', name: 'LoginPage', component: LoginPageModule, icon: 'log-in' },
-    { title: '注册', name: 'RegistPage', component: RegistPageModule, icon: 'person-add' },
-    { title: '忘记密码', name: 'ForgetPasswordPage', component: ForgetPasswordPageModule, icon: 'key' }
+    { title: '登录', name: 'LoginPage', component: LoginPage, icon: 'log-in' },
+    { title: '注册', name: 'RegistPage', component: RegistPage, icon: 'person-add' },
+    { title: '忘记密码', name: 'ForgetPasswordPage', component: ForgetPasswordPage, icon: 'key' }
   ];
 
   constructor(
@@ -107,7 +107,10 @@ export class MyApp {
       }
       console.log("收到pushMessage event:"+ev)
     });
-      
+    
+    //一登陆的按钮要屏蔽侧滑打开
+    this.menu.swipeEnable(false,'loggedInMenu');
+
     });
   }
 
