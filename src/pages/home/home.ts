@@ -36,8 +36,8 @@ export class HomePage extends BasePage {
 
   plants:any = [];
   total: number = -1;
-  currentPage: number = 1;
-  pageSize: number = 8;
+  currentPage: number = 0;
+  pageSize: number = 25;
 
   constructor(
     public device:DeviceIntefaceServiceProvider,
@@ -58,7 +58,7 @@ export class HomePage extends BasePage {
   doRefresh(refresher) {
     //刷新
     console.log("下拉刷新");
-    this.sendQueryPlantsRequest(1, refresher);
+    this.sendQueryPlantsRequest(0, refresher);
   }
   doInfinite(refresher) {
     console.log("上拉加载更多");
@@ -78,13 +78,13 @@ export class HomePage extends BasePage {
     let params =
       {
         "userName":AppServiceProvider.getInstance().userinfo.loginData.userName,
-        "start":  page==1?0:this.plants.length,
+        "start":  page,
         "rowCount": this.pageSize,
       };
     this.net.httpPost(AppGlobal.API.recordList, params, msg => {
       let obj = JSON.parse(msg);
       if (obj.ret == AppGlobal.RETURNCODE.succeed) {
-        if (page == 1) {
+        if (page == 0) {
           this.plants = [];
         }
         let list = obj.data;
