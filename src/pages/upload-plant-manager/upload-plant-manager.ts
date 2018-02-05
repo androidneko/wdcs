@@ -119,7 +119,7 @@ export class UploadPlantManagerPage extends BasePage {
     let params =
       {
         "userName":AppServiceProvider.getInstance().userinfo.loginData.userName,
-        "start":  page,
+        "start":  page==0?0:this.hadUploadArray.length,
         "rowCount": 20,
         "status":"1"
       };
@@ -176,7 +176,7 @@ export class UploadPlantManagerPage extends BasePage {
     let params =
       {
         "userName":AppServiceProvider.getInstance().userinfo.loginData.userName,
-        "start":  page,
+        "start":  page==0?0:this.reviewArray.length,
         "rowCount": 20,
         "status":0
       };

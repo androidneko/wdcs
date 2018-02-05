@@ -78,7 +78,7 @@ export class HomePage extends BasePage {
     let params =
       {
         "userName":AppServiceProvider.getInstance().userinfo.loginData.userName,
-        "start":  page,
+        "start": page==0?0:this.plants.length,
         "rowCount": this.pageSize,
       };
     this.net.httpPost(AppGlobal.API.recordList, params, msg => {
