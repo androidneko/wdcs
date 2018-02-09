@@ -18,7 +18,7 @@ export class DeviceIntefaceServiceProvider {
     console.log('Hello DeviceIntefaceServiceProvider Provider');
   }
   
-  push(command,commandData, success,failed){
+  push(command,commandData?, success?,failed?){
     if(this.platfrom.is("mobileweb")||this.platfrom.is("mobile")==false){
       if(failed){
         failed("平台暂不支持");

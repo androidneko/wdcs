@@ -1,10 +1,18 @@
 <!-- Generated template for the PlantItemComponent component -->
 <div style="position:relative;margin:8px;border-radius:5px;overflow:hidden;">
    <!-- <img class="mimg" src="{{myurl()}}" alt=""> -->
-   <img-lazy-load default="assets/imgs/login_bg.jpg" class="mimg" src="{{this.item.pictures.length>0?this.item.pictures[0].picUrl:'assets/imgs/login_bg.jpg'}}"></img-lazy-load>
-   <div class="bottom">
-     <p class="bleft">{{item.target}}</p>
-     <p class="bright">{{item.picNum}}</p>
-     <ion-icon name="md-photos"></ion-icon>
-   </div>
+   <!-- <img-lazy-load default="assets/imgs/login_bg.jpg" class="mimg" src="{{this.item.pictures.length>0?this.item.pictures[0].picUrl:'assets/imgs/login_bg.jpg'}}"></img-lazy-load> -->
+   
+  <ion-slides pager="true" class="mimg" (ionSlideDidChange)="slideChanged()">
+    <ion-slide *ngFor="let tar of item.pictures">
+      <img-lazy-load default="assets/imgs/login_bg.jpg" src="{{tar.picUrl}}"></img-lazy-load>
+    </ion-slide>
+    
+  </ion-slides>
+  <div class="bottom">
+    <p class="bleft">{{item.target}}</p>
+    <p class="bright">{{currentIndex+1 >item.picNum ?item.picNum:currentIndex+1 }}/{{item.picNum}}</p>
+    <ion-icon name="md-photos"></ion-icon>
+  </div>
+   
 </div>

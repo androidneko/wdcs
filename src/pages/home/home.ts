@@ -52,6 +52,7 @@ export class HomePage extends BasePage {
     console.log('ionViewDidLoad HomePage');
     this.getNewsList();
     this.sendQueryPlantsRequest(this.currentPage, null);
+
   }
 
   //net 网络请求

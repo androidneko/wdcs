@@ -2,6 +2,7 @@ plant-item {
     .mimg{
         width: 100%;
         display: block;
+        z-index: 999;
         div{
             width: 100%; 
         }
@@ -12,10 +13,16 @@ plant-item {
         display: block;
       }
     }
+
+    .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{
+        display: none !important;
+    }
+
  .bottom{
      position: absolute;
      bottom: 0px;
      width: 100%;
+     z-index: 99999;
      color: white;
      background: rgba(0, 0, 0, 0.5);
      .bleft{

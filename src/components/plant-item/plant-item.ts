@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
+import { Slides } from 'ionic-angular';
 
 /**
  * Generated class for the PlantItemComponent component.
@@ -13,9 +14,15 @@ import { Component, Input } from '@angular/core';
 export class PlantItemComponent {
 
   @Input() item:any;
+  @ViewChild(Slides) slides: Slides;
 
+  currentIndex:number = 0;
 
   constructor() {
     console.log('Hello PlantItemComponent Component');
+  }
+
+  slideChanged(){
+    this.currentIndex = this.slides.getActiveIndex();
   }
 }

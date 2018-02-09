@@ -1,38 +1,344 @@
-
 {
-  "data" : [
+  "ret": 200,
+  "desc": null,
+  "data": [
     {
-      "recordId" : 1512971068000,
-      "picNum" : "1",
-      "target" : "绿化常青松",
-      "picUrl" : "assets/imgs/6.jpg"
+      "recordId": "3bf0e075367f494d897d7c7dd9a70b29",
+      "picNum": 8,
+      "target": "做任务",
+      "pictures": [
+        {
+          "id": "057693f3ec01492da6d44d9677ce1143",
+          "picName": "萝卜",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3035946712772.jpeg",
+          "sampleInfoId": "3bf0e075367f494d897d7c7dd9a70b29",
+          "createtime": "2018-02-07 11:15:57",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "0638385171484d82bd75a37d23696747",
+          "picName": "花",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3035946710652.jpeg",
+          "sampleInfoId": "3bf0e075367f494d897d7c7dd9a70b29",
+          "createtime": "2018-02-07 11:15:57",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "308144dcce3b40e581f4ab3ae9251a65",
+          "picName": "和",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3035946709732.jpeg",
+          "sampleInfoId": "3bf0e075367f494d897d7c7dd9a70b29",
+          "createtime": "2018-02-07 11:15:57",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "543e6a5f884c4001a95a0c41f3c1b6c0",
+          "picName": "深径",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3035946702630.jpeg",
+          "sampleInfoId": "3bf0e075367f494d897d7c7dd9a70b29",
+          "createtime": "2018-02-07 11:15:57",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "589e055c2da2412fa9e8d8e0f352a20b",
+          "picName": "植株",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3035946698378.jpeg",
+          "sampleInfoId": "3bf0e075367f494d897d7c7dd9a70b29",
+          "createtime": "2018-02-07 11:15:57",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "75cf291e0e064fa1bc9ec4d51bafbcac",
+          "picName": "样方标示",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3035946706470.jpeg",
+          "sampleInfoId": "3bf0e075367f494d897d7c7dd9a70b29",
+          "createtime": "2018-02-07 11:15:57",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "a4df2417ce8c4ba290366212915d3411",
+          "picName": "猫头鹰",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3035946708768.jpeg",
+          "sampleInfoId": "3bf0e075367f494d897d7c7dd9a70b29",
+          "createtime": "2018-02-07 11:15:57",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "b9f894500a6b4c3b958e0f39e96576f2",
+          "picName": "覆棚子",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3035946713850.jpeg",
+          "sampleInfoId": "3bf0e075367f494d897d7c7dd9a70b29",
+          "createtime": "2018-02-07 11:15:57",
+          "createUserId": "13871080412",
+          "remark": null
+        }
+      ]
     },
     {
-      "recordId" : 1512971068000,
-      "picNum" : "8",
-      "target" : "绿萝",
-      "picUrl" : "assets/imgs/4.jpg"
+      "recordId": "d0352c3afaff4b99af8f4c409a906e0e",
+      "picNum": 3,
+      "target": "寒霜草",
+      "pictures": [
+        {
+          "id": "94405cc5a81749d6bbfcf2c2f0458bc4",
+          "picName": "植株",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3035618141742.jpeg",
+          "sampleInfoId": "d0352c3afaff4b99af8f4c409a906e0e",
+          "createtime": "2018-02-05 13:37:54",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "c60f212f92464268a741807f74a9d73f",
+          "picName": "深径",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3035618134750.jpeg",
+          "sampleInfoId": "d0352c3afaff4b99af8f4c409a906e0e",
+          "createtime": "2018-02-05 13:37:54",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "cf76638b4a724e2e9771855f1f36a2ba",
+          "picName": "样方标示",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3035618147746.jpeg",
+          "sampleInfoId": "d0352c3afaff4b99af8f4c409a906e0e",
+          "createtime": "2018-02-05 13:37:54",
+          "createUserId": "13871080412",
+          "remark": null
+        }
+      ]
     },
     {
-      "recordId" : 1512971068000,
-      "picNum" : "1",
-      "target" : "千丝万缕",
-      "picUrl" : "assets/imgs/5.jpg"
+      "recordId": "2a58438f05274bbb939635e831f15096",
+      "picNum": 4,
+      "target": "常青松",
+      "pictures": [
+        {
+          "id": "1ef8003b07134c5c9246631b432da926",
+          "picName": "深径",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034592603504.jpeg",
+          "sampleInfoId": "2a58438f05274bbb939635e831f15096",
+          "createtime": "2018-01-30 15:35:43",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "2c9d0b1e24824d2eadd3548435f280df",
+          "picName": "植株",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034592607868.jpeg",
+          "sampleInfoId": "2a58438f05274bbb939635e831f15096",
+          "createtime": "2018-01-30 15:35:43",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "4d08024531a2446a94843d3607b3ab28",
+          "picName": "整体",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034592614109.jpeg",
+          "sampleInfoId": "2a58438f05274bbb939635e831f15096",
+          "createtime": "2018-01-30 15:35:43",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "7fd1acab4aa94278b843d36588941990",
+          "picName": "样方标示",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034592612304.jpeg",
+          "sampleInfoId": "2a58438f05274bbb939635e831f15096",
+          "createtime": "2018-01-30 15:35:43",
+          "createUserId": "13871080412",
+          "remark": null
+        }
+      ]
     },
     {
-      "recordId" : 1512971068000,
-      "picNum" : "3",
-      "target" : "缅甸大王花",
-      "picUrl" : "assets/imgs/7.jpg"
+      "recordId": "608164a30ec3458a9debec87ee35c083",
+      "picNum": 4,
+      "target": "无花果伊春区石榴",
+      "pictures": [
+        {
+          "id": "12ef086b3a5640be8efd626125de3867",
+          "picName": "明天",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3035112966938.jpeg",
+          "sampleInfoId": "608164a30ec3458a9debec87ee35c083",
+          "createtime": "2018-02-02 15:28:03",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "5f587d77f12a45f8953f27a5a92d2a7c",
+          "picName": "样方标示",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3035112960900.jpeg",
+          "sampleInfoId": "608164a30ec3458a9debec87ee35c083",
+          "createtime": "2018-02-02 15:28:03",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "cfa93f8b1d5f4e5f9d081a46631ed078",
+          "picName": "深径",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3035112947328.jpeg",
+          "sampleInfoId": "608164a30ec3458a9debec87ee35c083",
+          "createtime": "2018-02-02 15:28:03",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "e8283f9b6a4948e8a11021ab19906923",
+          "picName": "植株",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3035112955740.jpeg",
+          "sampleInfoId": "608164a30ec3458a9debec87ee35c083",
+          "createtime": "2018-02-02 15:28:03",
+          "createUserId": "13871080412",
+          "remark": null
+        }
+      ]
     },
     {
-      "recordId" : 1512971056000,
-      "picNum" : "6",
-      "target" : "碧水蕉叶萝",
-      "picUrl" : "assets/imgs/8.jpg"
+      "recordId": "876db0f31fa845dda164479767f1dd59",
+      "picNum": 4,
+      "target": "万年青",
+      "pictures": [
+        {
+          "id": "073cd7404ea5483994e22c5e0e45ea3d",
+          "picName": "样方标示",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034632173422.jpeg",
+          "sampleInfoId": "876db0f31fa845dda164479767f1dd59",
+          "createtime": "2018-01-30 20:41:27",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "2c10a975c49644228ef6d1ec2145b7e2",
+          "picName": "高考",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034632174292.jpeg",
+          "sampleInfoId": "876db0f31fa845dda164479767f1dd59",
+          "createtime": "2018-01-30 20:41:27",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "e1f3ec629b314fc1ac161e9fac80f1ee",
+          "picName": "深径",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034632171826.jpeg",
+          "sampleInfoId": "876db0f31fa845dda164479767f1dd59",
+          "createtime": "2018-01-30 20:41:27",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "e5fdd990c8d7403fab18be3819e5dd6d",
+          "picName": "植株",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034632172684.jpeg",
+          "sampleInfoId": "876db0f31fa845dda164479767f1dd59",
+          "createtime": "2018-01-30 20:41:27",
+          "createUserId": "13871080412",
+          "remark": null
+        }
+      ]
+    },
+    {
+      "recordId": "ae7fe3eb53fa43e79f97104aa9667768",
+      "picNum": 4,
+      "target": "常青松",
+      "pictures": [
+        {
+          "id": "0f240d47023c436d99e32f37e7d923cb",
+          "picName": "样方标示",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034592612304.jpeg",
+          "sampleInfoId": "ae7fe3eb53fa43e79f97104aa9667768",
+          "createtime": "2018-01-30 15:35:34",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "2f798a3a978049f3a408a4b5b246c474",
+          "picName": "整体",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034592614109.jpeg",
+          "sampleInfoId": "ae7fe3eb53fa43e79f97104aa9667768",
+          "createtime": "2018-01-30 15:35:34",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "63f4b8b11ccc4779af34d6cd0690cc0d",
+          "picName": "植株",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034592607868.jpeg",
+          "sampleInfoId": "ae7fe3eb53fa43e79f97104aa9667768",
+          "createtime": "2018-01-30 15:35:34",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "8c7141680c86499c8996042862d474bd",
+          "picName": "深径",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034592603504.jpeg",
+          "sampleInfoId": "ae7fe3eb53fa43e79f97104aa9667768",
+          "createtime": "2018-01-30 15:35:34",
+          "createUserId": "13871080412",
+          "remark": null
+        }
+      ]
+    },
+    {
+      "recordId": "e527a76e0bf645f3bc3dc4fe15a7df32",
+      "picNum": 5,
+      "target": "海棠",
+      "pictures": [
+        {
+          "id": "6b2b28057a5c4f189e9790d529052345",
+          "picName": "植株",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034760943372.jpeg",
+          "sampleInfoId": "e527a76e0bf645f3bc3dc4fe15a7df32",
+          "createtime": "2018-01-31 14:34:35",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "caae6b5ef0ee4c2b9a30b1a713d13c2d",
+          "picName": "深径",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034760939450.jpeg",
+          "sampleInfoId": "e527a76e0bf645f3bc3dc4fe15a7df32",
+          "createtime": "2018-01-31 14:34:35",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "6aae8d0c00e240a9a33be62c91f2a2b4",
+          "picName": "读书",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034760948982.jpeg",
+          "sampleInfoId": "e527a76e0bf645f3bc3dc4fe15a7df32",
+          "createtime": "2018-01-31 14:34:36",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "96464516e6174753badd36f4573566ae",
+          "picName": "样方标示",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034760945742.jpeg",
+          "sampleInfoId": "e527a76e0bf645f3bc3dc4fe15a7df32",
+          "createtime": "2018-01-31 14:34:36",
+          "createUserId": "13871080412",
+          "remark": null
+        },
+        {
+          "id": "a5751cd6ba3e4081b79c2fd1d28ff653",
+          "picName": "低眉",
+          "picUrl": "http://120.25.249.105:8083/api/v1/3034760951524.jpeg",
+          "sampleInfoId": "e527a76e0bf645f3bc3dc4fe15a7df32",
+          "createtime": "2018-01-31 14:34:36",
+          "createUserId": "13871080412",
+          "remark": null
+        }
+      ]
     }
   ],
-  "recordsTotal" : 3,
-  "ret" : 200,
-  "desc" : "成功"
+  "recordsTotal": 7
 }

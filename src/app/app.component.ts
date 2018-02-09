@@ -5,15 +5,15 @@ import { Platform, MenuController, Nav, Keyboard, IonicApp, ToastController } fr
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AppServiceProvider } from '../providers/app-service/app-service';
-import { HomePage } from '../pages/home/home';
 import { AddRecordPage } from '../pages/add-record/add-record';
 import { UploadPlantManagerPage } from '../pages/upload-plant-manager/upload-plant-manager';
-import { PersonalInfoPage } from '../pages/personal-info/personal-info';
 import { MessagePage } from '../pages/message/message';
 import { ModifyPwdPage } from '../pages/modify-pwd/modify-pwd';
 import { LoginPage } from '../pages/login/login';
 import { RegistPage } from '../pages/regist/regist';
 import { ForgetPasswordPage } from '../pages/forget-password/forget-password';
+import { DeviceIntefaceServiceProvider } from '../providers/device-inteface-service/device-inteface-service';
+import { HomePage } from '../pages/home/home';
 
 export interface PageInterface {
   title: string;
@@ -38,7 +38,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   backButtonPressed: boolean = false;
   rootPage: any;
-  rootPages:Array<string> = ["HomePage","LoginPage","RegistPage","ForgetPasswordPage"];
+  rootPages:Array<string> = ["HomeTabPage","LoginPage","RegistPage","ForgetPasswordPage"];
   avatarUrl: string = "assets/imgs/author_logo2.png";
   logoUrl: string = "assets/imgs/visitor.png";
   userName: string = "androidcat";
@@ -48,11 +48,10 @@ export class MyApp {
   HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
 
   loggedInPages: PageInterface[] = [
-    { title: '首页', name: 'HomePage', component: HomePage, icon: 'home', ios: "ios-home-outline", md: "ios-home-outline" },
+    { title: '首页', name: 'HomePage', component: HomePage, icon: 'home', ios: "ios-home-outline", md: "ios-home-outline",index:0 },
     { title: '物种采集', name: 'AddRecordPage', component: AddRecordPage, icon: 'camera', ios: "ios-camera-outline", md: "ios-camera-outline", leafPage: true },
     { title: '上传管理', name: 'UploadPlantManagerPage', component: UploadPlantManagerPage, icon: 'cloud-upload', ios: "ios-cloud-upload-outline", md: "ios-cloud-upload-outline", leafPage: true },
-    { title: '个人信息', name: 'PersonalInfoPage', component: PersonalInfoPage, icon: 'contact', ios: "ios-contact-outline", md: "ios-contact-outline", leafPage: true },
-    { title: '推送消息', name: 'MessagePage', component: MessagePage, icon: 'chatboxes', ios: "ios-chatboxes-outline", md: "ios-chatboxes-outline", leafPage: true },
+    { title: '推送消息', name: 'MessagePage', component: MessagePage, icon: 'chatboxes', ios: "ios-chatboxes-outline", md: "ios-chatboxes-outline", index:1},
     { title: '修改密码', name: 'ModifyPwdPage', component: ModifyPwdPage, icon: 'unlock', ios: "ios-unlock-outline", md: "ios-unlock-outline", leafPage: true },
     { title: '登出', name: 'LoginPage', component: LoginPage, icon: 'exit', ios: "ios-exit-outline", md: "ios-exit-outline", logsOut: true }
   ];
@@ -71,10 +70,12 @@ export class MyApp {
     public toastCtrl: ToastController,
     public keyboard:Keyboard,
     public splashScreen: SplashScreen,
+    public device:DeviceIntefaceServiceProvider,
     public events: Events) {
     //注册登录事件监听，改变侧滑菜单
     this.listenToLoginEvents();
     this.platform.ready().then(() => {
+      console.log("platform has been ready...");
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       //this.statusBar.styleDefault();
@@ -87,13 +88,16 @@ export class MyApp {
         this.db.getString(this.HAS_LOGGED_IN, (hasLoggedIn) => {
           this.enableMenu(hasLoggedIn);
           this.platformReady(hasLoggedIn);
-          this.splashScreen.hide();
+          // this.splashScreen.hide();
+          this.device.push("platform.ready");
         },()=>{
-          this.splashScreen.hide();
+          // this.splashScreen.hide();
+          this.device.push("platform.ready");
           console.log("hasLoggedIn fialded");
         });
       },()=>{
-        this.splashScreen.hide();
+        // this.splashScreen.hide();
+        this.device.push("platform.ready");
         console.log("hasSeenTutorial fialded");
       });
 
@@ -124,7 +128,7 @@ export class MyApp {
 
   platformReady(hasLoggedIn) {
     if (hasLoggedIn) {
-      this.rootPage = "HomePage";
+      this.rootPage = "HomeTabPage";
     } else {
       this.rootPage = "LoginPage";
     }
@@ -159,8 +163,11 @@ export class MyApp {
 
     // Tabs are a special case because they have their own navigation
     if (childNav) {
-      if (childNav.getSelected() && childNav.getSelected().root === page.tabComponent) {
-        return true;
+      if (childNav.getSelected()) {
+        let selected = childNav.getSelected().root;
+        if (selected && selected === page.name){
+          return true;
+        }
       }
       return false;
     }

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { CameraOptions ,Camera} from '@ionic-native/camera';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
-import { Page } from 'ionic-angular/navigation/nav-util';
 
 /**
  * Generated class for the PhotoSelectsPage page.
@@ -84,7 +83,7 @@ export class PhotoSelectsPage {
        
       }
     }];
-    if (this.dataArray[idx].picUrl!="assets/imgs/addphoto.png" &&idx>2) {
+    if (this.dataArray[idx].picUrl!="assets/imgs/addphoto.png" && idx>2) {
        mbuttons = [{
         text:"拍照",
         handler: () => {
