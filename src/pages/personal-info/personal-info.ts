@@ -8,7 +8,6 @@ import { ActionSheetController } from 'ionic-angular/components/action-sheet/act
 import { DeviceIntefaceServiceProvider } from '../../providers/device-inteface-service/device-inteface-service';
 import { Loading } from 'ionic-angular/components/loading/loading';
 import { Navbar } from 'ionic-angular/components/toolbar/navbar';
-import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 /**
  * Generated class for the PersonalInfoPage page.
  *
@@ -76,7 +75,6 @@ export class PersonalInfoPage extends BasePage {
     private device: DeviceIntefaceServiceProvider,
     public loadingCtrl: LoadingController,
     public alert: AlertController,
-    private nativePageTransitions: NativePageTransitions,
     public events: Events) {
     super(navCtrl, navParams);
 
@@ -91,29 +89,29 @@ export class PersonalInfoPage extends BasePage {
   }
 
   ionViewWillEnter(){
-    let options: NativeTransitionOptions = {
-      "duration"       :  300, // in milliseconds (ms), default 400
-      "androiddelay"   :  50
-    };
+    // let options: NativeTransitionOptions = {
+    //   "duration"       :  300, // in milliseconds (ms), default 400
+    //   "androiddelay"   :  50
+    // };
 
-    this.nativePageTransitions.fade(options)
-      .then((data) => {
+    // this.nativePageTransitions.fade(options)
+    //   .then((data) => {
         
-      })
-      .catch((err) => {
+    //   })
+    //   .catch((err) => {
         
-      });
+    //   });
   } 
 
   ionViewWillLeave() {
-    let options: NativeTransitionOptions = {
-       duration: 300,
-       androiddelay: 100
-      };
+    // let options: NativeTransitionOptions = {
+    //    duration: 300,
+    //    androiddelay: 100
+    //   };
    
-    this.nativePageTransitions.fade(options)
-      .then()
-      .catch();
+    // this.nativePageTransitions.fade(options)
+    //   .then()
+    //   .catch();
    }
 
   backButtonClick = (e: UIEvent) => {
