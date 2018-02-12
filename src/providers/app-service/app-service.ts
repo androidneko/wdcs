@@ -36,7 +36,9 @@ export class AppGlobal {
         sampleDetails:"/api/v1/sampleDetails",
         uploadRecord: '/api/v1/sampleInfo', //上传采集数据
         uploadImage:'/api/v1/user/uploadImage',
-        getNewsList:'/api/v1/news/getNewsList'
+        getNewsList:'/api/v1/news/getNewsList',
+        comments:'/api/v1/comments',
+        praises:'/api/v1/praises'
     };
     static DATA:any ={
       uploadDoc:':8080/pc/data/uploadDoc',//文件上传

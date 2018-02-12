@@ -26,6 +26,7 @@ import { PlantItemComponent } from './plant-item/plant-item';
 import { PhotoItemComponent } from './photo-item/photo-item';
 import { MessageItemComponent } from './message-item/message-item';
 import { ImgLazyLoadComponent } from './img-lazy-load/img-lazy-load';
+import { PicItemComponent } from './pic-item/pic-item';
 @NgModule({
 	declarations: [IonTyfunctionGridComponent,
     BusinessItemComponent,
@@ -53,7 +54,8 @@ import { ImgLazyLoadComponent } from './img-lazy-load/img-lazy-load';
     PlantItemComponent,
     PhotoItemComponent,
     MessageItemComponent,
-    ImgLazyLoadComponent],
+    ImgLazyLoadComponent,
+    PicItemComponent],
 
 	imports: [IonicModule,PipesModule],
 	exports: [IonTyfunctionGridComponent,
@@ -82,7 +84,8 @@ import { ImgLazyLoadComponent } from './img-lazy-load/img-lazy-load';
     PlantItemComponent,
     PhotoItemComponent,
     MessageItemComponent,
-    ImgLazyLoadComponent]
+    ImgLazyLoadComponent,
+    PicItemComponent]
 
 })
 export class ComponentsModule {}

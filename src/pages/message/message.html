@@ -24,7 +24,7 @@
     <ion-list >
 
       <ion-item-sliding *ngFor="let message of messages" #slidingItem [attr.type]="message.type">
-        <ion-item item-text-wrap >
+        <ion-item item-text-wrap (click)="test()">
           <h3>{{message.content}}</h3>
           <p> {{message.time}} </p>
         </ion-item>

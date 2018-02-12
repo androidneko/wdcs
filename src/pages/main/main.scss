@@ -1,3 +1,23 @@
 page-main {
+//设置背景颜色
+ion-content{
+    .fixed-content{
+        background: rgba($color: #000000, $alpha: 0) !important;
+    }
+    .scroll-content{
+        background: rgba($color: #000000, $alpha: 0) !important;
+    }
+    background: #f5f4f4 !important;
+}
 
+    .contentUp{
+        h3{
+            font-size: 1.5rem;
+            color: rgb(31, 172, 182);
+        }
+        p{
+            font-size: 1.7rem;
+            color: rgb(68, 68, 68);
+        }
+    }
 }

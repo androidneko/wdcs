@@ -1,0 +1,99 @@
+{
+  "ret": 200,
+  "desc": null,
+  "data": {
+    "recordId": "3bf0e075367f494d897d7c7dd9a70b29",
+    "userName": "一朵梨花压海棠",
+    "date": "2018-02-07",
+    "target": "做任务",
+    "county": "洪山区",
+    "address": "湖北省武汉市洪山区华工园一路靠近华中科技大学科技园",
+    "spot": "你这句话",
+    "alt": "41.58",
+    "lat": "30.450786816355517",
+    "lng": "114.40003680510294",
+    "protection": "保护区",
+    "protectionName": "",
+    "protectionLevel": "",
+    "method": "实测法",
+    "mainSampleNum": "94949",
+    "evnDesc": "仔细研究下",
+    "mainSampleArea": "59",
+    "community": "94",
+    "communityArea": "959",
+    "aspect": "正东",
+    "slope": "30°",
+    "slopePosition": "脊",
+    "crownDensity": "58",
+    "coverage": "",
+    "soilType": "455",
+    "soilPH": "455",
+    "interference": "采集",
+    "interferenceName": "",
+    "interferenceLevel": "强",
+    "treeLayerDominant": "可以控制",
+    "bushLayerDominant": "那你",
+    "herbageLayerDominant": "你也可以",
+    "treeLayerAuxiliary": "可以控制",
+    "bushLayerAuxiliary": "你自己",
+    "herbageLayerAuxiliary": "麻辣小龙虾",
+    "insiders": [
+      {
+        "contactName": "你自己",
+        "telNo": "女子监狱"
+      }
+    ],
+    "pictures": [
+      {
+        "picName": "萝卜",
+        "picUrl": "http://120.25.249.105:8083/api/v1/3035946712772.jpeg"
+      },
+      {
+        "picName": "花",
+        "picUrl": "http://120.25.249.105:8083/api/v1/3035946710652.jpeg"
+      },
+      {
+        "picName": "和",
+        "picUrl": "http://120.25.249.105:8083/api/v1/3035946709732.jpeg"
+      },
+      {
+        "picName": "深径",
+        "picUrl": "http://120.25.249.105:8083/api/v1/3035946702630.jpeg"
+      },
+      {
+        "picName": "植株",
+        "picUrl": "http://120.25.249.105:8083/api/v1/3035946698378.jpeg"
+      },
+      {
+        "picName": "样方标示",
+        "picUrl": "http://120.25.249.105:8083/api/v1/3035946706470.jpeg"
+      },
+      {
+        "picName": "猫头鹰",
+        "picUrl": "http://120.25.249.105:8083/api/v1/3035946708768.jpeg"
+      },
+      {
+        "picName": "覆棚子",
+        "picUrl": "http://120.25.249.105:8083/api/v1/3035946713850.jpeg"
+      }
+    ],
+    "detailInfo": {
+      "coSampleNum": "58",
+      "targetCoSampleNum": "58",
+      "lifeForm": "[{\"checked\":true,\"name\":\"乔木\"},{\"checked\":false,\"name\":\"灌木\"},{\"checked\":false,\"name\":\"草本\"},{\"checked\":false,\"name\":\"藤本\"},{\"checked\":false,\"name\":\"常绿\"},{\"checked\":false,\"name\":\"落叶\"},{\"checked\":false,\"name\":\"一年生\"},{\"checked\":true,\"name\":\"多年生\"},{\"checked\":false,\"name\":\"木质\"},{\"checked\":false,\"name\":\"肉质\"}]",
+      "saplingNum": "5",
+      "seedlingNum": "4",
+      "pluntList": [
+        {
+          "index": 1,
+          "height": "55",
+          "width": "85",
+          "crownWidth": "56",
+          "health": "1"
+        }
+      ]
+    },
+    "token": null
+  },
+  "recordsTotal": null
+}

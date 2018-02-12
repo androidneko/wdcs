@@ -66,4 +66,8 @@ export class MessagePage {
     console.log("上拉加载更多");
     //this.sendQueryPlantsRequest(this.currentPage+1, refresher);
   }
+
+  test(){
+    this.navCtrl.push("MainPage");
+  }
 }
