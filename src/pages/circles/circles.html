@@ -7,12 +7,19 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>circles</ion-title>
+    <ion-title>野保圈</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content no-padding>
+<circles-header>
+  
+</circles-header>
+<ion-list >
+  <circles-item *ngFor="let item of imgArray" [item]="item" >
+    
+  </circles-item>
+</ion-list>
 </ion-content>

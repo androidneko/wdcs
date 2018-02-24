@@ -16,7 +16,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 export class HomeTabPage {
 
   mainRoot = 'HomePage'
-  circlesRoot = 'MessagePage'
+  circlesRoot = 'CirclesPage'
   userRoot = 'PersonalInfoPage'
 
 

@@ -1,0 +1,38 @@
+circles-fabulous-andcomment {
+    .content{
+        background: #EEEEEE;
+        position: relative;
+        margin-right: 7px;
+        ion-icon{
+            font-size: 12px;
+            padding-top: 5px;
+        }
+        .fabulous{
+            overflow: auto;
+            p{
+                font-size: 12px;
+                margin:5px;
+                float: left;
+                padding: 0px;
+                color: #737F9F 
+            }
+        }
+        .blackseparate{
+            height: 0.5px;
+            background: #E3E3E3;
+        }
+        .comment{
+         
+            span{
+                color:#737F9F;
+            }
+            p{
+                font-size: 12px;
+                margin:5px;
+                padding: 0px;
+            }
+        }
+       
+    }
+   
+}

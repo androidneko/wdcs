@@ -1,0 +1,35 @@
+circles-item {
+    .headimgSection{
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        text-align: center;
+        img{
+            display: block;
+            width: 50px;
+            height: 50px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
+    .contentSection{
+        min-height: 80px;
+        margin-left: 70px;
+        margin-right: 0px;
+        .name{
+            font-size: 16px;
+            color: #737F9F;
+            margin: 2px;
+        }
+        .location{
+            font-size: 12px;
+            color: #737F9F;
+            margin: 2px;
+        }
+        .detaildes{
+            font-size: 14px;
+            padding: 0px;
+            margin: 2px;
+        }
+    }
+}

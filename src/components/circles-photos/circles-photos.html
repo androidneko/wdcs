@@ -1,0 +1,12 @@
+<!-- Generated template for the CirclesPhotosComponent component -->
+<div class="content">
+    <!-- <img  *ngFor="let item of imgs" [src]="item"> -->
+    <img class="oneImg" *ngIf="imgs.length==1"  [src]="imgs[0]">
+    <div *ngIf="imgs.length>1" >
+            <div style="position:relative;float:left;width:33.3%" *ngFor="let item of imgs" >
+                    <img class="manyImgs" style="visibility:hidden"  src="assets/imgs/logo.png">
+                    <img style="width:100%;height:100%;position:absolute; padding: 2px;" [src]="item">
+            </div>
+    </div>
+  
+</div>

@@ -13,6 +13,7 @@ import { Component, Input } from '@angular/core';
 export class PicItemComponent {
 
   @Input() item:any;
+  @Input() state:any;
   constructor() {
     console.log('Hello PicItemComponent Component');
   }

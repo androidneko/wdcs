@@ -27,6 +27,11 @@ import { PhotoItemComponent } from './photo-item/photo-item';
 import { MessageItemComponent } from './message-item/message-item';
 import { ImgLazyLoadComponent } from './img-lazy-load/img-lazy-load';
 import { PicItemComponent } from './pic-item/pic-item';
+import { CirclesHeaderComponent } from './circles-header/circles-header';
+import { CirclesItemComponent } from './circles-item/circles-item';
+import { CirclesPhotosComponent } from './circles-photos/circles-photos';
+import { CirclesOprationComponent } from './circles-opration/circles-opration';
+import { CirclesFabulousAndcommentComponent } from './circles-fabulous-andcomment/circles-fabulous-andcomment';
 @NgModule({
 	declarations: [IonTyfunctionGridComponent,
     BusinessItemComponent,
@@ -55,7 +60,12 @@ import { PicItemComponent } from './pic-item/pic-item';
     PhotoItemComponent,
     MessageItemComponent,
     ImgLazyLoadComponent,
-    PicItemComponent],
+    PicItemComponent,
+    CirclesHeaderComponent,
+    CirclesItemComponent,
+    CirclesPhotosComponent,
+    CirclesOprationComponent,
+    CirclesFabulousAndcommentComponent],
 
 	imports: [IonicModule,PipesModule],
 	exports: [IonTyfunctionGridComponent,
@@ -85,7 +95,12 @@ import { PicItemComponent } from './pic-item/pic-item';
     PhotoItemComponent,
     MessageItemComponent,
     ImgLazyLoadComponent,
-    PicItemComponent]
+    PicItemComponent,
+    CirclesHeaderComponent,
+    CirclesItemComponent,
+    CirclesPhotosComponent,
+    CirclesOprationComponent,
+    CirclesFabulousAndcommentComponent]
 
 })
 export class ComponentsModule {}

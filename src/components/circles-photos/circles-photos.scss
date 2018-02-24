@@ -1,0 +1,22 @@
+circles-photos {
+    .content{
+       overflow: auto;
+       img{
+           float: left;
+           display: block;
+       }
+    }
+    .oneImg{
+      width: 80%;
+    }
+    .manyImgs{
+  
+        float: left;
+        width: 100%;
+        padding: 2px;
+    }
+    .manyImgsShow{
+        width: 100%;
+        padding: 2px;
+    }
+}

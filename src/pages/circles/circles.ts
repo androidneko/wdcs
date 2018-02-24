@@ -14,7 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'circles.html',
 })
 export class CirclesPage {
-
+   imgArray=[["assets/imgs/splash.jpg"],["assets/imgs/logo.png","assets/imgs/splash.jpg","assets/imgs/logo.png","assets/imgs/logo.png"]];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

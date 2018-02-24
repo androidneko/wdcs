@@ -1,0 +1,32 @@
+circles-opration {
+  .content{
+      overflow: auto;
+      position: relative;
+      .time{
+          float: left;
+          color: darkgray;
+      }
+      .comment{
+          float: right;
+          margin-top: 10px;
+          width: 30px;
+          height: 30px;
+          color: #737F9F;
+      }
+      .opreation{
+        background: #222222;
+        overflow: auto;
+        float: right;
+        border-radius: 5px;
+        margin-right: 6px;
+        button{
+            color: white;
+            width: 60px;
+            font-size: 12px;
+            ion-icon{
+                color: white;
+            }
+        }
+      }
+  }
+}

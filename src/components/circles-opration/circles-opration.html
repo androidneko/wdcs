@@ -1,0 +1,18 @@
+<!-- Generated template for the CirclesOprationComponent component -->
+<div class="content">
+ <p class="time"> 1小时前</p>
+
+  <button  no-padding class="comment" clear ion-button icon-only (click)="commentBtnCliked()">
+    <ion-icon name="md-text"></ion-icon>
+  </button>
+  <div *ngIf="oprationHidden==false"  class="opreation">
+    <button ion-button icon-left clear>
+      <ion-icon name="ios-heart-outline"></ion-icon>
+      赞
+    </button>
+    <button ion-button icon-left clear>
+        <ion-icon name="ios-text-outline"></ion-icon>
+        评论
+      </button>
+  </div>
+</div>

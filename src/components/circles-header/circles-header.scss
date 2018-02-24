@@ -1,0 +1,25 @@
+circles-header {
+    .itembottom{
+       position: absolute; 
+       width: 100%;
+       overflow: auto;
+       bottom: 0;
+       img{
+            width: 80px;
+            height: 80px;
+            display: block;
+            border:1px solid darkgray;
+            float: right;
+            margin-right: 10px;
+            padding: 2px;
+            background-color:wheat;
+       }
+       p{
+           color: white;
+           padding-top: 10px;
+           font-size: 20px;
+           float: right;
+           margin-right: 10px;
+       }
+    }
+}
