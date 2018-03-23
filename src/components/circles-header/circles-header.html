@@ -1,8 +1,8 @@
 <!-- Generated template for the CirclesHeaderComponent component -->
 <div style="padding-bottom:20px;position:relative">
-<img style="width:100%" src="assets/imgs/blur_bg.png">
+<img style="width:100%;height:30%;" src="assets/imgs/blur_bg.png">
 <div class="itembottom">
-  <img  src="assets/imgs/logo.png">
-  <p>老薛</p>
+  <img-lazy-load default="assets/imgs/logo.png" src="{{user.avatar}}"></img-lazy-load>
+  <p>{{user.nickName==null?user.userName:user.nickName}}</p>
 </div>
 </div>

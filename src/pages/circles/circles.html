@@ -6,7 +6,10 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar no-border>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
     <ion-title>野保圈</ion-title>
   </ion-navbar>
 
@@ -14,9 +17,7 @@
 
 
 <ion-content no-padding>
-<circles-header>
-  
-</circles-header>
+<circles-header [user]="user"> </circles-header>
 <ion-list >
   <circles-item *ngFor="let item of imgArray" [item]="item" >
     

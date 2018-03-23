@@ -5,18 +5,17 @@ circles-header {
        overflow: auto;
        bottom: 0;
        img{
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             display: block;
-            border:1px solid darkgray;
+            border:1px solid gainsboro;
             float: right;
             margin-right: 10px;
-            padding: 2px;
-            background-color:wheat;
+            border-radius: 50%;
        }
        p{
            color: white;
-           padding-top: 10px;
+           padding-top: 20px;
            font-size: 20px;
            float: right;
            margin-right: 10px;
