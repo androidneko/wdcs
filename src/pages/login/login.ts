@@ -76,14 +76,14 @@ export class LoginPage {
       console.log("then -->"+getUserInfoSuccess);
       if (getUserInfoSuccess){
         this.events.publish('userinfo:saved');
-        //this.navCtrl.setRoot("HomeTabPage");
-        this.navCtrl.setRoot("CirclesPage");
+        this.navCtrl.setRoot("HomePage");
+        //this.navCtrl.setRoot("CirclesPage");
       }      
     },getUserInfoFail => {
       console.log("then -->"+getUserInfoFail);
       if (getUserInfoFail){
-        //this.navCtrl.setRoot("HomeTabPage");
-        this.navCtrl.setRoot("CirclesPage");
+        this.navCtrl.setRoot("HomePage");
+        //this.navCtrl.setRoot("CirclesPage");
       }
     });
   }

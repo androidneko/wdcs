@@ -15,6 +15,7 @@ import { ForgetPasswordPage } from '../pages/forget-password/forget-password';
 import { DeviceIntefaceServiceProvider } from '../providers/device-inteface-service/device-inteface-service';
 import { PersonalInfoPage } from '../pages/personal-info/personal-info';
 import { CirclesPage } from '../pages/circles/circles';
+import { HomePage } from '../pages/home/home';
 
 export interface PageInterface {
   title: string;
@@ -39,7 +40,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   backButtonPressed: boolean = false;
   rootPage: any;
-  rootPages:Array<string> = ["CirclesPage","LoginPage","RegistPage","ForgetPasswordPage"];
+  rootPages:Array<string> = ["CirclesPage","HomePage","LoginPage","RegistPage","ForgetPasswordPage"];
   avatarUrl: string = "assets/imgs/author_logo2.png";
   logoUrl: string = "assets/imgs/visitor.png";
   userName: string = "androidcat";
@@ -49,7 +50,7 @@ export class MyApp {
   HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
 
   loggedInPages: PageInterface[] = [
-    { title: '首页', name: 'CirclesPage', component: CirclesPage, icon: 'aperture', ios: "ios-aperture-outline", md: "ios-aperture-outline",index:0 },
+    { title: '首页', name: 'HomePage', component: HomePage, icon: 'home', ios: "ios-home-outline", md: "ios-home-outline",index:0 },
     { title: '物种采集', name: 'AddRecordPage', component: AddRecordPage, icon: 'camera', ios: "ios-camera-outline", md: "ios-camera-outline", leafPage: true },
     { title: '上传管理', name: 'UploadPlantManagerPage', component: UploadPlantManagerPage, icon: 'cloud-upload', ios: "ios-cloud-upload-outline", md: "ios-cloud-upload-outline", leafPage: true },
     { title: '推送消息', name: 'MessagePage', component: MessagePage, icon: 'chatboxes', ios: "ios-chatboxes-outline", md: "ios-chatboxes-outline", leafPage: true },
@@ -58,16 +59,36 @@ export class MyApp {
     { title: '登出', name: 'LoginPage', component: LoginPage, icon: 'exit', ios: "ios-exit-outline", md: "ios-exit-outline", logsOut: true }
   ];
 
+  // loggedInPages: PageInterface[] = [
+  //   { title: '首页', name: 'CirclesPage', component: CirclesPage, icon: 'aperture', ios: "ios-aperture-outline", md: "ios-aperture-outline",index:0 },
+  //   { title: '物种采集', name: 'AddRecordPage', component: AddRecordPage, icon: 'camera', ios: "ios-camera-outline", md: "ios-camera-outline", leafPage: true },
+  //   { title: '上传管理', name: 'UploadPlantManagerPage', component: UploadPlantManagerPage, icon: 'cloud-upload', ios: "ios-cloud-upload-outline", md: "ios-cloud-upload-outline", leafPage: true },
+  //   { title: '推送消息', name: 'MessagePage', component: MessagePage, icon: 'chatboxes', ios: "ios-chatboxes-outline", md: "ios-chatboxes-outline", leafPage: true },
+  //   { title: '个人信息', name: 'PersonalInfoPage', component: PersonalInfoPage, icon: 'contact', ios: "ios-contact-outline", md: "ios-contact-outline", leafPage: true },
+  //   { title: '修改密码', name: 'ModifyPwdPage', component: ModifyPwdPage, icon: 'unlock', ios: "ios-unlock-outline", md: "ios-unlock-outline", leafPage: true },
+  //   { title: '登出', name: 'LoginPage', component: LoginPage, icon: 'exit', ios: "ios-exit-outline", md: "ios-exit-outline", logsOut: true }
+  // ];
+
   loggedInManagerPages: PageInterface[] = [
-    { title: '首页', name: 'CirclesPage', component: CirclesPage, icon: 'aperture', ios: "ios-aperture-outline", md: "ios-aperture-outline",index:0 },
+    { title: '首页', name: 'HomePage', component: HomePage, icon: 'home', ios: "ios-home-outline", md: "ios-home-outline",index:0 },
     { title: '物种采集', name: 'AddRecordPage', component: AddRecordPage, icon: 'camera', ios: "ios-camera-outline", md: "ios-camera-outline", leafPage: true },
     { title: '上传管理', name: 'UploadPlantManagerPage', component: UploadPlantManagerPage, icon: 'cloud-upload', ios: "ios-cloud-upload-outline", md: "ios-cloud-upload-outline", leafPage: true },
     { title: '推送消息', name: 'MessagePage', component: MessagePage, icon: 'chatboxes', ios: "ios-chatboxes-outline", md: "ios-chatboxes-outline", leafPage: true },
     { title: '个人信息', name: 'PersonalInfoPage', component: PersonalInfoPage, icon: 'contact', ios: "ios-contact-outline", md: "ios-contact-outline", leafPage: true },
     { title: '修改密码', name: 'ModifyPwdPage', component: ModifyPwdPage, icon: 'unlock', ios: "ios-unlock-outline", md: "ios-unlock-outline", leafPage: true },
-    { title: '修改密码', name: 'ModifyPwdPage', component: ModifyPwdPage, icon: 'unlock', ios: "ios-unlock-outline", md: "ios-unlock-outline", leafPage: true },
     { title: '登出', name: 'LoginPage', component: LoginPage, icon: 'exit', ios: "ios-exit-outline", md: "ios-exit-outline", logsOut: true }
   ];
+
+  // loggedInManagerPages: PageInterface[] = [
+  //   { title: '首页', name: 'CirclesPage', component: CirclesPage, icon: 'aperture', ios: "ios-aperture-outline", md: "ios-aperture-outline",index:0 },
+  //   { title: '物种采集', name: 'AddRecordPage', component: AddRecordPage, icon: 'camera', ios: "ios-camera-outline", md: "ios-camera-outline", leafPage: true },
+  //   { title: '上传管理', name: 'UploadPlantManagerPage', component: UploadPlantManagerPage, icon: 'cloud-upload', ios: "ios-cloud-upload-outline", md: "ios-cloud-upload-outline", leafPage: true },
+  //   { title: '推送消息', name: 'MessagePage', component: MessagePage, icon: 'chatboxes', ios: "ios-chatboxes-outline", md: "ios-chatboxes-outline", leafPage: true },
+  //   { title: '个人信息', name: 'PersonalInfoPage', component: PersonalInfoPage, icon: 'contact', ios: "ios-contact-outline", md: "ios-contact-outline", leafPage: true },
+  //   { title: '修改密码', name: 'ModifyPwdPage', component: ModifyPwdPage, icon: 'unlock', ios: "ios-unlock-outline", md: "ios-unlock-outline", leafPage: true },
+  //   { title: '修改密码', name: 'ModifyPwdPage', component: ModifyPwdPage, icon: 'unlock', ios: "ios-unlock-outline", md: "ios-unlock-outline", leafPage: true },
+  //   { title: '登出', name: 'LoginPage', component: LoginPage, icon: 'exit', ios: "ios-exit-outline", md: "ios-exit-outline", logsOut: true }
+  // ];
 
   loggedOutPages: PageInterface[] = [
     { title: '登录', name: 'LoginPage', component: LoginPage, icon: 'log-in' },
@@ -142,8 +163,9 @@ export class MyApp {
 
   platformReady(hasLoggedIn) {
     if (hasLoggedIn) {
+      this.rootPage = "HomePage";
       //this.rootPage = "HomeTabPage";
-      this.rootPage = "CirclesPage";
+      //this.rootPage = "CirclesPage";
     } else {
       this.rootPage = "LoginPage";
     }
