@@ -34,7 +34,7 @@
 
   <ion-item style="margin-top:20px;">
     <ion-icon name="paper-plane" ios="ios-paper-plane-outline" md="ios-paper-plane-outline" item-start color="primary"></ion-icon>
-    <ion-label>昵称</ion-label>
+    <ion-label>姓名</ion-label>
     <ion-note item-end *ngIf="!isEditMode">{{info.nickName}}</ion-note>
     <ion-input item-end *ngIf="isEditMode" type="text" maxlength="20" minlength="6" placeholder="请输入昵称" [(ngModel)]="info.nickName" clearInput="true"></ion-input>
   </ion-item>

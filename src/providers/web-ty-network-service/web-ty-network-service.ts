@@ -2,8 +2,9 @@
 // import { TyNetworkServiceProvider } from './../ty-network-service/ty-network-service';
 import { LoadingController } from 'ionic-angular';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import { AppGlobal, AppServiceProvider } from '../app-service/app-service';
 
 /*
   Generated class for the WebTyNetworkServiceProvider provider.
@@ -56,57 +57,51 @@ export class WebTyNetworkServiceProvider {
             });
       }
 
-      httpPost(url, params, success,failed, loader: boolean = false) {
-        this.httpGet(url, params, success,failed, loader);
-        // let loading = this.loadingCtrl.create();
-        // if (loader) {
-        //     loading.present();
-        // }
-        // let mparams = {
-        //   "ACTION_INFO":JSON.stringify(params),
-        //   "ACTION_NAME" : params.ACTION_NAME,
-        //   "ACTION_INVOKER":{
-        //     "SP":"200",
-        //     "VER":"2",
-        //     "OSNAME":"01",
-        //     "PHONE_VENDER":"APPLE",
-        //     "INNERVERSION":"201",
-        //     "APPINNERVERSION":"201",
-        //     "PROJECT_NAME":"MyApp"
-        //   },
-        //   "ACTION_TOKEN":{
-        //     "TIMESTAMP" : 1513166518
-        //   }
-        // };
-        // this.http.post(AppGlobal.domain+url,mparams)
-        //     .toPromise()
-        //     .then(res => {
+      httpPost(api, params, success,failed, loader: boolean = false) {
+        //this.httpGet(url, params, success,failed, loader);
+        let loading = this.loadingCtrl.create();
+        if (loader) {
+            loading.present();
+        }
 
-        //       setTimeout(() => {
-        //         if (loader) {
-        //           loading.dismiss();
-        //         }
+        let sortParams = {};
+        let sortKeys = Object.keys(params).sort();
+        for (let index = 0; index < sortKeys.length; index++) {
+          const key = sortKeys[index];
+          sortParams[key] = params[key];
+        }
+        
+        console.log("request url:"+AppGlobal.domain+api);
+        console.log("request data:"+JSON.stringify(sortParams));
+        this.http.post(AppGlobal.domain+api,JSON.stringify(sortParams),{
+          headers:new Headers({
+            "content-type":"application/json;charset=UTF-8"
+          })
+        })
+            .toPromise()
+            .then(res => {
+
+              setTimeout(() => {
+                if (loader) {
+                  loading.dismiss();
+                }
                 
-        //         let m=  res.json();
-        //         if (typeof(m.ACTION_INFO) == "string") {
-        //            m.ACTION_INFO=JSON.parse(m.ACTION_INFO);
+                let m =  res.text();
+                success(m);
+              }, 1000);
 
-        //         }
-        //         success(m);
-        //       }, 1000);
+            })
+            .catch(error => {
 
-        //     })
-        //     .catch(error => {
+              setTimeout(() => {
+                if (loader) {
+                  loading.dismiss();
+                }
+                console.log(error);
+                failed(error.message);
+              }, 1000);
 
-        //       setTimeout(() => {
-        //         if (loader) {
-        //           loading.dismiss();
-        //         }
-        //         console.log(error);
-        //         failed(error.message);
-        //       }, 1000);
-
-        //     });
+            });
       }
 
       httpGet(api, params, success,failed, loader: boolean = false) {

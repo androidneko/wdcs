@@ -1,7 +1,7 @@
 import { BasePage } from './../base/base';
 import { UploadManagerProvider } from './../../providers/upload-manager/upload-manager';;
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ModalController } from 'ionic-angular';
 import { DeviceIntefaceServiceProvider } from '../../providers/device-inteface-service/device-inteface-service';
 import { TydatePipe } from '../../pipes/tydate/tydate';
 import { AppServiceProvider } from '../../providers/app-service/app-service';
@@ -25,24 +25,38 @@ export class AddRecordPage extends BasePage{
   isShowApplying = false;//是否显示正在申请中
 
   locantionDes="位置";
+  province = "";
+  county = "";
+  street = "";
   // gatherDate:string = "2018-01-10";
   protectionName: string = "";
   protectionLevel: string = "";
   speciesName: string = "";
 
-  protection = '保护区';
+  protection = '国家级 自然保护区';
   proofArr: any = [
+    {
+      name: '级别',
+      options: [
+        { text: '国家级', value: '国家级' },
+        { text: '省级', value: '省级' },
+        { text: '市级', value: '市级' },
+        { text: '县级', value: '县级' },
+        { text: '其他', value: '' }
+      ]
+    },
     {
       name: '保护状况',
       options: [
-        { text: '保护区', value: '保护区' },
-        { text: '保护小区', value: '保护小区' },
-        { text: '森林公园', value: '森林公园' },
-        { text: '风景名胜区', value: '风景名胜区' },
-        { text: '其他', value: '其他' }
+        { text: '自然保护区', value: '自然保护区'},
+        { text: '森林公园', value: '森林公园'},
+        { text: '湿地公园', value: '湿地公园' },
+        { text: '风景名胜区', value: '风景名胜区'},
+        { text: '保护小区', value: '保护小区'}
       ]
     }
   ];
+
   proofOther = "";//保护状况其他;
   method = '实测法';
   methods: any = [
@@ -58,48 +72,49 @@ export class AddRecordPage extends BasePage{
     }
   ];
 
-  aspect = '正东';
+  aspect = '北坡';
   aspects: any = [
     {
       name: '方位',
       options: [
-        { text: '正东', value: '正东' },
-        { text: '正西', value: '正西' },
-        { text: '正南', value: '正南' },
-        { text: '正北', value: '正北' },
-        { text: '东南', value: '东南' },
-        { text: '东北', value: '东北' },
-        { text: '西南', value: '西南' },
-        { text: '西北', value: '西北' }
+        { text: '北坡', value: '北坡' },
+        { text: '东北破', value: '东北破' },
+        { text: '东坡', value: '东坡' },
+        { text: '东南坡', value: '东南坡' },
+        { text: '南坡', value: '南坡' },
+        { text: '西南坡', value: '西南坡' },
+        { text: '西坡', value: '西坡' },
+        { text: '西北坡', value: '西北坡' },
+        { text: '无坡向', value: '无坡向' }
       ]
     }
   ];
 
-  slope = '30°';
+  slope = '平坡';
   degrees: any = [
     {
       name: '坡度',
       options: [
-        { text: '30°', value: '30°' },
-        { text: '60°', value: '60°' },
-        { text: '90°', value: '90°' },
-        { text: '120°', value: '120°' },
-        { text: '150°', value: '150°' },
-        { text: '180°', value: '180°' }
+        { text: '平坡', value: '平坡' },
+        { text: '缓坡', value: '缓坡' },
+        { text: '斜坡', value: '斜坡' },
+        { text: '急坡', value: '急坡' },
+        { text: '陡坡', value: '陡坡' },
+        { text: '险坡', value: '险坡' }
       ]
     }
   ];
 
-  slopePosition = '脊';
+  slopePosition = '脊部';
   positions: any = [
     {
       name: '位置',
       options: [
-        { text: '脊', value: '脊' },
-        { text: '上', value: '上' },
-        { text: '中', value: '中' },
-        { text: '下', value: '下' },
-        { text: '谷底', value: '谷底' },
+        { text: '脊部', value: '脊部' },
+        { text: '上坡', value: '上坡' },
+        { text: '中坡', value: '中坡' },
+        { text: '下坡', value: '下坡' },
+        { text: '山谷', value: '山谷' },
         { text: '平地', value: '平地' }
       ]
     }
@@ -133,12 +148,88 @@ export class AddRecordPage extends BasePage{
     }
   ];
 
+  crownDensities:any = [
+    {
+      name: '郁闭度',
+      options: [
+        { text: '0', value: '0' },
+        { text: '0.1', value: '0.1' },
+        { text: '0.2', value: '0.2' },
+        { text: '0.3', value: '0.3' },
+        { text: '0.4', value: '0.4' },
+        { text: '0.5', value: '0.5' },
+        { text: '0.6', value: '0.6' },
+        { text: '0.7', value: '0.7' },
+        { text: '0.8', value: '0.8' },
+        { text: '0.9', value: '0.9' },
+        { text: '1', value: '1' }
+      ]
+    }
+  ];
+
+  // soilType:any = [
+  //   {
+  //     name: '土纲',
+  //     options: [
+  //       { text: '铁铝土', value: '1' },
+  //       { text: '淋溶土', value: '2' },
+  //       { text: '初育土', value: '3' },
+  //       { text: '半水成土', value: '4' },
+  //       { text: '人为土', value: '5' }
+  //     ]
+  //   },
+  //   {
+  //     name: '土类',
+  //     options: [
+  //       { text: '红壤', value: 'A13', parentVal: '1' },
+  //       { text: '黄壤', value: 'A21', parentVal: '1' },
+  //       { text: '黄棕壤', value: 'B11' , parentVal: '2'},
+  //       { text: '山地棕壤', value: 'B21' , parentVal: '2'},
+  //       { text: '山地暗棕壤', value: 'B31' , parentVal: '2'},
+  //       { text: '石灰土', value: 'G21', parentVal: '3' },
+  //       { text: '紫色土', value: 'G23' , parentVal: '3'},
+  //       { text: '山地草甸土', value: 'H11' , parentVal: '4'},
+  //       { text: '潮土', value: 'H21' , parentVal: '4'},
+  //       { text: '水稻土', value: 'L11' , parentVal: '5'}
+  //     ]
+  //   }
+  // ];
+  soilType:any = [
+    {
+      name: '土类',
+      options: [
+        { text: '红壤', value: 'A13' },
+        { text: '黄壤', value: 'A21'},
+        { text: '黄棕壤', value: 'B11'},
+        { text: '山地棕壤', value: 'B21'},
+        { text: '山地暗棕壤', value: 'B31'},
+        { text: '石灰土', value: 'G21'},
+        { text: '紫色土', value: 'G23'},
+        { text: '山地草甸土', value: 'H11'},
+        { text: '潮土', value: 'H21'},
+        { text: '水稻土', value: 'L11'}
+      ]
+    }
+  ];
+
+  mainSampleAreaOther = '';
+  mainSampleAreas:any = [
+    {
+      name: '主样方面积',
+      options: [
+        { text: '20m*20m', value: '20' },
+        { text: '10m*10m', value: '10' },
+        { text: '5m*5m', value: '5' },
+        { text: '1m*1m', value: '1' }
+      ]
+    }
+  ];
 
   knowPeopleArray = [];
   imgArray = [];
   plants = [];
   data = {
-    userName: AppServiceProvider.getInstance().userinfo.loginData.userName,//用户名
+    userName: AppServiceProvider.getInstance().userinfo.userData.nickName?AppServiceProvider.getInstance().userinfo.userData.nickName:AppServiceProvider.getInstance().userinfo.loginData.userName,//用户名
     date: "2018-01-10",//日期
     target: "",//目标植物
     county:"",
@@ -147,21 +238,21 @@ export class AddRecordPage extends BasePage{
     lat: "", //纬度
     lng: "", //经度
     spot: "",//小地名
-    protection: "保护区",//就地保护状况
+    protection: "国家级 自然保护区",//就地保护状况
     protectionName: "",//保护区名称 proof为其他是才显示
     protectionLevel: "",//protection 为其他时才显示
     method: "实测法",//调查方法
     mainSampleNum: "",//主样方编号
     evnDesc: "",//环境描述
-    mainSampleArea: "",//主样方面积
+    mainSampleArea: "20",//主样方面积
     community: "",//群落名称
     communityArea: "",//群落面积
-    aspect: "正东",//坡向
-    slope: "30°",//坡度
-    slopePosition: "脊",//坡位
-    crownDensity: "",//郁闭度
+    aspect: "北坡",//坡向
+    slope: "平坡",//坡度
+    slopePosition: "脊部",//坡位
+    crownDensity: "0",//郁闭度
     coverage: "",//盖度
-    soilType: "",//土壤类型
+    soilType: "A13",//土壤类型
     soilPH: "",//土壤PH
     interference: "采集",//人为干扰方式
     interferenceName: "",//干扰方式为其他时才生效
@@ -183,7 +274,7 @@ export class AddRecordPage extends BasePage{
       pluntList: [],
     }
   };
-  constructor(public toastCtrl: ToastController,public navCtrl: NavController, public navParams: NavParams,public device:DeviceIntefaceServiceProvider,private datePipe:TydatePipe,private upManager:UploadManagerProvider) {
+  constructor(public modalCtrl: ModalController,public toastCtrl: ToastController,public navCtrl: NavController, public navParams: NavParams,public device:DeviceIntefaceServiceProvider,private datePipe:TydatePipe,private upManager:UploadManagerProvider) {
     super(navCtrl,navParams,toastCtrl);
     if (this.navParams.data.state != null) {
       this.state = this.navParams.data.state;
@@ -209,7 +300,12 @@ export class AddRecordPage extends BasePage{
         this.data.lat = obj.lat;
         this.data.lng = obj.lng;
         this.data.alt = obj.alt;
+        this.data.spot = obj.street;
+        this.province = obj.province;
+        this.county = obj.county;
+        this.street = obj.street;
         this.data.address = obj.address;
+
         this.locantionDes = "位置";
       },err => {
         // this.toast(err);
@@ -228,6 +324,10 @@ export class AddRecordPage extends BasePage{
         this.data.lng = obj.lng;
         this.data.alt = obj.alt;
         this.data.address = obj.address;
+        this.data.spot = obj.street;
+        this.province = obj.province;
+        this.county = obj.county;
+        this.street = obj.street;
         this.locantionDes = "位置";
       },err => {
         // this.toast(err);
@@ -243,6 +343,17 @@ export class AddRecordPage extends BasePage{
   ionViewWillEnter() {
 
   }
+
+  showNameTip(){
+    let profileModal = this.modalCtrl.create("TipCommunityNamePage");
+    profileModal.present();
+  }
+
+  showAreaTip(){
+    let profileModal = this.modalCtrl.create("TipCommunityAreaPage");
+    profileModal.present();
+  }
+
   gotoPlantDetail() {
     this.navCtrl.push("PlantDetailPage", {
       state: this.state,
@@ -272,6 +383,7 @@ export class AddRecordPage extends BasePage{
   //提交记录
   commitClick() {
     console.log("提交按钮点击");
+    console.log(this.data.protection);
     // console.log(JSON.stringify(this.data));
     //异常判断 暂时保存
 

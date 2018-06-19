@@ -2,4 +2,14 @@ page-new-plant {
     .item-ios{
         font-size: 1.45rem !important;
     }
+    .titleItem{
+        background:rgba(252, 252, 252, 0);
+        min-height:30px !important;
+
+        ion-label{
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;  
+            font-size: 13px;
+        }
+    }
 }

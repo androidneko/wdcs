@@ -216,7 +216,7 @@ export class MyApp {
   }
 
   gotoPersonalInfoPage() {
-    this.openPage(this.loggedInPages[3]);
+    this.openPage(this.loggedInPages[4]);
     this.menu.close();
   }
 

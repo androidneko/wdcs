@@ -48,4 +48,20 @@ page-add-record {
         text-align: center;
         color: white;
     }
+
+    .row {
+        h3{
+          font-size: inherit;
+          height: 20px;
+          margin: 0px;
+        }
+        p{
+            font-size: inherit;
+            height: 20px;
+            margin: 0px 0px 0px 16px;
+        }
+    }
+    .input-cover{
+        display: none;
+    }
 }

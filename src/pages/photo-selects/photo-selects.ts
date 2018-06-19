@@ -17,7 +17,7 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
 })
 export class PhotoSelectsPage {
   basicPhoto1Dft = new PhotoItem(0,"assets/imgs/addphoto.png","植株");
-  basicPhoto2Dft = new PhotoItem(1,"assets/imgs/addphoto.png","深径");
+  basicPhoto2Dft = new PhotoItem(1,"assets/imgs/addphoto.png","生境");
   basicPhoto3Dft = new PhotoItem(2,"assets/imgs/addphoto.png","样方标示");
   detailPhotoDft = new PhotoItem(3,"assets/imgs/addphoto.png","");
   

@@ -13,30 +13,33 @@
 </ion-header>
 
 <ion-content class="ion-content-background-partingline" no-padding>
-    <ion-item>
-        <ion-label style="width:26%">序号</ion-label>
-        <p item-end>{{index}}</p>
-      </ion-item>
-    <ion-item>
-      <ion-label style="width:26%">高度(M)</ion-label>
-      <ion-input  type="text" placeholder="请输入植株高度，单位:米" [(ngModel)]="height" ></ion-input>
+  <ion-item>
+    <ion-label style="width:26%">序号</ion-label>
+    <p item-end>{{index}}</p>
+  </ion-item>
+  <ion-item>
+    <ion-label style="width:26%">高度(M)</ion-label>
+    <ion-input type="text" placeholder="请输入植株高度,单位:米" [(ngModel)]="height"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label style="width:26%">胸/地径(CM)</ion-label>
+    <ion-input type="text" placeholder="请输入胸/地径,单位:厘米" [(ngModel)]="width"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label style="width:26%">冠幅(M)</ion-label>
+    <ion-input type="text" placeholder="植株冠幅,单位:米" [(ngModel)]="crownWidth"></ion-input>
+  </ion-item>
+  <ion-item class="titleItem">
+      <ion-label item-start style="color: red">*以下项实测法需填写</ion-label>
     </ion-item>
-    <ion-item>
-      <ion-label style="width:26%">胸/地径(CM)</ion-label>
-      <ion-input type="text" placeholder="请输入胸/地径，单位:厘米" [(ngModel)]="width"  ></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-label style="width:26%">冠幅(M)</ion-label>
-        <ion-input  type="text" placeholder="请输入植株冠幅，单位:米" [(ngModel)]="crownWidth" ></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label style="width:26%">健康状况</ion-label>
-          <ion-input  type="text" placeholder="请输入植株健康状况" [(ngModel)]="health" ></ion-input>
-        </ion-item>
+  <ion-item>
+    <ion-label style="width:26%">健康状况</ion-label>
+    <ion-input type="text" placeholder="请输入健康状况" [(ngModel)]="health"></ion-input>
+  </ion-item>
 
-        <div style="margin:20px" >
-            <button ion-button block color="primary" (click)="done()">
-              完成
-            </button>
-          </div>
-  </ion-content>
+  <div style="margin:20px">
+    <button ion-button block color="primary" (click)="done()">
+      完成
+    </button>
+  </div>
+</ion-content>

@@ -1,0 +1,15 @@
+page-tip-community-area {
+    .item-block:first-child{
+        border-top: #fff!important;
+    }
+    
+    .item-block{
+        min-height: 5rem!important;
+    }
+
+    .item-ios h3{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+    }
+}

@@ -19,6 +19,8 @@ import { Camera } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { UploadManagerProvider } from '../providers/upload-manager/upload-manager';
+import { TipCommunityNamePageModule } from '../pages/tip-community-name/tip-community-name.module';
+import { TipCommunityAreaPageModule } from '../pages/tip-community-area/tip-community-area.module';
 
 export function netFactory(platform:Platform,loadingCtrl:LoadingController,http:Http,zone:NgZone) {
   if (platform.is("mobileweb") /*||platform.is("mobile")*/) {
@@ -46,6 +48,8 @@ export function dbFactory(platform:Platform,zone:NgZone) {
   imports: [
     BrowserModule,
     HttpModule,
+    TipCommunityNamePageModule,
+    TipCommunityAreaPageModule,
     IonicModule.forRoot(MyApp,{
       backButtonText: '返回', 
       iconMode: 'ios',//安卓icon强制使用ios的icon以及样式

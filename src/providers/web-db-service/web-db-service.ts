@@ -20,9 +20,9 @@ export class WebDbServiceProvider implements  DbServiceProvider{
   }
   getString(key,success,filed?){
       if(key==DbServiceProvider.username){
-        success("fuweidong0011");
+        success("13871080412");
       }else if (key==DbServiceProvider.password) {
-        success('123456');
+        success('qqqqqq');
       }else{
         if(filed!=null){
           filed();
