@@ -395,10 +395,8 @@ export class AddRecordPage extends BasePage{
       this.toast("请刷新获取当前位置");
       return;
     }
-    if (this.data.mainSampleNum == "") {
-      this.toast("请输入主样方编号");
-      return;
-    }
+    this.data.mainSampleNum = this.province+"-"+this.county+"-"+this.data.target;
+
     if (this.data.spot == "") {
       this.toast("请输入小地名");
       return;
