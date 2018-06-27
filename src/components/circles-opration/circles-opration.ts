@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { AppServiceProvider } from '../../providers/app-service/app-service';
 
 /**
  * Generated class for the CirclesOprationComponent component.
@@ -18,7 +19,18 @@ export class CirclesOprationComponent {
     console.log('Hello CirclesOprationComponent Component');
     this.text = 'Hello World';
   }
-  commentBtnCliked(){
+  opereationBtnCliked(){
     this.oprationHidden = !this.oprationHidden;
+  }
+  fabulous(){
+    //赞
+    this.oprationHidden = true;
+  }
+  commentBtnClicked(){
+    //评论按钮点击
+    this.oprationHidden = true;
+    AppServiceProvider.getInstance().chartBar.showWithItem(null,(msg)=>{
+
+    });
   }
 }

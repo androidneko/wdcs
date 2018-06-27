@@ -32,6 +32,7 @@ import { CirclesItemComponent } from './circles-item/circles-item';
 import { CirclesPhotosComponent } from './circles-photos/circles-photos';
 import { CirclesOprationComponent } from './circles-opration/circles-opration';
 import { CirclesFabulousAndcommentComponent } from './circles-fabulous-andcomment/circles-fabulous-andcomment';
+import { ChartBarComponent } from './chart-bar/chart-bar';
 @NgModule({
 	declarations: [IonTyfunctionGridComponent,
     BusinessItemComponent,
@@ -65,7 +66,8 @@ import { CirclesFabulousAndcommentComponent } from './circles-fabulous-andcommen
     CirclesItemComponent,
     CirclesPhotosComponent,
     CirclesOprationComponent,
-    CirclesFabulousAndcommentComponent],
+    CirclesFabulousAndcommentComponent,
+    ChartBarComponent],
 
 	imports: [IonicModule,PipesModule],
 	exports: [IonTyfunctionGridComponent,
@@ -100,7 +102,8 @@ import { CirclesFabulousAndcommentComponent } from './circles-fabulous-andcommen
     CirclesItemComponent,
     CirclesPhotosComponent,
     CirclesOprationComponent,
-    CirclesFabulousAndcommentComponent]
+    CirclesFabulousAndcommentComponent,
+    ChartBarComponent]
 
 })
 export class ComponentsModule {}

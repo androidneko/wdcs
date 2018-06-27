@@ -1,3 +1,4 @@
+import { ChartBarComponent } from './../../components/chart-bar/chart-bar';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
@@ -57,7 +58,7 @@ export class AppServiceProvider {
     userData:{}
   };//当前用户信息
   public merMenuList:any=[];
-
+  public chartBar:ChartBarComponent;
   constructor() {
     if (AppServiceProvider.instance) {
       throw new Error("错误: 请使用AppServiceProvider.getInstance() 代替使用new.");

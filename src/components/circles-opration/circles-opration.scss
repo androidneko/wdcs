@@ -9,9 +9,12 @@ circles-opration {
       .comment{
           float: right;
           margin-top: 10px;
-          width: 30px;
-          height: 30px;
+          font-size: 1.2rem;
+          margin: 10px 0px 0px 0px ;
           color: #737F9F;
+          ion-icon{
+              padding-right: 8px;
+          }
       }
       .opreation{
         background: #222222;

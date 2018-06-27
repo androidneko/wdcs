@@ -1,3 +1,4 @@
+import { ChartBarComponent } from './../components/chart-bar/chart-bar';
 import { DbServiceProvider } from './../providers/db-service/db-service';
 import { Events } from 'ionic-angular/util/events';
 import { Component, ViewChild } from '@angular/core';
@@ -38,6 +39,7 @@ export class MyApp {
   // the root nav is a child of the root app component
   // @ViewChild(Nav) gets a reference to the app's root nav
   @ViewChild(Nav) nav: Nav;
+  @ViewChild(ChartBarComponent) chartBar:ChartBarComponent;
   backButtonPressed: boolean = false;
   rootPage: any;
   rootPages:Array<string> = ["CirclesPage","HomePage","LoginPage","RegistPage","ForgetPasswordPage"];
@@ -117,7 +119,7 @@ export class MyApp {
       if (this.platform.is("android")) {
         this.registerBackButtonAction();
       }
-      
+      AppServiceProvider.getInstance().chartBar = this.chartBar;
       //判断登录状态，并跳转
       this.db.getString(this.HAS_SEEN_TUTORIAL, (hasSeenTutorial) => {
         this.db.getString(this.HAS_LOGGED_IN, (hasLoggedIn) => {

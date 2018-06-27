@@ -1,0 +1,8 @@
+<!-- Generated template for the ChartBarComponent component -->
+<div id="chartBarContainer" (click)="bgclick();$event.stopPropagation();"class="divBg">
+
+  <div  id="toolsBar" class="toolsBar">
+      <ion-input (ionBlur)="blurInput()" #input type="" float-left [(ngModel)]="text" ></ion-input>
+      <button (click)="sendBtnCliked()" ion-button  outline float-right >发送</button>
+  </div>
+</div>
