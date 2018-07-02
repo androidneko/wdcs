@@ -52,11 +52,11 @@ export class ChartBarComponent {
   }
 
   sendBtnCliked(){
-    // if (this.backBlock != null) {
-    //   this.backBlock(this.text);
-    //   this.backBlock = null;
-    // }
-    // this.hide();
+    if (this.backBlock != null) {
+      this.backBlock(this.text);
+      this.backBlock = null;
+    }
+    this.hide();
   }
 
   keyboardShowHandler(e) {

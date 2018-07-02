@@ -13,7 +13,7 @@ import { Component, Input } from '@angular/core';
 export class CirclesPhotosComponent {
 
   text: string;
-  @Input() imgs=[];
+  @Input() item: any;
   constructor() {
     console.log('Hello CirclesPhotosComponent Component');
     this.text = 'Hello World';
