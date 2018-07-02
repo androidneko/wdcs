@@ -1,5 +1,5 @@
 import { Component, ViewChild} from '@angular/core';
-import {  TextInput } from 'ionic-angular';
+import {  TextInput, Platform } from 'ionic-angular';
 
 /**
  * Generated class for the ChartBarComponent component.
@@ -18,22 +18,13 @@ export class ChartBarComponent {
   backBlock:any;
   @ViewChild("input") input: TextInput;
 
-  constructor() {
+  constructor(public platform:Platform) {
     console.log('Hello ChartBarComponent Component');
-    // window.addEventListener('native.keyboardshow', keyboardShowHandler);
-    // function keyboardShowHandler(e) {
-    //   //e.keyboardHeight 这个可以直接获取软键盘的高度  
-    //   var containner = document.getElementById("toolsBar");
-    //   // containner.style.bottom = e.keyboardHeight;
-    //   console.log('Keyboard height is: ' + e.keyboardHeight);
-    //   console.log("toolsBar bottom is"+containner.style.bottom);
-    // }  
-    // window.addEventListener('native.keyboardhide', keyboardHideHandler);
-    // function keyboardHideHandler(e) {
-    //   //......  
-    //   var containner = document.getElementById("toolsBar");
-    //   containner.style.bottom = "0";
-    // }  
+    if (this.platform.is("android")){
+      window.addEventListener('native.keyboardshow', this.keyboardShowHandler);
+      window.addEventListener('native.keyboardhide', this.keyboardHideHandler);
+    }
+  
   }
 
   bgclick() {
@@ -66,6 +57,20 @@ export class ChartBarComponent {
     //   this.backBlock = null;
     // }
     // this.hide();
+  }
+
+  keyboardShowHandler(e) {
+    //e.keyboardHeight 这个可以直接获取软键盘的高度  
+    var containner = document.getElementById("toolsBar");
+    containner.style.bottom = e.keyboardHeight + 'px';
+    console.log('Keyboard height is: ' + e.keyboardHeight);
+    console.log("toolsBar bottom is"+containner.style.bottom);
+  }  
+  
+  keyboardHideHandler(e) {
+    //......  
+    var containner = document.getElementById("toolsBar");
+    containner.style.bottom = "0px";
   }
 
 }
