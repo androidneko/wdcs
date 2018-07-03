@@ -126,16 +126,16 @@ export class MyApp {
         this.db.getString(this.HAS_LOGGED_IN, (hasLoggedIn) => {
           this.enableMenu(hasLoggedIn);
           this.platformReady(hasLoggedIn);
-          // this.splashScreen.hide();
-          this.device.push("platform.ready");
+          this.splashScreen.hide();
+          // this.device.push("platform.ready");
         },()=>{
-          // this.splashScreen.hide();
-          this.device.push("platform.ready");
+          this.splashScreen.hide();
+          // this.device.push("platform.ready");
           console.log("hasLoggedIn fialded");
         });
       },()=>{
-        // this.splashScreen.hide();
-        this.device.push("platform.ready");
+        this.splashScreen.hide();
+        // this.device.push("platform.ready");
         console.log("hasSeenTutorial fialded");
       });
 
