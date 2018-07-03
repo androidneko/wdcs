@@ -30,10 +30,13 @@ export class ChartBarComponent {
   bgclick() {
      this.hide();
   }
-  show(){
+  show(hint?:string){
     var containner = document.getElementById("chartBarContainer");
     containner.style.display = "block";
     this.input.setFocus();
+    if (hint){
+      this.input.placeholder = hint;
+    }
   }
   hide(){
     var containner = document.getElementById("chartBarContainer");
@@ -41,13 +44,20 @@ export class ChartBarComponent {
     if (this.item!=null && this.text!="") {
        this.item = this.text;
     }
+    this.input.placeholder = "";
     this.text="";
   }
   blurInput(){
     // this.hide();
   }
   showWithItem(item,backBlock){
-    this.show();
+    if (item && item.user){
+      let hint:string = '回复'+item.user.userName+':'
+      this.show(hint);
+    }else {
+      this.show();
+    }
+    
     this.backBlock=backBlock;
   }
 

@@ -20,7 +20,7 @@ export class CirclesFabulousAndcommentComponent {
     this.text = 'Hello World';
   }
   mreplyBtnClicked(user){
-    AppServiceProvider.getInstance().chartBar.showWithItem(null, (msg) => {
+    AppServiceProvider.getInstance().chartBar.showWithItem({user:user}, (msg) => {
       if (msg != null && msg.length > 0) {
         this.item.comments.push({
           fromuser: {
