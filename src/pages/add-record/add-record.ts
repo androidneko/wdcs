@@ -229,7 +229,8 @@ export class AddRecordPage extends BasePage{
   imgArray = [];
   plants = [];
   data = {
-    userName: AppServiceProvider.getInstance().userinfo.userData.nickName?AppServiceProvider.getInstance().userinfo.userData.nickName:AppServiceProvider.getInstance().userinfo.loginData.userName,//用户名
+    userName:AppServiceProvider.getInstance().userinfo.loginData.userName,//用户名
+    showName: AppServiceProvider.getInstance().userinfo.userData.nickName||AppServiceProvider.getInstance().userinfo.loginData.userName,
     date: "2018-01-10",//日期
     target: "",//目标植物
     county:"",

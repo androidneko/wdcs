@@ -3,6 +3,6 @@
 <img style="width:100%;height:30%;" src="assets/imgs/blur_bg.png">
 <div class="itembottom">
   <img-lazy-load default="assets/imgs/logo.png" src="{{user.avatar}}"></img-lazy-load>
-  <p>{{user.nickName==null?user.userName:user.nickName}}</p>
+  <p>{{user.nickName||user.userName}}</p>
 </div>
 </div>

@@ -178,6 +178,10 @@ export class LoginPage {
     this.navCtrl.setRoot("ForgetPasswordPage").catch((err: any) => {
       console.log(`Didn't set nav root: ${err}`);
     });
+    // this.navCtrl.setRoot("PostDetailPage").catch((err: any) => {
+    //   console.log(`Didn't set nav root: ${err}`);
+    // });
+    
   }
 
   registBtnCliked() {
