@@ -1,6 +1,6 @@
 <!-- Generated template for the CirclesOprationComponent component -->
 <div class="content">
- <p class="time"> 1小时前</p>
+ <p class="time"> {{item.createTime}}</p>
 
   <button  no-padding class="comment" clear ion-button icon-only (click)="opereationBtnCliked()">
     <ion-icon name="md-text"></ion-icon>
@@ -8,7 +8,7 @@
   <div *ngIf="oprationHidden==false"  class="opreation">
     <button ion-button icon-left clear (click)="fabulous()">
       <ion-icon name="ios-heart-outline"></ion-icon>
-      赞
+      {{item.isFabuloused==true?"取消":"赞"}}
     </button>
     <button ion-button icon-left clear (click)="commentBtnClicked()">
         <ion-icon name="ios-text-outline"></ion-icon>

@@ -39,7 +39,11 @@ export class AppGlobal {
         uploadImage:'/api/v1/user/uploadImage',
         getNewsList:'/api/v1/news/getNewsList',
         comments:'/api/v1/comments',
-        praises:'/api/v1/praises'
+        praises:'/api/v1/praises',
+        circleFriendsQuery: '/api/v1/circleFriends/query',//查询朋友圈接口All
+        circleFriendsFabulous:"/api/v1/circleFriends/fabulous",//朋友圈点赞
+        circleFriendsDelfabulous:"/api/v1/circleFriends/delfabulous",
+        circleFriendsMsg:"/api/v1/circleFriends/msg"//朋友圈评论
     };
     static DATA:any ={
       uploadDoc:':8080/pc/data/uploadDoc',//文件上传

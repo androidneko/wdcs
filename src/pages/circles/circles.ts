@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AppServiceProvider } from '../../providers/app-service/app-service';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { AppServiceProvider, AppGlobal } from '../../providers/app-service/app-service';
+import { BasePage } from '../base/base';
+import { TyNetworkServiceProvider } from '../../providers/ty-network-service/ty-network-service';
 
 /**
  * Generated class for the CirclesPage page.
@@ -14,87 +16,79 @@ import { AppServiceProvider } from '../../providers/app-service/app-service';
   selector: 'page-circles',
   templateUrl: 'circles.html',
 })
-export class CirclesPage {
+export class CirclesPage extends BasePage {
 
   user: any;
   imgArray = [["assets/imgs/splash.jpg"], ["assets/imgs/logo.png", "assets/imgs/splash.jpg", "assets/imgs/logo.png", "assets/imgs/logo.png"]];
-  dataArray = [{
-    user: {
-      userName: "老薛",
-      userId: "123"
-    },
-    locationdes: "湖北武汉",
-    descriptContent: "今天天气还可以啊",
-    imgs: ["assets/imgs/splash.jpg"],//图片
-    fabulous: [{
-      userName: "老王",
-      userId: "123"
-    }, {
-      userName: "老张",
-      userId: "334"
-    }]//点赞
-  }, {
-    user: {
-      userName: "老钱",
-      userId: "123"
-    },
-    locationdes: "湖北邯郸",
-    descriptContent: "今天晴空万里，蓝天白云",
-    imgs: ["assets/imgs/logo.png", "assets/imgs/splash.jpg", "assets/imgs/logo.png", "assets/imgs/logo.png"],
-    fabulous: [{
-      userName: "老薛",
-      userId: "123"
-    }, {
-      userName: "老孙",
-      userId: "334"
-    }, {
-      userName: "孙悟空",
-      userId: "334"
-    }, {
-      userName: "韩立",
-      userId: "334"
-    }, {
-      userName: "陇家老祖",
-      userId: "334"
-    }, {
-      userName: "黑山老妖",
-      userId: "334"
-    }],//点赞
-    comments: [
-      {
-        fromuser: {
-          userName: "老薛",
-          userId: "123"
-        }, touser: {
-          userName: "老薛",
-          userId: "123"
-        },
-        content: "哈哈哈哈"
-      }, {
-        fromuser: {
-          userName: "老钱",
-          userId: "123"
-        },
-        content: "不错不错"
-      },
-      {
-        fromuser: {
-          userName: "老薛",
-          userId: "123"
-        }, touser: {
-          userName: "老钱",
-          userId: "123"
-        },
-        content: "可以可以"
-      }
-    ]//评论
-  }];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  dataArray = [];
+  total = -1;
+  currentPage: number = 0;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,public toastCtrl: ToastController,public net:TyNetworkServiceProvider) {
+    super(navCtrl, navParams, toastCtrl);
     this.user = AppServiceProvider.getInstance().userinfo.userData;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CirclesPage');
+    this.sendQueryRequest(1, null);
   }
+  doRefresh(refresher) {
+    //刷新
+    console.log("下拉刷新");
+
+    this.sendQueryRequest(1,refresher);
+  }
+  doInfinite(refresher) {
+    console.log("上拉加载更多");
+    this.sendQueryRequest(this.currentPage + 1, refresher);
+  }
+  sendQueryRequest(page: any, refresher: any, isLoading: boolean = true) {
+    let params =
+    {
+      
+      "current": page,
+      "rowCount": 20,
+    };
+    this.net.httpPost(AppGlobal.API.circleFriendsQuery, params, msg => {
+      let obj = JSON.parse(msg);
+      if (obj.ret == AppGlobal.RETURNCODE.succeed) {
+        if (page == 1) {
+          this.dataArray = [];
+        }
+        let list = obj.data.rows;
+        this.total = parseInt(obj.data.total);
+        for (let index = 0; index < list.length; index++) {
+          let element = list[index];
+          element.isFabuloused = false;
+          if (element.circleFriendsFabulousList != null && element.circleFriendsFabulousList.length>0) {
+            for (let index = 0; index < element.circleFriendsFabulousList.length; index++) {
+              let item = element.circleFriendsFabulousList[index];
+              if (item.userId == AppServiceProvider.getInstance().userinfo.loginData.userId) {
+                element.isFabuloused = true;
+                element.fabulousedIndex = index;
+              }
+           }
+         }
+          this.dataArray.push(element);
+        }
+        this.currentPage = page;
+
+      } else {
+        this.total = 0;
+        this.toast(obj.ACTION_RETURN_MESSAGE);
+      }
+      if (refresher != null) {
+        refresher.complete();
+      }
+    }, error => {
+      this.toast(error);
+      this.total = 0;
+      if (refresher != null) {
+        refresher.complete();
+      }
+    }, isLoading);
+  }
+
 
 }

@@ -7,9 +7,9 @@
 <ion-header>
 
   <ion-navbar no-border>
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>野保圈</ion-title>
   </ion-navbar>
 
@@ -17,10 +17,19 @@
 
 
 <ion-content no-padding>
-<circles-header [user]="user"> </circles-header>
-<ion-list >
-  <circles-item *ngFor="let item of dataArray" [item]="item" >
-    
-  </circles-item>
-</ion-list>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingText="下拉刷新"></ion-refresher-content>
+  </ion-refresher>
+  <circles-header [user]="user"> </circles-header>
+  <ion-list>
+    <circles-item *ngFor="let item of dataArray" [item]="item">
+
+    </circles-item>
+    <ion-custom-empty *ngIf="total==0"></ion-custom-empty>
+    <ion-allitem-showed-bottom *ngIf="dataArray.length>=total&&dataArray.length>0"></ion-allitem-showed-bottom>
+
+    <ion-infinite-scroll *ngIf="dataArray.length<total" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content loadingText="正在加载..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-list>
 </ion-content>
