@@ -66,8 +66,7 @@ export class AddRecordPage extends BasePage{
         { text: '实测法', value: '实测法' },
         { text: '样方法', value: '样方法' },
         { text: '样圆法', value: '样圆法' },
-        { text: '样线法', value: '样线法' },
-        { text: '系统抽样法', value: '系统抽样法' }
+        { text: '样线法', value: '样线法' }
       ]
     }
   ];
@@ -95,12 +94,13 @@ export class AddRecordPage extends BasePage{
     {
       name: '坡度',
       options: [
-        { text: '平坡', value: '平坡' },
-        { text: '缓坡', value: '缓坡' },
-        { text: '斜坡', value: '斜坡' },
-        { text: '急坡', value: '急坡' },
-        { text: '陡坡', value: '陡坡' },
-        { text: '险坡', value: '险坡' }
+        { text: '平坡:0-5度', value: '平坡' },
+        { text: '缓坡:6-15度', value: '缓坡' },
+        { text: '斜坡:16-25度', value: '斜坡' },
+        { text: '急坡:26-35度', value: '急坡' },
+        { text: '陡坡:36-45度', value: '陡坡' },
+        { text: '险坡:46度以上', value: '险坡' },
+        { text: '其他', value: '其他' }
       ]
     }
   ];
@@ -167,6 +167,15 @@ export class AddRecordPage extends BasePage{
     }
   ];
 
+  init_crownDensities(){
+    let num :number = 0;
+    this.crownDensities[0].options = [];
+    for (let i = 0;i <= 100; i++){
+      this.crownDensities[0].options.push({ text: num.toFixed(2), value: num.toFixed(2) });
+      num = num + 0.01;
+    }
+  }
+
   // soilType:any = [
   //   {
   //     name: '土纲',
@@ -194,20 +203,32 @@ export class AddRecordPage extends BasePage{
   //     ]
   //   }
   // ];
+  soilTypeOther = '';
   soilType:any = [
     {
       name: '土类',
       options: [
-        { text: '红壤', value: 'A13' },
-        { text: '黄壤', value: 'A21'},
-        { text: '黄棕壤', value: 'B11'},
-        { text: '山地棕壤', value: 'B21'},
-        { text: '山地暗棕壤', value: 'B31'},
-        { text: '石灰土', value: 'G21'},
-        { text: '紫色土', value: 'G23'},
-        { text: '山地草甸土', value: 'H11'},
-        { text: '潮土', value: 'H21'},
-        { text: '水稻土', value: 'L11'}
+        // { text: '红壤', value: 'A13' },
+        // { text: '黄壤', value: 'A21'},
+        // { text: '黄棕壤', value: 'B11'},
+        // { text: '山地棕壤', value: 'B21'},
+        // { text: '山地暗棕壤', value: 'B31'},
+        // { text: '石灰土', value: 'G21'},
+        // { text: '紫色土', value: 'G23'},
+        // { text: '山地草甸土', value: 'H11'},
+        // { text: '潮土', value: 'H21'},
+        // { text: '水稻土', value: 'L11'}
+        { text: '红壤', value: '红壤' },
+        { text: '黄壤', value: '黄壤'},
+        { text: '黄棕壤', value: '黄棕壤'},
+        { text: '山地棕壤', value: '山地棕壤'},
+        { text: '山地暗棕壤', value: '山地暗棕壤'},
+        { text: '石灰土', value: '石灰土'},
+        { text: '紫色土', value: '紫色土'},
+        { text: '山地草甸土', value: '山地草甸土'},
+        { text: '潮土', value: '潮土'},
+        { text: '水稻土', value: '水稻土'},
+        { text: '其他', value: '其他'}
       ]
     }
   ];
@@ -220,7 +241,8 @@ export class AddRecordPage extends BasePage{
         { text: '20m*20m', value: '20' },
         { text: '10m*10m', value: '10' },
         { text: '5m*5m', value: '5' },
-        { text: '1m*1m', value: '1' }
+        { text: '1m*1m', value: '1' },
+        { text: '其他', value: '其他' }
       ]
     }
   ];
@@ -253,7 +275,7 @@ export class AddRecordPage extends BasePage{
     slopePosition: "脊部",//坡位
     crownDensity: "0",//郁闭度
     coverage: "",//盖度
-    soilType: "A13",//土壤类型
+    soilType: "红壤",//土壤类型
     soilPH: "",//土壤PH
     interference: "采集",//人为干扰方式
     interferenceName: "",//干扰方式为其他时才生效
@@ -277,6 +299,7 @@ export class AddRecordPage extends BasePage{
   };
   constructor(public modalCtrl: ModalController,public toastCtrl: ToastController,public navCtrl: NavController, public navParams: NavParams,public device:DeviceIntefaceServiceProvider,private datePipe:TydatePipe,private upManager:UploadManagerProvider) {
     super(navCtrl,navParams,toastCtrl);
+    this.init_crownDensities();
     if (this.navParams.data.state != null) {
       this.state = this.navParams.data.state;
     }
@@ -293,6 +316,7 @@ export class AddRecordPage extends BasePage{
       this.data.date = this.datePipe.transform(new Date(),"yyyy-MM-dd");
     
     }
+    
     if (this.state == "1"&&this.data.lat.length == 0) {
       this.locantionDes = "正在获取位置信息";
       this.device.push("location","",msg =>{
@@ -406,6 +430,7 @@ export class AddRecordPage extends BasePage{
       this.toast("请输入环境描述");
       return;
     }
+    
     if (this.data.community == "community") {
       this.toast("请输入群落名称");
       return;
@@ -427,10 +452,10 @@ export class AddRecordPage extends BasePage{
       return;
     }
     if (this.data.pictures.length>0) {
-      for (let index = 0; index < 3; index++) {
+      for (let index = 0; index < 2; index++) {
         let item = this.data.pictures[index];
         if (item.picUrl == "assets/imgs/addphoto.png") {
-          this.toast("前三张照片不能为空");
+          this.toast("前两张照片不能为空");
             return;
         }
      
@@ -439,6 +464,29 @@ export class AddRecordPage extends BasePage{
       this.toast("请选择照片");
       return;
     }
+
+    if (this.data.mainSampleArea == "其他") {
+      if (this.mainSampleAreaOther == "") {
+        this.toast("请输入主样方面积");
+        return;
+      }
+      this.data.mainSampleArea = this.mainSampleAreaOther;
+    }
+    if (this.data.soilType == "其他") {
+      if (this.soilTypeOther == "") {
+        this.toast("请输入土壤类型");
+        return;
+      }
+      this.data.soilType = this.soilTypeOther;
+    }
+    if (this.data.slope == "其他") {
+      if (this.slope == "") {
+        this.toast("请输入坡度");
+        return;
+      }
+      this.data.slope = this.slope;
+    }
+
     this.upManager.successed = ()=>{
 
       this.navCtrl.pop();

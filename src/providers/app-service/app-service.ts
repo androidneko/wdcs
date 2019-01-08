@@ -20,7 +20,7 @@ export class AppGlobal {
     }
 
 
-    static domain = "http://120.25.249.105:8083"; //测试环境
+    static domain = "http://220.249.102.138:8083"; //测试环境
     // static domain = "http://10.8.3.51:9090"; //
 
     static API = {

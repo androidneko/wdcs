@@ -19,7 +19,7 @@
 <ion-content>
   <ion-list>
       <ion-item >
-          <ion-label>{{data.userName}}</ion-label>
+          <ion-label>{{data.showName}}</ion-label>
           <ion-datetime disabled="{{state=='1'?'false':'true'}}" item-end style="color:darkgray;padding:0px;" displayFormat="YYYY-MM-DD" [(ngModel)]="data.date" doneText="确定"
             cancelText="取消"></ion-datetime>
         </ion-item>
@@ -84,7 +84,7 @@
 
     <ion-item>
       <ion-label item-start>环境描述</ion-label>
-      <ion-input (keydown)="keydown($event)" readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="如房前屋后、岩石旁等"  [(ngModel)]="data.evnDesc"></ion-input>
+      <ion-input (keydown)="keydown($event)" readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="如房前、屋后、岩石旁、河流边等"  [(ngModel)]="data.evnDesc"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label item-start>主样方面积</ion-label>
@@ -92,9 +92,9 @@
         cancelText="取消"></ion-multi-picker>
         <!-- <ion-input (keydown)="keydown($event)" readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入主样方面积" [(ngModel)]="data.mainSampleArea"></ion-input> -->
     </ion-item>
-    <!-- <ion-item *ngIf="data.mainSampleArea == '其他'" >
+    <ion-item *ngIf="data.mainSampleArea == '其他'" >
       <ion-input (keydown)="keydown($event)" readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入主样方面积" [(ngModel)]="mainSampleAreaOther"></ion-input>
-    </ion-item> -->
+    </ion-item>
 
     <ion-item>
       <ion-label item-start style="margin: 8px 5px 8px 0px;">群落名称</ion-label>
@@ -104,7 +104,8 @@
 
     <ion-item>
       <ion-label item-start style="margin: 8px 5px 8px 0px;">群落面积</ion-label>
-      <ion-input (keydown)="keydown($event)" readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入群落面积"  [(ngModel)]="data.communityArea"></ion-input>
+      <ion-input (keydown)="keydown($event)" readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入群落面积,单位:m²"  [(ngModel)]="data.communityArea"></ion-input>
+      <p item-end>m²</p>
       <ion-icon (click)="showAreaTip()" item-end ios="ios-help-circle-outline" md="ios-help-circle-outline" color="primary"></ion-icon>
     </ion-item>
 
@@ -123,6 +124,10 @@
       <ion-multi-picker disabled="{{state=='1'?'':'true'}}"  item-end style="color:darkgray" id="slope" [(ngModel)]="data.slope" [multiPickerColumns]="degrees" doneText="确定"
         cancelText="取消"></ion-multi-picker>
     </ion-item>
+    <ion-item *ngIf="data.slope == '其他'" >
+      <ion-input (keydown)="keydown($event)" readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入坡度" [(ngModel)]="slop"></ion-input>
+    </ion-item>
+
     <ion-item>
       <ion-label>坡位</ion-label>
       <ion-multi-picker  disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="slopePosition" [(ngModel)]="data.slopePosition" [multiPickerColumns]="positions" doneText="确定"
@@ -141,14 +146,18 @@
     </ion-item>
     <ion-item>
       <ion-label item-start>盖度</ion-label>
-      <ion-input (keydown)="keydown($event)" readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入盖度"  [(ngModel)]="data.coverage"></ion-input>
+      <ion-input (keydown)="keydown($event)" readonly="{{state=='1'?'false':'true'}}" type="number" placeholder="请输入盖度,单位%"  [(ngModel)]="data.coverage"></ion-input>
+      <p item-end>%</p>
     </ion-item>
     <ion-item>
       <ion-label item-start>土壤类型</ion-label>
       <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="soilType" [(ngModel)]="data.soilType" [multiPickerColumns]="soilType" doneText="确定"
         cancelText="取消"></ion-multi-picker>
-      <!-- <ion-input (keydown)="keydown($event)" readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入土壤类型"  [(ngModel)]="data.soilType"></ion-input> -->
     </ion-item>
+    <ion-item *ngIf="data.soilType=='其他'">
+      <ion-input (keydown)="keydown($event)" readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入土壤类型"  [(ngModel)]="soilTypeOther"></ion-input>
+    </ion-item>
+
     <ion-item>
       <ion-label item-start>土壤PH值</ion-label>
       <ion-input (keydown)="keydown($event)" readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入土壤PH值"  [(ngModel)]="data.soilPH"></ion-input>

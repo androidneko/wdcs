@@ -57,11 +57,13 @@ export class PhotoSelectsPage {
       return;
     }
    let options: CameraOptions = {
-      quality: 50,
+      quality: 30,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       sourceType:this.camera.PictureSourceType.PHOTOLIBRARY,
+      targetWidth:720,
+      targetHeight:720,
       allowEdit:true
     };
     var mbuttons = [{
