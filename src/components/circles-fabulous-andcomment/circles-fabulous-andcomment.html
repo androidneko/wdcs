@@ -2,20 +2,20 @@
 <div class="content">
   <div class="fabulous">
 
-    <p>
+    <p *ngIf="item.circleFriendsFabulousList!=null&&item.circleFriendsFabulousList.length>0" >
       <ion-icon name="ios-heart-outline"></ion-icon>
-      <span *ngFor="let fabulou of item.fabulous;let idx=index">
-        {{item.fabulous.length>0&&idx==item.fabulous.length-1?fabulou.userName:fabulou.userName+","}}
+      <span *ngFor="let fabulou of item.circleFriendsFabulousList;let idx=index">
+        {{item.circleFriendsFabulousList.length>0&&idx==item.circleFriendsFabulousList.length-1?fabulou.userId:fabulou.userId+","}}
       </span>
     </p>
   </div>
   <div class="blackseparate"></div>
-  <div class="comment">
-    <div *ngFor="let comment of item.comments">
-      <p  *ngIf="comment.touser==null" (click)="mreplyBtnClicked(comment.fromuser)">
-        <span>{{comment.fromuser.userName}}</span>:{{comment.content}}</p>
-      <p *ngIf="comment.touser!=null"  (click)="mreplyBtnClicked(comment.fromuser)">
-        <span>{{comment.fromuser.userName}}</span>回复<span>{{comment.touser.userName}}</span>:{{comment.content}}</p>
+  <div *ngIf="item.circleFriendsMsgList!=null&&item.circleFriendsMsgList.length>0"  class="comment">
+    <div *ngFor="let comment of item.circleFriendsMsgList">
+      <p  *ngIf="comment.answerUserId==null||comment.answerUserId.length==0" (click)="mreplyBtnClicked(comment)">
+        <span>{{comment.userId}}</span>:{{comment.content}}</p>
+      <p *ngIf="comment.answerUserId!=null&&comment.answerUserId.length>0"  (click)="mreplyBtnClicked(comment)">
+        <span>{{comment.userId}}</span>回复<span>{{comment.answerUserId}}</span>:{{comment.content}}</p>
     </div>
 
   </div>

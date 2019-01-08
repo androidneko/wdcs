@@ -1,11 +1,11 @@
 <!-- Generated template for the CirclesPhotosComponent component -->
 <div class="content">
     <!-- <img  *ngFor="let item of imgs" [src]="item"> -->
-    <img class="oneImg" *ngIf="item.imgs.length==1"  [src]="item.imgs[0]">
-    <div *ngIf="item.imgs.length>1" >
-            <div style="position:relative;float:left;width:33.3%" *ngFor="let mitem of item.imgs" >
+    <img class="oneImg" *ngIf="item.imgList!=null&&item.imgList.length==1"  [src]="item.imgList[0].picUrl">
+    <div *ngIf="item.imgList!=null&&item.imgList.length>1" >
+            <div style="position:relative;float:left;width:33.3%" *ngFor="let mitem of item.imgList" >
                     <img class="manyImgs" style="visibility:hidden"  src="assets/imgs/logo.png">
-                    <img style="width:100%;height:100%;position:absolute; padding: 2px;" [src]="mitem">
+                    <img style="width:100%;height:100%;position:absolute; padding: 2px;" [src]="mitem.picUrl">
             </div>
     </div>
   
