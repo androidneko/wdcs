@@ -15,7 +15,7 @@
       <p  *ngIf="comment.answerUserId==null||comment.answerUserId.length==0" (click)="mreplyBtnClicked(comment)">
         <span>{{comment.userId}}</span>:{{comment.content}}</p>
       <p *ngIf="comment.answerUserId!=null&&comment.answerUserId.length>0"  (click)="mreplyBtnClicked(comment)">
-        <span>{{comment.userId}}</span>回复<span>{{comment.answerUserId}}</span>:{{comment.content}}</p>
+        <span>{{comment.userName}}</span>回复<span>{{comment.answerUserName}}</span>:{{comment.content}}</p>
     </div>
 
   </div>

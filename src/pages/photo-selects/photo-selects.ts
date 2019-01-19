@@ -23,7 +23,13 @@ export class PhotoSelectsPage {
   
   dataArray:Array<PhotoItem>=[];
   state="1";//可编辑 0不可编辑
-  constructor(public navCtrl: NavController, public navParams: NavParams,private camera:Camera,private actionSheet:ActionSheetController,private photoViewer: PhotoViewer) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private camera:Camera,
+    private actionSheet:ActionSheetController,
+    private photoViewer: PhotoViewer) 
+    {
     if (this.navParams.data.state !=null) {
         this.state = this.navParams.data.state;
         this.dataArray = this.navParams.data.imgArray;

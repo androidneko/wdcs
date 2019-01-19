@@ -2,7 +2,7 @@
 <div style="padding-bottom:20px;position:relative">
 <img style="width:100%;height:30%;" src="assets/imgs/blur_bg.png">
 <div class="itembottom">
-  <img-lazy-load default="assets/imgs/logo.png" src="{{user.avatar}}"></img-lazy-load>
+  <img-lazy-load default="assets/imgs/logo.png" src="{{user.avatar}}" (click)="viewPhoto(user.avatar)"></img-lazy-load>
   <p>{{user.nickName||user.userName}}</p>
 </div>
 </div>

@@ -48,15 +48,16 @@ export class CirclesFabulousAndcommentComponent {
               this.item.circleFriendsMsgList = []
             }
             this.item.circleFriendsMsgList.push({
-              "id": "c8b6773dd02c4689963ad880b41bf3f9",
+              "id": obj.data.id,
               "userId": AppServiceProvider.getInstance().userinfo.loginData.userId,
               "circleFriendsId": this.item.id,
-              "createTime": "2018-07-09 22:43:46",
+              "createTime":  obj.data.createTime,
               "answerUserId": comment.userId,
+              "answerUserName": comment.userName,
               "content": mmsg
             });
           } else {
-            this.toast(obj.ACTION_RETURN_MESSAGE);
+            this.toast(obj.desc);
           }
         }, error => {
           this.toast(error);

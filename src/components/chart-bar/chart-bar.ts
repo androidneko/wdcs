@@ -52,7 +52,7 @@ export class ChartBarComponent {
   }
   showWithItem(item,backBlock){
     if (item && item.user){
-      let hint:string = '回复'+item.user.userId+':'
+      let hint:string = '回复'+item.user.userName+':'
       this.show(hint);
     }else {
       this.show();

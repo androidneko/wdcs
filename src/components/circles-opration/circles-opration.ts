@@ -73,13 +73,13 @@ export class CirclesOprationComponent {
 
           this.item.isFabuloused = true;
           this.item.circleFriendsFabulousList.push({
-            "id": "8f4d36f259904c6d8dd3bd81ceaaa03e",
-            "userId": AppServiceProvider.getInstance().userinfo.loginData.userId,
+            "id": obj.data.id,
+            "userId": AppServiceProvider.getInstance().userinfo.loginData.userName,
             "circleFriendsId": this.item.id,
-            "createTime": "2018-07-09 22:42:05"
+            "createTime": obj.data.createTime
           });
         } else {
-          this.toast(obj.ACTION_RETURN_MESSAGE);
+          this.toast(obj.desc);
         }
       }, error => {
         this.toast(error);
@@ -107,10 +107,10 @@ export class CirclesOprationComponent {
               this.item.circleFriendsMsgList = []
             }
             this.item.circleFriendsMsgList.push({
-              "id": "c8b6773dd02c4689963ad880b41bf3f9",
+              "id": obj.data.id,
               "userId": AppServiceProvider.getInstance().userinfo.loginData.userId,
               "circleFriendsId": this.item.id,
-              "createTime": "2018-07-09 22:43:46",
+              "createTime":  obj.data.createTime,
               "answerUserId": "",
               "content": mmsg
             });

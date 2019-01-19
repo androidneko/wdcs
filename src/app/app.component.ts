@@ -156,8 +156,8 @@ export class MyApp {
 
   platformReady(hasLoggedIn) {
     if (hasLoggedIn) {
-      //this.rootPage = "HomePage";
-      //this.rootPage = "HomeTabPage";
+      // this.rootPage = "HomePage";
+      // this.rootPage = "HomeTabPage";
       this.rootPage = "CirclesPage";
     } else {
       this.rootPage = "LoginPage";

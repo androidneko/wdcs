@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { PhotoViewer } from '../../../node_modules/@ionic-native/photo-viewer';
 
 /**
  * Generated class for the CirclesPhotosComponent component.
@@ -14,9 +15,13 @@ export class CirclesPhotosComponent {
 
   text: string;
   @Input() item: any;
-  constructor() {
+  constructor(private photoViewer: PhotoViewer) {
     console.log('Hello CirclesPhotosComponent Component');
     this.text = 'Hello World';
+  }
+
+  viewPhoto(picUrl){
+    this.photoViewer.show(picUrl, '照片预览', {share: false});
   }
 
 }
