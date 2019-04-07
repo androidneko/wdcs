@@ -43,7 +43,8 @@ export class AppGlobal {
         circleFriendsQuery: '/api/v1/circleFriends/query',//查询朋友圈接口All
         circleFriendsFabulous:"/api/v1/circleFriends/fabulous",//朋友圈点赞
         circleFriendsDelfabulous:"/api/v1/circleFriends/delfabulous",
-        circleFriendsMsg:"/api/v1/circleFriends/msg"//朋友圈评论
+        circleFriendsMsg:"/api/v1/circleFriends/msg",//朋友圈评论
+        plantsPosition:"/api/v1/plantsPositionDate"
     };
     static DATA:any ={
       uploadDoc:':8080/pc/data/uploadDoc',//文件上传
