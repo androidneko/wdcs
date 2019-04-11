@@ -46,20 +46,28 @@ export class PlantsMapPage extends BasePage {
           console.log(msg);
 
           let info = JSON.parse(msg);
+          if (info && info.length > 0){
+            this.uploadedMarkers = [];
 
-          info.forEach(element => {
-            let plant: any = element;
-            plant.name = info.name;
-            plant.lnglat = info.lnglat;
-
-            let lnglat = new AMap.LngLat(info.lnglat[0], info.lnglat[1]);
-            let marker = new AMap.Marker({
-              icon: "assets/imgs/ent.png",
-              name:plant.name,
-              position: lnglat
+            info.forEach(element => {
+              let loc = element.lnglat;
+              let lng:number = parseFloat(loc[0]);
+              let lat:number = parseFloat(loc[1]);
+              if (!isNaN(lng) && !isNaN(lat) ){
+                let lnglat = new AMap.LngLat(lng, lat);
+                let marker = new AMap.Marker({
+                  icon: "assets/imgs/ent.png",
+                  title:element.name,
+                  position: lnglat
+                });
+                marker.on('click', ()=>{
+                  this.toastShort(element.name);
+                });
+                this.uploadedMarkers.push(marker);
+              }
             });
-            this.uploadedMarkers.push(marker);
-          });
+          }
+          
           resolve();
         },
         error => {

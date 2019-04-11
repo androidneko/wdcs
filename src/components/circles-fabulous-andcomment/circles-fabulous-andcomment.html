@@ -13,7 +13,7 @@
   <div *ngIf="item.circleFriendsMsgList!=null&&item.circleFriendsMsgList.length>0"  class="comment">
     <div *ngFor="let comment of item.circleFriendsMsgList">
       <p  *ngIf="comment.answerUserId==null||comment.answerUserId.length==0" (click)="mreplyBtnClicked(comment)">
-        <span>{{comment.userId}}</span>:{{comment.content}}</p>
+        <span>{{comment.userName}}</span>:{{comment.content}}</p>
       <p *ngIf="comment.answerUserId!=null&&comment.answerUserId.length>0"  (click)="mreplyBtnClicked(comment)">
         <span>{{comment.userName}}</span>回复<span>{{comment.answerUserName}}</span>:{{comment.content}}</p>
     </div>

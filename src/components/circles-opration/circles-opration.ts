@@ -74,15 +74,15 @@ export class CirclesOprationComponent {
           this.item.isFabuloused = true;
           this.item.circleFriendsFabulousList.push({
             "id": obj.data.id,
-            "userId": AppServiceProvider.getInstance().userinfo.loginData.userName,
+            "userId": AppServiceProvider.getInstance().userinfo.userData.nickName,
             "circleFriendsId": this.item.id,
             "createTime": obj.data.createTime
           });
         } else {
-          this.toast(obj.desc);
+         // this.toast(obj.desc);
         }
       }, error => {
-        this.toast(error);
+        //this.toast(error);
       }, true);
     }
   
