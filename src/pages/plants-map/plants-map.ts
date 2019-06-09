@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { BasePage } from '../base/base';
 import { TyNetworkServiceProvider } from '../../providers/ty-network-service/ty-network-service';
 import { AppGlobal } from '../../providers/app-service/app-service';
+import { MultiPicker } from 'ion-multi-picker';
 
 /**
  * Generated class for the PlantsMapPage page.
@@ -18,13 +19,55 @@ import { AppGlobal } from '../../providers/app-service/app-service';
 })
 export class PlantsMapPage extends BasePage {
 
+  @ViewChild('picker1') multiPicker: MultiPicker;
   public map: any;
   uploadedMarkers: any[] = [];
+  area: string = "湖北";
+  total: number = 0;
+
+  minMarkers: any[] = [];
+  level1Markers: any[] = [];
+  level2Markers: any[] = [];
+  otherMarkers: any[] = [];
+  selectedMarkers: any[] = [];
+
+  checkState: any = {
+    "min": true,
+    "level1": false,
+    "level2": false,
+    "other": false
+  };
+
+  areas: any = [
+    {
+      name: 'area',
+      options: [
+        { text: '湖北', value: '湖北' },
+        { text: '武汉市', value: '武汉市' },
+        { text: '黄石市', value: '黄石市' },
+        { text: '十堰市', value: '十堰市' },
+        { text: '荆州市', value: '荆州市' },
+        { text: '宜昌市', value: '宜昌市' },
+        { text: '襄樊市', value: '襄樊市' },
+        { text: '鄂州市', value: '鄂州市' },
+        { text: '荆门市', value: '荆门市' },
+        { text: '黄冈市', value: '黄冈市' },
+        { text: '孝感市', value: '孝感市' },
+        { text: '咸宁市', value: '咸宁市' },
+        { text: '仙桃市', value: '仙桃市' },
+        { text: '潜江市', value: '潜江市' },
+        { text: '神农架', value: '神农架' },
+        { text: '恩施', value: '恩施' },
+        { text: '天门市', value: '天门市' },
+        { text: '随州市', value: '随州市' }
+      ]
+    }
+  ];
 
   constructor(
     public net: TyNetworkServiceProvider,
     public navCtrl: NavController,
-    public toastCtrl: ToastController, 
+    public toastCtrl: ToastController,
     public navParams: NavParams) {
     super(navCtrl, navParams, toastCtrl);
   }
@@ -34,40 +77,30 @@ export class PlantsMapPage extends BasePage {
     this.requestAllPlants()
       .then(() => { return this.loadAMapJs() })
       .then(() => { return this.loadMap() })
-      .then(() => { this.showPlants(); });
+      .then(() => { this.checkChange(true); });
+  }
+
+  showPicker(){
+    this.multiPicker.open();
+  }
+
+  changeArea(event){
+    console.log("changeArea---->"+event.area.value);
+    this.area = event.area.value;
+    this.requestAllPlants();
   }
 
   requestAllPlants() {
     return new Promise((resolve, reject) => {
       this.net.httpPost(
-        AppGlobal.API.plantsPosition,
-        {},
+        AppGlobal.API.plantsByCity,
+        {city:this.area},
         msg => {
           console.log(msg);
 
           let info = JSON.parse(msg);
-          if (info && info.length > 0){
-            this.uploadedMarkers = [];
+          this.parsePlunts(info);
 
-            info.forEach(element => {
-              let loc = element.lnglat;
-              let lng:number = parseFloat(loc[0]);
-              let lat:number = parseFloat(loc[1]);
-              if (!isNaN(lng) && !isNaN(lat) ){
-                let lnglat = new AMap.LngLat(lng, lat);
-                let marker = new AMap.Marker({
-                  icon: "assets/imgs/ent.png",
-                  title:element.name,
-                  position: lnglat
-                });
-                marker.on('click', ()=>{
-                  this.toastShort(element.name);
-                });
-                this.uploadedMarkers.push(marker);
-              }
-            });
-          }
-          
           resolve();
         },
         error => {
@@ -77,16 +110,41 @@ export class PlantsMapPage extends BasePage {
     });
   }
 
-  loadAMapJs(){
-    return new Promise((resolve,reject)=>{
+  parsePlunts(info){
+    if (info && info.data != null) {
+      this.uploadedMarkers = [];
+      let data = info.data;
+      info.forEach(element => {
+        let loc = element.lnglat;
+        let lng: number = parseFloat(loc[0]);
+        let lat: number = parseFloat(loc[1]);
+        if (!isNaN(lng) && !isNaN(lat)) {
+          let lnglat = new AMap.LngLat(lng, lat);
+          let marker = new AMap.Marker({
+            icon: "assets/imgs/ent.png",
+            title: element.name,
+            position: lnglat,
+            extData:element
+          });
+          marker.on('click', () => {
+            this.openInfo(marker);
+          });
+          this.uploadedMarkers.push(marker);
+        }
+      });
+    }
+  }
+
+  loadAMapJs() {
+    return new Promise((resolve, reject) => {
       if (typeof (AMap) == "undefined") {
-          this.dynamicLoadJs("https://webapi.amap.com/maps?v=1.4.8&key=8ee7947b20fd51537ea180547f949b70",()=>{
+        this.dynamicLoadJs("https://webapi.amap.com/maps?v=1.4.8&key=8ee7947b20fd51537ea180547f949b70", () => {
           resolve();
         });
-      }else {
+      } else {
         resolve();
       }
-    }); 
+    });
   }
 
   /**
@@ -94,18 +152,18 @@ export class PlantsMapPage extends BasePage {
      * @param {string} url 脚本地址
      * @param {function} callback  回调函数
      */
-    dynamicLoadJs(url, callback) {
-      var head = document.getElementsByTagName('head')[0];
-      var script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.src = url;
-      if(typeof(callback)=='function'){
-          script.onload =  function () {
-            callback();
-            script.onload = null;
-          };
-      }
-      head.appendChild(script);
+  dynamicLoadJs(url, callback) {
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+    if (typeof (callback) == 'function') {
+      script.onload = function () {
+        callback();
+        script.onload = null;
+      };
+    }
+    head.appendChild(script);
   }
 
   loadMap() {
@@ -137,12 +195,6 @@ export class PlantsMapPage extends BasePage {
     });
   }
 
-  showPlants() {
-    this.map.clearMap();
-    this.map.add(this.uploadedMarkers);
-    this.fitMap(this.uploadedMarkers);
-  }
-
   fitMap(markers) {
     if (markers && markers.length > 0) {
       let zoom = 10;
@@ -150,5 +202,48 @@ export class PlantsMapPage extends BasePage {
 
       this.map.setZoomAndCenter(zoom, [marker.getPosition().getLng(), marker.getPosition().getLat()]);// 执行定位
     }
+  }
+
+  checkChange(event) {
+    console.log("selected Changes---->" + event);
+    this.selectedMarkers = [];
+    if (this.checkState.min) {
+      this.selectedMarkers = this.selectedMarkers.concat(this.minMarkers);
+    }
+    if (this.checkState.level1) {
+      this.selectedMarkers = this.selectedMarkers.concat(this.level1Markers);
+    }
+    if (this.checkState.level2) {
+      this.selectedMarkers = this.selectedMarkers.concat(this.level2Markers);
+    }
+    if (this.checkState.other) {
+      this.selectedMarkers = this.selectedMarkers.concat(this.otherMarkers);
+    }
+
+    this.showSelected();
+  }
+
+  showSelected() {
+    if(this.map == null || this.map == undefined){
+      return;
+    }
+    this.map.clearMap();
+    this.map.add(this.selectedMarkers);
+    this.fitMap(this.selectedMarkers);
+  }
+
+  //在指定位置打开默认信息窗体  
+  openInfo(marker) {
+    //构建信息窗体中显示的内容  
+    var info = [];
+    info.push("<div style=\"padding:0px 0px 0px 4px;\"><b>"+marker.getTitle()+"</b>");
+    info.push(marker.getExtData().adress);
+    info.push(marker.getExtData().dateStr);
+    info.push("</div></div>");
+    var inforWindow = new AMap.InfoWindow({
+      content: info.join("<br/>"),  //使用默认信息窗体框样式，显示信息内容 
+      offset:new AMap.Pixel(0, -20) 
+    });
+    inforWindow.open(this.map, marker.getPosition());
   }
 }

@@ -1,3 +1,21 @@
 page-plants-map {
-
+    .amap-logo {
+        display: none !important;
+    }
+    .amap-copyright {
+        opacity: 0;
+    }
+    .amap-toolbar{
+        bottom: 30% !important;
+    }
+    .item-block{
+        min-height: 3rem !important;
+    }
+    .grid{
+        padding: 0 !important
+    }
+    .col{
+        padding: 0 !important;
+    }
+    
 }
