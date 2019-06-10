@@ -21,7 +21,6 @@ export class PlantsMapPage extends BasePage {
 
   @ViewChild('picker1') multiPicker: MultiPicker;
   public map: any;
-  uploadedMarkers: any[] = [];
   area: string = "湖北";
   total: number = 0;
 
@@ -33,9 +32,9 @@ export class PlantsMapPage extends BasePage {
 
   checkState: any = {
     "min": true,
-    "level1": false,
-    "level2": false,
-    "other": false
+    "level1": true,
+    "level2": true,
+    "other": true
   };
 
   areas: any = [
@@ -80,21 +79,28 @@ export class PlantsMapPage extends BasePage {
       .then(() => { this.checkChange(true); });
   }
 
-  showPicker(){
+  showPicker() {
     this.multiPicker.open();
   }
 
-  changeArea(event){
-    console.log("changeArea---->"+event.area.value);
+  changeArea(event) {
+    console.log("changeArea---->" + event.area.value);
     this.area = event.area.value;
-    this.requestAllPlants();
+    
+    if (this.map != null && this.map != undefined) {
+      this.map.clearMap();
+    }
+    this.requestAllPlants()
+    .then(() => { return this.loadAMapJs() })
+    .then(() => { return this.loadMap() })
+    .then(() => { this.checkChange(true); });
   }
 
   requestAllPlants() {
     return new Promise((resolve, reject) => {
       this.net.httpPost(
         AppGlobal.API.plantsByCity,
-        {city:this.area},
+        { city: this.area },
         msg => {
           console.log(msg);
 
@@ -110,28 +116,59 @@ export class PlantsMapPage extends BasePage {
     });
   }
 
-  parsePlunts(info){
+  parsePlunts(info) {
+    
     if (info && info.data != null) {
-      this.uploadedMarkers = [];
+      this.level1Markers = [];
+      this.level2Markers = [];
+      this.minMarkers = [];
+      this.otherMarkers = [];
+
       let data = info.data;
-      info.forEach(element => {
-        let loc = element.lnglat;
-        let lng: number = parseFloat(loc[0]);
-        let lat: number = parseFloat(loc[1]);
-        if (!isNaN(lng) && !isNaN(lat)) {
-          let lnglat = new AMap.LngLat(lng, lat);
-          let marker = new AMap.Marker({
-            icon: "assets/imgs/ent.png",
-            title: element.name,
-            position: lnglat,
-            extData:element
-          });
-          marker.on('click', () => {
-            this.openInfo(marker);
-          });
-          this.uploadedMarkers.push(marker);
-        }
+      if (data && data.length > 0){
+        data.forEach(element => {
+          let plunts = element.ptls;
+          let label = element.label;
+          if (plunts && plunts.length > 0) {
+            plunts.forEach(plunt => {
+              this.pushPlunt(plunt,label);
+            });
+          }
+          if (label == "总计"){
+            this.total = element.data;
+          }
+        });
+      }
+    }
+  }
+
+  pushPlunt(plunt,label){
+    let loc = plunt.lnglat;
+    let lng: number = parseFloat(loc[0]);
+    let lat: number = parseFloat(loc[1]);
+    if (!isNaN(lng) && !isNaN(lat)) {
+      let lnglat = new AMap.LngLat(lng, lat);
+      let marker = new AMap.Marker({
+        icon: "assets/imgs/ent.png",
+        title: plunt.name,
+        position: lnglat,
+        extData: plunt
       });
+      marker.on('click', () => {
+        this.openInfo(marker);
+      });
+      if ("一级保护" == label) {
+        this.level1Markers.push(marker);
+      }
+      if ("二级保护" == label) {
+        this.level2Markers.push(marker);
+      }
+      if ("极小种群" == label) {
+        this.minMarkers.push(marker);
+      }
+      if ("其他" == label) {
+        this.otherMarkers.push(marker);
+      }
     }
   }
 
@@ -196,12 +233,13 @@ export class PlantsMapPage extends BasePage {
   }
 
   fitMap(markers) {
-    if (markers && markers.length > 0) {
-      let zoom = 10;
-      let marker = markers[0];
+    this.map.setFitView();// 执行定位
+    // if (markers && markers.length > 0) {
+    //   let zoom = 10;
+    //   let marker = markers[0];
 
-      this.map.setZoomAndCenter(zoom, [marker.getPosition().getLng(), marker.getPosition().getLat()]);// 执行定位
-    }
+    //   this.map.setZoomAndCenter(zoom, [marker.getPosition().getLng(), marker.getPosition().getLat()]);// 执行定位
+    // }
   }
 
   checkChange(event) {
@@ -224,7 +262,7 @@ export class PlantsMapPage extends BasePage {
   }
 
   showSelected() {
-    if(this.map == null || this.map == undefined){
+    if (this.map == null || this.map == undefined) {
       return;
     }
     this.map.clearMap();
@@ -236,13 +274,13 @@ export class PlantsMapPage extends BasePage {
   openInfo(marker) {
     //构建信息窗体中显示的内容  
     var info = [];
-    info.push("<div style=\"padding:0px 0px 0px 4px;\"><b>"+marker.getTitle()+"</b>");
+    info.push("<div style=\"padding:0px 0px 0px 4px;\"><b>" + marker.getTitle() + "</b>");
     info.push(marker.getExtData().adress);
     info.push(marker.getExtData().dateStr);
     info.push("</div></div>");
     var inforWindow = new AMap.InfoWindow({
       content: info.join("<br/>"),  //使用默认信息窗体框样式，显示信息内容 
-      offset:new AMap.Pixel(0, -20) 
+      offset: new AMap.Pixel(0, -20)
     });
     inforWindow.open(this.map, marker.getPosition());
   }
