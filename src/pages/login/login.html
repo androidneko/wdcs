@@ -24,12 +24,12 @@
     <ion-item no-lines >
       <!--<ion-label fixed>账号</ion-label>-->
       <ion-icon name="contact" color="primary" item-left ios="ios-contact-outline" md="ios-contact-outline"></ion-icon>
-      <ion-input clearInput=true type="text" (keydown)="keydown($event)" placeholder="请输入账号" [(ngModel)]="username"></ion-input>
+      <ion-input (blur)='blurReset()' clearInput=true type="text" (keydown)="keydown($event)" placeholder="请输入账号" [(ngModel)]="username"></ion-input>
     </ion-item>
     
     <ion-item no-lines style="margin-top:1px;">
       <ion-icon name="lock" color="primary" item-left ios="ios-lock-outline" md="ios-lock-outline"></ion-icon>
-      <ion-input clearInput=true style="width:70%" type="password" (keydown)="keydown($event)" placeholder="请输入密码" [(ngModel)]="password"></ion-input>
+      <ion-input (blur)='blurReset()' clearInput=true style="width:70%" type="password" (keydown)="keydown($event)" placeholder="请输入密码" [(ngModel)]="password"></ion-input>
     </ion-item>
   </div>
 

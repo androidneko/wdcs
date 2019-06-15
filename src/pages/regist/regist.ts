@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController, Platform } from 'ionic-angular';
 import { BasePage } from '../base/base';
 import { DbServiceProvider } from './../../providers/db-service/db-service';
 import { AppGlobal} from './../../providers/app-service/app-service';
@@ -33,7 +33,8 @@ export class RegistPage extends BasePage{
     public toastCtrl: ToastController, 
     public navCtrl: NavController, 
     public navParams: NavParams, 
-    private net: TyNetworkServiceProvider, 
+    private net: TyNetworkServiceProvider,
+    public platform:Platform,
     private db: DbServiceProvider) {
     super(navCtrl, navParams, toastCtrl);
   }
@@ -53,7 +54,14 @@ export class RegistPage extends BasePage{
     }
     this.geSmsCode(phoneNum);
   }
+  blurReset() {
+    if (this.platform.is('ios')) {
+      setTimeout(() => {
+        window.scrollTo(0, document.body.clientHeight);
+      }, 300);
 
+    }
+  }
   geSmsCode(phoneNum:string){
     this.net.httpPost(AppGlobal.API.smsCode,{
       "userName":phoneNum

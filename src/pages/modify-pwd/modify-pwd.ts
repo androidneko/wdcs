@@ -1,7 +1,7 @@
 import { BasePage } from './../base/base';
 import { DbServiceProvider } from './../../providers/db-service/db-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, Platform } from 'ionic-angular';
 import { TyNetworkServiceProvider } from '../../providers/ty-network-service/ty-network-service';
 // import { Md5 } from 'ts-md5/dist/md5';
 import { AppGlobal, AppServiceProvider } from '../../providers/app-service/app-service';
@@ -25,14 +25,24 @@ export class ModifyPwdPage extends BasePage {
   newPassword:string = "";
   confirmPassword:string = "";
 
-  constructor(public toastCtrl: ToastController,public navCtrl: NavController, public navParams: NavParams,private net:TyNetworkServiceProvider,private db:DbServiceProvider) {
+  constructor(
+    public platform:Platform,
+    public toastCtrl: ToastController,public navCtrl: NavController, public navParams: NavParams,private net:TyNetworkServiceProvider,private db:DbServiceProvider) {
     super(navCtrl,navParams,toastCtrl);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ModifyPwdPage');
   }
+  
+  blurReset() {
+    if (this.platform.is('ios')) {
+      setTimeout(() => {
+        window.scrollTo(0, document.body.clientHeight);
+      }, 300);
 
+    }
+  }
   okBtnCliked(){
     if(this.checkIfPwdOk(this.oldPassword, this.newPassword,this.confirmPassword)){
       this.net.httpPost(AppGlobal.API.modifyPassword,

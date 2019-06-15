@@ -24,21 +24,21 @@
   <div class="iputcenter">
     <ion-item class="itemtop">
       <ion-icon name="contact" color="primary" item-left ios="ios-contact-outline" md="ios-contact-outline"></ion-icon>
-      <ion-input clearInput=true type="tel" maxlength="11" placeholder="请输手机号" [(ngModel)]="phoneNum"></ion-input>
+      <ion-input (blur)='blurReset()' clearInput=true type="tel" maxlength="11" placeholder="请输手机号" [(ngModel)]="phoneNum"></ion-input>
       <button ion-button item-end (click)="geSmsCodeClicked(phoneNum)" [ngClass]="{'ready':!isCountingDown,'counting':isCountingDown}">{{valcodebtntext}}</button>
     </ion-item>
 
     <ion-item>
       <ion-icon name="contact" color="primary" item-left ios="ios-phone-portrait-outline" md="ios-phone-portrait-outline"></ion-icon>
-      <ion-input clearInput=true type="number" placeholder="请输入验证码" maxlength="4" [(ngModel)]="smsCode"></ion-input>
+      <ion-input (blur)='blurReset()' clearInput=true type="number" placeholder="请输入验证码" maxlength="4" [(ngModel)]="smsCode"></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name="unlock" color="primary" item-left ios="ios-unlock-outline" md="ios-unlock-outline"></ion-icon>
-      <ion-input clearInput=true type="password" placeholder="请输入新密码" minlength="6" maxlength="20" [(ngModel)]="password"></ion-input>
+      <ion-input (blur)='blurReset()' clearInput=true type="password" placeholder="请输入新密码" minlength="6" maxlength="20" [(ngModel)]="password"></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name="lock" color="primary" item-left ios="ios-lock-outline" md="ios-lock-outline"></ion-icon>
-      <ion-input clearInput=true type="password" placeholder="请确认新密码" maxlength="20" [(ngModel)]="confirmPassword"></ion-input>
+      <ion-input (blur)='blurReset()' clearInput=true type="password" placeholder="请确认新密码" maxlength="20" [(ngModel)]="confirmPassword"></ion-input>
     </ion-item>
     <div style="margin:20px">
       <button ion-button block color="primary" (click)="register(phoneNum,smsCode,password,confirmPassword)">
