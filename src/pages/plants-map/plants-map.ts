@@ -29,6 +29,7 @@ export class PlantsMapPage extends BasePage {
   level2Markers: any[] = [];
   otherMarkers: any[] = [];
   selectedMarkers: any[] = [];
+  lastSelectedMarkers: any[] = [];
 
   checkState: any = {
     "min": true,
@@ -277,6 +278,7 @@ export class PlantsMapPage extends BasePage {
 
   checkChange(event) {
     console.log("selected Changes---->" + event);
+    this.lastSelectedMarkers = this.lastSelectedMarkers.concat(this.selectedMarkers);
     this.selectedMarkers = [];
     if (this.checkState.min) {
       this.selectedMarkers = this.selectedMarkers.concat(this.minMarkers);
@@ -298,7 +300,8 @@ export class PlantsMapPage extends BasePage {
     if (this.map == null || this.map == undefined) {
       return;
     }
-    this.map.clearMap();
+    this.map.remove(this.lastSelectedMarkers);
+    this.lastSelectedMarkers = [];
     this.map.add(this.selectedMarkers);
     //this.fitMap(this.selectedMarkers);
   }
