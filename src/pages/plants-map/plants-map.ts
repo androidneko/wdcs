@@ -29,6 +29,7 @@ export class PlantsMapPage extends BasePage {
   level2Markers: any[] = [];
   otherMarkers: any[] = [];
   selectedMarkers: any[] = [];
+  lastSelectedMarkers: any[] = [];
 
   checkState: any = {
     "min": true,
@@ -86,14 +87,14 @@ export class PlantsMapPage extends BasePage {
   changeArea(event) {
     console.log("changeArea---->" + event.area.value);
     this.area = event.area.value;
-    
+
     if (this.map != null && this.map != undefined) {
       this.map.clearMap();
     }
     this.requestAllPlants()
-    .then(() => { return this.loadAMapJs() })
-    .then(() => { return this.loadMap() })
-    .then(() => { this.checkChange(true); });
+      .then(() => { return this.loadAMapJs() })
+      .then(() => { return this.loadMap() })
+      .then(() => { this.checkChange(true); });
   }
 
   requestAllPlants() {
@@ -117,7 +118,7 @@ export class PlantsMapPage extends BasePage {
   }
 
   parsePlunts(info) {
-    
+
     if (info && info.data != null) {
       this.level1Markers = [];
       this.level2Markers = [];
@@ -125,24 +126,26 @@ export class PlantsMapPage extends BasePage {
       this.otherMarkers = [];
 
       let data = info.data;
-      if (data && data.length > 0){
+      if (data && data.length > 0) {
+        this.total = 0;
         data.forEach(element => {
           let plunts = element.ptls;
           let label = element.label;
           if (plunts && plunts.length > 0) {
+            this.total += plunts.length;
             plunts.forEach(plunt => {
-              this.pushPlunt(plunt,label);
+              this.pushPlunt(plunt, label);
             });
           }
-          if (label == "总计"){
-            this.total = element.data;
+          if (label == "总计") {
+            //this.total = element.data;
           }
         });
       }
     }
   }
 
-  pushPlunt(plunt,label){
+  pushPlunt(plunt, label) {
     let loc = plunt.lnglat;
     let lng: number = parseFloat(loc[0]);
     let lat: number = parseFloat(loc[1]);
@@ -175,7 +178,7 @@ export class PlantsMapPage extends BasePage {
   loadAMapJs() {
     return new Promise((resolve, reject) => {
       if (typeof (AMap) == "undefined") {
-        this.dynamicLoadJs("https://webapi.amap.com/maps?v=1.4.8&key=8ee7947b20fd51537ea180547f949b70", () => {
+        this.dynamicLoadJs("https://webapi.amap.com/maps?v=1.4.8&key=9657906ea649a962b22a1149561d0b1f&plugin=AMap.DistrictSearch", () => {
           resolve();
         });
       } else {
@@ -212,11 +215,42 @@ export class PlantsMapPage extends BasePage {
           resizeEnable: true,
           zoom: 10
         });
-        AMap.plugin(['AMap.ToolBar', 'AMap.MapType'], function () {
+        AMap.plugin(['AMap.ToolBar', 'AMap.MapType', 'AMap.DistrictSearch'], function () {
           var toolbar = new AMap.ToolBar();
           map.addControl(toolbar);
           var mapType = new AMap.MapType();
           map.addControl(mapType);
+
+          // 创建行政区查询对象
+          var polygons = [];
+          var district = new AMap.DistrictSearch({
+            // 返回行政区边界坐标等具体信息
+            extensions: 'all',
+            // 设置查询行政区级别为 省 
+            level: 'province'
+          })
+          //行政区查询
+          //district.setLevel("district")
+          district.search("湖北省", function (status, result) {
+            //map.remove(this.polygons)//这里不用清除，我们只需要查一次，加载一次
+            //polygons = [];
+            var bounds = result.districtList[0].boundaries;
+            if (bounds) {
+              for (var i = 0, l = bounds.length; i < l; i++) {
+                //生成行政区划polygon
+                var polygon = new AMap.Polygon({
+                  strokeWeight: 1,
+                  path: bounds[i],
+                  fillOpacity: 0.1,
+                  fillColor: '#80d8ff',
+                  strokeColor: '#0091ea'
+                });
+                polygons.push(polygon);
+              }
+            }
+            map.add(polygons)
+            map.setFitView(polygons);//视口自适应
+          });
         })
 
         //this.addMarker(map, new AMap.LngLat(this.lastLng, this.lastLat));
@@ -244,6 +278,7 @@ export class PlantsMapPage extends BasePage {
 
   checkChange(event) {
     console.log("selected Changes---->" + event);
+    this.lastSelectedMarkers = this.lastSelectedMarkers.concat(this.selectedMarkers);
     this.selectedMarkers = [];
     if (this.checkState.min) {
       this.selectedMarkers = this.selectedMarkers.concat(this.minMarkers);
@@ -265,9 +300,10 @@ export class PlantsMapPage extends BasePage {
     if (this.map == null || this.map == undefined) {
       return;
     }
-    this.map.clearMap();
+    this.map.remove(this.lastSelectedMarkers);
+    this.lastSelectedMarkers = [];
     this.map.add(this.selectedMarkers);
-    this.fitMap(this.selectedMarkers);
+    //this.fitMap(this.selectedMarkers);
   }
 
   //在指定位置打开默认信息窗体  
@@ -284,4 +320,39 @@ export class PlantsMapPage extends BasePage {
     });
     inforWindow.open(this.map, marker.getPosition());
   }
+
+  // drawBounds() {
+  //   //加载行政区划插件
+  //   if (!this.district) {
+  //     //实例化DistrictSearch
+  //     var opts = {
+  //       subdistrict: 0,   //获取边界不需要返回下级行政区
+  //       extensions: 'all',  //返回行政区边界坐标组等具体信息
+  //       level: 'province'  //查询行政级别为 市
+  //     };
+  //     this.district = new AMap.DistrictSearch(opts);
+  //   }
+  //   //行政区查询
+  //   this.district.setLevel("province")
+  //   this.district.search("湖北省", function (status, result) {
+  //     this.map.remove(this.polygons)//清除上次结果
+  //     this.polygons = [];
+  //     var bounds = result.districtList[0].boundaries;
+  //     if (bounds) {
+  //       for (var i = 0, l = bounds.length; i < l; i++) {
+  //         //生成行政区划polygon
+  //         var polygon = new AMap.Polygon({
+  //           strokeWeight: 1,
+  //           path: bounds[i],
+  //           fillOpacity: 0.1,
+  //           fillColor: '#80d8ff',
+  //           strokeColor: '#0091ea'
+  //         });
+  //         this.polygons.push(polygon);
+  //       }
+  //     }
+  //     this.map.add(this.polygons)
+  //     this.map.setFitView(this.polygons);//视口自适应
+  //   });
+  // }
 }

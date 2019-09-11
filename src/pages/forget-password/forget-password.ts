@@ -1,6 +1,6 @@
 import {AppGlobal } from './../../providers/app-service/app-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, Platform } from 'ionic-angular';
 import { BasePage } from '../base/base';
 import { TyNetworkServiceProvider } from '../../providers/ty-network-service/ty-network-service';
 import { DbServiceProvider } from '../../providers/db-service/db-service';
@@ -27,11 +27,12 @@ export class ForgetPasswordPage extends BasePage {
   isCountingDown: boolean = false;
   timeCount: number = 60;
   intervalid: any;
-
+  
   constructor(
     public toastCtrl: ToastController, 
     public navCtrl: NavController, 
     public navParams: NavParams, 
+    public platform:Platform,
     private net: TyNetworkServiceProvider, 
     private db: DbServiceProvider) {
     super(navCtrl, navParams, toastCtrl);
@@ -48,7 +49,14 @@ export class ForgetPasswordPage extends BasePage {
     }
     this.getVerifyCode(phoneNum);
   }
+  blurReset() {
+    if (this.platform.is('ios')) {
+      setTimeout(() => {
+        window.scrollTo(0, document.body.clientHeight);
+      }, 300);
 
+    }
+  }
   countingDown() {
     this.isCountingDown = true;
     this.intervalid = setInterval(() => {

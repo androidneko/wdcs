@@ -2,7 +2,7 @@ import { DbServiceProvider } from './../../providers/db-service/db-service';
 import { AppGlobal, AppServiceProvider } from './../../providers/app-service/app-service';
 import { TyNetworkServiceProvider } from './../../providers/ty-network-service/ty-network-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, Events, Platform } from 'ionic-angular';
 // import { Md5 } from 'ts-md5/dist/md5';
 /**
  * Generated class for the LoginPage page.
@@ -39,6 +39,7 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private net: TyNetworkServiceProvider,
+    public platform:Platform,
     private db: DbServiceProvider) {
   }
 
@@ -87,7 +88,14 @@ export class LoginPage {
       }
     });
   }
-
+  blurReset(){
+    if (this.platform.is('ios') ){
+      setTimeout(() => {
+        window.scrollTo(0, document.body.clientHeight);
+      }, 300);
+      
+    }
+  }
   login(username, password) {
     return new Promise((resolve, reject) => {
       this.net.httpPost(

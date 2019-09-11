@@ -18,6 +18,7 @@ page-plants-map {
         padding: 0 !important;
     }
     
+<<<<<<< HEAD
     a[disabled], button[disabled], html input[disabled]{
         color: rgb(66, 66, 66) !important;
     }
@@ -25,5 +26,11 @@ page-plants-map {
     .item.item-ios .checkbox-ios{
         font-size: 1.3rem !important;
         margin: 8px 2px 8px 2px !important;
+=======
+    ion-label{
+        margin-right: 0px !important;
+        white-space:unset;
+        text-overflow:unset;
+>>>>>>> d865daedca9ab51e662c49e0089454010d9a8625
     }
 }
