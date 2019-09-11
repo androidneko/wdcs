@@ -18,4 +18,12 @@ page-plants-map {
         padding: 0 !important;
     }
     
+    a[disabled], button[disabled], html input[disabled]{
+        color: rgb(66, 66, 66) !important;
+    }
+
+    .item.item-ios .checkbox-ios{
+        font-size: 1.3rem !important;
+        margin: 8px 2px 8px 2px !important;
+    }
 }
