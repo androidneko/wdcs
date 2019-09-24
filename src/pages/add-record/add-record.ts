@@ -33,6 +33,11 @@ export class AddRecordPage extends BasePage{
   protectionLevel: string = "";
   speciesName: string = "";
 
+  showBasic:Boolean = true;
+  showBearing:Boolean = false;
+  showEnvironment:Boolean = false;
+  showSpecies:Boolean = false;
+
   protection = '国家级 自然保护区';
   proofArr: any = [
     {
@@ -494,5 +499,37 @@ export class AddRecordPage extends BasePage{
 
     this.upManager.uploadWithData(this.data);
 
+  }
+
+  hideOrShowBasic(){
+    if (this.showBasic){
+      this.showBasic = false
+    }else {
+      this.showBasic = true;
+    }
+  }
+
+  hideOrShowEnvironment(){
+    if (this.showEnvironment){
+      this.showEnvironment = false
+    }else {
+      this.showEnvironment = true;
+    }
+  }
+
+  hideOrShowBearing(){
+    if (this.showBearing){
+      this.showBearing = false
+    }else {
+      this.showBearing = true;
+    }
+  }
+
+  hideOrShowSpecies(){
+    if (this.showSpecies){
+      this.showSpecies = false
+    }else {
+      this.showSpecies = true;
+    }
   }
 }

@@ -21,6 +21,7 @@ export class PlantsMapPage extends BasePage {
 
   @ViewChild('picker1') multiPicker: MultiPicker;
   public map: any;
+  public polygons = [];
   area: string = "湖北";
   total: number = 0;
 
@@ -30,6 +31,23 @@ export class PlantsMapPage extends BasePage {
   otherMarkers: any[] = [];
   selectedMarkers: any[] = [];
   lastSelectedMarkers: any[] = [];
+
+  style = [
+    // {
+    //   url: 'https://a.amap.com/jsapi_demos/static/images/mass0.png',
+    //   anchor: new AMap.Pixel(6, 6),
+    //   size: new AMap.Size(11, 11)
+    // }, {
+    //   url: 'https://a.amap.com/jsapi_demos/static/images/mass1.png',
+    //   anchor: new AMap.Pixel(4, 4),
+    //   size: new AMap.Size(7, 7)
+    // }, 
+    {
+      url: 'https://a.amap.com/jsapi_demos/static/images/mass2.png',
+      anchor: new AMap.Pixel(3, 3),
+      size: new AMap.Size(9, 9)
+    }
+  ];
 
   checkState: any = {
     "min": true,
@@ -64,6 +82,10 @@ export class PlantsMapPage extends BasePage {
     }
   ];
 
+  // 创建样式对象
+  styleObject: any;
+  massMarks: any;
+
   constructor(
     public net: TyNetworkServiceProvider,
     public navCtrl: NavController,
@@ -74,9 +96,9 @@ export class PlantsMapPage extends BasePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PlantsMapPage');
-    this.requestAllPlants()
-      .then(() => { return this.loadAMapJs() })
+    this.loadAMapJs()
       .then(() => { return this.loadMap() })
+      .then(() => { return this.requestAllPlants() })
       .then(() => { this.checkChange(true); });
   }
 
@@ -89,11 +111,11 @@ export class PlantsMapPage extends BasePage {
     this.area = event.area.value;
 
     if (this.map != null && this.map != undefined) {
-      this.map.clearMap();
+      //this.map.clearMap();
     }
-    this.requestAllPlants()
-      .then(() => { return this.loadAMapJs() })
+    this.loadAMapJs()
       .then(() => { return this.loadMap() })
+      .then(() => { return this.requestAllPlants() })
       .then(() => { this.checkChange(true); });
   }
 
@@ -150,16 +172,25 @@ export class PlantsMapPage extends BasePage {
     let lng: number = parseFloat(loc[0]);
     let lat: number = parseFloat(loc[1]);
     if (!isNaN(lng) && !isNaN(lat)) {
-      let lnglat = new AMap.LngLat(lng, lat);
-      let marker = new AMap.Marker({
-        icon: "assets/imgs/ent.png",
-        title: plunt.name,
-        position: lnglat,
-        extData: plunt
-      });
-      marker.on('click', () => {
-        this.openInfo(marker);
-      });
+      //not real marker,it s the unit of mass marker
+      let position = new AMap.LngLat(lng, lat);
+      let marker = {
+        lnglat: [lng, lat],
+        name: plunt.name,
+        extData: plunt,
+        position:position,
+        id: 1
+      };
+      
+      // let marker = new AMap.Marker({
+      //   icon: "assets/imgs/ent.png",
+      //   title: plunt.name,
+      //   position: lnglat,
+      //   extData: plunt
+      // });
+      // marker.on('click', () => {
+      //   this.openInfo(marker);
+      // });
       if ("一级保护" == label) {
         this.level1Markers.push(marker);
       }
@@ -213,9 +244,10 @@ export class PlantsMapPage extends BasePage {
       } else {
         let map = new AMap.Map('mapView', {
           resizeEnable: true,
-          zoom: 10
+          zoom: 6
         });
-        AMap.plugin(['AMap.ToolBar', 'AMap.MapType', 'AMap.DistrictSearch'], function () {
+
+        AMap.plugin(['AMap.ToolBar', 'AMap.MapType', 'AMap.DistrictSearch'], ()=> {
           var toolbar = new AMap.ToolBar();
           map.addControl(toolbar);
           var mapType = new AMap.MapType();
@@ -231,7 +263,7 @@ export class PlantsMapPage extends BasePage {
           })
           //行政区查询
           //district.setLevel("district")
-          district.search("湖北省", function (status, result) {
+          district.search("湖北省", (status, result)=> {
             //map.remove(this.polygons)//这里不用清除，我们只需要查一次，加载一次
             //polygons = [];
             var bounds = result.districtList[0].boundaries;
@@ -249,19 +281,22 @@ export class PlantsMapPage extends BasePage {
               }
             }
             map.add(polygons)
-            map.setFitView(polygons);//视口自适应
+            //视口自适应
+            var zoom = map.getZoom();
+            map.setFitView(polygons,true,null,zoom);
+            map.setZoom(zoom);
+            this.polygons = polygons;
           });
         })
 
         //this.addMarker(map, new AMap.LngLat(this.lastLng, this.lastLat));
         //map.setFitView();// 执行定位
-        map.on('complete', function () {
+        map.on('complete', ()=> {
           // 地图图块加载完成后触发
           console.log("-----地图图块加载完成-----");
-        });
-
-        this.map = map;
-        resolve();
+          this.map = map;
+          resolve();
+        });        
       }
     });
   }
@@ -300,59 +335,43 @@ export class PlantsMapPage extends BasePage {
     if (this.map == null || this.map == undefined) {
       return;
     }
-    this.map.remove(this.lastSelectedMarkers);
+    if (this.massMarks == undefined) {
+      this.massMarks = new AMap.MassMarks(this.selectedMarkers, {
+        opacity: 0.8,
+        zIndex: 111,
+        cursor: 'pointer',
+        style: this.style
+      });
+      this.massMarks.on('click', (marker) => {
+        this.onMassMarksClick(marker);
+      });
+    } else {
+      this.massMarks.clear();
+    }
+
     this.lastSelectedMarkers = [];
-    this.map.add(this.selectedMarkers);
-    //this.fitMap(this.selectedMarkers);
+    // this.map.add(this.selectedMarkers);
+    // this.fitMap(this.selectedMarkers);
+    // 将数组设置到 massMarks 图层
+    this.massMarks.setData(this.selectedMarkers);
+
+    // 将 massMarks 添加到地图实例
+    this.massMarks.setMap(this.map);
   }
 
-  //在指定位置打开默认信息窗体  
-  openInfo(marker) {
+  onMassMarksClick(marker){
+    console.log("massMarks click---->" + marker.data);
     //构建信息窗体中显示的内容  
     var info = [];
-    info.push("<div style=\"padding:0px 0px 0px 4px;\"><b>" + marker.getTitle() + "</b>");
-    info.push(marker.getExtData().adress);
-    info.push(marker.getExtData().dateStr);
+    info.push("<div style=\"padding:0px 0px 0px 4px;\"><b>" + marker.data.name + "</b>");
+    info.push(marker.data.extData.adress);
+    info.push(marker.data.extData.dateStr);
     info.push("</div></div>");
     var inforWindow = new AMap.InfoWindow({
       content: info.join("<br/>"),  //使用默认信息窗体框样式，显示信息内容 
-      offset: new AMap.Pixel(0, -20)
+      offset: new AMap.Pixel(3, -4)
     });
-    inforWindow.open(this.map, marker.getPosition());
+    inforWindow.open(this.map, marker.data.position);
   }
 
-  // drawBounds() {
-  //   //加载行政区划插件
-  //   if (!this.district) {
-  //     //实例化DistrictSearch
-  //     var opts = {
-  //       subdistrict: 0,   //获取边界不需要返回下级行政区
-  //       extensions: 'all',  //返回行政区边界坐标组等具体信息
-  //       level: 'province'  //查询行政级别为 市
-  //     };
-  //     this.district = new AMap.DistrictSearch(opts);
-  //   }
-  //   //行政区查询
-  //   this.district.setLevel("province")
-  //   this.district.search("湖北省", function (status, result) {
-  //     this.map.remove(this.polygons)//清除上次结果
-  //     this.polygons = [];
-  //     var bounds = result.districtList[0].boundaries;
-  //     if (bounds) {
-  //       for (var i = 0, l = bounds.length; i < l; i++) {
-  //         //生成行政区划polygon
-  //         var polygon = new AMap.Polygon({
-  //           strokeWeight: 1,
-  //           path: bounds[i],
-  //           fillOpacity: 0.1,
-  //           fillColor: '#80d8ff',
-  //           strokeColor: '#0091ea'
-  //         });
-  //         this.polygons.push(polygon);
-  //       }
-  //     }
-  //     this.map.add(this.polygons)
-  //     this.map.setFitView(this.polygons);//视口自适应
-  //   });
-  // }
 }

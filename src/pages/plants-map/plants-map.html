@@ -6,63 +6,95 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-      <ion-title>样点地图</ion-title>
-      <!-- <ion-buttons end>
+    <ion-navbar>
+        <ion-title>样点地图</ion-title>
+        <!-- <ion-buttons end>
           <button ion-button icon-only (click)="refresh()">
               <ion-icon name="refresh"></ion-icon>
           </button>
       </ion-buttons> -->
-  </ion-navbar>
-  <ion-item style="display: none">
-      <ion-multi-picker #picker1 (ionChange)="changeArea($event)" [multiPickerColumns]="areas" doneText="确定" cancelText="取消"></ion-multi-picker>
-  </ion-item>
+    </ion-navbar>
+    <ion-item style="display: none">
+        <ion-multi-picker #picker1 (ionChange)="changeArea($event)" [multiPickerColumns]="areas" doneText="确定" cancelText="取消"></ion-multi-picker>
+    </ion-item>
 </ion-header>
 
 
 <ion-content no-padding>
-      <ion-grid style="width: 100%;height: 6%;">
-          <ion-row>
-              <ion-col>
-                  <ion-item no-lines (click)="showPicker()">
-                      <ion-label item-start>区域:</ion-label>
-                      <ion-input readonly="true" disabled="true" type="text" placeholder="请选择区域"  [(ngModel)]="area"></ion-input>
-                  </ion-item>
-              </ion-col>
-              <ion-col>
-                  <ion-item no-lines>
-                      <ion-label item-start>合计:</ion-label>
-                      <ion-input readonly="true" disabled="true" type="text"  [(ngModel)]="total"></ion-input>
-                  </ion-item>
-              </ion-col>
-            </ion-row>
-      </ion-grid>
-      
-  <div style="width: 100%;height: 94%;" id="mapView"></div>
+    <ion-grid style="width: 100%;height: 6%;">
+        <ion-row>
+            <ion-col>
+                <ion-item no-lines (click)="showPicker()">
+                    <ion-label item-start>区域:</ion-label>
+                    <ion-input readonly="true" disabled="true" type="text" placeholder="请选择区域" [(ngModel)]="area"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item no-lines>
+                    <ion-label item-start>合计:</ion-label>
+                    <ion-input readonly="true" disabled="true" type="text" [(ngModel)]="total"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
-  <ion-grid no-margin style="position: absolute; bottom: 0px;background-color: rgba(250, 250, 250, 0.55)">
-      <ion-row>
-          
-          <ion-item no-lines style="width: 25%">
-              <ion-label>一级</ion-label>
-              <ion-checkbox class="checkbox-md" [(ngModel)]="checkState.level1" (ngModelChange)="checkChange($event)"></ion-checkbox>
-              <!-- <p float-right style="margin: 0px;padding: 0px;">已下载</p> -->
-          </ion-item>
-          <ion-item no-lines style="width: 25%">
-              <ion-label>二级</ion-label>
-              <ion-checkbox class="checkbox-md checkbox-md-secondary" color="secondary" [(ngModel)]="checkState.level2" (ngModelChange)="checkChange($event)"></ion-checkbox>
-              <!-- <p float-right style="margin: 0px;padding: 0px;">已上传</p> -->
-          </ion-item>
-          <ion-item no-lines style="width: 25%">
-            <ion-label>极小</ion-label>
-            <ion-checkbox class="checkbox-md checkbox-md-third" [(ngModel)]="checkState.min" (ngModelChange)="checkChange($event)" color="third"></ion-checkbox>
-            <!-- <p float-right style="margin: 0px;padding: 0px;">待下载</p> -->
-        </ion-item>
-          <ion-item no-lines style="width: 25%">
-              <ion-label>其他</ion-label>
-              <ion-checkbox class="checkbox-md checkbox-md-danger" color="danger" [(ngModel)]="checkState.other" (ngModelChange)="checkChange($event)"></ion-checkbox>
-              <!-- <p float-right style="margin: 0px;padding: 0px;">已撤销</p> -->
-          </ion-item>
-      </ion-row>
-  </ion-grid>
+    <div style="width: 100%;height: 94%;" id="mapView"></div>
+
+    <ion-grid no-margin style="position: absolute; bottom: 0px;background-color: rgba(250, 250, 250, 0.55)">
+        <ion-row>
+            <ion-col>
+                <ion-item no-lines (click)="showPicker()">
+                    <ion-label item-start>区域:</ion-label>
+                    <ion-input readonly="true" disabled="true" type="text" placeholder="请选择区域" [(ngModel)]="area"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item no-lines>
+                    <ion-label item-start>合计:</ion-label>
+                    <ion-input readonly="true" disabled="true" type="text" [(ngModel)]="total"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <div style="width: 100%;height: 94%;" id="mapView"></div>
+
+    <ion-grid no-margin style="position: absolute; bottom: 0px;background-color: rgba(250, 250, 250, 0.55)">
+        <ion-row style="height: 26px;background-color: white">
+            <div style="width: 25%;text-align: center;">
+                <p style="margin: 9px 0px 0px 0px">{{level1Markers.length}}</p>
+            </div>
+            <div style="width: 25%;text-align: center;">
+                <p style="margin: 9px 0px 0px 0px">{{level2Markers.length}}</p>
+            </div>
+            <div style="width: 25%;text-align: center;">
+                <p style="margin: 9px 0px 0px 0px">{{minMarkers.length}}</p>
+            </div>
+            <div style="width: 25%;text-align: center;">
+                <p style="margin: 9px 0px 0px 0px">{{otherMarkers.length}}</p>
+            </div>
+        </ion-row>
+        <ion-row>
+            <ion-item no-lines style="width: 25%">
+                <ion-label>一级</ion-label>
+                <ion-checkbox class="checkbox-md" [(ngModel)]="checkState.level1" (ngModelChange)="checkChange($event)"></ion-checkbox>
+                <!-- <p float-right style="margin: 0px;padding: 0px;">已下载</p> -->
+            </ion-item>
+            <ion-item no-lines style="width: 25%">
+                <ion-label>二级</ion-label>
+                <ion-checkbox class="checkbox-md checkbox-md-secondary" color="secondary" [(ngModel)]="checkState.level2" (ngModelChange)="checkChange($event)"></ion-checkbox>
+                <!-- <p float-right style="margin: 0px;padding: 0px;">已上传</p> -->
+            </ion-item>
+            <ion-item no-lines style="width: 25%">
+                <ion-label>极小</ion-label>
+                <ion-checkbox class="checkbox-md checkbox-md-third" [(ngModel)]="checkState.min" (ngModelChange)="checkChange($event)" color="third"></ion-checkbox>
+                <!-- <p float-right style="margin: 0px;padding: 0px;">待下载</p> -->
+            </ion-item>
+            <ion-item no-lines style="width: 25%">
+                <ion-label>其他</ion-label>
+                <ion-checkbox class="checkbox-md checkbox-md-danger" color="danger" [(ngModel)]="checkState.other" (ngModelChange)="checkChange($event)"></ion-checkbox>
+                <!-- <p float-right style="margin: 0px;padding: 0px;">已撤销</p> -->
+            </ion-item>
+        </ion-row>
+    </ion-grid>
 </ion-content>

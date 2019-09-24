@@ -47,12 +47,20 @@
       <ion-label item-start>小地名</ion-label>
       <ion-input  (keydown)="keydown($event)" readonly="{{state=='1'?'false':'true'}}" type="text" placeholder="请输入小地名"  [(ngModel)]="data.spot"></ion-input>
     </ion-item>
+  </ion-list>
 
+  <ion-list>
     <ion-item  class="titleItem">
       <ion-icon item-start name="book" ios="ios-book-outline" md="ios-book-outline" color="primary"></ion-icon>
       <ion-label item-start>概况</ion-label>
+      <button ion-button icon-start clear item-end (click)="hideOrShowBasic()">
+          <ion-icon name="arrow-forward" style="margin-right:0px !important" *ngIf="!showBasic"></ion-icon>
+          <ion-icon name="arrow-down" style="margin-right:0px !important" *ngIf="showBasic"></ion-icon>
+      </button>
     </ion-item>
+    </ion-list>
 
+    <ion-list *ngIf="showBasic">
     <ion-item>
       <ion-label>就地保护状况</ion-label>
       <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="gender" [(ngModel)]="data.protection" [multiPickerColumns]="proofArr" doneText="确定"
@@ -108,12 +116,20 @@
       <p item-end>m²</p>
       <ion-icon (click)="showAreaTip()" item-end ios="ios-help-circle-outline" md="ios-help-circle-outline" color="primary"></ion-icon>
     </ion-item>
+  </ion-list>
 
+  <ion-list>
     <ion-item class="titleItem">
       <ion-icon item-start name="compass" ios="ios-compass-outline" md="ios-compass-outline" color="primary"></ion-icon>
       <ion-label item-start>方位</ion-label>
+      <button ion-button icon-start clear item-end (click)="hideOrShowBearing()">
+          <ion-icon name="arrow-forward" style="margin-right:0px !important" *ngIf="!showBearing"></ion-icon>
+          <ion-icon name="arrow-down" style="margin-right:0px !important" *ngIf="showBearing"></ion-icon>
+      </button>
     </ion-item>
+    </ion-list>
 
+    <ion-list *ngIf="showBearing">
     <ion-item>
       <ion-label>坡向</ion-label>
       <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="aspect" [(ngModel)]="data.aspect" [multiPickerColumns]="aspects" doneText="确定"
@@ -134,10 +150,20 @@
         cancelText="取消"></ion-multi-picker>
     </ion-item>
 
+    </ion-list>
+
+    <ion-list>
     <ion-item class="titleItem">
       <ion-icon item-start name="leaf" ios="ios-leaf-outline" md="ios-leaf-outline" color="primary"></ion-icon>
       <ion-label item-start>环境详情</ion-label>
+      <button ion-button icon-start clear item-end (click)="hideOrShowEnvironment()">
+          <ion-icon name="arrow-forward" style="margin-right:0px !important" *ngIf="!showEnvironment"></ion-icon>
+          <ion-icon name="arrow-down" style="margin-right:0px !important" *ngIf="showEnvironment"></ion-icon>
+      </button>
     </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="showEnvironment">
     <ion-item>
       <ion-label item-start>郁闭度</ion-label>
       <ion-multi-picker disabled="{{state=='1'?'':'true'}}" item-end style="color:darkgray" id="crownDensity" [(ngModel)]="data.crownDensity" [multiPickerColumns]="crownDensities" doneText="确定"
@@ -204,11 +230,20 @@
       <h2>知情者</h2>
       <ion-icon name="ios-arrow-forward" style="color:#F2F2F2" item-end></ion-icon>
     </ion-item>
+    </ion-list>
 
+    <ion-list>
     <ion-item class="titleItem">
       <ion-icon item-start name="flower" ios="ios-flower-outline" md="ios-flower-outline" color="primary"></ion-icon>
       <ion-label item-start>物种详情</ion-label>
+      <button ion-button icon-start clear item-end (click)="hideOrShowSpecies()">
+          <ion-icon name="arrow-forward" style="margin-right:0px !important" *ngIf="!showSpecies"></ion-icon>
+          <ion-icon name="arrow-down" style="margin-right:0px !important" *ngIf="showSpecies"></ion-icon>
+      </button>
     </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="showSpecies">
     <ion-item (click)="photoClik()">
       <h2>照片详情</h2>
       <ion-icon name="ios-arrow-forward" style="color:#F2F2F2" item-end></ion-icon>
@@ -217,9 +252,8 @@
       <h2>目的物种详情</h2>
       <ion-icon name="ios-arrow-forward" style="color:#F2F2F2" item-end></ion-icon>
     </ion-item>
-
   </ion-list>
-
+  <ion-list><div class="ty-line1"></div></ion-list>
 </ion-content>
 <ion-footer *ngIf="isShowApplying">
   <div class="bottom-apply">

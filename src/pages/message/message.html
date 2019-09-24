@@ -10,7 +10,7 @@
       <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
       </button>
-    <ion-title>推送消息</ion-title>
+    <ion-title>新闻消息</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -23,24 +23,24 @@
 
     <ion-list >
 
-      <ion-item-sliding *ngFor="let message of messages" #slidingItem [attr.type]="message.type">
-        <ion-item item-text-wrap (click)="test()">
-          <h3>{{message.content}}</h3>
+      <ion-item-sliding *ngFor="let message of newsList" #slidingItem [attr.type]="common">
+        <ion-item item-text-wrap (click)="test(message.url)">
+          <h3>{{message.title}}</h3>
           <p> {{message.time}} </p>
         </ion-item>
 
         <ion-item-options>
-          <button ion-button color="danger">
-            删除
+          <button ion-button color="danger" (click)="test(message.url)">
+            查看
           </button>
         </ion-item-options>
       </ion-item-sliding>
-      <ion-allitem-showed-bottom *ngIf="messages.length>=total&&messages.length>0"></ion-allitem-showed-bottom>
+      <ion-allitem-showed-bottom *ngIf="newsList.length>=total&&newsList.length>0"></ion-allitem-showed-bottom>
       <ion-custom-empty *ngIf="total==0"></ion-custom-empty>
     </ion-list>
 
-    <ion-infinite-scroll *ngIf="messages.length<total" (ionInfinite)="doInfinite($event)">
+    <!-- <ion-infinite-scroll *ngIf="messages.length<total" (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content loadingText="正在加载..."></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+    </ion-infinite-scroll> -->
 
 </ion-content>
