@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { BasePage } from '../base/base';
 import { TyNetworkServiceProvider } from '../../providers/ty-network-service/ty-network-service';
-import { AppGlobal } from '../../providers/app-service/app-service';
+import { AppGlobal, AppServiceProvider } from '../../providers/app-service/app-service';
 import { MultiPicker } from 'ion-multi-picker';
 
 /**
@@ -66,7 +66,7 @@ export class PlantsMapPage extends BasePage {
         { text: '十堰市', value: '十堰市' },
         { text: '荆州市', value: '荆州市' },
         { text: '宜昌市', value: '宜昌市' },
-        { text: '襄樊市', value: '襄樊市' },
+        { text: '襄阳市', value: '襄阳市' },
         { text: '鄂州市', value: '鄂州市' },
         { text: '荆门市', value: '荆门市' },
         { text: '黄冈市', value: '黄冈市' },
@@ -123,7 +123,10 @@ export class PlantsMapPage extends BasePage {
     return new Promise((resolve, reject) => {
       this.net.httpPost(
         AppGlobal.API.plantsByCity,
-        { city: this.area },
+        { 
+          userName:AppServiceProvider.getInstance().userinfo.loginData.userName,
+          city: this.area
+        },
         msg => {
           console.log(msg);
 
