@@ -87,6 +87,7 @@ export class WebTyNetworkServiceProvider {
                 }
                 
                 let m =  res.text();
+                console.log("response data:"+m);
                 success(m);
               }, 1000);
 

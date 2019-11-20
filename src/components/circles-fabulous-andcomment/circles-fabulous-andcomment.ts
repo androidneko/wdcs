@@ -47,6 +47,8 @@ export class CirclesFabulousAndcommentComponent {
             if (this.item.circleFriendsMsgList == null) {
               this.item.circleFriendsMsgList = []
             }
+            //评论成功后本地组装评论数据添加到评论列表
+            //这里是使用未回复他人之前得数据和当前用户数据组装得来得数据，要和刷新后得报文匹配，所以看起来奇怪
             this.item.circleFriendsMsgList.push({
               "id": obj.data.id,
               "userId": AppServiceProvider.getInstance().userinfo.loginData.userId,
@@ -54,6 +56,7 @@ export class CirclesFabulousAndcommentComponent {
               "createTime":  obj.data.createTime,
               "answerUserId": comment.userId,
               "answerUserName": comment.userName,
+              "userName": AppServiceProvider.getInstance().userinfo.userData.nickName,
               "content": mmsg
             });
           } else {

@@ -20,10 +20,27 @@ export class CirclesOprationComponent {
   @Input() oprationHidden:boolean = true;
   constructor(public toastCtrl: ToastController,public net:TyNetworkServiceProvider) {
     console.log('Hello CirclesOprationComponent Component');
-    this.text = 'Hello World';
   }
+
+  checkIsLiked(){
+    if (this.item.circleFriendsFabulousList){
+      for (let index:number = 0;index < this.item.circleFriendsFabulousList.length;index++){
+        let fab = this.item.circleFriendsFabulousList[index];
+        if (AppServiceProvider.getInstance().userinfo.userData.nickName === fab.userId){
+          this.item.isFabuloused = true;
+          this.item.fabulousedIndex = index;
+          return true;
+        }
+      }
+      this.item.isFabuloused = false;
+    }
+  }
+
   opereationBtnCliked(){
     this.oprationHidden = !this.oprationHidden;
+    if (!this.oprationHidden){
+      this.checkIsLiked();
+    }
   }
   toast(info) {
     if (this.toastCtrl != null)
@@ -108,7 +125,7 @@ export class CirclesOprationComponent {
             }
             this.item.circleFriendsMsgList.push({
               "id": obj.data.id,
-              "userId": AppServiceProvider.getInstance().userinfo.loginData.userId,
+              "userId": AppServiceProvider.getInstance().userinfo.userData.nickName,
               "circleFriendsId": this.item.id,
               "createTime":  obj.data.createTime,
               "answerUserId": "",

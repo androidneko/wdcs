@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { AppServiceProvider, AppGlobal } from '../../providers/app-service/app-service';
 import { BasePage } from '../base/base';
 import { TyNetworkServiceProvider } from '../../providers/ty-network-service/ty-network-service';
+import { Events } from '../../../node_modules/ionic-angular/util/events';
 
 /**
  * Generated class for the CirclesPage page.
@@ -24,15 +25,25 @@ export class CirclesPage extends BasePage {
   total = -1;
   currentPage: number = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public toastCtrl: ToastController,public net:TyNetworkServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public toastCtrl: ToastController,public events: Events,public net:TyNetworkServiceProvider) {
     super(navCtrl, navParams, toastCtrl);
     this.user = AppServiceProvider.getInstance().userinfo.userData;
+    this.events.subscribe('userinfo:saved', () => {
+      this.user = AppServiceProvider.getInstance().userinfo.userData;
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CirclesPage');
     this.sendQueryRequest(1, null);
   }
+
+  ionViewWillUnload() {
+    console.log('ionViewWillUnload CirclesPage');
+    //避免该页面多次进入后多次监听登出事件，切换登录可能发生该状况
+    this.events.unsubscribe('userinfo:saved');
+  }
+
   doRefresh(refresher) {
     //刷新
     console.log("下拉刷新");
@@ -76,7 +87,7 @@ export class CirclesPage extends BasePage {
 
       } else {
         this.total = 0;
-        this.toast(obj.ACTION_RETURN_MESSAGE);
+        this.toast(obj.desc);
       }
       if (refresher != null) {
         refresher.complete();

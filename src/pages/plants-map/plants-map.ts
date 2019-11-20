@@ -61,23 +61,23 @@ export class PlantsMapPage extends BasePage {
       name: 'area',
       options: [
         { text: '湖北', value: '湖北' },
-        { text: '武汉市', value: '武汉市' },
-        { text: '黄石市', value: '黄石市' },
-        { text: '十堰市', value: '十堰市' },
-        { text: '荆州市', value: '荆州市' },
-        { text: '宜昌市', value: '宜昌市' },
-        { text: '襄阳市', value: '襄阳市' },
-        { text: '鄂州市', value: '鄂州市' },
-        { text: '荆门市', value: '荆门市' },
-        { text: '黄冈市', value: '黄冈市' },
-        { text: '孝感市', value: '孝感市' },
-        { text: '咸宁市', value: '咸宁市' },
-        { text: '仙桃市', value: '仙桃市' },
-        { text: '潜江市', value: '潜江市' },
+        { text: '武汉市', value: '武汉' },
+        { text: '黄石市', value: '黄石' },
+        { text: '十堰市', value: '十堰' },
+        { text: '荆州市', value: '荆州' },
+        { text: '宜昌市', value: '宜昌' },
+        { text: '襄阳市', value: '襄阳' },
+        { text: '鄂州市', value: '鄂州' },
+        { text: '荆门市', value: '荆门' },
+        { text: '黄冈市', value: '黄冈' },
+        { text: '孝感市', value: '孝感' },
+        { text: '咸宁市', value: '咸宁' },
+        { text: '仙桃市', value: '仙桃' },
+        { text: '潜江市', value: '潜江' },
         { text: '神农架', value: '神农架' },
         { text: '恩施', value: '恩施' },
-        { text: '天门市', value: '天门市' },
-        { text: '随州市', value: '随州市' }
+        { text: '天门市', value: '天门' },
+        { text: '随州市', value: '随州' }
       ]
     }
   ];
