@@ -125,7 +125,7 @@ export class CirclesOprationComponent {
             }
             this.item.circleFriendsMsgList.push({
               "id": obj.data.id,
-              "userId": AppServiceProvider.getInstance().userinfo.userData.nickName,
+              "userName": AppServiceProvider.getInstance().userinfo.userData.nickName,
               "circleFriendsId": this.item.id,
               "createTime":  obj.data.createTime,
               "answerUserId": "",

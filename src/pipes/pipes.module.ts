@@ -8,6 +8,7 @@ import { FloatSpliterPipe } from './float-spliter/float-spliter';
 import { ParseAmountPipe } from './parse-amount/parse-amount';
 import { ProductStatusPipe } from './product-status/product-status';
 import { StockNamePipe } from './stock-name/stock-name';
+import { DateTipPipe } from './date-tip/date-tip';
 @NgModule({
 	declarations: [PayStatusPipe,
     StockStatusPipe,
@@ -17,7 +18,8 @@ import { StockNamePipe } from './stock-name/stock-name';
     FloatSpliterPipe,
     ParseAmountPipe,
     ProductStatusPipe,
-    StockNamePipe],
+    StockNamePipe,
+    DateTipPipe],
 	imports: [],
 	exports: [PayStatusPipe,
     StockStatusPipe,
@@ -27,6 +29,7 @@ import { StockNamePipe } from './stock-name/stock-name';
     FloatSpliterPipe,
     ParseAmountPipe,
     ProductStatusPipe,
-    StockNamePipe]
+    StockNamePipe,
+    DateTipPipe]
 })
 export class PipesModule {}

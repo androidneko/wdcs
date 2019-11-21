@@ -1,6 +1,6 @@
 <!-- Generated template for the CirclesOprationComponent component -->
 <div class="content">
- <p class="time"> {{item.createTime}}</p>
+ <p class="time"> {{item.createTime | tydate : 'yyyy-MM-dd'}}</p>
 
   <button  no-padding class="comment" clear ion-button icon-only (click)="opereationBtnCliked()">
     <ion-icon name="md-text"></ion-icon>
