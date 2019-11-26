@@ -13,7 +13,7 @@ export class TydatePipe implements PipeTransform {
    * Takes a value and makes it lowercase.
    */
   transform(value: any, format:string,...args):any {
-    let Dates = new Date( value );
+    let Dates = new Date(value.replace(/-/g, '/') );
     let year: number = Dates.getFullYear();
     let month: any = ( Dates.getMonth() + 1 ) < 10 ? '0' + ( Dates.getMonth() + 1 ) : ( Dates.getMonth() + 1 );
     let day: any = Dates.getDate() < 10 ? '0' + Dates.getDate() : Dates.getDate();
