@@ -210,7 +210,7 @@ export class MyApp {
   }
 
   gotoPersonalInfoPage() {
-    this.openPage(this.loggedInPages[4]);
+    this.openPage(this.loggedInPages[5]);
     this.menu.close();
   }
 
@@ -292,7 +292,12 @@ export class MyApp {
       if (this.rootPages.indexOf(this.nav.getActive().id) >= 0){
         return this.showExit();
       }
-      //return this.nav.canGoBack() ? this.nav.pop() : this.showExit();//另外两种方法在这里将this.showExit()改为其他两种的方法的逻辑就好。
+      console.log(this.nav.getActive().id)
+      if ('PersonalInfoPage' == this.nav.getActive().id){
+        this.events.publish('backButtonPressed');
+        return;
+      }
+      return this.nav.canGoBack() ? this.nav.pop() : this.showExit();//另外两种方法在这里将this.showExit()改为其他两种的方法的逻辑就好。
     }, 1);
   }
 

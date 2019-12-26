@@ -11,9 +11,17 @@ ion-content{
 }
 .item-ios ion-avatar img{
     margin:10px 0px 10px 0px;
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
 }
+
+img{
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
 .item-block{
     min-height: 5.5rem !important;
 }
@@ -40,6 +48,7 @@ ion-content{
       margin-left: 0px;
       
     }
+
 }
 
 personal-info-header{

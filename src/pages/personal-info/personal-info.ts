@@ -77,8 +77,9 @@ export class PersonalInfoPage extends BasePage {
     public alert: AlertController,
     public events: Events) {
     super(navCtrl, navParams);
-
+    
     this.initHeightAndWeight();
+    this.listenToBackEvents();
   }
 
   ionViewDidLoad() {
@@ -86,6 +87,12 @@ export class PersonalInfoPage extends BasePage {
 
     this.navBar.backButtonClick = this.backButtonClick;
     this.sendRequest();
+  }
+
+  ionViewWillUnload() {
+    console.log('ionViewWillUnload PersonalInfoPage');
+    //避免该页面多次进入后多次监听事件
+    this.events.unsubscribe('backButtonPressed');
   }
 
   ionViewWillEnter(){
@@ -114,8 +121,18 @@ export class PersonalInfoPage extends BasePage {
     //   .catch();
    }
 
+   listenToBackEvents() {
+    this.events.subscribe('backButtonPressed', () => {
+      this.backCheck();
+    });
+  }
+
   backButtonClick = (e: UIEvent) => {
     // do something
+    this.backCheck();
+  }
+
+  backCheck(){
     if (this.isEditMode) {
       this.showUnsavedAlert();
       console.log("isEditMode:" + this.isEditMode);

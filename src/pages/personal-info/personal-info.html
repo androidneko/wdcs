@@ -23,9 +23,10 @@
 <ion-content no-padding no-margin >
 <ion-list>
   <ion-item no-lines>
-    <ion-avatar item-start (click)="openCamera()">
+    <!-- <ion-avatar item-start (click)="openCamera()">
         <img [src]="info.avatar">
-    </ion-avatar>
+    </ion-avatar> -->
+    <img-lazy-load item-start default="assets/imgs/author_logo2.png" src="{{info.avatar}}" (click)="openCamera()"></img-lazy-load>
     <div float-left>
       <h3>{{info.nickName}}</h3>
       <p>{{info.userName}}</p>
