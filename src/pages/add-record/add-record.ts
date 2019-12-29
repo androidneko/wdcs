@@ -318,7 +318,7 @@ export class AddRecordPage extends BasePage{
       //时间赋值
       //用户名赋值
 
-      this.data.date = this.datePipe.transform(new Date(),"yyyy-MM-dd");
+      this.data.date = this.datePipe.transform(new Date().toLocaleDateString(),"yyyy-MM-dd");
     
     }
     
